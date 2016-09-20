@@ -5928,7 +5928,7 @@ public class Principal extends javax.swing.JFrame {
             Item_repasseDAO daoitemd=new Item_repasseDAO();
             int sucesso=daoitemd.inserir(itemd);
             daoitemd.fechar();
-            if (sucesso==0) JOptionPane.showMessageDialog(CadastrarItemRepasse,"Falha na Inserção.","Erro",0);
+            if (sucesso==0) JOptionPane.showMessageDialog(CadastrarItemRepasse,"Falha no cadastro do item.\nVerifique se ha unidades disponiveis em Estoque.","Erro",0);
             
             else {
                 Banco b=new Banco();

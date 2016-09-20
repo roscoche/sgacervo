@@ -9,5 +9,5 @@ o banco de dados para o qual deseja apontar, no caso está como padrão "sgacerv
 
 2 - Execute o arquivo "INICIALIZACAO_DB.SQL" no seu banco de dados.
 
-3 - Pode dar build e começar a utilizar o sistema.
+3 - Pode dar build e omeçar a utilizar o sistema. A senha padrao do administrador é "admin".
 

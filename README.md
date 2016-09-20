@@ -1,4 +1,6 @@
-# sgacervo
+# SGACERVO
+# Sistema Gerenciador de Acervo
+# Museu da Computação UEPG
 Sistema gerenciador de Acervo do Museu da Computação da UEPG.
 
 1 - Para inicializar o sistema, configure seu servidor Postgres local ou remoto

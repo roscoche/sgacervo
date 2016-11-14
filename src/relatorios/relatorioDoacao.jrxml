@@ -10,7 +10,7 @@
 	<field name="Usuário" class="java.lang.String"/>
 	<field name="Doador" class="java.lang.String"/>
 	<field name="Evento de Origem" class="java.lang.String"/>
-	<field name="Data" class="java.sql.Date"/>
+	<field name="Data" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>

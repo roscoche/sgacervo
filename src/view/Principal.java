@@ -1339,18 +1339,48 @@ public class Principal extends javax.swing.JFrame {
         BEditarRepasse = new javax.swing.JButton();
         BExcluirRepasse = new javax.swing.JButton();
         BRelatorioRepasse = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        SPEstoqueItensPagina1 = new javax.swing.JSpinner();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        LEstoquePagina1 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        LEstoqueTotalPaginas1 = new javax.swing.JLabel();
+        BEstoquePaginaAnterior1 = new javax.swing.JButton();
+        BEstoqueProxPagina1 = new javax.swing.JButton();
+        BRelatorioRepasse1 = new javax.swing.JButton();
         PainelItemRepasse = new javax.swing.JPanel();
         RelatorioItemRepasse = new javax.swing.JScrollPane();
         TItemRepasse = new javax.swing.JTable();
         BEditarItemRepasse = new javax.swing.JButton();
         BExcluirItemRepasse = new javax.swing.JButton();
         BRelatorioItemRepasse = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
+        SPEstoqueItensPagina2 = new javax.swing.JSpinner();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        LEstoquePagina2 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        LEstoqueTotalPaginas2 = new javax.swing.JLabel();
+        BEstoquePaginaAnterior2 = new javax.swing.JButton();
+        BEstoqueProxPagina2 = new javax.swing.JButton();
+        BRelatorioItemRepasse1 = new javax.swing.JButton();
         PainelColetores = new javax.swing.JPanel();
         ExibirColetores = new javax.swing.JScrollPane();
         TColetor = new javax.swing.JTable();
         BEditarColetor = new javax.swing.JButton();
         BExcluirColetor = new javax.swing.JButton();
         BRelatorioColetor = new javax.swing.JButton();
+        jLabel31 = new javax.swing.JLabel();
+        SPEstoqueItensPagina3 = new javax.swing.JSpinner();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        LEstoquePagina3 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        LEstoqueTotalPaginas3 = new javax.swing.JLabel();
+        BEstoquePaginaAnterior3 = new javax.swing.JButton();
+        BEstoqueProxPagina3 = new javax.swing.JButton();
+        BRelatorioColetor1 = new javax.swing.JButton();
         Acervo = new javax.swing.JTabbedPane();
         MenuAcervo = new javax.swing.JPanel();
         LBemVindoDoacoes2 = new javax.swing.JLabel();
@@ -1419,16 +1449,44 @@ public class Principal extends javax.swing.JFrame {
         BEditarItemAcervo = new javax.swing.JButton();
         BExcluirItemAcervo = new javax.swing.JButton();
         BRelatorioAcervo = new javax.swing.JButton();
+        jLabel35 = new javax.swing.JLabel();
+        SPEstoqueItensPagina4 = new javax.swing.JSpinner();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        LEstoquePagina4 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        LEstoqueTotalPaginas4 = new javax.swing.JLabel();
+        BEstoquePaginaAnterior4 = new javax.swing.JButton();
+        BEstoqueProxPagina4 = new javax.swing.JButton();
+        BRelatorioAcervo1 = new javax.swing.JButton();
         Imagens = new javax.swing.JPanel();
         SPImagem = new javax.swing.JScrollPane();
         TImagem = new javax.swing.JTable();
         BEditarImagem = new javax.swing.JButton();
         BExcluirImagem = new javax.swing.JButton();
+        jLabel39 = new javax.swing.JLabel();
+        SPEstoqueItensPagina5 = new javax.swing.JSpinner();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        LEstoquePagina5 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        LEstoqueTotalPaginas5 = new javax.swing.JLabel();
+        BEstoquePaginaAnterior5 = new javax.swing.JButton();
+        BEstoqueProxPagina5 = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
         SPContainer = new javax.swing.JScrollPane();
         TContainer = new javax.swing.JTable();
         BEditarContainer = new javax.swing.JButton();
         BExcluirContainer = new javax.swing.JButton();
+        jLabel43 = new javax.swing.JLabel();
+        SPEstoqueItensPagina6 = new javax.swing.JSpinner();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        LEstoquePagina6 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        LEstoqueTotalPaginas6 = new javax.swing.JLabel();
+        BEstoquePaginaAnterior6 = new javax.swing.JButton();
+        BEstoqueProxPagina6 = new javax.swing.JButton();
         Usuarios = new javax.swing.JTabbedPane();
         MenuUsuarios = new javax.swing.JPanel();
         LBemVindoDoacoes3 = new javax.swing.JLabel();
@@ -1456,6 +1514,15 @@ public class Principal extends javax.swing.JFrame {
         TUsuario = new javax.swing.JTable();
         BEditarUsuario = new javax.swing.JButton();
         BExcluirUsuario = new javax.swing.JButton();
+        jLabel47 = new javax.swing.JLabel();
+        SPEstoqueItensPagina7 = new javax.swing.JSpinner();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        LEstoquePagina7 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        LEstoqueTotalPaginas7 = new javax.swing.JLabel();
+        BEstoquePaginaAnterior7 = new javax.swing.JButton();
+        BEstoqueProxPagina7 = new javax.swing.JButton();
         AbaDoUsuario = new javax.swing.JTabbedPane();
         MenuAbaUsuario = new javax.swing.JPanel();
         LBemVindoDoacoes4 = new javax.swing.JLabel();
@@ -5143,17 +5210,81 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel23.setText("Mostrar");
+
+        SPEstoqueItensPagina1.setModel(new javax.swing.SpinnerNumberModel(10, 0, null, 1));
+        SPEstoqueItensPagina1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SPEstoqueItensPagina1StateChanged(evt);
+            }
+        });
+
+        jLabel24.setText("itens por página.");
+
+        jLabel25.setText("Página");
+
+        LEstoquePagina1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoquePagina1.setText("1");
+
+        jLabel26.setText("de");
+
+        LEstoqueTotalPaginas1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoqueTotalPaginas1.setText("%TotalPaginas%");
+
+        BEstoquePaginaAnterior1.setText("Página Anterior");
+        BEstoquePaginaAnterior1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoquePaginaAnterior1ActionPerformed(evt);
+            }
+        });
+
+        BEstoqueProxPagina1.setText("Próxima Página");
+        BEstoqueProxPagina1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoqueProxPagina1ActionPerformed(evt);
+            }
+        });
+
+        BRelatorioRepasse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BRelatorioRepasse1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BRelatorioRepasse1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelRepasseLayout = new javax.swing.GroupLayout(PainelRepasse);
         PainelRepasse.setLayout(PainelRepasseLayout);
         PainelRepasseLayout.setHorizontalGroup(
             PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelRepasseLayout.createSequentialGroup()
+            .addGroup(PainelRepasseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelRepasseLayout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueItensPagina1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel24)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoquePagina1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoqueTotalPaginas1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BEstoquePaginaAnterior1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BEstoqueProxPagina1))
+                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BEditarRepasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BExcluirRepasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BEditarRepasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BExcluirRepasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BRelatorioRepasse1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BRelatorioRepasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -5167,9 +5298,22 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirRepasse)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BRelatorioRepasse1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(SPEstoqueItensPagina1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25)
+                    .addComponent(LEstoquePagina1)
+                    .addComponent(jLabel26)
+                    .addComponent(LEstoqueTotalPaginas1)
+                    .addComponent(BEstoquePaginaAnterior1)
+                    .addComponent(BEstoqueProxPagina1))
                 .addContainerGap())
         );
 
@@ -5211,18 +5355,83 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel27.setText("Mostrar");
+
+        SPEstoqueItensPagina2.setModel(new javax.swing.SpinnerNumberModel(10, 0, null, 1));
+        SPEstoqueItensPagina2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SPEstoqueItensPagina2StateChanged(evt);
+            }
+        });
+
+        jLabel28.setText("itens por página.");
+
+        jLabel29.setText("Página");
+
+        LEstoquePagina2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoquePagina2.setText("1");
+
+        jLabel30.setText("de");
+
+        LEstoqueTotalPaginas2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoqueTotalPaginas2.setText("%TotalPaginas%");
+
+        BEstoquePaginaAnterior2.setText("Página Anterior");
+        BEstoquePaginaAnterior2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoquePaginaAnterior2ActionPerformed(evt);
+            }
+        });
+
+        BEstoqueProxPagina2.setText("Próxima Página");
+        BEstoqueProxPagina2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoqueProxPagina2ActionPerformed(evt);
+            }
+        });
+
+        BRelatorioItemRepasse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BRelatorioItemRepasse1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BRelatorioItemRepasse1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelItemRepasseLayout = new javax.swing.GroupLayout(PainelItemRepasse);
         PainelItemRepasse.setLayout(PainelItemRepasseLayout);
         PainelItemRepasseLayout.setHorizontalGroup(
             PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelItemRepasseLayout.createSequentialGroup()
+            .addGroup(PainelItemRepasseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RelatorioItemRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addGroup(PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelItemRepasseLayout.createSequentialGroup()
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueItensPagina2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel28)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoquePagina2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoqueTotalPaginas2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BEstoquePaginaAnterior2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BEstoqueProxPagina2))
+                    .addComponent(RelatorioItemRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BEditarItemRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BExcluirItemRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(BRelatorioItemRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(BEditarItemRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BExcluirItemRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(BRelatorioItemRepasse1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelItemRepasseLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BRelatorioItemRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         PainelItemRepasseLayout.setVerticalGroup(
@@ -5230,14 +5439,27 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(PainelItemRepasseLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RelatorioItemRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addGroup(PainelItemRepasseLayout.createSequentialGroup()
                         .addComponent(BEditarItemRepasse)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirItemRepasse)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BRelatorioItemRepasse1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioItemRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(RelatorioItemRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(SPEstoqueItensPagina2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel29)
+                    .addComponent(LEstoquePagina2)
+                    .addComponent(jLabel30)
+                    .addComponent(LEstoqueTotalPaginas2)
+                    .addComponent(BEstoquePaginaAnterior2)
+                    .addComponent(BEstoqueProxPagina2))
                 .addContainerGap())
         );
 
@@ -5276,18 +5498,83 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel31.setText("Mostrar");
+
+        SPEstoqueItensPagina3.setModel(new javax.swing.SpinnerNumberModel(10, 0, null, 1));
+        SPEstoqueItensPagina3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SPEstoqueItensPagina3StateChanged(evt);
+            }
+        });
+
+        jLabel32.setText("itens por página.");
+
+        jLabel33.setText("Página");
+
+        LEstoquePagina3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoquePagina3.setText("1");
+
+        jLabel34.setText("de");
+
+        LEstoqueTotalPaginas3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoqueTotalPaginas3.setText("%TotalPaginas%");
+
+        BEstoquePaginaAnterior3.setText("Página Anterior");
+        BEstoquePaginaAnterior3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoquePaginaAnterior3ActionPerformed(evt);
+            }
+        });
+
+        BEstoqueProxPagina3.setText("Próxima Página");
+        BEstoqueProxPagina3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoqueProxPagina3ActionPerformed(evt);
+            }
+        });
+
+        BRelatorioColetor1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BRelatorioColetor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BRelatorioColetor1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelColetoresLayout = new javax.swing.GroupLayout(PainelColetores);
         PainelColetores.setLayout(PainelColetoresLayout);
         PainelColetoresLayout.setHorizontalGroup(
             PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelColetoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ExibirColetores, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addGroup(PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelColetoresLayout.createSequentialGroup()
+                        .addComponent(jLabel31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueItensPagina3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel32)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoquePagina3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoqueTotalPaginas3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BEstoquePaginaAnterior3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BEstoqueProxPagina3))
+                    .addComponent(ExibirColetores, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BEditarColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BExcluirColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(BRelatorioColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(BEditarColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BExcluirColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(BRelatorioColetor1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelColetoresLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BRelatorioColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         PainelColetoresLayout.setVerticalGroup(
@@ -5295,14 +5582,27 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(PainelColetoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ExibirColetores, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addGroup(PainelColetoresLayout.createSequentialGroup()
                         .addComponent(BEditarColetor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirColetor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BRelatorioColetor1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(ExibirColetores, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(SPEstoqueItensPagina3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel33)
+                    .addComponent(LEstoquePagina3)
+                    .addComponent(jLabel34)
+                    .addComponent(LEstoqueTotalPaginas3)
+                    .addComponent(BEstoquePaginaAnterior3)
+                    .addComponent(BEstoqueProxPagina3))
                 .addContainerGap())
         );
 
@@ -5824,18 +6124,83 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel35.setText("Mostrar");
+
+        SPEstoqueItensPagina4.setModel(new javax.swing.SpinnerNumberModel(10, 0, null, 1));
+        SPEstoqueItensPagina4.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SPEstoqueItensPagina4StateChanged(evt);
+            }
+        });
+
+        jLabel36.setText("itens por página.");
+
+        jLabel37.setText("Página");
+
+        LEstoquePagina4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoquePagina4.setText("1");
+
+        jLabel38.setText("de");
+
+        LEstoqueTotalPaginas4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoqueTotalPaginas4.setText("%TotalPaginas%");
+
+        BEstoquePaginaAnterior4.setText("Página Anterior");
+        BEstoquePaginaAnterior4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoquePaginaAnterior4ActionPerformed(evt);
+            }
+        });
+
+        BEstoqueProxPagina4.setText("Próxima Página");
+        BEstoqueProxPagina4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoqueProxPagina4ActionPerformed(evt);
+            }
+        });
+
+        BRelatorioAcervo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BRelatorioAcervo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BRelatorioAcervo1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelAcervoLayout = new javax.swing.GroupLayout(PainelAcervo);
         PainelAcervo.setLayout(PainelAcervoLayout);
         PainelAcervoLayout.setHorizontalGroup(
             PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelAcervoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RelatorioAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelAcervoLayout.createSequentialGroup()
+                        .addComponent(jLabel35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueItensPagina4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel36)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoquePagina4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoqueTotalPaginas4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BEstoquePaginaAnterior4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BEstoqueProxPagina4))
+                    .addComponent(RelatorioAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BExcluirItemAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BEditarItemAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BRelatorioAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(BExcluirItemAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BEditarItemAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BRelatorioAcervo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelAcervoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BRelatorioAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         PainelAcervoLayout.setVerticalGroup(
@@ -5843,14 +6208,27 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(PainelAcervoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RelatorioAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addGroup(PainelAcervoLayout.createSequentialGroup()
                         .addComponent(BEditarItemAcervo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirItemAcervo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BRelatorioAcervo1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(RelatorioAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(SPEstoqueItensPagina4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel36)
+                    .addComponent(jLabel37)
+                    .addComponent(LEstoquePagina4)
+                    .addComponent(jLabel38)
+                    .addComponent(LEstoqueTotalPaginas4)
+                    .addComponent(BEstoquePaginaAnterior4)
+                    .addComponent(BEstoqueProxPagina4))
                 .addContainerGap())
         );
 
@@ -5859,13 +6237,13 @@ public class Principal extends javax.swing.JFrame {
         TImagem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         TImagem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         TImagem.setRowHeight(30);
@@ -5885,13 +6263,67 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel39.setText("Mostrar");
+
+        SPEstoqueItensPagina5.setModel(new javax.swing.SpinnerNumberModel(10, 0, null, 1));
+        SPEstoqueItensPagina5.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SPEstoqueItensPagina5StateChanged(evt);
+            }
+        });
+
+        jLabel40.setText("itens por página.");
+
+        jLabel41.setText("Página");
+
+        LEstoquePagina5.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoquePagina5.setText("1");
+
+        jLabel42.setText("de");
+
+        LEstoqueTotalPaginas5.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoqueTotalPaginas5.setText("%TotalPaginas%");
+
+        BEstoquePaginaAnterior5.setText("Página Anterior");
+        BEstoquePaginaAnterior5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoquePaginaAnterior5ActionPerformed(evt);
+            }
+        });
+
+        BEstoqueProxPagina5.setText("Próxima Página");
+        BEstoqueProxPagina5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoqueProxPagina5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ImagensLayout = new javax.swing.GroupLayout(Imagens);
         Imagens.setLayout(ImagensLayout);
         ImagensLayout.setHorizontalGroup(
             ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ImagensLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addGroup(ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ImagensLayout.createSequentialGroup()
+                        .addComponent(jLabel39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueItensPagina5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel40)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoquePagina5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoqueTotalPaginas5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BEstoquePaginaAnterior5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BEstoqueProxPagina5))
+                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BExcluirImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5908,7 +6340,18 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirImagem)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(SPEstoqueItensPagina5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel40)
+                    .addComponent(jLabel41)
+                    .addComponent(LEstoquePagina5)
+                    .addComponent(jLabel42)
+                    .addComponent(LEstoqueTotalPaginas5)
+                    .addComponent(BEstoquePaginaAnterior5)
+                    .addComponent(BEstoqueProxPagina5))
                 .addContainerGap())
         );
 
@@ -5919,13 +6362,13 @@ public class Principal extends javax.swing.JFrame {
         TContainer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         TContainer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         TContainer.setRowHeight(30);
@@ -5945,13 +6388,67 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel43.setText("Mostrar");
+
+        SPEstoqueItensPagina6.setModel(new javax.swing.SpinnerNumberModel(10, 0, null, 1));
+        SPEstoqueItensPagina6.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SPEstoqueItensPagina6StateChanged(evt);
+            }
+        });
+
+        jLabel44.setText("itens por página.");
+
+        jLabel45.setText("Página");
+
+        LEstoquePagina6.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoquePagina6.setText("1");
+
+        jLabel46.setText("de");
+
+        LEstoqueTotalPaginas6.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoqueTotalPaginas6.setText("%TotalPaginas%");
+
+        BEstoquePaginaAnterior6.setText("Página Anterior");
+        BEstoquePaginaAnterior6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoquePaginaAnterior6ActionPerformed(evt);
+            }
+        });
+
+        BEstoqueProxPagina6.setText("Próxima Página");
+        BEstoqueProxPagina6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoqueProxPagina6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ContainerLayout = new javax.swing.GroupLayout(Container);
         Container.setLayout(ContainerLayout);
         ContainerLayout.setHorizontalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueItensPagina6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel44)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel45)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoquePagina6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel46)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoqueTotalPaginas6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BEstoquePaginaAnterior6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BEstoqueProxPagina6))
+                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BExcluirContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5968,7 +6465,18 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirContainer)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel43)
+                    .addComponent(SPEstoqueItensPagina6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel44)
+                    .addComponent(jLabel45)
+                    .addComponent(LEstoquePagina6)
+                    .addComponent(jLabel46)
+                    .addComponent(LEstoqueTotalPaginas6)
+                    .addComponent(BEstoquePaginaAnterior6)
+                    .addComponent(BEstoqueProxPagina6))
                 .addContainerGap())
         );
 
@@ -6143,13 +6651,67 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel47.setText("Mostrar");
+
+        SPEstoqueItensPagina7.setModel(new javax.swing.SpinnerNumberModel(10, 0, null, 1));
+        SPEstoqueItensPagina7.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SPEstoqueItensPagina7StateChanged(evt);
+            }
+        });
+
+        jLabel48.setText("itens por página.");
+
+        jLabel49.setText("Página");
+
+        LEstoquePagina7.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoquePagina7.setText("1");
+
+        jLabel50.setText("de");
+
+        LEstoqueTotalPaginas7.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        LEstoqueTotalPaginas7.setText("%TotalPaginas%");
+
+        BEstoquePaginaAnterior7.setText("Página Anterior");
+        BEstoquePaginaAnterior7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoquePaginaAnterior7ActionPerformed(evt);
+            }
+        });
+
+        BEstoqueProxPagina7.setText("Próxima Página");
+        BEstoqueProxPagina7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoqueProxPagina7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelUsuarioLayout = new javax.swing.GroupLayout(PainelUsuario);
         PainelUsuario.setLayout(PainelUsuarioLayout);
         PainelUsuarioLayout.setHorizontalGroup(
             PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addGroup(PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel47)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueItensPagina7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel48)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel49)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoquePagina7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel50)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEstoqueTotalPaginas7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BEstoquePaginaAnterior7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BEstoqueProxPagina7))
+                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BExcluirUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6166,7 +6728,18 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirUsuario)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel47)
+                    .addComponent(SPEstoqueItensPagina7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel48)
+                    .addComponent(jLabel49)
+                    .addComponent(LEstoquePagina7)
+                    .addComponent(jLabel50)
+                    .addComponent(LEstoqueTotalPaginas7)
+                    .addComponent(BEstoquePaginaAnterior7)
+                    .addComponent(BEstoqueProxPagina7))
                 .addContainerGap())
         );
 
@@ -8920,6 +9493,106 @@ public class Principal extends javax.swing.JFrame {
         achandoMax=false;
         atualizarTBDoador();
     }//GEN-LAST:event_SPDoadorItensPaginaStateChanged
+
+    private void SPEstoqueItensPagina1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPEstoqueItensPagina1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SPEstoqueItensPagina1StateChanged
+
+    private void BEstoquePaginaAnterior1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoquePaginaAnterior1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoquePaginaAnterior1ActionPerformed
+
+    private void BEstoqueProxPagina1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueProxPagina1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoqueProxPagina1ActionPerformed
+
+    private void SPEstoqueItensPagina2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPEstoqueItensPagina2StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SPEstoqueItensPagina2StateChanged
+
+    private void BEstoquePaginaAnterior2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoquePaginaAnterior2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoquePaginaAnterior2ActionPerformed
+
+    private void BEstoqueProxPagina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueProxPagina2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoqueProxPagina2ActionPerformed
+
+    private void SPEstoqueItensPagina3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPEstoqueItensPagina3StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SPEstoqueItensPagina3StateChanged
+
+    private void BEstoquePaginaAnterior3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoquePaginaAnterior3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoquePaginaAnterior3ActionPerformed
+
+    private void BEstoqueProxPagina3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueProxPagina3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoqueProxPagina3ActionPerformed
+
+    private void BRelatorioRepasse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioRepasse1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BRelatorioRepasse1ActionPerformed
+
+    private void BRelatorioItemRepasse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioItemRepasse1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BRelatorioItemRepasse1ActionPerformed
+
+    private void BRelatorioColetor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioColetor1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BRelatorioColetor1ActionPerformed
+
+    private void SPEstoqueItensPagina4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPEstoqueItensPagina4StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SPEstoqueItensPagina4StateChanged
+
+    private void BEstoquePaginaAnterior4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoquePaginaAnterior4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoquePaginaAnterior4ActionPerformed
+
+    private void BEstoqueProxPagina4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueProxPagina4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoqueProxPagina4ActionPerformed
+
+    private void BRelatorioAcervo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioAcervo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BRelatorioAcervo1ActionPerformed
+
+    private void SPEstoqueItensPagina5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPEstoqueItensPagina5StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SPEstoqueItensPagina5StateChanged
+
+    private void BEstoquePaginaAnterior5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoquePaginaAnterior5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoquePaginaAnterior5ActionPerformed
+
+    private void BEstoqueProxPagina5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueProxPagina5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoqueProxPagina5ActionPerformed
+
+    private void SPEstoqueItensPagina6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPEstoqueItensPagina6StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SPEstoqueItensPagina6StateChanged
+
+    private void BEstoquePaginaAnterior6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoquePaginaAnterior6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoquePaginaAnterior6ActionPerformed
+
+    private void BEstoqueProxPagina6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueProxPagina6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoqueProxPagina6ActionPerformed
+
+    private void SPEstoqueItensPagina7StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPEstoqueItensPagina7StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SPEstoqueItensPagina7StateChanged
+
+    private void BEstoquePaginaAnterior7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoquePaginaAnterior7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoquePaginaAnterior7ActionPerformed
+
+    private void BEstoqueProxPagina7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueProxPagina7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BEstoqueProxPagina7ActionPerformed
     private void excluirLinhasTabela(JTable tabela){
         while(tabela.getSelectedRowCount()>0) ((DefaultTableModel)tabela.getModel()).removeRow(tabela.getSelectedRow());
     }
@@ -9070,7 +9743,21 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BEditarUsuario;
     private javax.swing.JButton BEsqueciSenha;
     private javax.swing.JButton BEstoquePaginaAnterior;
+    private javax.swing.JButton BEstoquePaginaAnterior1;
+    private javax.swing.JButton BEstoquePaginaAnterior2;
+    private javax.swing.JButton BEstoquePaginaAnterior3;
+    private javax.swing.JButton BEstoquePaginaAnterior4;
+    private javax.swing.JButton BEstoquePaginaAnterior5;
+    private javax.swing.JButton BEstoquePaginaAnterior6;
+    private javax.swing.JButton BEstoquePaginaAnterior7;
     private javax.swing.JButton BEstoqueProxPagina;
+    private javax.swing.JButton BEstoqueProxPagina1;
+    private javax.swing.JButton BEstoqueProxPagina2;
+    private javax.swing.JButton BEstoqueProxPagina3;
+    private javax.swing.JButton BEstoqueProxPagina4;
+    private javax.swing.JButton BEstoqueProxPagina5;
+    private javax.swing.JButton BEstoqueProxPagina6;
+    private javax.swing.JButton BEstoqueProxPagina7;
     private javax.swing.JButton BExcluirColetor;
     private javax.swing.JButton BExcluirContainer;
     private javax.swing.JButton BExcluirDoacao;
@@ -9110,7 +9797,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BNovoTipoItem;
     private javax.swing.JButton BNovoTipoItemDoacao;
     private javax.swing.JButton BRelatorioAcervo;
+    private javax.swing.JButton BRelatorioAcervo1;
     private javax.swing.JButton BRelatorioColetor;
+    private javax.swing.JButton BRelatorioColetor1;
     private javax.swing.JButton BRelatorioDoacao;
     private javax.swing.JButton BRelatorioDoadores;
     private javax.swing.JButton BRelatorioDoadores1;
@@ -9118,7 +9807,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BRelatorioItemDoacao;
     private javax.swing.JButton BRelatorioItemDoacao1;
     private javax.swing.JButton BRelatorioItemRepasse;
+    private javax.swing.JButton BRelatorioItemRepasse1;
     private javax.swing.JButton BRelatorioRepasse;
+    private javax.swing.JButton BRelatorioRepasse1;
     private javax.swing.JButton BRemoverItemDoacao;
     private javax.swing.JButton BRemoverItemRepasse;
     private javax.swing.JCheckBox CBAdministrador;
@@ -9320,7 +10011,21 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel LEmailAlterarUsuario;
     private javax.swing.JLabel LEmailAlterarUsuarioJD;
     private javax.swing.JLabel LEstoquePagina;
+    private javax.swing.JLabel LEstoquePagina1;
+    private javax.swing.JLabel LEstoquePagina2;
+    private javax.swing.JLabel LEstoquePagina3;
+    private javax.swing.JLabel LEstoquePagina4;
+    private javax.swing.JLabel LEstoquePagina5;
+    private javax.swing.JLabel LEstoquePagina6;
+    private javax.swing.JLabel LEstoquePagina7;
     private javax.swing.JLabel LEstoqueTotalPaginas;
+    private javax.swing.JLabel LEstoqueTotalPaginas1;
+    private javax.swing.JLabel LEstoqueTotalPaginas2;
+    private javax.swing.JLabel LEstoqueTotalPaginas3;
+    private javax.swing.JLabel LEstoqueTotalPaginas4;
+    private javax.swing.JLabel LEstoqueTotalPaginas5;
+    private javax.swing.JLabel LEstoqueTotalPaginas6;
+    private javax.swing.JLabel LEstoqueTotalPaginas7;
     private javax.swing.JLabel LFotoAcervo;
     private javax.swing.JLabel LFuncionaAlterarItemAcervo;
     private javax.swing.JLabel LImagemAlterarImagem;
@@ -9436,6 +10141,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner SPDoacaoMin;
     private javax.swing.JSpinner SPDoadorItensPagina;
     private javax.swing.JSpinner SPEstoqueItensPagina;
+    private javax.swing.JSpinner SPEstoqueItensPagina1;
+    private javax.swing.JSpinner SPEstoqueItensPagina2;
+    private javax.swing.JSpinner SPEstoqueItensPagina3;
+    private javax.swing.JSpinner SPEstoqueItensPagina4;
+    private javax.swing.JSpinner SPEstoqueItensPagina5;
+    private javax.swing.JSpinner SPEstoqueItensPagina6;
+    private javax.swing.JSpinner SPEstoqueItensPagina7;
     private javax.swing.JScrollPane SPImagem;
     private javax.swing.JSpinner SPItemDoacaoItensPagina;
     private javax.swing.JSpinner SPQuantidadeItemLista;
@@ -9564,9 +10276,37 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

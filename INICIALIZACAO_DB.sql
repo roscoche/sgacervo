@@ -396,13 +396,14 @@ NOT DEFERRABLE;
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+-- View: acervo_detalhado
 
 -- DROP VIEW acervo_detalhado;
 
 CREATE OR REPLACE VIEW acervo_detalhado AS 
  SELECT item_acervo.cod_item_acervo AS "Código de Item do Acervo", 
     usuario.nome_usuario AS "Usuário", doador.nome_doador AS "Doador", 
-    item_acervo.data_cadastro_item_acervo AS "Data", 
+    to_char(item_acervo.data_cadastro_item_acervo,'DD Mon, YYYY') AS "Data", 
     tipo_item.nome_tipo AS "Tipo", marca.nome_marca AS "Marca", 
     modelo.nome_modelo AS "Modelo", interface.nome_interface AS "Interface", 
     tecnologia.nome_tecnologia AS "Tecnologia", 
@@ -465,7 +466,7 @@ CREATE OR REPLACE VIEW doacao_detalhado AS
  SELECT doacao.cod_doacao AS "Código de Doação", 
     usuario.nome_usuario AS "Usuário", doador.nome_doador AS "Doador", 
     evento_origem.nome_evento_origem AS "Evento de Origem", 
-    doacao.data_doacao AS "Data"
+    to_char(doacao.data_doacao,'DD Mon, YYYY') AS "Data"
    FROM doacao, doador, evento_origem, usuario
   WHERE doador.cod_doador = doacao.cod_doador
 	AND usuario.cod_usuario = doacao.cod_usuario
@@ -494,7 +495,7 @@ CREATE OR REPLACE VIEW item_doacao_detalhado AS
     evento_origem.nome_evento_origem AS "Origem", 
     tipo_item.nome_tipo AS "Tipo de Item", 
     item_doacao.quantidade_item_doacao AS "Quantidade", 
-    doacao.data_doacao AS "Data"
+    to_char(doacao.data_doacao,'DD Mon, YYYY') AS "Data"
    FROM item_doacao, doador, evento_origem, usuario, tipo_item, doacao
   WHERE doacao.cod_usuario = usuario.cod_usuario
 	AND item_doacao.cod_doacao = doacao.cod_doacao
@@ -514,7 +515,7 @@ CREATE OR REPLACE VIEW item_repasse_detalhado AS
     destinacao.nome_destinacao AS "Destinação", 
     tipo_item.nome_tipo AS "Tipo de Item", 
     item_repasse.quantidade_item_repasse AS "Quantidade", 
-    repasse.data_repasse AS "Data"
+    to_char(repasse.data_repasse,'DD Mon, YYYY') AS "Data"
    FROM item_repasse, coletor, destinacao, usuario, tipo_item, repasse
   WHERE repasse.cod_usuario = usuario.cod_usuario
 	AND item_repasse.cod_repasse = repasse.cod_repasse
@@ -532,11 +533,11 @@ CREATE OR REPLACE VIEW repasse_detalhado AS
     usuario.nome_usuario AS "Usuário", coletor.nome_coletor AS "Coletor", 
     tipo_coletor.nome_tipo_coletor AS "Tipo de Coletor", 
     destinacao.nome_destinacao AS "Destinação", 
-    repasse.data_repasse AS "Data"
+    to_char(repasse.data_repasse,'DD Mon, YYYY') AS "Data"
    FROM repasse, coletor, tipo_coletor, destinacao, usuario
   WHERE repasse.cod_coletor = coletor.cod_coletor
 	AND repasse.cod_usuario = usuario.cod_usuario
-	AND coletor.cod_coletor = tipo_coletor.cod_tipo_coletor
+	AND coletor.cod_tipo_coletor = tipo_coletor.cod_tipo_coletor
 	AND repasse.cod_destinacao = destinacao.cod_destinacao;
 
 
@@ -590,11 +591,14 @@ CREATE OR REPLACE VIEW estoque AS
 -- DROP VIEW estoque_detalhado;
 
 CREATE OR REPLACE VIEW estoque_detalhado AS 
- SELECT estoque.cod_tipo AS "Código de Tipo", tipo_item.nome_tipo AS "Tipo", 
+ SELECT estoque.cod_tipo AS "Código de Tipo", 
+	tipo_item.nome_tipo AS "Tipo", 
     estoque.qtdd AS "Quantidade de Doações", 
-    estoque.qtdr AS "Quantidade de Repasses", estoque.saldo AS "Saldo"
+    estoque.qtdr AS "Quantidade de Repasses", 
+	estoque.saldo AS "Saldo"
    FROM estoque, tipo_item
   WHERE estoque.cod_tipo = tipo_item.cod_tipo;
+
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------

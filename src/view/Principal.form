@@ -4299,7 +4299,7 @@
                                   <Component id="BAbrirCadastrarDoacao" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="764" max="32767" attributes="0"/>
+                          <EmptySpace pref="830" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -4436,7 +4436,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="261" max="32767" attributes="0"/>
+                          <EmptySpace pref="327" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -4657,7 +4657,7 @@
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="LDoacaoTotalPaginas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="155" max="32767" attributes="0"/>
+                                  <EmptySpace pref="221" max="32767" attributes="0"/>
                                   <Component id="BDoacaoPaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BDoacaoProxPagina" min="-2" max="-2" attributes="0"/>
@@ -4910,7 +4910,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BItemDoacaoProxPagina" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioItemDoacao" pref="933" max="32767" attributes="0"/>
+                              <Component id="RelatorioItemDoacao" pref="999" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -5157,7 +5157,7 @@
                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="LEstoqueTotalPaginas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="155" max="32767" attributes="0"/>
+                                  <EmptySpace pref="221" max="32767" attributes="0"/>
                                   <Component id="BEstoquePaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BEstoqueProxPagina" min="-2" max="-2" attributes="0"/>
@@ -5349,7 +5349,7 @@
                                   <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="LDoadorTotalPaginas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="155" max="32767" attributes="0"/>
+                                  <EmptySpace pref="221" max="32767" attributes="0"/>
                                   <Component id="BDoadorPaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BDoadorProxPagina" min="-2" max="-2" attributes="0"/>
@@ -5588,7 +5588,7 @@
                                   <Component id="BAbrirCadastrarDoacao1" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="764" max="32767" attributes="0"/>
+                          <EmptySpace pref="830" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -5716,7 +5716,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="264" max="32767" attributes="0"/>
+                          <EmptySpace pref="330" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -5926,23 +5926,23 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SPEstoqueItensPagina1" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="SPRepasseItensPagina" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoquePagina1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LRepassePagina" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoqueTotalPaginas1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LRepasseTotalPaginas" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="BEstoquePaginaAnterior1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BRepassePaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BEstoqueProxPagina1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BRepasseProxPagina" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioRepasse" pref="933" max="32767" attributes="0"/>
+                              <Component id="RelatorioRepasse" pref="999" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -5951,7 +5951,7 @@
                                       <Component id="BEditarRepasse" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="BExcluirRepasse" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="BRelatorioRepasse1" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="BFiltrarRepasse" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                               <Component id="BRelatorioRepasse" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
@@ -5969,7 +5969,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BExcluirRepasse" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BRelatorioRepasse1" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="BFiltrarRepasse" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BRelatorioRepasse" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -5979,14 +5979,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SPEstoqueItensPagina1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SPRepasseItensPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoquePagina1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LRepassePagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoqueTotalPaginas1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoquePaginaAnterior1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoqueProxPagina1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LRepasseTotalPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BRepassePaginaAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BRepasseProxPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -6079,14 +6079,14 @@
                     <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="SPEstoqueItensPagina1">
+                <Component class="javax.swing.JSpinner" name="SPRepasseItensPagina">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPEstoqueItensPagina1StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPRepasseItensPaginaStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel24">
@@ -6099,7 +6099,7 @@
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoquePagina1">
+                <Component class="javax.swing.JLabel" name="LRepassePagina">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -6112,7 +6112,7 @@
                     <Property name="text" type="java.lang.String" value="de"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoqueTotalPaginas1">
+                <Component class="javax.swing.JLabel" name="LRepasseTotalPaginas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -6120,30 +6120,30 @@
                     <Property name="text" type="java.lang.String" value="%TotalPaginas%"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoquePaginaAnterior1">
+                <Component class="javax.swing.JButton" name="BRepassePaginaAnterior">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina Anterior"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoquePaginaAnterior1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BRepassePaginaAnteriorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoqueProxPagina1">
+                <Component class="javax.swing.JButton" name="BRepasseProxPagina">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pr&#xf3;xima P&#xe1;gina"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoqueProxPagina1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BRepasseProxPaginaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BRelatorioRepasse1">
+                <Component class="javax.swing.JButton" name="BFiltrarRepasse">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/view/imagens/filtrar16.png"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BRelatorioRepasse1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BFiltrarRepasseActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -6169,35 +6169,33 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SPEstoqueItensPagina2" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="SPItemRepasseItensPagina" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoquePagina2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LItemRepassePagina" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoqueTotalPaginas2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="BEstoquePaginaAnterior2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LItemRepasseTotalPaginas" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="204" max="32767" attributes="0"/>
+                                  <Component id="BItemRepassePaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BEstoqueProxPagina2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BItemRepasseProxPagina" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="23" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioItemRepasse" pref="933" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="RelatorioItemRepasse" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="BEditarItemRepasse" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="BExcluirItemRepasse" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="BRelatorioItemRepasse1" alignment="1" pref="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="BRelatorioItemRepasse" min="-2" pref="25" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="BFiltrarItemRepasse" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="BRelatorioItemRepasse" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="BEditarItemRepasse" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="BExcluirItemRepasse" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -6213,7 +6211,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BExcluirItemRepasse" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BRelatorioItemRepasse1" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="BFiltrarItemRepasse" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BRelatorioItemRepasse" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -6223,14 +6221,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SPEstoqueItensPagina2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SPItemRepasseItensPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoquePagina2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LItemRepassePagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoqueTotalPaginas2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoquePaginaAnterior2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoqueProxPagina2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LItemRepasseTotalPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BItemRepassePaginaAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BItemRepasseProxPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -6333,14 +6331,14 @@
                     <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="SPEstoqueItensPagina2">
+                <Component class="javax.swing.JSpinner" name="SPItemRepasseItensPagina">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPEstoqueItensPagina2StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPItemRepasseItensPaginaStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel28">
@@ -6353,7 +6351,7 @@
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoquePagina2">
+                <Component class="javax.swing.JLabel" name="LItemRepassePagina">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -6366,7 +6364,7 @@
                     <Property name="text" type="java.lang.String" value="de"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoqueTotalPaginas2">
+                <Component class="javax.swing.JLabel" name="LItemRepasseTotalPaginas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -6374,30 +6372,30 @@
                     <Property name="text" type="java.lang.String" value="%TotalPaginas%"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoquePaginaAnterior2">
+                <Component class="javax.swing.JButton" name="BItemRepassePaginaAnterior">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina Anterior"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoquePaginaAnterior2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BItemRepassePaginaAnteriorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoqueProxPagina2">
+                <Component class="javax.swing.JButton" name="BItemRepasseProxPagina">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pr&#xf3;xima P&#xe1;gina"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoqueProxPagina2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BItemRepasseProxPaginaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BRelatorioItemRepasse1">
+                <Component class="javax.swing.JButton" name="BFiltrarItemRepasse">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/view/imagens/filtrar16.png"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BRelatorioItemRepasse1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BFiltrarItemRepasseActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -6423,35 +6421,33 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SPEstoqueItensPagina3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="SPColetorItensPagina" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoquePagina3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LColetorPagina" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoqueTotalPaginas3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="BEstoquePaginaAnterior3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LColetorTotalPaginas" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="216" max="32767" attributes="0"/>
+                                  <Component id="BColetorPaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BEstoqueProxPagina3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BColetorProxPagina" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="11" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="ExibirColetores" pref="933" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="ExibirColetores" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="BEditarColetor" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="BExcluirColetor" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="BRelatorioColetor1" alignment="1" pref="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="BRelatorioColetor" min="-2" pref="25" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="BFiltrarColetor" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="BRelatorioColetor" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="BEditarColetor" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="BExcluirColetor" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -6467,7 +6463,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BExcluirColetor" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BRelatorioColetor1" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="BFiltrarColetor" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BRelatorioColetor" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -6477,14 +6473,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SPEstoqueItensPagina3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SPColetorItensPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoquePagina3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LColetorPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoqueTotalPaginas3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoquePaginaAnterior3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoqueProxPagina3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LColetorTotalPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BColetorPaginaAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BColetorProxPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -6572,14 +6568,14 @@
                     <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="SPEstoqueItensPagina3">
+                <Component class="javax.swing.JSpinner" name="SPColetorItensPagina">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPEstoqueItensPagina3StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPColetorItensPaginaStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel32">
@@ -6592,7 +6588,7 @@
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoquePagina3">
+                <Component class="javax.swing.JLabel" name="LColetorPagina">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -6605,7 +6601,7 @@
                     <Property name="text" type="java.lang.String" value="de"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoqueTotalPaginas3">
+                <Component class="javax.swing.JLabel" name="LColetorTotalPaginas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -6613,30 +6609,30 @@
                     <Property name="text" type="java.lang.String" value="%TotalPaginas%"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoquePaginaAnterior3">
+                <Component class="javax.swing.JButton" name="BColetorPaginaAnterior">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina Anterior"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoquePaginaAnterior3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BColetorPaginaAnteriorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoqueProxPagina3">
+                <Component class="javax.swing.JButton" name="BColetorProxPagina">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pr&#xf3;xima P&#xe1;gina"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoqueProxPagina3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BColetorProxPaginaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BRelatorioColetor1">
+                <Component class="javax.swing.JButton" name="BFiltrarColetor">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/view/imagens/filtrar16.png"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BRelatorioColetor1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BFiltrarColetorActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -6685,7 +6681,7 @@
                                   <Component id="BMenuCadastrarItemAcervo" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="764" max="32767" attributes="0"/>
+                          <EmptySpace pref="830" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -6866,7 +6862,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="147" max="32767" attributes="0"/>
+                          <EmptySpace pref="213" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -7236,7 +7232,7 @@
                               <Component id="LCamposCadastrarImagem" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="LInfoDoacao3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="548" max="32767" attributes="0"/>
+                          <EmptySpace pref="614" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -7362,7 +7358,7 @@
                               <Component id="LCamposCadastrarContainer" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="LInfoDoacao4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="559" max="32767" attributes="0"/>
+                          <EmptySpace pref="625" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -7472,23 +7468,23 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SPEstoqueItensPagina4" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="SPAcervoItensPagina" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoquePagina4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LAcervoPagina" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoqueTotalPaginas4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LAcervoTotalPaginas" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="BEstoquePaginaAnterior4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BAcervoPaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BEstoqueProxPagina4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BAcervoProxPagina" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioAcervo" pref="933" max="32767" attributes="0"/>
+                              <Component id="RelatorioAcervo" pref="997" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -7496,7 +7492,7 @@
                                   <Component id="BExcluirItemAcervo" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="BEditarItemAcervo" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="BRelatorioAcervo1" alignment="1" pref="0" max="32767" attributes="0"/>
+                              <Component id="BFiltrarAcervo" alignment="1" pref="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="BRelatorioAcervo" min="-2" pref="25" max="-2" attributes="0"/>
@@ -7516,7 +7512,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BExcluirItemAcervo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BRelatorioAcervo1" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="BFiltrarAcervo" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BRelatorioAcervo" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -7526,14 +7522,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SPEstoqueItensPagina4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SPAcervoItensPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoquePagina4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LAcervoPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoqueTotalPaginas4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoquePaginaAnterior4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoqueProxPagina4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LAcervoTotalPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BAcervoPaginaAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BAcervoProxPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -7651,14 +7647,14 @@
                     <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="SPEstoqueItensPagina4">
+                <Component class="javax.swing.JSpinner" name="SPAcervoItensPagina">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPEstoqueItensPagina4StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPAcervoItensPaginaStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel36">
@@ -7671,7 +7667,7 @@
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoquePagina4">
+                <Component class="javax.swing.JLabel" name="LAcervoPagina">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -7684,7 +7680,7 @@
                     <Property name="text" type="java.lang.String" value="de"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoqueTotalPaginas4">
+                <Component class="javax.swing.JLabel" name="LAcervoTotalPaginas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -7692,30 +7688,30 @@
                     <Property name="text" type="java.lang.String" value="%TotalPaginas%"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoquePaginaAnterior4">
+                <Component class="javax.swing.JButton" name="BAcervoPaginaAnterior">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina Anterior"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoquePaginaAnterior4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BAcervoPaginaAnteriorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoqueProxPagina4">
+                <Component class="javax.swing.JButton" name="BAcervoProxPagina">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pr&#xf3;xima P&#xe1;gina"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoqueProxPagina4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BAcervoProxPaginaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BRelatorioAcervo1">
+                <Component class="javax.swing.JButton" name="BFiltrarAcervo">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/view/imagens/filtrar16.png"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BRelatorioAcervo1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BFiltrarAcervoActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -7741,23 +7737,23 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SPEstoqueItensPagina5" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="SPImagemItensPagina" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoquePagina5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LImagemPagina" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoqueTotalPaginas5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LImagemTotalPaginas" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="BEstoquePaginaAnterior5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BImagemPaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BEstoqueProxPagina5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BImagemProxPagina" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="SPImagem" pref="933" max="32767" attributes="0"/>
+                              <Component id="SPImagem" pref="999" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -7784,14 +7780,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SPEstoqueItensPagina5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SPImagemItensPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoquePagina5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LImagemPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoqueTotalPaginas5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoquePaginaAnterior5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoqueProxPagina5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LImagemTotalPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BImagemPaginaAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BImagemProxPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -7847,14 +7843,14 @@
                     <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="SPEstoqueItensPagina5">
+                <Component class="javax.swing.JSpinner" name="SPImagemItensPagina">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPEstoqueItensPagina5StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPImagemItensPaginaStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel40">
@@ -7867,7 +7863,7 @@
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoquePagina5">
+                <Component class="javax.swing.JLabel" name="LImagemPagina">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -7880,7 +7876,7 @@
                     <Property name="text" type="java.lang.String" value="de"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoqueTotalPaginas5">
+                <Component class="javax.swing.JLabel" name="LImagemTotalPaginas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -7888,20 +7884,20 @@
                     <Property name="text" type="java.lang.String" value="%TotalPaginas%"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoquePaginaAnterior5">
+                <Component class="javax.swing.JButton" name="BImagemPaginaAnterior">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina Anterior"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoquePaginaAnterior5ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BImagemPaginaAnteriorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoqueProxPagina5">
+                <Component class="javax.swing.JButton" name="BImagemProxPagina">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pr&#xf3;xima P&#xe1;gina"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoqueProxPagina5ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BImagemProxPaginaActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -7927,23 +7923,23 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SPEstoqueItensPagina6" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="SPContainerItensPagina" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoquePagina6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LContainerPagina" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoqueTotalPaginas6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LContainerTotalPaginas" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="BEstoquePaginaAnterior6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BContainerPaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BEstoqueProxPagina6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BContainerProxPagina" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="SPContainer" pref="933" max="32767" attributes="0"/>
+                              <Component id="SPContainer" pref="999" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -7970,14 +7966,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel43" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SPEstoqueItensPagina6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SPContainerItensPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel45" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoquePagina6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LContainerPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoqueTotalPaginas6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoquePaginaAnterior6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoqueProxPagina6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LContainerTotalPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BContainerPaginaAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BContainerProxPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -8038,14 +8034,14 @@
                     <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="SPEstoqueItensPagina6">
+                <Component class="javax.swing.JSpinner" name="SPContainerItensPagina">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPEstoqueItensPagina6StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPContainerItensPaginaStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel44">
@@ -8058,7 +8054,7 @@
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoquePagina6">
+                <Component class="javax.swing.JLabel" name="LContainerPagina">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -8071,7 +8067,7 @@
                     <Property name="text" type="java.lang.String" value="de"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoqueTotalPaginas6">
+                <Component class="javax.swing.JLabel" name="LContainerTotalPaginas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -8079,20 +8075,20 @@
                     <Property name="text" type="java.lang.String" value="%TotalPaginas%"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoquePaginaAnterior6">
+                <Component class="javax.swing.JButton" name="BContainerPaginaAnterior">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina Anterior"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoquePaginaAnterior6ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BContainerPaginaAnteriorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoqueProxPagina6">
+                <Component class="javax.swing.JButton" name="BContainerProxPagina">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pr&#xf3;xima P&#xe1;gina"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoqueProxPagina6ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BContainerProxPaginaActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -8137,7 +8133,7 @@
                                   <Component id="BAbrirCadastrarUsuario" alignment="0" pref="141" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="764" max="32767" attributes="0"/>
+                          <EmptySpace pref="830" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -8228,7 +8224,7 @@
                                   <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="585" max="32767" attributes="0"/>
+                          <EmptySpace pref="651" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -8372,23 +8368,23 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SPEstoqueItensPagina7" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="SPUsuariosItensPagina" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoquePagina7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LUsuariosPagina" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="LEstoqueTotalPaginas7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LUsuariosTotalPaginas" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="BEstoquePaginaAnterior7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BUsuariosPaginaAnterior" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BEstoqueProxPagina7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BUsuariosProxPagina" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="ExibirUsuarios" pref="933" max="32767" attributes="0"/>
+                              <Component id="ExibirUsuarios" pref="999" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -8415,14 +8411,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SPEstoqueItensPagina7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SPUsuariosItensPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel49" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoquePagina7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LUsuariosPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LEstoqueTotalPaginas7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoquePaginaAnterior7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BEstoqueProxPagina7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LUsuariosTotalPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BUsuariosPaginaAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BUsuariosProxPagina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -8442,7 +8438,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="TUsuario">
+                    <Component class="javax.swing.JTable" name="TUsuarios">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -8500,14 +8496,14 @@
                     <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="SPEstoqueItensPagina7">
+                <Component class="javax.swing.JSpinner" name="SPUsuariosItensPagina">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPEstoqueItensPagina7StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SPUsuariosItensPaginaStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel48">
@@ -8520,7 +8516,7 @@
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoquePagina7">
+                <Component class="javax.swing.JLabel" name="LUsuariosPagina">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -8533,7 +8529,7 @@
                     <Property name="text" type="java.lang.String" value="de"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LEstoqueTotalPaginas7">
+                <Component class="javax.swing.JLabel" name="LUsuariosTotalPaginas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="0"/>
@@ -8541,20 +8537,20 @@
                     <Property name="text" type="java.lang.String" value="%TotalPaginas%"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoquePaginaAnterior7">
+                <Component class="javax.swing.JButton" name="BUsuariosPaginaAnterior">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="P&#xe1;gina Anterior"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoquePaginaAnterior7ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUsuariosPaginaAnteriorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BEstoqueProxPagina7">
+                <Component class="javax.swing.JButton" name="BUsuariosProxPagina">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pr&#xf3;xima P&#xe1;gina"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEstoqueProxPagina7ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUsuariosProxPaginaActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -8596,7 +8592,7 @@
                                   <Component id="BAbrirEditarInformacoes" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="764" max="32767" attributes="0"/>
+                          <EmptySpace pref="830" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -8687,7 +8683,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="481" max="32767" attributes="0"/>
+                          <EmptySpace pref="547" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -8859,7 +8855,7 @@
                               <Component id="LCertezaDeslogar" min="-2" max="-2" attributes="0"/>
                               <Component id="BDeslogar" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="741" max="32767" attributes="0"/>
+                          <EmptySpace pref="807" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

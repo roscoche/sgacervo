@@ -1416,11 +1416,12 @@ public class Principal extends javax.swing.JFrame {
         CheckDoacaoEvento = new javax.swing.JCheckBox();
         CBDoacaoEvento = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        TFDoacaoDataMin = new javax.swing.JFormattedTextField();
-        TFDoacaoDataMax = new javax.swing.JFormattedTextField();
         CheckDoacaoData = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         BDoacaoFiltrar = new javax.swing.JButton();
+        JDCDoacaoMin = new com.toedter.calendar.JDateChooser();
+        JDCDoacaoMax = new com.toedter.calendar.JDateChooser();
+        jLabel51 = new javax.swing.JLabel();
         Principal = new javax.swing.JTabbedPane();
         Doacoes = new javax.swing.JTabbedPane();
         MenuDoacoes = new javax.swing.JPanel();
@@ -4285,17 +4286,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel51.setText("de");
+
         javax.swing.GroupLayout JDFiltrarDoacaoLayout = new javax.swing.GroupLayout(JDFiltrarDoacao.getContentPane());
         JDFiltrarDoacao.getContentPane().setLayout(JDFiltrarDoacaoLayout);
         JDFiltrarDoacaoLayout.setHorizontalGroup(
             JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarDoacaoLayout.createSequentialGroup()
+            .addGroup(JDFiltrarDoacaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BDoacaoFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarDoacaoLayout.createSequentialGroup()
+                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BDoacaoFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarDoacaoLayout.createSequentialGroup()
                         .addComponent(CheckDoacaoCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SPDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4304,28 +4307,32 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SPDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JDFiltrarDoacaoLayout.createSequentialGroup()
-                        .addComponent(CheckDoacaoData)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TFDoacaoDataMin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TFDoacaoDataMax, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarDoacaoLayout.createSequentialGroup()
-                        .addComponent(CheckDoacaoEvento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CBDoacaoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarDoacaoLayout.createSequentialGroup()
                         .addComponent(CheckDoacaoDoador)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CBDoacaoDoador, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarDoacaoLayout.createSequentialGroup()
+                    .addGroup(JDFiltrarDoacaoLayout.createSequentialGroup()
                         .addComponent(CheckDoacaoUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CBDoacaoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarDoacaoLayout.createSequentialGroup()
+                    .addGroup(JDFiltrarDoacaoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarDoacaoLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckDoacaoEvento)
+                            .addComponent(CheckDoacaoData))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CBDoacaoEvento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarDoacaoLayout.createSequentialGroup()
+                                .addComponent(jLabel51)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JDCDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarDoacaoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         JDFiltrarDoacaoLayout.setVerticalGroup(
@@ -4334,33 +4341,39 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckDoacaoCodigo)
-                    .addComponent(SPDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(SPDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckDoacaoUsuario)
-                    .addComponent(CBDoacaoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckDoacaoDoador)
-                    .addComponent(CBDoacaoDoador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckDoacaoEvento)
-                    .addComponent(CBDoacaoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TFDoacaoDataMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TFDoacaoDataMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckDoacaoData)
+                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JDFiltrarDoacaoLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(JDFiltrarDoacaoLayout.createSequentialGroup()
+                                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckDoacaoCodigo)
+                                    .addComponent(SPDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(SPDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckDoacaoUsuario)
+                                    .addComponent(CBDoacaoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckDoacaoDoador)
+                                    .addComponent(CBDoacaoDoador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckDoacaoEvento)
+                                    .addComponent(CBDoacaoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11)
+                                .addGroup(JDFiltrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckDoacaoData)
+                                    .addComponent(jLabel51)))
+                            .addComponent(JDCDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BDoacaoFiltrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -9519,13 +9532,16 @@ public class Principal extends javax.swing.JFrame {
                 if(checkedfilters>0) FiltroDoacao+=" AND ";
             }
             if(CheckDoacaoData.isSelected()){
-                FiltroDoacao+="\"Data\">=\""+CBDoacaoEvento.getSelectedItem().toString()+"\" ";
+                //"Data"::date > '2016-11-13'
+                FiltroDoacao+="\"Data\"::date>=\'"+(JDCDoacaoMin.getDate().getYear()+1900)+"-"+(JDCDoacaoMin.getDate().getMonth()+1)+"-"+JDCDoacaoMin.getDate().getDate()+"\' AND ";
+                FiltroDoacao+="\"Data\"::date<=\'"+(JDCDoacaoMax.getDate().getYear()+1900)+"-"+(JDCDoacaoMax.getDate().getMonth()+1)+"-"+JDCDoacaoMax.getDate().getDate()+"\' ";
+                System.out.println(FiltroDoacao);
                 checkedfilters--;
                 if(checkedfilters>0) FiltroDoacao+=" AND ";
             }
         }
-        
         else FiltroDoacao="";
+        
         achandoMax=true;
         atualizarTBDoacao();
         achandoMax=false;
@@ -10141,6 +10157,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog JDAlterarItemRepasse;
     private javax.swing.JDialog JDAlterarRepasse;
     private javax.swing.JDialog JDAlterarUsuario;
+    private com.toedter.calendar.JDateChooser JDCDoacaoMax;
+    private com.toedter.calendar.JDateChooser JDCDoacaoMin;
     private javax.swing.JDialog JDCadastrarColetor;
     private javax.swing.JDialog JDCadastrarDestinacao;
     private javax.swing.JDialog JDCadastrarDoador;
@@ -10427,8 +10445,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable TDoacao;
     private javax.swing.JTable TDoador;
     private javax.swing.JTable TEstoque;
-    private javax.swing.JFormattedTextField TFDoacaoDataMax;
-    private javax.swing.JFormattedTextField TFDoacaoDataMin;
     private javax.swing.JTable TImagem;
     private javax.swing.JTable TItemDoacao;
     private javax.swing.JTable TItemRepasse;
@@ -10573,6 +10589,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

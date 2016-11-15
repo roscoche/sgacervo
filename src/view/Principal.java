@@ -785,6 +785,7 @@ public class Principal extends javax.swing.JFrame {
          CBDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBItemDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBDoadorDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBAcervoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     }
     private void atualizarCBEventoOrigem(){
@@ -927,6 +928,7 @@ public class Principal extends javax.swing.JFrame {
          CBTipoAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBEstoqueTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBItemRepasseTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBAcervoTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     }
    
@@ -953,6 +955,7 @@ public class Principal extends javax.swing.JFrame {
          String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
          CBMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBMarcaAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBAcervoMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     
     }
@@ -979,6 +982,7 @@ public class Principal extends javax.swing.JFrame {
          String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
          CBModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBModeloAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBAcervoModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
     private void atualizarCBInterface(){
        Connection con;
@@ -1003,6 +1007,7 @@ public class Principal extends javax.swing.JFrame {
          String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
          CBInterface.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBInterfaceAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBAcervoInterface.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
     private void atualizarCBTecnologia(){
        Connection con;
@@ -1027,6 +1032,7 @@ public class Principal extends javax.swing.JFrame {
          String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
          CBTecnologia.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBTecnologiaAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBAcervoTecnologia.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
     
     private void atualizarCBTipoContainer(){
@@ -1081,6 +1087,7 @@ public class Principal extends javax.swing.JFrame {
          CBItemDoacaoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBItemRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBAcervoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
     private void atualizarCB(){
         //Atualizar ComboBox Relativos à Doacao
@@ -1555,6 +1562,50 @@ public class Principal extends javax.swing.JFrame {
         BColetorFiltrar = new javax.swing.JButton();
         CheckColetorTipo = new javax.swing.JCheckBox();
         CBColetorTipo = new javax.swing.JComboBox<>();
+        JDFiltrarAcervo = new javax.swing.JDialog();
+        jLabel86 = new javax.swing.JLabel();
+        CheckAcervoCodigo = new javax.swing.JCheckBox();
+        CheckAcervoUsuario = new javax.swing.JCheckBox();
+        CheckAcervoDoador = new javax.swing.JCheckBox();
+        CheckAcervoData = new javax.swing.JCheckBox();
+        CheckAcervoTipo = new javax.swing.JCheckBox();
+        CheckAcervoMarca = new javax.swing.JCheckBox();
+        CheckAcervoModelo = new javax.swing.JCheckBox();
+        CheckAcervoInterface = new javax.swing.JCheckBox();
+        CheckAcervoTecnologia = new javax.swing.JCheckBox();
+        CheckAcervoCapacidade = new javax.swing.JCheckBox();
+        CheckAcervoAno = new javax.swing.JCheckBox();
+        CheckAcervoFuncionamento = new javax.swing.JCheckBox();
+        CheckAcervoContainer = new javax.swing.JCheckBox();
+        jLabel87 = new javax.swing.JLabel();
+        SPAcervoCodigoMax = new javax.swing.JSpinner();
+        SPAcervoCodigoMin = new javax.swing.JSpinner();
+        jLabel88 = new javax.swing.JLabel();
+        CBAcervoUsuario = new javax.swing.JComboBox<>();
+        CBAcervoDoador = new javax.swing.JComboBox<>();
+        JDCAcervoDataMax = new com.toedter.calendar.JDateChooser();
+        jLabel89 = new javax.swing.JLabel();
+        jLabel90 = new javax.swing.JLabel();
+        JDCAcervoDataMin = new com.toedter.calendar.JDateChooser();
+        CBAcervoTipo = new javax.swing.JComboBox<>();
+        CBAcervoMarca = new javax.swing.JComboBox<>();
+        CBAcervoModelo = new javax.swing.JComboBox<>();
+        CBAcervoInterface = new javax.swing.JComboBox<>();
+        CBAcervoTecnologia = new javax.swing.JComboBox<>();
+        jLabel91 = new javax.swing.JLabel();
+        SPAcervoCapacidadeMin = new javax.swing.JSpinner();
+        jLabel92 = new javax.swing.JLabel();
+        SPAcervoCapacidadeMax = new javax.swing.JSpinner();
+        jLabel93 = new javax.swing.JLabel();
+        SPAcervoAnoMin = new javax.swing.JSpinner();
+        jLabel94 = new javax.swing.JLabel();
+        SPAcervoAnoMax = new javax.swing.JSpinner();
+        CheckAcervoFunciona = new javax.swing.JCheckBox();
+        jLabel95 = new javax.swing.JLabel();
+        SPAcervoContainerMin = new javax.swing.JSpinner();
+        jLabel96 = new javax.swing.JLabel();
+        SPAcervoContainerMax = new javax.swing.JSpinner();
+        BAcervoFiltrar = new javax.swing.JButton();
         Principal = new javax.swing.JTabbedPane();
         Doacoes = new javax.swing.JTabbedPane();
         MenuDoacoes = new javax.swing.JPanel();
@@ -5286,6 +5337,258 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        JDFiltrarAcervo.setTitle("Filtrar Acervo");
+
+        jLabel86.setText("Filtrar por:");
+
+        CheckAcervoCodigo.setText("Código do Item do Acervo");
+
+        CheckAcervoUsuario.setText("Usuário");
+
+        CheckAcervoDoador.setText("Doador");
+
+        CheckAcervoData.setText("Intervalo de Data");
+
+        CheckAcervoTipo.setText("Tipo do Item");
+
+        CheckAcervoMarca.setText("Marca");
+
+        CheckAcervoModelo.setText("Modelo");
+
+        CheckAcervoInterface.setText("Interface");
+
+        CheckAcervoTecnologia.setText("Tecnologia");
+
+        CheckAcervoCapacidade.setText("Capacidade (MB)");
+
+        CheckAcervoAno.setText("Ano");
+
+        CheckAcervoFuncionamento.setText("Funcionamento");
+
+        CheckAcervoContainer.setText("Código de Container");
+
+        jLabel87.setText("Max");
+
+        jLabel88.setText("Min");
+
+        CBAcervoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBAcervoDoador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel89.setText("até");
+
+        jLabel90.setText("de");
+
+        CBAcervoTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBAcervoMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBAcervoModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBAcervoInterface.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBAcervoTecnologia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel91.setText("Min");
+
+        jLabel92.setText("Max");
+
+        jLabel93.setText("Min");
+
+        jLabel94.setText("Max");
+
+        CheckAcervoFunciona.setText("Funciona");
+
+        jLabel95.setText("Min");
+
+        jLabel96.setText("Max");
+
+        BAcervoFiltrar.setText("Filtrar Acervo");
+        BAcervoFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAcervoFiltrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JDFiltrarAcervoLayout = new javax.swing.GroupLayout(JDFiltrarAcervo.getContentPane());
+        JDFiltrarAcervo.getContentPane().setLayout(JDFiltrarAcervoLayout);
+        JDFiltrarAcervoLayout.setHorizontalGroup(
+            JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarAcervoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BAcervoFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel88)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPAcervoCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel87)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPAcervoCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBAcervoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckAcervoDoador)
+                            .addComponent(CheckAcervoData))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CBAcervoDoador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarAcervoLayout.createSequentialGroup()
+                                .addComponent(jLabel90)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JDCAcervoDataMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoTipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBAcervoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoMarca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBAcervoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoModelo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBAcervoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoInterface)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBAcervoInterface, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(jLabel86)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoTecnologia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBAcervoTecnologia, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoCapacidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel91)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPAcervoCapacidadeMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel92)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPAcervoCapacidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoAno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel93)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPAcervoAnoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel94)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPAcervoAnoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoFuncionamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CheckAcervoFunciona))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addComponent(CheckAcervoContainer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel95)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPAcervoContainerMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel96)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPAcervoContainerMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel89)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCAcervoDataMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        JDFiltrarAcervoLayout.setVerticalGroup(
+            JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarAcervoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel86)
+                .addGap(10, 10, 10)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JDFiltrarAcervoLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(JDFiltrarAcervoLayout.createSequentialGroup()
+                                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckAcervoCodigo)
+                                    .addComponent(jLabel87)
+                                    .addComponent(SPAcervoCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SPAcervoCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel88))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckAcervoUsuario)
+                                    .addComponent(CBAcervoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckAcervoDoador)
+                                    .addComponent(CBAcervoDoador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CheckAcervoData)
+                                    .addComponent(JDCAcervoDataMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel90))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCAcervoDataMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel89))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoTipo)
+                    .addComponent(CBAcervoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoMarca)
+                    .addComponent(CBAcervoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoModelo)
+                    .addComponent(CBAcervoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoInterface)
+                    .addComponent(CBAcervoInterface, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoTecnologia)
+                    .addComponent(CBAcervoTecnologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoCapacidade)
+                    .addComponent(jLabel92)
+                    .addComponent(SPAcervoCapacidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPAcervoCapacidadeMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel91))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoAno)
+                    .addComponent(jLabel94)
+                    .addComponent(SPAcervoAnoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPAcervoAnoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel93))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoFuncionamento)
+                    .addComponent(CheckAcervoFunciona))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAcervoContainer)
+                    .addComponent(jLabel96)
+                    .addComponent(SPAcervoContainerMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPAcervoContainerMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel95))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BAcervoFiltrar)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SGACERVO - Principal");
         setMinimumSize(new java.awt.Dimension(700, 400));
@@ -5364,7 +5667,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BAbrirEstoque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirDoacoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirCadastrarDoacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(830, Short.MAX_VALUE))
+                .addContainerGap(724, Short.MAX_VALUE))
         );
         MenuDoacoesLayout.setVerticalGroup(
             MenuDoacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5496,7 +5799,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BNovoEventoOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(BCadastrarDoacao))))
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         CadastrarDoacaoLayout.setVerticalGroup(
             CadastrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5628,7 +5931,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LDoacaoTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(BDoacaoPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BDoacaoProxPagina))
@@ -5771,7 +6074,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BItemDoacaoPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BItemDoacaoProxPagina))
-                    .addComponent(RelatorioItemDoacao, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
+                    .addComponent(RelatorioItemDoacao, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BRelatorioItemDoacao1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5895,7 +6198,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LEstoqueTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(BEstoquePaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BEstoqueProxPagina))
@@ -6030,7 +6333,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LDoadorTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(BDoadorPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BDoadorProxPagina))
@@ -6131,7 +6434,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BExibirColetores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirRepasses, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirCadastrarDoacao1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(830, Short.MAX_VALUE))
+                .addContainerGap(724, Short.MAX_VALUE))
         );
         MenuRepasseLayout.setVerticalGroup(
             MenuRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6261,7 +6564,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(CadastrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(BNovoColetor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BNovoDestinacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(330, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         CadastrarRepasseLayout.setVerticalGroup(
             CadastrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6398,7 +6701,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BRepassePaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRepasseProxPagina))
-                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
+                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6539,14 +6842,12 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LItemRepasseTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(BItemRepassePaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BItemRepasseProxPagina)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))
-                    .addGroup(PainelItemRepasseLayout.createSequentialGroup()
-                        .addComponent(RelatorioItemRepasse)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(BItemRepasseProxPagina))
+                    .addComponent(RelatorioItemRepasse))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BFiltrarItemRepasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BRelatorioItemRepasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6681,14 +6982,12 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel34)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LColetorTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(BColetorPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BColetorProxPagina)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE))
-                    .addGroup(PainelColetoresLayout.createSequentialGroup()
-                        .addComponent(ExibirColetores)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(BColetorProxPagina))
+                    .addComponent(ExibirColetores))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BFiltrarColetor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BRelatorioColetor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6792,7 +7091,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BExibirAcervo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BMenuCadastrarImagem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BMenuCadastrarItemAcervo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(830, Short.MAX_VALUE))
+                .addContainerGap(724, Short.MAX_VALUE))
         );
         MenuAcervoLayout.setVerticalGroup(
             MenuAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6971,7 +7270,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BNovoInterface, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(LCamposComplementares))))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         CadastrarItemAcervoLayout.setVerticalGroup(
             CadastrarItemAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7102,7 +7401,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(BCheckLink))))
                     .addComponent(LCamposCadastrarImagem)
                     .addComponent(LInfoDoacao3))
-                .addContainerGap(614, Short.MAX_VALUE))
+                .addContainerGap(508, Short.MAX_VALUE))
         );
         CadastrarImagemLayout.setVerticalGroup(
             CadastrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7175,7 +7474,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BNovoTipoContainer))
                     .addComponent(LCamposCadastrarContainer)
                     .addComponent(LInfoDoacao4))
-                .addContainerGap(625, Short.MAX_VALUE))
+                .addContainerGap(519, Short.MAX_VALUE))
         );
         CadastrarContainerLayout.setVerticalGroup(
             CadastrarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7303,7 +7602,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel38)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LAcervoTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                         .addComponent(BAcervoPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BAcervoProxPagina))
@@ -7436,7 +7735,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BImagemPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BImagemProxPagina))
-                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
+                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BExcluirImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7561,7 +7860,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BContainerPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BContainerProxPagina))
-                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
+                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BExcluirContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7628,7 +7927,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(MenuUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(BExibirUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirCadastrarUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)))
-                .addContainerGap(830, Short.MAX_VALUE))
+                .addContainerGap(724, Short.MAX_VALUE))
         );
         MenuUsuariosLayout.setVerticalGroup(
             MenuUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7701,7 +8000,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(CadastrarUsuarioLayout.createSequentialGroup()
                         .addComponent(LCamposCadastrarUsuario)
                         .addGap(109, 109, 109)))
-                .addContainerGap(651, Short.MAX_VALUE))
+                .addContainerGap(545, Short.MAX_VALUE))
         );
         CadastrarUsuarioLayout.setVerticalGroup(
             CadastrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7824,7 +8123,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BUsuariosPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BUsuariosProxPagina))
-                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
+                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BExcluirUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7889,7 +8188,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(MenuAbaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(BAbrirDeslogar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirEditarInformacoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(830, Short.MAX_VALUE))
+                .addContainerGap(724, Short.MAX_VALUE))
         );
         MenuAbaUsuarioLayout.setVerticalGroup(
             MenuAbaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7974,7 +8273,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(campoEmailAlterarUsuario)
                             .addComponent(campoRepetirSenhaAlterarUsuario)
                             .addComponent(campoSenhaAtualAlterarUsuario))))
-                .addContainerGap(547, Short.MAX_VALUE))
+                .addContainerGap(441, Short.MAX_VALUE))
         );
         SuasInformacoesLayout.setVerticalGroup(
             SuasInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -8040,7 +8339,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(DeslogarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LCertezaDeslogar)
                     .addComponent(BDeslogar))
-                .addContainerGap(807, Short.MAX_VALUE))
+                .addContainerGap(701, Short.MAX_VALUE))
         );
         DeslogarLayout.setVerticalGroup(
             DeslogarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -8060,7 +8359,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Principal)
+            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 1108, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -10743,6 +11042,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void BFiltrarAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFiltrarAcervoActionPerformed
         // TODO add your handling code here:
+        JDFiltrarAcervo.setIconImage(icone);
+        JDFiltrarAcervo.setModal(true);
+        JDFiltrarAcervo.setLocationRelativeTo(null);
+        JDFiltrarAcervo.pack();
+        JDFiltrarAcervo.setVisible(true);
     }//GEN-LAST:event_BFiltrarAcervoActionPerformed
 
     private void SPImagemItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPImagemItensPaginaStateChanged
@@ -11110,6 +11414,112 @@ public class Principal extends javax.swing.JFrame {
         achandoMax=false;
         atualizarTBColetor();
     }//GEN-LAST:event_BColetorFiltrarActionPerformed
+
+    private void BAcervoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAcervoFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroAcervo=" ";
+        int checkedfilters=0;
+        if(CheckAcervoCodigo.isSelected()) checkedfilters++;
+        if(CheckAcervoUsuario.isSelected()) checkedfilters++;
+        if(CheckAcervoDoador.isSelected()) checkedfilters++;
+        if(CheckAcervoData.isSelected()) checkedfilters++;
+        if(CheckAcervoTipo.isSelected()) checkedfilters++;
+        if(CheckAcervoMarca.isSelected()) checkedfilters++;
+        if(CheckAcervoModelo.isSelected()) checkedfilters++;
+        if(CheckAcervoInterface.isSelected()) checkedfilters++;
+        if(CheckAcervoTecnologia.isSelected()) checkedfilters++;
+        if(CheckAcervoCapacidade.isSelected()) checkedfilters++;
+        if(CheckAcervoAno.isSelected()) checkedfilters++;
+        if(CheckAcervoFuncionamento.isSelected()) checkedfilters++;
+        if(CheckAcervoContainer.isSelected()) checkedfilters++;
+        
+        if(checkedfilters>0){
+            FiltroAcervo+=" WHERE ";
+            if(CheckAcervoCodigo.isSelected()){
+                int min=Integer.parseInt(SPAcervoCodigoMin.getValue().toString());
+                int max=Integer.parseInt(SPAcervoCodigoMax.getValue().toString());
+                FiltroAcervo+="\"Código de Item do Acervo\">="+min+" AND \"Código de Item do Acervo\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoUsuario.isSelected()){
+                FiltroAcervo+="\"Usuário\"=\'"+CBAcervoUsuario.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoDoador.isSelected()){
+                FiltroAcervo+="\"Doador\"=\'"+CBAcervoDoador.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoData.isSelected()){
+                //"Data"::date > '2016-11-13'
+                FiltroAcervo+="\"Data\"::date>=\'"+(JDCAcervoDataMin.getDate().getYear()+1900)+"-"+(JDCAcervoDataMin.getDate().getMonth()+1)+"-"+JDCAcervoDataMin.getDate().getDate()+"\' AND ";
+                FiltroAcervo+="\"Data\"::date<=\'"+(JDCAcervoDataMax.getDate().getYear()+1900)+"-"+(JDCAcervoDataMax.getDate().getMonth()+1)+"-"+JDCAcervoDataMax.getDate().getDate()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoTipo.isSelected()){
+                FiltroAcervo+="\"Tipo\"=\'"+CBAcervoTipo.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoMarca.isSelected()){
+                FiltroAcervo+="\"Marca\"=\'"+CBAcervoMarca.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoModelo.isSelected()){
+                FiltroAcervo+="\"Modelo\"=\'"+CBAcervoModelo.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoInterface.isSelected()){
+                FiltroAcervo+="\"Interface\"=\'"+CBAcervoInterface.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoTecnologia.isSelected()){
+                FiltroAcervo+="\"Tecnologia\"=\'"+CBAcervoTecnologia.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoCapacidade.isSelected()){
+                int min=Integer.parseInt(SPAcervoCapacidadeMin.getValue().toString());
+                int max=Integer.parseInt(SPAcervoCapacidadeMax.getValue().toString());
+                FiltroAcervo+="\"Capacidade\">="+min+" AND \"Capacidade\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoAno.isSelected()){
+                int min=Integer.parseInt(SPAcervoAnoMin.getValue().toString());
+                int max=Integer.parseInt(SPAcervoAnoMax.getValue().toString());
+                FiltroAcervo+="\"Ano\">="+min+" AND \"Ano\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoFuncionamento.isSelected()){
+                if (CheckAcervoFunciona.isSelected()) FiltroAcervo+="\"Funciona\"='t'";
+                else FiltroAcervo+="\"Funciona\"='f'";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            if(CheckAcervoContainer.isSelected()){
+                int min=Integer.parseInt(SPAcervoContainerMin.getValue().toString());
+                int max=Integer.parseInt(SPAcervoContainerMax.getValue().toString());
+                FiltroAcervo+="\"Código de Container\">="+min+" AND \"Código de Container\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroAcervo+=" AND ";
+            }
+            
+        }
+        else FiltroAcervo="";
+        System.out.println(FiltroAcervo);
+        achandoMax=true;
+        atualizarTBAcervo();
+        achandoMax=false;
+        atualizarTBAcervo();
+    }//GEN-LAST:event_BAcervoFiltrarActionPerformed
     private void excluirLinhasTabela(JTable tabela){
         while(tabela.getSelectedRowCount()>0) ((DefaultTableModel)tabela.getModel()).removeRow(tabela.getSelectedRow());
     }
@@ -11190,6 +11600,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BAbrirItemDoacao;
     private javax.swing.JButton BAbrirItemRepasse;
     private javax.swing.JButton BAbrirRepasses;
+    private javax.swing.JButton BAcervoFiltrar;
     private javax.swing.JButton BAcervoPaginaAnterior;
     private javax.swing.JButton BAcervoProxPagina;
     private javax.swing.JButton BAdicionarItemDoacao;
@@ -11335,6 +11746,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BRepasseProxPagina;
     private javax.swing.JButton BUsuariosPaginaAnterior;
     private javax.swing.JButton BUsuariosProxPagina;
+    private javax.swing.JComboBox<String> CBAcervoDoador;
+    private javax.swing.JComboBox<String> CBAcervoInterface;
+    private javax.swing.JComboBox<String> CBAcervoMarca;
+    private javax.swing.JComboBox<String> CBAcervoModelo;
+    private javax.swing.JComboBox<String> CBAcervoTecnologia;
+    private javax.swing.JComboBox<String> CBAcervoTipo;
+    private javax.swing.JComboBox<String> CBAcervoUsuario;
     private javax.swing.JCheckBox CBAdministrador;
     private javax.swing.JComboBox CBColetor;
     private javax.swing.JComboBox<String> CBColetorColetor;
@@ -11386,6 +11804,20 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel CadastrarItemAcervo;
     private javax.swing.JPanel CadastrarRepasse;
     private javax.swing.JPanel CadastrarUsuario;
+    private javax.swing.JCheckBox CheckAcervoAno;
+    private javax.swing.JCheckBox CheckAcervoCapacidade;
+    private javax.swing.JCheckBox CheckAcervoCodigo;
+    private javax.swing.JCheckBox CheckAcervoContainer;
+    private javax.swing.JCheckBox CheckAcervoData;
+    private javax.swing.JCheckBox CheckAcervoDoador;
+    private javax.swing.JCheckBox CheckAcervoFunciona;
+    private javax.swing.JCheckBox CheckAcervoFuncionamento;
+    private javax.swing.JCheckBox CheckAcervoInterface;
+    private javax.swing.JCheckBox CheckAcervoMarca;
+    private javax.swing.JCheckBox CheckAcervoModelo;
+    private javax.swing.JCheckBox CheckAcervoTecnologia;
+    private javax.swing.JCheckBox CheckAcervoTipo;
+    private javax.swing.JCheckBox CheckAcervoUsuario;
     private javax.swing.JCheckBox CheckAdministradorAlterarUsuarioJD;
     private javax.swing.JCheckBox CheckColetorCodigo;
     private javax.swing.JCheckBox CheckColetorColetor;
@@ -11442,6 +11874,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog JDAlterarItemRepasse;
     private javax.swing.JDialog JDAlterarRepasse;
     private javax.swing.JDialog JDAlterarUsuario;
+    private com.toedter.calendar.JDateChooser JDCAcervoDataMax;
+    private com.toedter.calendar.JDateChooser JDCAcervoDataMin;
     private com.toedter.calendar.JDateChooser JDCDoacaoMax;
     private com.toedter.calendar.JDateChooser JDCDoacaoMin;
     private com.toedter.calendar.JDateChooser JDCItemDoacaoMax;
@@ -11472,6 +11906,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog JDExcluirItemRepasse;
     private javax.swing.JDialog JDExcluirRepasse;
     private javax.swing.JDialog JDExcluirUsuario;
+    private javax.swing.JDialog JDFiltrarAcervo;
     private javax.swing.JDialog JDFiltrarColetor;
     private javax.swing.JDialog JDFiltrarDoacao;
     private javax.swing.JDialog JDFiltrarDoador;
@@ -11714,6 +12149,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane RelatorioItemRepasse;
     private javax.swing.JScrollPane RelatorioRepasse;
     private javax.swing.JTabbedPane Repasses;
+    private javax.swing.JSpinner SPAcervoAnoMax;
+    private javax.swing.JSpinner SPAcervoAnoMin;
+    private javax.swing.JSpinner SPAcervoCapacidadeMax;
+    private javax.swing.JSpinner SPAcervoCapacidadeMin;
+    private javax.swing.JSpinner SPAcervoCodigoMax;
+    private javax.swing.JSpinner SPAcervoCodigoMin;
+    private javax.swing.JSpinner SPAcervoContainerMax;
+    private javax.swing.JSpinner SPAcervoContainerMin;
     private javax.swing.JSpinner SPAcervoItensPagina;
     private javax.swing.JSpinner SPColetorCodigoMax;
     private javax.swing.JSpinner SPColetorCodigoMin;
@@ -11946,7 +12389,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
+    private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

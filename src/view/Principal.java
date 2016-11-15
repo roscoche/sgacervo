@@ -302,7 +302,7 @@ public class Principal extends javax.swing.JFrame {
          else {
              int limit=Integer.parseInt(SPItemDoacaoItensPagina.getValue().toString());
              int offset=limit*(numeroPaginaItemDoacao-1);
-             PaginaItemDoacao="limit "+limit+" offset "+offset;
+             PaginaItemDoacao=" limit "+limit+" offset "+offset+" ";
              statement=SelecaoItemDoacao+FiltroItemDoacao+PaginaItemDoacao;
              try{
                 con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -783,6 +783,8 @@ public class Principal extends javax.swing.JFrame {
          CBDoadorItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBDoadorDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBItemDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBDoadorDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     }
     private void atualizarCBEventoOrigem(){
@@ -809,6 +811,7 @@ public class Principal extends javax.swing.JFrame {
          CBEventoOrigem.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBEventoOrigemAlterarDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBDoacaoEvento.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBItemDoacaoEvento.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     }
     private void atualizarCBDestinacao(){
@@ -834,6 +837,8 @@ public class Principal extends javax.swing.JFrame {
          String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
          CBDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBDestinacaoAlterarRepasse.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBRepasseDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBItemRepasseDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     
     }
@@ -860,6 +865,9 @@ public class Principal extends javax.swing.JFrame {
          Object[] objectList=list.toArray();
          String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
          CBColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBRepasseColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBItemRepasseColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBColetorColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     }
     private void atualizarCBTipoColetor(){
@@ -885,6 +893,8 @@ public class Principal extends javax.swing.JFrame {
          String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
          CBTipoColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBTipoColetorAlterarColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBRepasseTipoColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBColetorTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     }
     
@@ -915,6 +925,8 @@ public class Principal extends javax.swing.JFrame {
          CBTipoAlterarItemDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBTipoAlterarItemRepasse.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBTipoAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBEstoqueTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBItemRepasseTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     }
    
@@ -1066,6 +1078,9 @@ public class Principal extends javax.swing.JFrame {
          String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
          CBUsuarioLogin.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBDoacaoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBItemDoacaoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBItemRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
     private void atualizarCB(){
         //Atualizar ComboBox Relativos à Doacao
@@ -1422,6 +1437,124 @@ public class Principal extends javax.swing.JFrame {
         JDCDoacaoMin = new com.toedter.calendar.JDateChooser();
         JDCDoacaoMax = new com.toedter.calendar.JDateChooser();
         jLabel51 = new javax.swing.JLabel();
+        JDFiltrarItemDoacao = new javax.swing.JDialog();
+        SPItemDoacaoDoacaoMin = new javax.swing.JSpinner();
+        CheckItemDoacaoDoacaoCodigo = new javax.swing.JCheckBox();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        SPItemDoacaoDoacaoMax = new javax.swing.JSpinner();
+        CheckItemDoacaoUsuario = new javax.swing.JCheckBox();
+        CBItemDoacaoUsuario = new javax.swing.JComboBox<>();
+        CheckItemDoacaoDoador = new javax.swing.JCheckBox();
+        CBItemDoacaoDoador = new javax.swing.JComboBox<>();
+        CheckItemDoacaoEvento = new javax.swing.JCheckBox();
+        CBItemDoacaoEvento = new javax.swing.JComboBox<>();
+        jLabel54 = new javax.swing.JLabel();
+        CheckItemDoacaoData = new javax.swing.JCheckBox();
+        jLabel55 = new javax.swing.JLabel();
+        BItemDoacaoFiltrar = new javax.swing.JButton();
+        JDCItemDoacaoMin = new com.toedter.calendar.JDateChooser();
+        JDCItemDoacaoMax = new com.toedter.calendar.JDateChooser();
+        jLabel56 = new javax.swing.JLabel();
+        CheckItemDoacaoCodigo = new javax.swing.JCheckBox();
+        jLabel57 = new javax.swing.JLabel();
+        SPItemDoacaoMin = new javax.swing.JSpinner();
+        jLabel58 = new javax.swing.JLabel();
+        SPItemDoacaoMax = new javax.swing.JSpinner();
+        JDFiltrarEstoque = new javax.swing.JDialog();
+        jLabel59 = new javax.swing.JLabel();
+        BEstoqueFiltrar = new javax.swing.JButton();
+        CheckEstoqueTipo = new javax.swing.JCheckBox();
+        CBEstoqueTipo = new javax.swing.JComboBox<>();
+        CheckEstoqueDoacao = new javax.swing.JCheckBox();
+        CheckEstoqueRepasse = new javax.swing.JCheckBox();
+        CheckEstoqueSaldo = new javax.swing.JCheckBox();
+        SPEstoqueDoacaoMax = new javax.swing.JSpinner();
+        jLabel66 = new javax.swing.JLabel();
+        SPEstoqueDoacaoMin = new javax.swing.JSpinner();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        SPEstoqueRepasseMin = new javax.swing.JSpinner();
+        jLabel67 = new javax.swing.JLabel();
+        SPEstoqueRepasseMax = new javax.swing.JSpinner();
+        jLabel62 = new javax.swing.JLabel();
+        SPEstoqueSaldoMin = new javax.swing.JSpinner();
+        jLabel68 = new javax.swing.JLabel();
+        SPEstoqueSaldoMax = new javax.swing.JSpinner();
+        JDFiltrarDoador = new javax.swing.JDialog();
+        SPDoadorCodigoMin = new javax.swing.JSpinner();
+        CheckDoadorCodigo = new javax.swing.JCheckBox();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        SPDoadorCodigoMax = new javax.swing.JSpinner();
+        CheckDoadorDoador = new javax.swing.JCheckBox();
+        CBDoadorDoador = new javax.swing.JComboBox<>();
+        jLabel65 = new javax.swing.JLabel();
+        BDoadorFiltrar = new javax.swing.JButton();
+        JDFiltrarRepasse = new javax.swing.JDialog();
+        SPRepasseMin = new javax.swing.JSpinner();
+        CheckRepasseCodigo = new javax.swing.JCheckBox();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        SPRepasseMax = new javax.swing.JSpinner();
+        CheckRepasseUsuario = new javax.swing.JCheckBox();
+        CBRepasseUsuario = new javax.swing.JComboBox<>();
+        CheckRepasseColetor = new javax.swing.JCheckBox();
+        CBRepasseColetor = new javax.swing.JComboBox<>();
+        CheckRepasseTipoColetor = new javax.swing.JCheckBox();
+        CBRepasseTipoColetor = new javax.swing.JComboBox<>();
+        jLabel71 = new javax.swing.JLabel();
+        CheckRepasseData = new javax.swing.JCheckBox();
+        jLabel72 = new javax.swing.JLabel();
+        BRepasseFiltrar = new javax.swing.JButton();
+        JDCRepasseMin = new com.toedter.calendar.JDateChooser();
+        JDCRepasseMax = new com.toedter.calendar.JDateChooser();
+        jLabel73 = new javax.swing.JLabel();
+        CheckRepasseDestinacao = new javax.swing.JCheckBox();
+        CBRepasseDestinacao = new javax.swing.JComboBox<>();
+        JDFiltrarItemRepasse = new javax.swing.JDialog();
+        SPItemRepasseRepasseMin = new javax.swing.JSpinner();
+        CheckItemRepasseRepasse = new javax.swing.JCheckBox();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        SPItemRepasseRepasseMax = new javax.swing.JSpinner();
+        CheckItemRepasseUsuario = new javax.swing.JCheckBox();
+        CBItemRepasseUsuario = new javax.swing.JComboBox<>();
+        CheckItemRepasseColetor = new javax.swing.JCheckBox();
+        CBItemRepasseColetor = new javax.swing.JComboBox<>();
+        CheckItemRepasseTipo = new javax.swing.JCheckBox();
+        CBItemRepasseTipo = new javax.swing.JComboBox<>();
+        jLabel76 = new javax.swing.JLabel();
+        CheckItemRepasseData = new javax.swing.JCheckBox();
+        jLabel77 = new javax.swing.JLabel();
+        BItemRepasseFiltrar = new javax.swing.JButton();
+        JDCItemRepasseMin = new com.toedter.calendar.JDateChooser();
+        JDCItemRepasseMax = new com.toedter.calendar.JDateChooser();
+        jLabel78 = new javax.swing.JLabel();
+        CheckItemRepasseDestinacao = new javax.swing.JCheckBox();
+        CBItemRepasseDestinacao = new javax.swing.JComboBox<>();
+        CheckItemRepasseCodigo = new javax.swing.JCheckBox();
+        SPItemRepasseMin = new javax.swing.JSpinner();
+        jLabel79 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        SPItemRepasseMax = new javax.swing.JSpinner();
+        CheckItemRepasseQuantidade = new javax.swing.JCheckBox();
+        jLabel81 = new javax.swing.JLabel();
+        SPItemRepasseQuantidadeMin = new javax.swing.JSpinner();
+        jLabel82 = new javax.swing.JLabel();
+        SPItemRepasseQuantidadeMax = new javax.swing.JSpinner();
+        JDFiltrarColetor = new javax.swing.JDialog();
+        SPColetorCodigoMin = new javax.swing.JSpinner();
+        CheckColetorCodigo = new javax.swing.JCheckBox();
+        jLabel83 = new javax.swing.JLabel();
+        jLabel84 = new javax.swing.JLabel();
+        SPColetorCodigoMax = new javax.swing.JSpinner();
+        CheckColetorColetor = new javax.swing.JCheckBox();
+        CBColetorColetor = new javax.swing.JComboBox<>();
+        jLabel85 = new javax.swing.JLabel();
+        BColetorFiltrar = new javax.swing.JButton();
+        CheckColetorTipo = new javax.swing.JCheckBox();
+        CBColetorTipo = new javax.swing.JComboBox<>();
         Principal = new javax.swing.JTabbedPane();
         Doacoes = new javax.swing.JTabbedPane();
         MenuDoacoes = new javax.swing.JPanel();
@@ -4176,7 +4309,7 @@ public class Principal extends javax.swing.JFrame {
         JPBCarregando.getAccessibleContext().setAccessibleDescription("");
 
         JDAdicionarItemLista.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        JDAdicionarItemLista.setTitle("SGACERVO - Cadastrar Tipo Item");
+        JDAdicionarItemLista.setTitle("SGACERVO - Adicionar Item Lista");
         JDAdicionarItemLista.setMinimumSize(new java.awt.Dimension(306, 143));
         JDAdicionarItemLista.setResizable(false);
 
@@ -4250,6 +4383,8 @@ public class Principal extends javax.swing.JFrame {
 
         JDFiltrarDoacao.setTitle("Filtrar Doação");
 
+        SPDoacaoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         CheckDoacaoCodigo.setText("Código de Doação");
         CheckDoacaoCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4260,6 +4395,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setText("Filtrar por:");
 
         jLabel4.setText("Max:");
+
+        SPDoacaoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         CheckDoacaoUsuario.setText("Usuário");
 
@@ -4298,7 +4435,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(BDoacaoFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(JDFiltrarDoacaoLayout.createSequentialGroup()
                         .addComponent(CheckDoacaoCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SPDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4373,6 +4510,779 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BDoacaoFiltrar)
+                .addContainerGap())
+        );
+
+        JDFiltrarItemDoacao.setTitle("Filtrar Items Doados");
+
+        SPItemDoacaoDoacaoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckItemDoacaoDoacaoCodigo.setText("Código de Doação");
+
+        jLabel52.setText("Filtrar por:");
+
+        jLabel53.setText("Max:");
+
+        SPItemDoacaoDoacaoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckItemDoacaoUsuario.setText("Usuário");
+
+        CBItemDoacaoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckItemDoacaoDoador.setText("Doador");
+
+        CBItemDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckItemDoacaoEvento.setText("Evento de Origem");
+
+        CBItemDoacaoEvento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel54.setText("Min:");
+
+        CheckItemDoacaoData.setText("Intervalo de Data");
+
+        jLabel55.setText("até");
+
+        BItemDoacaoFiltrar.setText("Filtrar Items Doados");
+        BItemDoacaoFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BItemDoacaoFiltrarActionPerformed(evt);
+            }
+        });
+
+        jLabel56.setText("de");
+
+        CheckItemDoacaoCodigo.setText("Código de Item Doação");
+
+        jLabel57.setText("Min:");
+
+        SPItemDoacaoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel58.setText("Max:");
+
+        SPItemDoacaoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        javax.swing.GroupLayout JDFiltrarItemDoacaoLayout = new javax.swing.GroupLayout(JDFiltrarItemDoacao.getContentPane());
+        JDFiltrarItemDoacao.getContentPane().setLayout(JDFiltrarItemDoacaoLayout);
+        JDFiltrarItemDoacaoLayout.setHorizontalGroup(
+            JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BItemDoacaoFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                        .addComponent(CheckItemDoacaoDoador)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBItemDoacaoDoador, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                        .addComponent(CheckItemDoacaoData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel56)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCItemDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                        .addComponent(CheckItemDoacaoEvento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBItemDoacaoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                                .addComponent(jLabel55)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JDCItemDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CheckItemDoacaoDoacaoCodigo)
+                                    .addComponent(jLabel52)
+                                    .addComponent(CheckItemDoacaoCodigo)
+                                    .addComponent(CheckItemDoacaoUsuario))
+                                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                                                .addComponent(jLabel54)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(SPItemDoacaoDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel53))
+                                            .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                                                .addComponent(jLabel57)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(SPItemDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel58)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(SPItemDoacaoMax)
+                                            .addComponent(SPItemDoacaoDoacaoMax, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
+                                    .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(CBItemDoacaoUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                .addContainerGap())
+        );
+        JDFiltrarItemDoacaoLayout.setVerticalGroup(
+            JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemDoacaoDoacaoCodigo)
+                    .addComponent(SPItemDoacaoDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel53)
+                    .addComponent(SPItemDoacaoDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel54))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemDoacaoCodigo)
+                    .addComponent(SPItemDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel58)
+                    .addComponent(SPItemDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel57))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemDoacaoUsuario)
+                    .addComponent(CBItemDoacaoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemDoacaoDoador)
+                    .addComponent(CBItemDoacaoDoador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemDoacaoEvento)
+                    .addComponent(CBItemDoacaoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CheckItemDoacaoData)
+                            .addComponent(jLabel56))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel55))
+                    .addGroup(JDFiltrarItemDoacaoLayout.createSequentialGroup()
+                        .addComponent(JDCItemDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCItemDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BItemDoacaoFiltrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        JDFiltrarEstoque.setTitle("Filtrar Estoque");
+
+        jLabel59.setText("Filtrar por:");
+
+        BEstoqueFiltrar.setText("Filtrar Doacao");
+        BEstoqueFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEstoqueFiltrarActionPerformed(evt);
+            }
+        });
+
+        CheckEstoqueTipo.setText("Tipo de Item");
+
+        CBEstoqueTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckEstoqueDoacao.setText("Quantidade de Doações");
+
+        CheckEstoqueRepasse.setText("Quantidade de Repasses");
+
+        CheckEstoqueSaldo.setText("Saldo");
+
+        SPEstoqueDoacaoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel66.setText("Max");
+
+        SPEstoqueDoacaoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel60.setText("Min");
+
+        jLabel61.setText("Min");
+
+        SPEstoqueRepasseMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel67.setText("Max");
+
+        SPEstoqueRepasseMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel62.setText("Min");
+
+        SPEstoqueSaldoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel68.setText("Max");
+
+        SPEstoqueSaldoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        javax.swing.GroupLayout JDFiltrarEstoqueLayout = new javax.swing.GroupLayout(JDFiltrarEstoque.getContentPane());
+        JDFiltrarEstoque.getContentPane().setLayout(JDFiltrarEstoqueLayout);
+        JDFiltrarEstoqueLayout.setHorizontalGroup(
+            JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarEstoqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BEstoqueFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarEstoqueLayout.createSequentialGroup()
+                        .addComponent(CheckEstoqueTipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBEstoqueTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarEstoqueLayout.createSequentialGroup()
+                        .addComponent(jLabel59)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(JDFiltrarEstoqueLayout.createSequentialGroup()
+                        .addComponent(CheckEstoqueDoacao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel60)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel66)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarEstoqueLayout.createSequentialGroup()
+                        .addComponent(CheckEstoqueRepasse)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel61)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel67)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarEstoqueLayout.createSequentialGroup()
+                        .addComponent(CheckEstoqueSaldo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel62)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueSaldoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel68)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPEstoqueSaldoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        JDFiltrarEstoqueLayout.setVerticalGroup(
+            JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarEstoqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel59)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckEstoqueTipo)
+                    .addComponent(CBEstoqueTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckEstoqueDoacao)
+                    .addComponent(SPEstoqueDoacaoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel66)
+                    .addComponent(SPEstoqueDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel60))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckEstoqueRepasse)
+                    .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SPEstoqueRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel67)
+                        .addComponent(SPEstoqueRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel61)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckEstoqueSaldo)
+                    .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SPEstoqueSaldoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel68)
+                        .addComponent(SPEstoqueSaldoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel62)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BEstoqueFiltrar)
+                .addContainerGap())
+        );
+
+        JDFiltrarDoador.setTitle("Filtrar Doador");
+
+        SPDoadorCodigoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckDoadorCodigo.setText("Código de Doador");
+
+        jLabel63.setText("Filtrar por:");
+
+        jLabel64.setText("Max:");
+
+        SPDoadorCodigoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckDoadorDoador.setText("Doador");
+
+        CBDoadorDoador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel65.setText("Min:");
+
+        BDoadorFiltrar.setText("Filtrar Doador");
+        BDoadorFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BDoadorFiltrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JDFiltrarDoadorLayout = new javax.swing.GroupLayout(JDFiltrarDoador.getContentPane());
+        JDFiltrarDoador.getContentPane().setLayout(JDFiltrarDoadorLayout);
+        JDFiltrarDoadorLayout.setHorizontalGroup(
+            JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
+                        .addComponent(jLabel63)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BDoadorFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
+                                .addComponent(CheckDoadorCodigo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel65)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SPDoadorCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel64)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SPDoadorCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
+                                .addComponent(CheckDoadorDoador)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CBDoadorDoador, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
+        );
+        JDFiltrarDoadorLayout.setVerticalGroup(
+            JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel63)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckDoadorCodigo)
+                    .addComponent(SPDoadorCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel64)
+                    .addComponent(SPDoadorCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel65))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckDoadorDoador)
+                    .addComponent(CBDoadorDoador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BDoadorFiltrar)
+                .addContainerGap())
+        );
+
+        JDFiltrarRepasse.setTitle("Filtrar Repasse");
+
+        SPRepasseMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckRepasseCodigo.setText("Código de Repasse");
+
+        jLabel69.setText("Filtrar por:");
+
+        jLabel70.setText("Max:");
+
+        SPRepasseMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckRepasseUsuario.setText("Usuário");
+
+        CBRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckRepasseColetor.setText("Coletor");
+
+        CBRepasseColetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckRepasseTipoColetor.setText("Tipo de Coletor");
+
+        CBRepasseTipoColetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel71.setText("Min:");
+
+        CheckRepasseData.setText("Intervalo de Data");
+
+        jLabel72.setText("até");
+
+        BRepasseFiltrar.setText("Filtrar Repasse");
+        BRepasseFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BRepasseFiltrarActionPerformed(evt);
+            }
+        });
+
+        jLabel73.setText("de");
+
+        CheckRepasseDestinacao.setText("Destinação");
+
+        CBRepasseDestinacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout JDFiltrarRepasseLayout = new javax.swing.GroupLayout(JDFiltrarRepasse.getContentPane());
+        JDFiltrarRepasse.getContentPane().setLayout(JDFiltrarRepasseLayout);
+        JDFiltrarRepasseLayout.setHorizontalGroup(
+            JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarRepasseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BRepasseFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckRepasseCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel71)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel70)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckRepasseColetor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBRepasseColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckRepasseUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBRepasseUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckRepasseData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel73)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarRepasseLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel72)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarRepasseLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckRepasseTipoColetor)
+                            .addComponent(jLabel69)
+                            .addComponent(CheckRepasseDestinacao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CBRepasseTipoColetor, 0, 187, Short.MAX_VALUE)
+                            .addComponent(CBRepasseDestinacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        JDFiltrarRepasseLayout.setVerticalGroup(
+            JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarRepasseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRepasseCodigo)
+                    .addComponent(SPRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel70)
+                    .addComponent(SPRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel71))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRepasseUsuario)
+                    .addComponent(CBRepasseUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRepasseColetor)
+                    .addComponent(CBRepasseColetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRepasseTipoColetor)
+                    .addComponent(CBRepasseTipoColetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRepasseDestinacao)
+                    .addComponent(CBRepasseDestinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JDFiltrarRepasseLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(JDFiltrarRepasseLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addGroup(JDFiltrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CheckRepasseData)
+                                    .addComponent(jLabel73)))
+                            .addComponent(JDCRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel72))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BRepasseFiltrar)
+                .addContainerGap())
+        );
+
+        JDFiltrarItemRepasse.setTitle("Filtrar Item Repasse");
+
+        SPItemRepasseRepasseMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckItemRepasseRepasse.setText("Código de Repasse");
+
+        jLabel74.setText("Filtrar por:");
+
+        jLabel75.setText("Max:");
+
+        SPItemRepasseRepasseMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckItemRepasseUsuario.setText("Usuário");
+
+        CBItemRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckItemRepasseColetor.setText("Coletor");
+
+        CBItemRepasseColetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckItemRepasseTipo.setText("Tipo de Item");
+
+        CBItemRepasseTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel76.setText("Min:");
+
+        CheckItemRepasseData.setText("Intervalo de Data");
+
+        jLabel77.setText("até");
+
+        BItemRepasseFiltrar.setText("Filtrar Item Repasse");
+        BItemRepasseFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BItemRepasseFiltrarActionPerformed(evt);
+            }
+        });
+
+        jLabel78.setText("de");
+
+        CheckItemRepasseDestinacao.setText("Destinação");
+
+        CBItemRepasseDestinacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckItemRepasseCodigo.setText("Código de Item Repasse");
+
+        SPItemRepasseMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel79.setText("Min:");
+
+        jLabel80.setText("Max:");
+
+        SPItemRepasseMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckItemRepasseQuantidade.setText("Quantidade");
+
+        jLabel81.setText("Min:");
+
+        SPItemRepasseQuantidadeMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel82.setText("Max:");
+
+        SPItemRepasseQuantidadeMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        javax.swing.GroupLayout JDFiltrarItemRepasseLayout = new javax.swing.GroupLayout(JDFiltrarItemRepasse.getContentPane());
+        JDFiltrarItemRepasse.getContentPane().setLayout(JDFiltrarItemRepasseLayout);
+        JDFiltrarItemRepasseLayout.setHorizontalGroup(
+            JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BItemRepasseFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckItemRepasseColetor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBItemRepasseColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckItemRepasseUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBItemRepasseUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckItemRepasseData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel78)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCItemRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckItemRepasseCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel79)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPItemRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel80)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPItemRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckItemRepasseDestinacao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBItemRepasseDestinacao, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel77)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCItemRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckItemRepasseTipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBItemRepasseTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckItemRepasseQuantidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel81)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPItemRepasseQuantidadeMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel82)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPItemRepasseQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(jLabel74)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addComponent(CheckItemRepasseRepasse)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel76)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPItemRepasseRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel75)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPItemRepasseRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        JDFiltrarItemRepasseLayout.setVerticalGroup(
+            JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel74)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemRepasseCodigo)
+                    .addComponent(SPItemRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel80)
+                    .addComponent(SPItemRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel79))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemRepasseRepasse)
+                    .addComponent(jLabel76)
+                    .addComponent(SPItemRepasseRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel75)
+                    .addComponent(SPItemRepasseRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemRepasseUsuario)
+                    .addComponent(CBItemRepasseUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemRepasseColetor)
+                    .addComponent(CBItemRepasseColetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemRepasseDestinacao)
+                    .addComponent(CBItemRepasseDestinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemRepasseTipo)
+                    .addComponent(CBItemRepasseTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckItemRepasseQuantidade)
+                    .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SPItemRepasseQuantidadeMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel82)
+                        .addComponent(SPItemRepasseQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel81)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(CheckItemRepasseData)
+                                .addComponent(jLabel78))
+                            .addComponent(JDCItemRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDCItemRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel77))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BItemRepasseFiltrar)
+                .addContainerGap())
+        );
+
+        JDFiltrarColetor.setTitle("Filtrar Coletor");
+
+        SPColetorCodigoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckColetorCodigo.setText("Código de Coletor");
+
+        jLabel83.setText("Filtrar por:");
+
+        jLabel84.setText("Max:");
+
+        SPColetorCodigoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        CheckColetorColetor.setText("Coletor");
+
+        CBColetorColetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel85.setText("Min:");
+
+        BColetorFiltrar.setText("Filtrar Coletor");
+        BColetorFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BColetorFiltrarActionPerformed(evt);
+            }
+        });
+
+        CheckColetorTipo.setText("Tipo de Coletor");
+
+        CBColetorTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout JDFiltrarColetorLayout = new javax.swing.GroupLayout(JDFiltrarColetor.getContentPane());
+        JDFiltrarColetor.getContentPane().setLayout(JDFiltrarColetorLayout);
+        JDFiltrarColetorLayout.setHorizontalGroup(
+            JDFiltrarColetorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarColetorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarColetorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BColetorFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarColetorLayout.createSequentialGroup()
+                        .addComponent(CheckColetorCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel85)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPColetorCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel84)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPColetorCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarColetorLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarColetorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckColetorColetor)
+                            .addComponent(jLabel83)
+                            .addComponent(CheckColetorTipo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(JDFiltrarColetorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CBColetorColetor, 0, 187, Short.MAX_VALUE)
+                            .addComponent(CBColetorTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        JDFiltrarColetorLayout.setVerticalGroup(
+            JDFiltrarColetorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarColetorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel83)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarColetorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckColetorCodigo)
+                    .addComponent(SPColetorCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel84)
+                    .addComponent(SPColetorCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel85))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarColetorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckColetorColetor)
+                    .addComponent(CBColetorColetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarColetorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckColetorTipo)
+                    .addComponent(CBColetorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BColetorFiltrar)
                 .addContainerGap())
         );
 
@@ -6033,19 +6943,16 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(CadastrarItemAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(CadastrarItemAcervoLayout.createSequentialGroup()
-                                        .addGroup(CadastrarItemAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(CadastrarItemAcervoLayout.createSequentialGroup()
-                                                .addComponent(BNovoTipoItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(8, 8, 8))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CadastrarItemAcervoLayout.createSequentialGroup()
-                                                .addComponent(BNovoMarca)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addGroup(CadastrarItemAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(BNovoTipoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(BNovoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(CadastrarItemAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(LContainer)
                                             .addComponent(LCapacidade_MB, javax.swing.GroupLayout.Alignment.TRAILING)))
                                     .addGroup(CadastrarItemAcervoLayout.createSequentialGroup()
-                                        .addComponent(BNovoDoadorAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(73, 73, 73)
+                                        .addComponent(BNovoDoadorAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(LTecnologia))
                                     .addComponent(LInterface)
                                     .addComponent(BNovoModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -6064,7 +6971,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BNovoInterface, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(LCamposComplementares))))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         CadastrarItemAcervoLayout.setVerticalGroup(
             CadastrarItemAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6396,20 +7303,17 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel38)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LAcervoTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                         .addComponent(BAcervoPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BAcervoProxPagina))
-                    .addComponent(RelatorioAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE))
+                    .addComponent(RelatorioAcervo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(BExcluirItemAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BEditarItemAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BFiltrarAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelAcervoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BRelatorioAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(BEditarItemAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BExcluirItemAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BFiltrarAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BRelatorioAcervo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         PainelAcervoLayout.setVerticalGroup(
@@ -7528,7 +8432,8 @@ public class Principal extends javax.swing.JFrame {
             daotec.fechar();
             
             ContainerDAO daoc=new ContainerDAO();
-            c=daoc.getByCod(Integer.parseInt(campoCodContainerCadastrarItemAcervo.getText()));
+            if(campoCodContainerCadastrarItemAcervo.getText().equals("")) c=daoc.getByCod(1);
+            else c=daoc.getByCod(Integer.parseInt(campoCodContainerCadastrarItemAcervo.getText()));
             daoc.fechar();
             
             ia.setCod_doador(d.getCod_doador());
@@ -9474,14 +10379,29 @@ public class Principal extends javax.swing.JFrame {
 
     private void BRelatorioItemDoacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioItemDoacao1ActionPerformed
         // TODO add your handling code here:
+        JDFiltrarItemDoacao.setIconImage(icone);
+        JDFiltrarItemDoacao.setModal(true);
+        JDFiltrarItemDoacao.setLocationRelativeTo(null);
+        JDFiltrarItemDoacao.pack();
+        JDFiltrarItemDoacao.setVisible(true);
     }//GEN-LAST:event_BRelatorioItemDoacao1ActionPerformed
 
     private void BFiltrarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFiltrarEstoqueActionPerformed
         // TODO add your handling code here:
+        JDFiltrarEstoque.setIconImage(icone);
+        JDFiltrarEstoque.setModal(true);
+        JDFiltrarEstoque.setLocationRelativeTo(null);
+        JDFiltrarEstoque.pack();
+        JDFiltrarEstoque.setVisible(true);
     }//GEN-LAST:event_BFiltrarEstoqueActionPerformed
 
     private void BRelatorioDoadores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioDoadores1ActionPerformed
         // TODO add your handling code here:
+        JDFiltrarDoador.setIconImage(icone);
+        JDFiltrarDoador.setModal(true);
+        JDFiltrarDoador.setLocationRelativeTo(null);
+        JDFiltrarDoador.pack();
+        JDFiltrarDoador.setVisible(true);
     }//GEN-LAST:event_BRelatorioDoadores1ActionPerformed
 
     private void BRemoverItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRemoverItemDoacaoActionPerformed
@@ -9774,14 +10694,29 @@ public class Principal extends javax.swing.JFrame {
 
     private void BFiltrarRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFiltrarRepasseActionPerformed
         // TODO add your handling code here:
+        JDFiltrarRepasse.setIconImage(icone);
+        JDFiltrarRepasse.setModal(true);
+        JDFiltrarRepasse.setLocationRelativeTo(null);
+        JDFiltrarRepasse.pack();
+        JDFiltrarRepasse.setVisible(true);
     }//GEN-LAST:event_BFiltrarRepasseActionPerformed
 
     private void BFiltrarItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFiltrarItemRepasseActionPerformed
         // TODO add your handling code here:
+        JDFiltrarItemRepasse.setIconImage(icone);
+        JDFiltrarItemRepasse.setModal(true);
+        JDFiltrarItemRepasse.setLocationRelativeTo(null);
+        JDFiltrarItemRepasse.pack();
+        JDFiltrarItemRepasse.setVisible(true);
     }//GEN-LAST:event_BFiltrarItemRepasseActionPerformed
 
     private void BFiltrarColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFiltrarColetorActionPerformed
         // TODO add your handling code here:
+        JDFiltrarColetor.setIconImage(icone);
+        JDFiltrarColetor.setModal(true);
+        JDFiltrarColetor.setLocationRelativeTo(null);
+        JDFiltrarColetor.pack();
+        JDFiltrarColetor.setVisible(true);
     }//GEN-LAST:event_BFiltrarColetorActionPerformed
 
     private void SPAcervoItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPAcervoItensPaginaStateChanged
@@ -9875,6 +10810,306 @@ public class Principal extends javax.swing.JFrame {
         }
         atualizarTBUsuario();
     }//GEN-LAST:event_BUsuariosProxPaginaActionPerformed
+
+    private void BItemDoacaoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemDoacaoFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroItemDoacao=" ";
+        int checkedfilters=0;
+        if(CheckItemDoacaoDoacaoCodigo.isSelected()) checkedfilters++;
+        if(CheckItemDoacaoCodigo.isSelected()) checkedfilters++;
+        if(CheckItemDoacaoUsuario.isSelected()) checkedfilters++;
+        if(CheckItemDoacaoDoador.isSelected()) checkedfilters++;
+        if(CheckItemDoacaoEvento.isSelected()) checkedfilters++;
+        if(CheckItemDoacaoData.isSelected()) checkedfilters++;
+        if(checkedfilters>0){
+            FiltroItemDoacao+=" WHERE ";
+            if(CheckItemDoacaoDoacaoCodigo.isSelected()){
+                int min=Integer.parseInt(SPItemDoacaoDoacaoMin.getValue().toString());
+                int max=Integer.parseInt(SPItemDoacaoDoacaoMax.getValue().toString());
+                FiltroItemDoacao+="\"Código de Doação\">="+min+" AND \"Código de Doação\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+            }
+            if(CheckItemDoacaoCodigo.isSelected()){
+                int min=Integer.parseInt(SPItemDoacaoMin.getValue().toString());
+                int max=Integer.parseInt(SPItemDoacaoMax.getValue().toString());
+                FiltroItemDoacao+="\"Código de Item-Doação\">="+min+" AND \"Código de Item-Doação\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+            }
+            if(CheckItemDoacaoUsuario.isSelected()){
+                FiltroItemDoacao+="\"Usuário\"=\'"+CBItemDoacaoUsuario.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+            }
+            if(CheckItemDoacaoDoador.isSelected()){
+                FiltroItemDoacao+="\"Doador\"=\'"+CBItemDoacaoDoador.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+            }
+            if(CheckItemDoacaoEvento.isSelected()){
+                FiltroItemDoacao+="\"Origem\"=\'"+CBItemDoacaoEvento.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+            }
+            if(CheckItemDoacaoData.isSelected()){
+                //"Data"::date > '2016-11-13'
+                FiltroItemDoacao+="\"Data\"::date>=\'"+(JDCItemDoacaoMin.getDate().getYear()+1900)+"-"+(JDCItemDoacaoMin.getDate().getMonth()+1)+"-"+JDCItemDoacaoMin.getDate().getDate()+"\' AND ";
+                FiltroItemDoacao+="\"Data\"::date<=\'"+(JDCItemDoacaoMax.getDate().getYear()+1900)+"-"+(JDCItemDoacaoMax.getDate().getMonth()+1)+"-"+JDCItemDoacaoMax.getDate().getDate()+"\' ";
+                System.out.println(FiltroItemDoacao);
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+            }
+        }
+        else FiltroItemDoacao="";
+        System.out.println(FiltroItemDoacao);
+        achandoMax=true;
+        atualizarTBItemDoacao();
+        achandoMax=false;
+        atualizarTBItemDoacao();
+    }//GEN-LAST:event_BItemDoacaoFiltrarActionPerformed
+
+    private void BEstoqueFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroEstoque=" ";
+        int checkedfilters=0;
+        if(CheckEstoqueTipo.isSelected()) checkedfilters++;
+        if(CheckEstoqueDoacao.isSelected()) checkedfilters++;
+        if(CheckEstoqueRepasse.isSelected()) checkedfilters++;
+        if(CheckEstoqueSaldo.isSelected()) checkedfilters++;
+        if(checkedfilters>0){
+            FiltroEstoque+=" WHERE ";
+            if(CheckEstoqueTipo.isSelected()){
+                FiltroEstoque+="\"Tipo\"=\'"+CBEstoqueTipo.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroEstoque+=" AND ";
+            }
+            if(CheckEstoqueDoacao.isSelected()){
+                int min=Integer.parseInt(SPEstoqueDoacaoMin.getValue().toString());
+                int max=Integer.parseInt(SPEstoqueDoacaoMax.getValue().toString());
+                FiltroEstoque+="\"Quantidade de Doações\">="+min+" AND \"Quantidade de Doações\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroEstoque+=" AND ";
+            }
+            if(CheckEstoqueRepasse.isSelected()){
+                int min=Integer.parseInt(SPEstoqueRepasseMin.getValue().toString());
+                int max=Integer.parseInt(SPEstoqueRepasseMax.getValue().toString());
+                FiltroEstoque+="\"Quantidade de Repasses\">="+min+" AND \"Quantidade de Repasses\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroEstoque+=" AND ";
+            }
+            if(CheckEstoqueSaldo.isSelected()){
+                int min=Integer.parseInt(SPEstoqueSaldoMin.getValue().toString());
+                int max=Integer.parseInt(SPEstoqueSaldoMax.getValue().toString());
+                FiltroEstoque+="\"Saldo\">="+min+" AND \"Saldo\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroEstoque+=" AND ";
+            }
+            
+        }
+        else FiltroEstoque="";
+        System.out.println(FiltroEstoque);
+        achandoMax=true;
+        atualizarTBEstoque();
+        achandoMax=false;
+        atualizarTBEstoque();
+    }//GEN-LAST:event_BEstoqueFiltrarActionPerformed
+
+    private void BDoadorFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoadorFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroDoador=" ";
+        int checkedfilters=0;
+        if(CheckDoadorCodigo.isSelected()) checkedfilters++;
+        if(CheckDoadorDoador.isSelected()) checkedfilters++;
+        if(checkedfilters>0){
+            FiltroDoador+=" WHERE ";
+            if(CheckDoadorDoador.isSelected()){
+                FiltroDoador+="\"Nome do Doador\"=\'"+CBDoadorDoador.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroDoador+=" AND ";
+            }
+            if(CheckDoadorCodigo.isSelected()){
+                int min=Integer.parseInt(SPDoadorCodigoMin.getValue().toString());
+                int max=Integer.parseInt(SPDoadorCodigoMax.getValue().toString());
+                FiltroDoador+="\"Código do Doador\">="+min+" AND \"Código do Doador\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroDoador+=" AND ";
+            }
+            
+        }
+        else FiltroDoador="";
+        System.out.println(FiltroDoador);
+        achandoMax=true;
+        atualizarTBDoador();
+        achandoMax=false;
+        atualizarTBDoador();
+    }//GEN-LAST:event_BDoadorFiltrarActionPerformed
+
+    private void BRepasseFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRepasseFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroRepasse=" ";
+        int checkedfilters=0;
+        if(CheckRepasseCodigo.isSelected()) checkedfilters++;
+        if(CheckRepasseUsuario.isSelected()) checkedfilters++;
+        if(CheckRepasseColetor.isSelected()) checkedfilters++;
+        if(CheckRepasseTipoColetor.isSelected()) checkedfilters++;
+        if(CheckRepasseDestinacao.isSelected()) checkedfilters++;
+        if(CheckRepasseData.isSelected()) checkedfilters++;
+        if(checkedfilters>0){
+            FiltroRepasse+=" WHERE ";
+            if(CheckRepasseCodigo.isSelected()){
+                int min=Integer.parseInt(SPRepasseMin.getValue().toString());
+                int max=Integer.parseInt(SPRepasseMax.getValue().toString());
+                FiltroRepasse+="\"Código do Repasse\">="+min+" AND \"Código do Repasse\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroRepasse+=" AND ";
+            }
+            if(CheckRepasseUsuario.isSelected()){
+                FiltroRepasse+="\"Usuário\"=\'"+CBRepasseUsuario.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroRepasse+=" AND ";
+            }
+            if(CheckRepasseColetor.isSelected()){
+                FiltroRepasse+="\"Coletor\"=\'"+CBRepasseColetor.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroRepasse+=" AND ";
+            }
+            if(CheckRepasseTipoColetor.isSelected()){
+                FiltroRepasse+="\"Tipo de Coletor\"=\'"+CBRepasseTipoColetor.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroRepasse+=" AND ";
+            }
+            if(CheckRepasseDestinacao.isSelected()){
+                FiltroRepasse+="\"Destinação\"=\'"+CBRepasseDestinacao.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroRepasse+=" AND ";
+            }
+            if(CheckRepasseData.isSelected()){
+                //"Data"::date > '2016-11-13'
+                FiltroRepasse+="\"Data\"::date>=\'"+(JDCRepasseMin.getDate().getYear()+1900)+"-"+(JDCRepasseMin.getDate().getMonth()+1)+"-"+JDCRepasseMin.getDate().getDate()+"\' AND ";
+                FiltroRepasse+="\"Data\"::date<=\'"+(JDCRepasseMax.getDate().getYear()+1900)+"-"+(JDCRepasseMax.getDate().getMonth()+1)+"-"+JDCRepasseMax.getDate().getDate()+"\' ";
+                System.out.println(FiltroRepasse);
+                checkedfilters--;
+                if(checkedfilters>0) FiltroRepasse+=" AND ";
+            }
+        }
+        else FiltroRepasse="";
+        System.out.println(FiltroRepasse);
+        achandoMax=true;
+        atualizarTBRepasse();
+        achandoMax=false;
+        atualizarTBRepasse();
+    }//GEN-LAST:event_BRepasseFiltrarActionPerformed
+
+    private void BItemRepasseFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemRepasseFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroItemRepasse=" ";
+        int checkedfilters=0;
+        if(CheckItemRepasseCodigo.isSelected()) checkedfilters++;
+        if(CheckItemRepasseRepasse.isSelected()) checkedfilters++;
+        if(CheckItemRepasseUsuario.isSelected()) checkedfilters++;
+        if(CheckItemRepasseColetor.isSelected()) checkedfilters++;
+        if(CheckItemRepasseTipo.isSelected()) checkedfilters++;
+        if(CheckItemRepasseDestinacao.isSelected()) checkedfilters++;
+        if(CheckItemRepasseQuantidade.isSelected()) checkedfilters++;
+        if(CheckItemRepasseData.isSelected()) checkedfilters++;
+        if(checkedfilters>0){
+            FiltroItemRepasse+=" WHERE ";
+            if(CheckItemRepasseCodigo.isSelected()){
+                int min=Integer.parseInt(SPItemRepasseMin.getValue().toString());
+                int max=Integer.parseInt(SPItemRepasseMax.getValue().toString());
+                FiltroItemRepasse+="\"Código do Item-Repasse\">="+min+" AND \"Código do Item-Repasse\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+            }
+            if(CheckItemRepasseRepasse.isSelected()){
+                int min=Integer.parseInt(SPItemRepasseRepasseMin.getValue().toString());
+                int max=Integer.parseInt(SPItemRepasseRepasseMax.getValue().toString());
+                FiltroItemRepasse+="\"Codigo do Repasse\">="+min+" AND \"Codigo do Repasse\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+            }
+            if(CheckItemRepasseQuantidade.isSelected()){
+                int min=Integer.parseInt(SPItemRepasseQuantidadeMin.getValue().toString());
+                int max=Integer.parseInt(SPItemRepasseQuantidadeMax.getValue().toString());
+                FiltroItemRepasse+="\"Quantidade\">="+min+" AND \"Quantidade\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+            }
+            if(CheckItemRepasseUsuario.isSelected()){
+                FiltroItemRepasse+="\"Usuário\"=\'"+CBItemRepasseUsuario.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+            }
+            if(CheckItemRepasseColetor.isSelected()){
+                FiltroItemRepasse+="\"Coletor\"=\'"+CBItemRepasseColetor.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+            }
+            if(CheckItemRepasseTipo.isSelected()){
+                FiltroItemRepasse+="\"Tipo de Item\"=\'"+CBItemRepasseTipo.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+            }
+            if(CheckItemRepasseDestinacao.isSelected()){
+                FiltroItemRepasse+="\"Destinação\"=\'"+CBItemRepasseDestinacao.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+            }
+            if(CheckItemRepasseData.isSelected()){
+                //"Data"::date > '2016-11-13'
+                FiltroItemRepasse+="\"Data\"::date>=\'"+(JDCItemRepasseMin.getDate().getYear()+1900)+"-"+(JDCItemRepasseMin.getDate().getMonth()+1)+"-"+JDCItemRepasseMin.getDate().getDate()+"\' AND ";
+                FiltroItemRepasse+="\"Data\"::date<=\'"+(JDCItemRepasseMax.getDate().getYear()+1900)+"-"+(JDCItemRepasseMax.getDate().getMonth()+1)+"-"+JDCItemRepasseMax.getDate().getDate()+"\' ";
+                System.out.println(FiltroItemRepasse);
+                checkedfilters--;
+                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+            }
+        }
+        else FiltroItemRepasse="";
+        System.out.println(FiltroItemRepasse);
+        achandoMax=true;
+        atualizarTBItemRepasse();
+        achandoMax=false;
+        atualizarTBItemRepasse();
+    }//GEN-LAST:event_BItemRepasseFiltrarActionPerformed
+
+    private void BColetorFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BColetorFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroColetor=" ";
+        int checkedfilters=0;
+        if(CheckColetorCodigo.isSelected()) checkedfilters++;
+        if(CheckColetorColetor.isSelected()) checkedfilters++;
+        if(CheckColetorTipo.isSelected()) checkedfilters++;
+        
+        if(checkedfilters>0){
+            FiltroColetor+=" WHERE ";
+            if(CheckColetorCodigo.isSelected()){
+                int min=Integer.parseInt(SPColetorCodigoMin.getValue().toString());
+                int max=Integer.parseInt(SPColetorCodigoMax.getValue().toString());
+                FiltroColetor+="\"Código do Coletor\">="+min+" AND \"Código do Coletor\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroColetor+=" AND ";
+            }
+            
+            if(CheckColetorColetor.isSelected()){
+                FiltroColetor+="\"Nome do Coletor\"=\'"+CBColetorColetor.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroColetor+=" AND ";
+            }
+            if(CheckColetorTipo.isSelected()){
+                FiltroColetor+="\"Tipo do Coletor\"=\'"+CBColetorTipo.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroColetor+=" AND ";
+            }
+            
+        }
+        else FiltroColetor="";
+        System.out.println(FiltroColetor);
+        achandoMax=true;
+        atualizarTBColetor();
+        achandoMax=false;
+        atualizarTBColetor();
+    }//GEN-LAST:event_BColetorFiltrarActionPerformed
     private void excluirLinhasTabela(JTable tabela){
         while(tabela.getSelectedRowCount()>0) ((DefaultTableModel)tabela.getModel()).removeRow(tabela.getSelectedRow());
     }
@@ -9999,6 +11234,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BCancelarExcluirRepasse;
     private javax.swing.JButton BCancelarExcluirUsuario;
     private javax.swing.JButton BCheckLink;
+    private javax.swing.JButton BColetorFiltrar;
     private javax.swing.JButton BColetorPaginaAnterior;
     private javax.swing.JButton BColetorProxPagina;
     private javax.swing.JButton BConfirmarExcluirColetor;
@@ -10017,6 +11253,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BDoacaoFiltrar;
     private javax.swing.JButton BDoacaoPaginaAnterior;
     private javax.swing.JButton BDoacaoProxPagina;
+    private javax.swing.JButton BDoadorFiltrar;
     private javax.swing.JButton BDoadorPaginaAnterior;
     private javax.swing.JButton BDoadorProxPagina;
     private javax.swing.JButton BEditarColetor;
@@ -10030,6 +11267,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BEditarRepasse;
     private javax.swing.JButton BEditarUsuario;
     private javax.swing.JButton BEsqueciSenha;
+    private javax.swing.JButton BEstoqueFiltrar;
     private javax.swing.JButton BEstoquePaginaAnterior;
     private javax.swing.JButton BEstoqueProxPagina;
     private javax.swing.JButton BExcluirColetor;
@@ -10055,8 +11293,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BFiltrarRepasse;
     private javax.swing.JButton BImagemPaginaAnterior;
     private javax.swing.JButton BImagemProxPagina;
+    private javax.swing.JButton BItemDoacaoFiltrar;
     private javax.swing.JButton BItemDoacaoPaginaAnterior;
     private javax.swing.JButton BItemDoacaoProxPagina;
+    private javax.swing.JButton BItemRepasseFiltrar;
     private javax.swing.JButton BItemRepassePaginaAnterior;
     private javax.swing.JButton BItemRepasseProxPagina;
     private javax.swing.JButton BLogar;
@@ -10090,28 +11330,44 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BRelatorioRepasse;
     private javax.swing.JButton BRemoverItemDoacao;
     private javax.swing.JButton BRemoverItemRepasse;
+    private javax.swing.JButton BRepasseFiltrar;
     private javax.swing.JButton BRepassePaginaAnterior;
     private javax.swing.JButton BRepasseProxPagina;
     private javax.swing.JButton BUsuariosPaginaAnterior;
     private javax.swing.JButton BUsuariosProxPagina;
     private javax.swing.JCheckBox CBAdministrador;
     private javax.swing.JComboBox CBColetor;
+    private javax.swing.JComboBox<String> CBColetorColetor;
+    private javax.swing.JComboBox<String> CBColetorTipo;
     private javax.swing.JComboBox CBDestinacao;
     private javax.swing.JComboBox CBDestinacaoAlterarRepasse;
     private javax.swing.JComboBox<String> CBDoacaoDoador;
     private javax.swing.JComboBox<String> CBDoacaoEvento;
     private javax.swing.JComboBox<String> CBDoacaoUsuario;
     private javax.swing.JComboBox CBDoadorDoacao;
+    private javax.swing.JComboBox<String> CBDoadorDoador;
     private javax.swing.JComboBox CBDoadorItemAcervo;
+    private javax.swing.JComboBox<String> CBEstoqueTipo;
     private javax.swing.JComboBox CBEventoOrigem;
     private javax.swing.JComboBox CBEventoOrigemAlterarDoacao;
     private javax.swing.JCheckBox CBFunciona;
     private javax.swing.JComboBox CBInterface;
     private javax.swing.JComboBox CBInterfaceAlterarItemAcervo;
+    private javax.swing.JComboBox<String> CBItemDoacaoDoador;
+    private javax.swing.JComboBox<String> CBItemDoacaoEvento;
+    private javax.swing.JComboBox<String> CBItemDoacaoUsuario;
+    private javax.swing.JComboBox<String> CBItemRepasseColetor;
+    private javax.swing.JComboBox<String> CBItemRepasseDestinacao;
+    private javax.swing.JComboBox<String> CBItemRepasseTipo;
+    private javax.swing.JComboBox<String> CBItemRepasseUsuario;
     private javax.swing.JComboBox CBMarca;
     private javax.swing.JComboBox CBMarcaAlterarItemAcervo;
     private javax.swing.JComboBox CBModelo;
     private javax.swing.JComboBox CBModeloAlterarItemAcervo;
+    private javax.swing.JComboBox<String> CBRepasseColetor;
+    private javax.swing.JComboBox<String> CBRepasseDestinacao;
+    private javax.swing.JComboBox<String> CBRepasseTipoColetor;
+    private javax.swing.JComboBox<String> CBRepasseUsuario;
     private javax.swing.JComboBox CBTecnologia;
     private javax.swing.JComboBox CBTecnologiaAlterarItemAcervo;
     private javax.swing.JComboBox<String> CBTipoAdicionarItemLista;
@@ -10131,13 +11387,42 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel CadastrarRepasse;
     private javax.swing.JPanel CadastrarUsuario;
     private javax.swing.JCheckBox CheckAdministradorAlterarUsuarioJD;
+    private javax.swing.JCheckBox CheckColetorCodigo;
+    private javax.swing.JCheckBox CheckColetorColetor;
+    private javax.swing.JCheckBox CheckColetorTipo;
     private javax.swing.JCheckBox CheckDoacaoCodigo;
     private javax.swing.JCheckBox CheckDoacaoData;
     private javax.swing.JCheckBox CheckDoacaoDoador;
     private javax.swing.JCheckBox CheckDoacaoEvento;
     private javax.swing.JCheckBox CheckDoacaoUsuario;
+    private javax.swing.JCheckBox CheckDoadorCodigo;
+    private javax.swing.JCheckBox CheckDoadorDoador;
+    private javax.swing.JCheckBox CheckEstoqueDoacao;
+    private javax.swing.JCheckBox CheckEstoqueRepasse;
+    private javax.swing.JCheckBox CheckEstoqueSaldo;
+    private javax.swing.JCheckBox CheckEstoqueTipo;
     private javax.swing.JCheckBox CheckFuncionaAlterarItemAcervo;
     private javax.swing.JButton CheckImagemAlterarImagem;
+    private javax.swing.JCheckBox CheckItemDoacaoCodigo;
+    private javax.swing.JCheckBox CheckItemDoacaoData;
+    private javax.swing.JCheckBox CheckItemDoacaoDoacaoCodigo;
+    private javax.swing.JCheckBox CheckItemDoacaoDoador;
+    private javax.swing.JCheckBox CheckItemDoacaoEvento;
+    private javax.swing.JCheckBox CheckItemDoacaoUsuario;
+    private javax.swing.JCheckBox CheckItemRepasseCodigo;
+    private javax.swing.JCheckBox CheckItemRepasseColetor;
+    private javax.swing.JCheckBox CheckItemRepasseData;
+    private javax.swing.JCheckBox CheckItemRepasseDestinacao;
+    private javax.swing.JCheckBox CheckItemRepasseQuantidade;
+    private javax.swing.JCheckBox CheckItemRepasseRepasse;
+    private javax.swing.JCheckBox CheckItemRepasseTipo;
+    private javax.swing.JCheckBox CheckItemRepasseUsuario;
+    private javax.swing.JCheckBox CheckRepasseCodigo;
+    private javax.swing.JCheckBox CheckRepasseColetor;
+    private javax.swing.JCheckBox CheckRepasseData;
+    private javax.swing.JCheckBox CheckRepasseDestinacao;
+    private javax.swing.JCheckBox CheckRepasseTipoColetor;
+    private javax.swing.JCheckBox CheckRepasseUsuario;
     private javax.swing.JPanel Container;
     private javax.swing.JPanel Deslogar;
     private javax.swing.JTabbedPane Doacoes;
@@ -10159,6 +11444,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog JDAlterarUsuario;
     private com.toedter.calendar.JDateChooser JDCDoacaoMax;
     private com.toedter.calendar.JDateChooser JDCDoacaoMin;
+    private com.toedter.calendar.JDateChooser JDCItemDoacaoMax;
+    private com.toedter.calendar.JDateChooser JDCItemDoacaoMin;
+    private com.toedter.calendar.JDateChooser JDCItemRepasseMax;
+    private com.toedter.calendar.JDateChooser JDCItemRepasseMin;
+    private com.toedter.calendar.JDateChooser JDCRepasseMax;
+    private com.toedter.calendar.JDateChooser JDCRepasseMin;
     private javax.swing.JDialog JDCadastrarColetor;
     private javax.swing.JDialog JDCadastrarDestinacao;
     private javax.swing.JDialog JDCadastrarDoador;
@@ -10181,7 +11472,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog JDExcluirItemRepasse;
     private javax.swing.JDialog JDExcluirRepasse;
     private javax.swing.JDialog JDExcluirUsuario;
+    private javax.swing.JDialog JDFiltrarColetor;
     private javax.swing.JDialog JDFiltrarDoacao;
+    private javax.swing.JDialog JDFiltrarDoador;
+    private javax.swing.JDialog JDFiltrarEstoque;
+    private javax.swing.JDialog JDFiltrarItemDoacao;
+    private javax.swing.JDialog JDFiltrarItemRepasse;
+    private javax.swing.JDialog JDFiltrarRepasse;
     private javax.swing.JDialog JDLogin;
     private javax.swing.JFrame JFCarregandoDados;
     private javax.swing.JProgressBar JPBCarregando;
@@ -10418,6 +11715,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane RelatorioRepasse;
     private javax.swing.JTabbedPane Repasses;
     private javax.swing.JSpinner SPAcervoItensPagina;
+    private javax.swing.JSpinner SPColetorCodigoMax;
+    private javax.swing.JSpinner SPColetorCodigoMin;
     private javax.swing.JSpinner SPColetorItensPagina;
     private javax.swing.JScrollPane SPContainer;
     private javax.swing.JSpinner SPContainerItensPagina;
@@ -10426,14 +11725,34 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner SPDoacaoItensPagina;
     private javax.swing.JSpinner SPDoacaoMax;
     private javax.swing.JSpinner SPDoacaoMin;
+    private javax.swing.JSpinner SPDoadorCodigoMax;
+    private javax.swing.JSpinner SPDoadorCodigoMin;
     private javax.swing.JSpinner SPDoadorItensPagina;
+    private javax.swing.JSpinner SPEstoqueDoacaoMax;
+    private javax.swing.JSpinner SPEstoqueDoacaoMin;
     private javax.swing.JSpinner SPEstoqueItensPagina;
+    private javax.swing.JSpinner SPEstoqueRepasseMax;
+    private javax.swing.JSpinner SPEstoqueRepasseMin;
+    private javax.swing.JSpinner SPEstoqueSaldoMax;
+    private javax.swing.JSpinner SPEstoqueSaldoMin;
     private javax.swing.JScrollPane SPImagem;
     private javax.swing.JSpinner SPImagemItensPagina;
+    private javax.swing.JSpinner SPItemDoacaoDoacaoMax;
+    private javax.swing.JSpinner SPItemDoacaoDoacaoMin;
     private javax.swing.JSpinner SPItemDoacaoItensPagina;
+    private javax.swing.JSpinner SPItemDoacaoMax;
+    private javax.swing.JSpinner SPItemDoacaoMin;
     private javax.swing.JSpinner SPItemRepasseItensPagina;
+    private javax.swing.JSpinner SPItemRepasseMax;
+    private javax.swing.JSpinner SPItemRepasseMin;
+    private javax.swing.JSpinner SPItemRepasseQuantidadeMax;
+    private javax.swing.JSpinner SPItemRepasseQuantidadeMin;
+    private javax.swing.JSpinner SPItemRepasseRepasseMax;
+    private javax.swing.JSpinner SPItemRepasseRepasseMin;
     private javax.swing.JSpinner SPQuantidadeItemLista;
     private javax.swing.JSpinner SPRepasseItensPagina;
+    private javax.swing.JSpinner SPRepasseMax;
+    private javax.swing.JSpinner SPRepasseMin;
     private javax.swing.JSpinner SPUsuariosItensPagina;
     private javax.swing.JPanel SuasInformacoes;
     private javax.swing.JTextArea TADescricaoAlterarItemAcervo;
@@ -10590,9 +11909,43 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

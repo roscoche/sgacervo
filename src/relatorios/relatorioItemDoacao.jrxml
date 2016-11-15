@@ -13,7 +13,7 @@
 	<field name="Origem" class="java.lang.String"/>
 	<field name="Tipo de Item" class="java.lang.String"/>
 	<field name="Quantidade" class="java.lang.Integer"/>
-	<field name="Data" class="java.sql.Date"/>
+	<field name="Data" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -49,7 +49,7 @@
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="69" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4b6dfb99-8151-46ab-b324-3ed9f98170fe"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Item-Doação]]></text>
 			</staticText>

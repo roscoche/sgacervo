@@ -10,7 +10,7 @@
 	<field name="Código de Item do Acervo" class="java.lang.Integer"/>
 	<field name="Usuário" class="java.lang.String"/>
 	<field name="Doador" class="java.lang.String"/>
-	<field name="Data" class="java.sql.Date"/>
+	<field name="Data" class="java.lang.String"/>
 	<field name="Tipo" class="java.lang.String"/>
 	<field name="Marca" class="java.lang.String"/>
 	<field name="Modelo" class="java.lang.String"/>

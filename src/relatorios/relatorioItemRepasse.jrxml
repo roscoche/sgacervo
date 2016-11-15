@@ -13,7 +13,7 @@
 	<field name="Destinação" class="java.lang.String"/>
 	<field name="Tipo de Item" class="java.lang.String"/>
 	<field name="Quantidade" class="java.lang.Integer"/>
-	<field name="Data" class="java.sql.Date"/>
+	<field name="Data" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -24,9 +24,9 @@
 				<staticText>
 					<reportElement x="395" y="72" width="180" height="20" forecolor="#FFFFFF" uuid="cd101896-0cd9-4f72-aeae-f634dacc8260"/>
 					<textElement textAlignment="Right">
-						<font size="14" isBold="false"/>
+						<font size="10" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Relatório de Item-Repasse]]></text>
+					<text><![CDATA[Relatório de Items Repassados]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="20" y="49" width="400" height="43" forecolor="#FFFFFF" uuid="c2cced02-feff-4af7-9f00-185b19844624"/>
@@ -49,7 +49,7 @@
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="69" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c9e5d67d-0392-47d3-9ec3-da27f6e70bb8"/>
 				<textElement textAlignment="Center">
-					<font size="10" isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Item-Repasse]]></text>
 			</staticText>

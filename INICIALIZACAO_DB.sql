@@ -796,4 +796,6 @@ INSERT INTO usuario(
             'dc34698a-f0c0-4f', 'sgacervo.uepg2016@gmail.com', 99999999);
 INSERT INTO interface(cod_interface,nome_interface) values(default,'NÃO SE APLICA');
 INSERT INTO tecnologia(cod_tecnologia,nome_tecnologia) values(default,'NÃO SE APLICA');
+INSERT INTO tipo_container(cod_tipo_container,nome_tipo_container) values(default,'Sede Física');
+INSERT INTO container(cod_container,cod_tipo_container,localizacao_container) values(default,1,'Sede Física');
 

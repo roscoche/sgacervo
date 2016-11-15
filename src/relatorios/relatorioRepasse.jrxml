@@ -11,7 +11,7 @@
 	<field name="Coletor" class="java.lang.String"/>
 	<field name="Tipo de Coletor" class="java.lang.String"/>
 	<field name="Destinação" class="java.lang.String"/>
-	<field name="Data" class="java.sql.Date"/>
+	<field name="Data" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>

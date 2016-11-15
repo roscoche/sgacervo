@@ -956,6 +956,7 @@ public class Principal extends javax.swing.JFrame {
          CBMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBMarcaAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBAcervoMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBImagemMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     
     }
@@ -983,6 +984,7 @@ public class Principal extends javax.swing.JFrame {
          CBModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBModeloAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBAcervoModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBImagemModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
     private void atualizarCBInterface(){
        Connection con;
@@ -1059,6 +1061,32 @@ public class Principal extends javax.swing.JFrame {
          
          CBTipoContainerCadastrarContainer.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBTipoContainerAlterarContainer.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBContainerTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         
+    }
+    private void atualizarCBLocalizacaoContainer(){
+        Connection con;
+         ResultSet rs;
+         PreparedStatement ps;
+         String statement="SELECT * from container;";
+         ArrayList list = new ArrayList();  
+         try{
+                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps=con.prepareCall(statement);
+                rs=ps.executeQuery();
+                con.close();
+                
+                while(rs.next()){
+                    list.add(rs.getString("localizacao_container"));
+                }
+         }
+         catch(Exception e){
+             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Localização Container.");
+         }
+         Object[] objectList=list.toArray();
+         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
+         
+         CBContainerLocalizacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          
     }
     private void atualizarCBUsuario(){
@@ -1088,6 +1116,7 @@ public class Principal extends javax.swing.JFrame {
          CBRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBItemRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
          CBAcervoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+         CBUsuarioNome.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
     private void atualizarCB(){
         //Atualizar ComboBox Relativos à Doacao
@@ -1104,6 +1133,7 @@ public class Principal extends javax.swing.JFrame {
         atualizarCBInterface();
         atualizarCBTecnologia();
         atualizarCBTipoContainer();
+        atualizarCBLocalizacaoContainer();
         //Atualizar ComboBox relativos à Usuário
         atualizarCBUsuario();
     }
@@ -1606,6 +1636,47 @@ public class Principal extends javax.swing.JFrame {
         jLabel96 = new javax.swing.JLabel();
         SPAcervoContainerMax = new javax.swing.JSpinner();
         BAcervoFiltrar = new javax.swing.JButton();
+        JDFiltrarImagem = new javax.swing.JDialog();
+        jLabel97 = new javax.swing.JLabel();
+        CheckImagemCodigo = new javax.swing.JCheckBox();
+        CheckImagemMarca = new javax.swing.JCheckBox();
+        CheckImagemModelo = new javax.swing.JCheckBox();
+        jLabel98 = new javax.swing.JLabel();
+        SPImagemCodigoMax = new javax.swing.JSpinner();
+        SPImagemCodigoMin = new javax.swing.JSpinner();
+        jLabel99 = new javax.swing.JLabel();
+        CBImagemMarca = new javax.swing.JComboBox<>();
+        CBImagemModelo = new javax.swing.JComboBox<>();
+        BImagemFiltrar = new javax.swing.JButton();
+        CheckImagemItem = new javax.swing.JCheckBox();
+        jLabel108 = new javax.swing.JLabel();
+        SPImagemItemMin = new javax.swing.JSpinner();
+        jLabel109 = new javax.swing.JLabel();
+        SPImagemItemMax = new javax.swing.JSpinner();
+        JDFiltrarContainer = new javax.swing.JDialog();
+        jLabel100 = new javax.swing.JLabel();
+        CheckContainerCodigo = new javax.swing.JCheckBox();
+        CheckContainerLocalizacao = new javax.swing.JCheckBox();
+        CheckContainerTipo = new javax.swing.JCheckBox();
+        jLabel101 = new javax.swing.JLabel();
+        SPContainerCodigoMax = new javax.swing.JSpinner();
+        SPContainerCodigoMin = new javax.swing.JSpinner();
+        jLabel102 = new javax.swing.JLabel();
+        CBContainerLocalizacao = new javax.swing.JComboBox<>();
+        CBContainerTipo = new javax.swing.JComboBox<>();
+        BContainerFiltrar = new javax.swing.JButton();
+        JDFiltrarUsuario = new javax.swing.JDialog();
+        jLabel103 = new javax.swing.JLabel();
+        CheckUsuarioCodigo = new javax.swing.JCheckBox();
+        CheckUsuarioNome = new javax.swing.JCheckBox();
+        CheckUsuarioPermissao = new javax.swing.JCheckBox();
+        jLabel104 = new javax.swing.JLabel();
+        SPUsuarioCodigoMax = new javax.swing.JSpinner();
+        SPUsuarioCodigoMin = new javax.swing.JSpinner();
+        jLabel105 = new javax.swing.JLabel();
+        CBUsuarioNome = new javax.swing.JComboBox<>();
+        BContainerFiltrar1 = new javax.swing.JButton();
+        CheckUsuarioAdministrador = new javax.swing.JCheckBox();
         Principal = new javax.swing.JTabbedPane();
         Doacoes = new javax.swing.JTabbedPane();
         MenuDoacoes = new javax.swing.JPanel();
@@ -1856,6 +1927,7 @@ public class Principal extends javax.swing.JFrame {
         LImagemTotalPaginas = new javax.swing.JLabel();
         BImagemPaginaAnterior = new javax.swing.JButton();
         BImagemProxPagina = new javax.swing.JButton();
+        BFiltrarImagem = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
         SPContainer = new javax.swing.JScrollPane();
         TContainer = new javax.swing.JTable();
@@ -1870,6 +1942,7 @@ public class Principal extends javax.swing.JFrame {
         LContainerTotalPaginas = new javax.swing.JLabel();
         BContainerPaginaAnterior = new javax.swing.JButton();
         BContainerProxPagina = new javax.swing.JButton();
+        BFiltrarContainer = new javax.swing.JButton();
         Usuarios = new javax.swing.JTabbedPane();
         MenuUsuarios = new javax.swing.JPanel();
         LBemVindoDoacoes3 = new javax.swing.JLabel();
@@ -1906,6 +1979,7 @@ public class Principal extends javax.swing.JFrame {
         LUsuariosTotalPaginas = new javax.swing.JLabel();
         BUsuariosPaginaAnterior = new javax.swing.JButton();
         BUsuariosProxPagina = new javax.swing.JButton();
+        BFiltrarUsuario = new javax.swing.JButton();
         AbaDoUsuario = new javax.swing.JTabbedPane();
         MenuAbaUsuario = new javax.swing.JPanel();
         LBemVindoDoacoes4 = new javax.swing.JLabel();
@@ -4830,21 +4904,23 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(SPEstoqueDoacaoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel60))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckEstoqueRepasse)
+                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(SPEstoqueRepasseMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel67)
                         .addComponent(SPEstoqueRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel61)))
+                        .addComponent(jLabel61))
+                    .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CheckEstoqueRepasse)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckEstoqueSaldo)
+                .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(SPEstoqueSaldoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel68)
                         .addComponent(SPEstoqueSaldoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel62)))
+                        .addComponent(jLabel62))
+                    .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CheckEstoqueSaldo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BEstoqueFiltrar)
                 .addContainerGap())
@@ -5231,13 +5307,14 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(CheckItemRepasseTipo)
                     .addComponent(CBItemRepasseTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckItemRepasseQuantidade)
+                .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(SPItemRepasseQuantidadeMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel82)
                         .addComponent(SPItemRepasseQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel81)))
+                        .addComponent(jLabel81))
+                    .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CheckItemRepasseQuantidade)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(JDFiltrarItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JDFiltrarItemRepasseLayout.createSequentialGroup()
@@ -5369,6 +5446,10 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel87.setText("Max");
 
+        SPAcervoCodigoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        SPAcervoCodigoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         jLabel88.setText("Min");
 
         CBAcervoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -5391,17 +5472,29 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel91.setText("Min");
 
+        SPAcervoCapacidadeMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         jLabel92.setText("Max");
+
+        SPAcervoCapacidadeMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel93.setText("Min");
 
+        SPAcervoAnoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         jLabel94.setText("Max");
+
+        SPAcervoAnoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         CheckAcervoFunciona.setText("Funciona");
 
         jLabel95.setText("Min");
 
+        SPAcervoContainerMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         jLabel96.setText("Max");
+
+        SPAcervoContainerMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         BAcervoFiltrar.setText("Filtrar Acervo");
         BAcervoFiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -5589,6 +5682,286 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        JDFiltrarImagem.setTitle("Filtrar Imagem");
+
+        jLabel97.setText("Filtrar por:");
+
+        CheckImagemCodigo.setText("Código de Imagem");
+
+        CheckImagemMarca.setText("Marca");
+
+        CheckImagemModelo.setText("Modelo");
+
+        jLabel98.setText("Max");
+
+        SPImagemCodigoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        SPImagemCodigoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel99.setText("Min");
+
+        CBImagemMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBImagemModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        BImagemFiltrar.setText("Filtrar Imagem");
+        BImagemFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BImagemFiltrarActionPerformed(evt);
+            }
+        });
+
+        CheckImagemItem.setText("Código de Item-Acervo");
+
+        jLabel108.setText("Min");
+
+        SPImagemItemMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel109.setText("Max");
+
+        SPImagemItemMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        javax.swing.GroupLayout JDFiltrarImagemLayout = new javax.swing.GroupLayout(JDFiltrarImagem.getContentPane());
+        JDFiltrarImagem.getContentPane().setLayout(JDFiltrarImagemLayout);
+        JDFiltrarImagemLayout.setHorizontalGroup(
+            JDFiltrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarImagemLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BImagemFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarImagemLayout.createSequentialGroup()
+                        .addComponent(CheckImagemCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(jLabel99)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPImagemCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel98)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPImagemCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarImagemLayout.createSequentialGroup()
+                        .addComponent(CheckImagemItem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel108)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPImagemItemMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel109)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPImagemItemMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarImagemLayout.createSequentialGroup()
+                        .addComponent(CheckImagemMarca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBImagemMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarImagemLayout.createSequentialGroup()
+                        .addComponent(jLabel97)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(JDFiltrarImagemLayout.createSequentialGroup()
+                        .addComponent(CheckImagemModelo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBImagemModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        JDFiltrarImagemLayout.setVerticalGroup(
+            JDFiltrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarImagemLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel97)
+                .addGap(10, 10, 10)
+                .addGroup(JDFiltrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckImagemCodigo)
+                    .addComponent(jLabel98)
+                    .addComponent(SPImagemCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPImagemCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel99))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckImagemItem)
+                    .addComponent(jLabel109)
+                    .addComponent(SPImagemItemMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPImagemItemMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel108))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckImagemMarca)
+                    .addComponent(CBImagemMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckImagemModelo)
+                    .addComponent(CBImagemModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BImagemFiltrar)
+                .addContainerGap())
+        );
+
+        JDFiltrarContainer.setTitle("Filtrar Container");
+
+        jLabel100.setText("Filtrar por:");
+
+        CheckContainerCodigo.setText("Código de Container");
+
+        CheckContainerLocalizacao.setText("Localização do Container");
+
+        CheckContainerTipo.setText("Tipo do Container");
+
+        jLabel101.setText("Max");
+
+        SPContainerCodigoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        SPContainerCodigoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel102.setText("Min");
+
+        CBContainerLocalizacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBContainerTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        BContainerFiltrar.setText("Filtrar Container");
+        BContainerFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BContainerFiltrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JDFiltrarContainerLayout = new javax.swing.GroupLayout(JDFiltrarContainer.getContentPane());
+        JDFiltrarContainer.getContentPane().setLayout(JDFiltrarContainerLayout);
+        JDFiltrarContainerLayout.setHorizontalGroup(
+            JDFiltrarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BContainerFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarContainerLayout.createSequentialGroup()
+                        .addComponent(CheckContainerCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel102)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPContainerCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel101)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPContainerCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarContainerLayout.createSequentialGroup()
+                        .addComponent(CheckContainerLocalizacao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBContainerLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel100)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(JDFiltrarContainerLayout.createSequentialGroup()
+                        .addComponent(CheckContainerTipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBContainerTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        JDFiltrarContainerLayout.setVerticalGroup(
+            JDFiltrarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel100)
+                .addGap(10, 10, 10)
+                .addGroup(JDFiltrarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckContainerCodigo)
+                    .addComponent(jLabel101)
+                    .addComponent(SPContainerCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPContainerCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel102))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckContainerLocalizacao)
+                    .addComponent(CBContainerLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckContainerTipo)
+                    .addComponent(CBContainerTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BContainerFiltrar)
+                .addContainerGap())
+        );
+
+        JDFiltrarUsuario.setTitle("Filtrar Usuario");
+
+        jLabel103.setText("Filtrar por:");
+
+        CheckUsuarioCodigo.setText("Código de Usuário");
+
+        CheckUsuarioNome.setText("Nome do Usuário");
+
+        CheckUsuarioPermissao.setText("Permissão");
+
+        jLabel104.setText("Max");
+
+        SPUsuarioCodigoMax.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        SPUsuarioCodigoMin.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        jLabel105.setText("Min");
+
+        CBUsuarioNome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        BContainerFiltrar1.setText("Filtrar Usuário");
+        BContainerFiltrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BContainerFiltrar1ActionPerformed(evt);
+            }
+        });
+
+        CheckUsuarioAdministrador.setText("Administrador");
+
+        javax.swing.GroupLayout JDFiltrarUsuarioLayout = new javax.swing.GroupLayout(JDFiltrarUsuario.getContentPane());
+        JDFiltrarUsuario.getContentPane().setLayout(JDFiltrarUsuarioLayout);
+        JDFiltrarUsuarioLayout.setHorizontalGroup(
+            JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BContainerFiltrar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JDFiltrarUsuarioLayout.createSequentialGroup()
+                        .addComponent(CheckUsuarioCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(jLabel105)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPUsuarioCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel104)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPUsuarioCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDFiltrarUsuarioLayout.createSequentialGroup()
+                        .addGroup(JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckUsuarioNome)
+                            .addComponent(jLabel103)
+                            .addComponent(CheckUsuarioPermissao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CBUsuarioNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckUsuarioAdministrador, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
+        );
+        JDFiltrarUsuarioLayout.setVerticalGroup(
+            JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDFiltrarUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel103)
+                .addGap(10, 10, 10)
+                .addGroup(JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckUsuarioCodigo)
+                    .addComponent(jLabel104)
+                    .addComponent(SPUsuarioCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPUsuarioCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel105))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckUsuarioNome)
+                    .addComponent(CBUsuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckUsuarioPermissao)
+                    .addComponent(CheckUsuarioAdministrador))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(BContainerFiltrar1)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SGACERVO - Principal");
         setMinimumSize(new java.awt.Dimension(700, 400));
@@ -5667,7 +6040,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BAbrirEstoque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirDoacoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirCadastrarDoacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addContainerGap(764, Short.MAX_VALUE))
         );
         MenuDoacoesLayout.setVerticalGroup(
             MenuDoacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5707,6 +6080,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BNovoDoador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoDoador.setToolTipText("Cadastrar Novo Doador");
         BNovoDoador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoDoadorActionPerformed(evt);
@@ -5716,6 +6090,7 @@ public class Principal extends javax.swing.JFrame {
         CBEventoOrigem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         BNovoEventoOrigem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoEventoOrigem.setToolTipText("Cadastrar novo Evento de Origem");
         BNovoEventoOrigem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoEventoOrigemActionPerformed(evt);
@@ -5799,7 +6174,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BNovoEventoOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(BCadastrarDoacao))))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         CadastrarDoacaoLayout.setVerticalGroup(
             CadastrarDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5931,7 +6306,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LDoacaoTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                         .addComponent(BDoacaoPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BDoacaoProxPagina))
@@ -6074,7 +6449,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BItemDoacaoPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BItemDoacaoProxPagina))
-                    .addComponent(RelatorioItemDoacao, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
+                    .addComponent(RelatorioItemDoacao, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BRelatorioItemDoacao1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6198,7 +6573,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LEstoqueTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                         .addComponent(BEstoquePaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BEstoqueProxPagina))
@@ -6333,7 +6708,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LDoadorTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                         .addComponent(BDoadorPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BDoadorProxPagina))
@@ -6434,7 +6809,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BExibirColetores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirRepasses, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirCadastrarDoacao1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addContainerGap(764, Short.MAX_VALUE))
         );
         MenuRepasseLayout.setVerticalGroup(
             MenuRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6470,6 +6845,7 @@ public class Principal extends javax.swing.JFrame {
         CBColetor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         BNovoColetor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoColetor.setToolTipText("Cadastrar Novo Coletor");
         BNovoColetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoColetorActionPerformed(evt);
@@ -6479,6 +6855,7 @@ public class Principal extends javax.swing.JFrame {
         CBDestinacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         BNovoDestinacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoDestinacao.setToolTipText("Cadastrar Nova Destinação");
         BNovoDestinacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoDestinacaoActionPerformed(evt);
@@ -6564,7 +6941,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(CadastrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(BNovoColetor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BNovoDestinacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
         CadastrarRepasseLayout.setVerticalGroup(
             CadastrarRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6614,6 +6991,7 @@ public class Principal extends javax.swing.JFrame {
         }
 
         BEditarRepasse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/edit.png"))); // NOI18N
+        BEditarRepasse.setToolTipText("Editar Repasse");
         BEditarRepasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BEditarRepasseActionPerformed(evt);
@@ -6621,6 +6999,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BExcluirRepasse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/delete16.png"))); // NOI18N
+        BExcluirRepasse.setToolTipText("Excluir Repasse");
         BExcluirRepasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BExcluirRepasseActionPerformed(evt);
@@ -6628,6 +7007,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BRelatorioRepasse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/relatorio.png"))); // NOI18N
+        BRelatorioRepasse.setToolTipText("Gerar Relatório de Repasse");
         BRelatorioRepasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BRelatorioRepasseActionPerformed(evt);
@@ -6670,6 +7050,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BFiltrarRepasse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BFiltrarRepasse.setToolTipText("Filtrar Resultados");
         BFiltrarRepasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BFiltrarRepasseActionPerformed(evt);
@@ -6701,7 +7082,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BRepassePaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRepasseProxPagina))
-                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
+                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6759,6 +7140,7 @@ public class Principal extends javax.swing.JFrame {
         }
 
         BEditarItemRepasse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/edit.png"))); // NOI18N
+        BEditarItemRepasse.setToolTipText("Editar Item de Repasse");
         BEditarItemRepasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BEditarItemRepasseActionPerformed(evt);
@@ -6766,6 +7148,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BExcluirItemRepasse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/delete16.png"))); // NOI18N
+        BExcluirItemRepasse.setToolTipText("Excluir Item Repasse");
         BExcluirItemRepasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BExcluirItemRepasseActionPerformed(evt);
@@ -6773,6 +7156,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BRelatorioItemRepasse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/relatorio.png"))); // NOI18N
+        BRelatorioItemRepasse.setToolTipText("Gerar Relatório de Item Repasse");
         BRelatorioItemRepasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BRelatorioItemRepasseActionPerformed(evt);
@@ -6815,6 +7199,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BFiltrarItemRepasse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BFiltrarItemRepasse.setToolTipText("Filtrar Resultados");
         BFiltrarItemRepasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BFiltrarItemRepasseActionPerformed(evt);
@@ -6842,7 +7227,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LItemRepasseTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                         .addComponent(BItemRepassePaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BItemRepasseProxPagina))
@@ -6899,6 +7284,7 @@ public class Principal extends javax.swing.JFrame {
         }
 
         BEditarColetor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/edit.png"))); // NOI18N
+        BEditarColetor.setToolTipText("Editar Coletor");
         BEditarColetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BEditarColetorActionPerformed(evt);
@@ -6906,6 +7292,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BExcluirColetor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/delete16.png"))); // NOI18N
+        BExcluirColetor.setToolTipText("Excluir Coletor");
         BExcluirColetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BExcluirColetorActionPerformed(evt);
@@ -6913,6 +7300,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BRelatorioColetor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/relatorio.png"))); // NOI18N
+        BRelatorioColetor.setToolTipText("Gerar Relatório de Coletores");
         BRelatorioColetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BRelatorioColetorActionPerformed(evt);
@@ -6955,6 +7343,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BFiltrarColetor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BFiltrarColetor.setToolTipText("Filtrar Resultados");
         BFiltrarColetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BFiltrarColetorActionPerformed(evt);
@@ -6982,7 +7371,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel34)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LColetorTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                         .addComponent(BColetorPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BColetorProxPagina))
@@ -7091,7 +7480,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BExibirAcervo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BMenuCadastrarImagem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BMenuCadastrarItemAcervo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addContainerGap(764, Short.MAX_VALUE))
         );
         MenuAcervoLayout.setVerticalGroup(
             MenuAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7142,6 +7531,8 @@ public class Principal extends javax.swing.JFrame {
 
         LPO.setText("* Campos de preenchimento obrigatório.");
 
+        campoAnoItemAcervo.setToolTipText("Ano de lançamento do item");
+
         SPDescricaoItemAcervo.setViewportView(campoDescricaoItemAcervo);
 
         CBFunciona.setText("Funciona");
@@ -7155,6 +7546,7 @@ public class Principal extends javax.swing.JFrame {
         CBTecnologia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         BNovoTipoItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoTipoItem.setToolTipText("Cadastrar Novo Tipo de Item");
         BNovoTipoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoTipoItemActionPerformed(evt);
@@ -7162,6 +7554,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BNovoMarca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoMarca.setToolTipText("Cadastrar Nova Marca");
         BNovoMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoMarcaActionPerformed(evt);
@@ -7169,6 +7562,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BNovoModelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoModelo.setToolTipText("Cadastrar Novo Modelo");
         BNovoModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoModeloActionPerformed(evt);
@@ -7176,6 +7570,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BNovoInterface.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoInterface.setToolTipText("Cadastrar Nova Interface");
         BNovoInterface.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoInterfaceActionPerformed(evt);
@@ -7183,6 +7578,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BNovoTecnologia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoTecnologia.setToolTipText("Cadastrar Nova Tecnologia");
         BNovoTecnologia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoTecnologiaActionPerformed(evt);
@@ -7199,6 +7595,7 @@ public class Principal extends javax.swing.JFrame {
         CBDoadorItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         BNovoDoadorAcervo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoDoadorAcervo.setToolTipText("Cadastrar Novo Doador");
         BNovoDoadorAcervo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoDoadorAcervoActionPerformed(evt);
@@ -7270,7 +7667,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BNovoInterface, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(LCamposComplementares))))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         CadastrarItemAcervoLayout.setVerticalGroup(
             CadastrarItemAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7365,6 +7762,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BCheckLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/check16.png"))); // NOI18N
+        BCheckLink.setToolTipText("Verificar consistência do Link");
         BCheckLink.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BCheckLinkActionPerformed(evt);
@@ -7401,7 +7799,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(BCheckLink))))
                     .addComponent(LCamposCadastrarImagem)
                     .addComponent(LInfoDoacao3))
-                .addContainerGap(508, Short.MAX_VALUE))
+                .addContainerGap(548, Short.MAX_VALUE))
         );
         CadastrarImagemLayout.setVerticalGroup(
             CadastrarImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7445,6 +7843,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BNovoTipoContainer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png"))); // NOI18N
+        BNovoTipoContainer.setToolTipText("Cadastrar Novo Tipo de Container");
         BNovoTipoContainer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNovoTipoContainerActionPerformed(evt);
@@ -7474,7 +7873,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BNovoTipoContainer))
                     .addComponent(LCamposCadastrarContainer)
                     .addComponent(LInfoDoacao4))
-                .addContainerGap(519, Short.MAX_VALUE))
+                .addContainerGap(559, Short.MAX_VALUE))
         );
         CadastrarContainerLayout.setVerticalGroup(
             CadastrarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7519,6 +7918,7 @@ public class Principal extends javax.swing.JFrame {
         }
 
         BEditarItemAcervo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/edit.png"))); // NOI18N
+        BEditarItemAcervo.setToolTipText("Editar Item de Acervo");
         BEditarItemAcervo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BEditarItemAcervoActionPerformed(evt);
@@ -7526,6 +7926,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BExcluirItemAcervo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/delete16.png"))); // NOI18N
+        BExcluirItemAcervo.setToolTipText("Excluir  Item de Acervo");
         BExcluirItemAcervo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BExcluirItemAcervoActionPerformed(evt);
@@ -7533,6 +7934,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BRelatorioAcervo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/relatorio.png"))); // NOI18N
+        BRelatorioAcervo.setToolTipText("Gerar Relatório de  Item de Acervo");
         BRelatorioAcervo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BRelatorioAcervoActionPerformed(evt);
@@ -7575,6 +7977,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BFiltrarAcervo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BFiltrarAcervo.setToolTipText("Filtrar Resultados");
         BFiltrarAcervo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BFiltrarAcervoActionPerformed(evt);
@@ -7602,7 +8005,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel38)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LAcervoTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                         .addComponent(BAcervoPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BAcervoProxPagina))
@@ -7662,6 +8065,7 @@ public class Principal extends javax.swing.JFrame {
         SPImagem.setViewportView(TImagem);
 
         BEditarImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/edit.png"))); // NOI18N
+        BEditarImagem.setToolTipText("Editar Imagem");
         BEditarImagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BEditarImagemActionPerformed(evt);
@@ -7669,6 +8073,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BExcluirImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/delete16.png"))); // NOI18N
+        BExcluirImagem.setToolTipText("Excluir Imagens");
         BExcluirImagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BExcluirImagemActionPerformed(evt);
@@ -7710,6 +8115,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        BFiltrarImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BFiltrarImagem.setToolTipText("Filtrar Resultados");
+        BFiltrarImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BFiltrarImagemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ImagensLayout = new javax.swing.GroupLayout(Imagens);
         Imagens.setLayout(ImagensLayout);
         ImagensLayout.setHorizontalGroup(
@@ -7735,11 +8148,13 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BImagemPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BImagemProxPagina))
-                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
+                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BExcluirImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BEditarImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(BExcluirImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BEditarImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BFiltrarImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         ImagensLayout.setVerticalGroup(
@@ -7749,6 +8164,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ImagensLayout.createSequentialGroup()
                         .addComponent(BEditarImagem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BFiltrarImagem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirImagem)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -7787,6 +8204,7 @@ public class Principal extends javax.swing.JFrame {
         SPContainer.setViewportView(TContainer);
 
         BEditarContainer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/edit.png"))); // NOI18N
+        BEditarContainer.setToolTipText("Editar Container");
         BEditarContainer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BEditarContainerActionPerformed(evt);
@@ -7794,6 +8212,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         BExcluirContainer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/delete16.png"))); // NOI18N
+        BExcluirContainer.setToolTipText("Excluir Containers");
         BExcluirContainer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BExcluirContainerActionPerformed(evt);
@@ -7835,6 +8254,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        BFiltrarContainer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BFiltrarContainer.setToolTipText("Filtrar Resultados");
+        BFiltrarContainer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BFiltrarContainerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ContainerLayout = new javax.swing.GroupLayout(Container);
         Container.setLayout(ContainerLayout);
         ContainerLayout.setHorizontalGroup(
@@ -7860,11 +8287,13 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BContainerPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BContainerProxPagina))
-                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
+                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BExcluirContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BEditarContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(BExcluirContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BEditarContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BFiltrarContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         ContainerLayout.setVerticalGroup(
@@ -7874,6 +8303,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContainerLayout.createSequentialGroup()
                         .addComponent(BEditarContainer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BFiltrarContainer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirContainer)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -7927,7 +8358,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(MenuUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(BExibirUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirCadastrarUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)))
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addContainerGap(764, Short.MAX_VALUE))
         );
         MenuUsuariosLayout.setVerticalGroup(
             MenuUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -8000,7 +8431,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(CadastrarUsuarioLayout.createSequentialGroup()
                         .addComponent(LCamposCadastrarUsuario)
                         .addGap(109, 109, 109)))
-                .addContainerGap(545, Short.MAX_VALUE))
+                .addContainerGap(585, Short.MAX_VALUE))
         );
         CadastrarUsuarioLayout.setVerticalGroup(
             CadastrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -8098,6 +8529,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        BFiltrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/filtrar16.png"))); // NOI18N
+        BFiltrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BFiltrarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelUsuarioLayout = new javax.swing.GroupLayout(PainelUsuario);
         PainelUsuario.setLayout(PainelUsuarioLayout);
         PainelUsuarioLayout.setHorizontalGroup(
@@ -8123,11 +8561,13 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BUsuariosPaginaAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BUsuariosProxPagina))
-                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
+                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BExcluirUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BEditarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(BExcluirUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BEditarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BFiltrarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         PainelUsuarioLayout.setVerticalGroup(
@@ -8137,6 +8577,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelUsuarioLayout.createSequentialGroup()
                         .addComponent(BEditarUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BFiltrarUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirUsuario)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -8188,7 +8630,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(MenuAbaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(BAbrirDeslogar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAbrirEditarInformacoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addContainerGap(764, Short.MAX_VALUE))
         );
         MenuAbaUsuarioLayout.setVerticalGroup(
             MenuAbaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -8273,7 +8715,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(campoEmailAlterarUsuario)
                             .addComponent(campoRepetirSenhaAlterarUsuario)
                             .addComponent(campoSenhaAtualAlterarUsuario))))
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(481, Short.MAX_VALUE))
         );
         SuasInformacoesLayout.setVerticalGroup(
             SuasInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -8339,7 +8781,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(DeslogarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LCertezaDeslogar)
                     .addComponent(BDeslogar))
-                .addContainerGap(701, Short.MAX_VALUE))
+                .addContainerGap(741, Short.MAX_VALUE))
         );
         DeslogarLayout.setVerticalGroup(
             DeslogarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -8359,7 +8801,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 1108, Short.MAX_VALUE)
+            .addComponent(Principal)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -9319,6 +9761,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BEditarItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarItemDoacaoActionPerformed
         // TODO add your handling code here:
+        if(!TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(),2).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelItemDoacao, "Você nao possui permissão para editar esse item.","Erro",0);
+            return;
+        }
         int cod_alteraritemdoacao=Integer.parseInt(TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(), 0).toString());
         Item_doacao item;
         Doacao d;
@@ -9451,6 +9897,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BEditarRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarRepasseActionPerformed
         // TODO add your handling code here:
+        if(!TRepasse.getValueAt(TRepasse.getSelectedRow(),1).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelRepasse, "Você nao possui permissão para editar esse item.","Erro",0);
+            return;
+        }
         int cod_alterarrepasse=Integer.parseInt(TRepasse.getValueAt(TRepasse.getSelectedRow(), 0).toString());
         Repasse r;
         Usuario u;
@@ -9562,7 +10012,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BEditarItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarItemRepasseActionPerformed
         // TODO add your handling code here:
-        
+        if(!TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(),2).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelItemRepasse, "Você nao possui permissão para editar esse item.","Erro",0);
+            return;
+        }
         int cod_alteraritemrepasse=Integer.parseInt(TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(), 0).toString());
         Repasse r;
         Item_repasse item;
@@ -9665,6 +10118,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BEditarItemAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarItemAcervoActionPerformed
         // TODO add your handling code here:
+        if(!TAcervo.getValueAt(TAcervo.getSelectedRow(),1).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelAcervo, "Você nao possui permissão para editar esse item.","Erro",0);
+            return;
+        }
         Item_acervoDAO daoitem=new Item_acervoDAO();
         int coditem=Integer.parseInt(TAcervo.getValueAt(TAcervo.getSelectedRow(), 0).toString());
         Item_acervo item=daoitem.getByCod(coditem);
@@ -10027,6 +10484,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BExcluirItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirItemDoacaoActionPerformed
         // TODO add your handling code here:
+        if(!TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(),2).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelItemDoacao, "Você nao possui permissão para excluir esse item.","Erro",0);
+            return;
+        }
         Item_doacao item;
         Item_doacaoDAO itemdao=new Item_doacaoDAO();
         item=itemdao.getByCod(Integer.parseInt(TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(), 0).toString()));
@@ -10113,6 +10574,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BExcluirRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirRepasseActionPerformed
         // TODO add your handling code here:
+        if(!TRepasse.getValueAt(TRepasse.getSelectedRow(),1).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelRepasse, "Você nao possui permissão para excluir esse item.","Erro",0);
+            return;
+        }
         int cod_excluirrepasse=Integer.parseInt(TRepasse.getValueAt(TRepasse.getSelectedRow(), 0).toString());
         Repasse r;
         
@@ -10157,6 +10622,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BExcluirItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirItemRepasseActionPerformed
         // TODO add your handling code here:
+        if(!TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(),2).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelItemRepasse, "Você nao possui permissão para excluir esse item.","Erro",0);
+            return;
+        }
         int cod_item=Integer.parseInt(TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(), 0).toString());
         Item_repasse r;
         
@@ -10216,6 +10685,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BExcluirItemAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirItemAcervoActionPerformed
         // TODO add your handling code here:
+        if(!TAcervo.getValueAt(TAcervo.getSelectedRow(),1).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelAcervo, "Você nao possui permissão para excluir esse item.","Erro",0);
+            return;
+        }
         Item_acervo item_acervo;
         Item_acervoDAO item_acervodao=new Item_acervoDAO();
         item_acervo=item_acervodao.getByCod(Integer.parseInt(TAcervo.getValueAt(TAcervo.getSelectedRow(), 0).toString()));
@@ -10842,6 +11315,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void BEditarDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarDoacaoActionPerformed
 
+        if(!TDoacao.getValueAt(TDoacao.getSelectedRow(),1).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelDoacoes, "Você nao possui permissão para editar esse item.","Erro",0);
+            return;
+        }
         int cod_alterardoacao=Integer.parseInt(TDoacao.getValueAt(TDoacao.getSelectedRow(), 0).toString());
         Doacao d;
         Usuario u;
@@ -10878,6 +11355,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BEditarDoacaoActionPerformed
 
     private void BExcluirDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirDoacaoActionPerformed
+        if(!TDoacao.getValueAt(TDoacao.getSelectedRow(),1).toString().equals(nomeUsuario)){
+            JOptionPane.showMessageDialog(PainelDoacoes, "Você nao possui permissão para excluir esse item.","Erro",0);
+            return;
+        }
         int cod_alterardoacao=Integer.parseInt(TDoacao.getValueAt(TDoacao.getSelectedRow(), 0).toString());
         Doacao d;
 
@@ -11520,6 +12001,159 @@ public class Principal extends javax.swing.JFrame {
         achandoMax=false;
         atualizarTBAcervo();
     }//GEN-LAST:event_BAcervoFiltrarActionPerformed
+
+    private void BImagemFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BImagemFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroImagem=" ";
+        int checkedfilters=0;
+        if(CheckImagemCodigo.isSelected()) checkedfilters++;
+        if(CheckImagemItem.isSelected()) checkedfilters++;
+        if(CheckImagemMarca.isSelected()) checkedfilters++;
+        if(CheckImagemModelo.isSelected()) checkedfilters++;
+        
+        if(checkedfilters>0){
+            FiltroImagem+=" WHERE ";
+            if(CheckImagemCodigo.isSelected()){
+                int min=Integer.parseInt(SPImagemCodigoMin.getValue().toString());
+                int max=Integer.parseInt(SPImagemCodigoMax.getValue().toString());
+                FiltroImagem+="\"Código de Imagem\">="+min+" AND \"Código de Imagem\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroImagem+=" AND ";
+            }
+            if(CheckImagemItem.isSelected()){
+                int min=Integer.parseInt(SPImagemItemMin.getValue().toString());
+                int max=Integer.parseInt(SPImagemItemMax.getValue().toString());
+                FiltroImagem+="\"Código de Item Acervo\">="+min+" AND \"Código de Item Acervo\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroImagem+=" AND ";
+            }
+            
+            if(CheckImagemMarca.isSelected()){
+                FiltroImagem+="\"Marca\"=\'"+CBImagemMarca.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroImagem+=" AND ";
+            }
+            if(CheckImagemModelo.isSelected()){
+                FiltroImagem+="\"Modelo\"=\'"+CBImagemModelo.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroImagem+=" AND ";
+            }
+            
+            
+        }
+        else FiltroImagem="";
+        System.out.println(FiltroImagem);
+        achandoMax=true;
+        atualizarTBImagem();
+        achandoMax=false;
+        atualizarTBImagem();
+    }//GEN-LAST:event_BImagemFiltrarActionPerformed
+
+    private void BFiltrarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFiltrarImagemActionPerformed
+        // TODO add your handling code here:
+        JDFiltrarImagem.setIconImage(icone);
+        JDFiltrarImagem.setModal(true);
+        JDFiltrarImagem.setLocationRelativeTo(null);
+        JDFiltrarImagem.pack();
+        JDFiltrarImagem.setVisible(true);
+    }//GEN-LAST:event_BFiltrarImagemActionPerformed
+
+    private void BFiltrarContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFiltrarContainerActionPerformed
+        // TODO add your handling code here:
+        JDFiltrarContainer.setIconImage(icone);
+        JDFiltrarContainer.setModal(true);
+        JDFiltrarContainer.setLocationRelativeTo(null);
+        JDFiltrarContainer.pack();
+        JDFiltrarContainer.setVisible(true);
+    }//GEN-LAST:event_BFiltrarContainerActionPerformed
+
+    private void BContainerFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerFiltrarActionPerformed
+        // TODO add your handling code here:
+        FiltroContainer=" ";
+        int checkedfilters=0;
+        if(CheckContainerCodigo.isSelected()) checkedfilters++;
+        if(CheckContainerLocalizacao.isSelected()) checkedfilters++;
+        if(CheckContainerTipo.isSelected()) checkedfilters++;
+        
+        if(checkedfilters>0){
+            FiltroContainer+=" WHERE ";
+            if(CheckContainerCodigo.isSelected()){
+                int min=Integer.parseInt(SPContainerCodigoMin.getValue().toString());
+                int max=Integer.parseInt(SPContainerCodigoMax.getValue().toString());
+                FiltroContainer+="\"Código do Container\">="+min+" AND \"Código do Container\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroContainer+=" AND ";
+            }
+            
+            if(CheckContainerLocalizacao.isSelected()){
+                FiltroContainer+="\"Localização do Container\"=\'"+CBContainerLocalizacao.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroContainer+=" AND ";
+            }
+            if(CheckContainerTipo.isSelected()){
+                FiltroContainer+="\"Tipo do Container\"=\'"+CBContainerTipo.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroContainer+=" AND ";
+            }
+            
+            
+        }
+        else FiltroContainer="";
+        System.out.println(FiltroContainer);
+        achandoMax=true;
+        atualizarTBContainer();
+        achandoMax=false;
+        atualizarTBContainer();
+    }//GEN-LAST:event_BContainerFiltrarActionPerformed
+
+    private void BFiltrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFiltrarUsuarioActionPerformed
+        // TODO add your handling code here:
+        JDFiltrarUsuario.setIconImage(icone);
+        JDFiltrarUsuario.setModal(true);
+        JDFiltrarUsuario.setLocationRelativeTo(null);
+        JDFiltrarUsuario.pack();
+        JDFiltrarUsuario.setVisible(true);
+    }//GEN-LAST:event_BFiltrarUsuarioActionPerformed
+
+    private void BContainerFiltrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerFiltrar1ActionPerformed
+        // TODO add your handling code here:
+        FiltroUsuarios=" ";
+        int checkedfilters=0;
+        if(CheckUsuarioCodigo.isSelected()) checkedfilters++;
+        if(CheckUsuarioNome.isSelected()) checkedfilters++;
+        if(CheckUsuarioPermissao.isSelected()) checkedfilters++;
+        
+        if(checkedfilters>0){
+            FiltroUsuarios+=" WHERE ";
+            if(CheckUsuarioCodigo.isSelected()){
+                int min=Integer.parseInt(SPUsuarioCodigoMin.getValue().toString());
+                int max=Integer.parseInt(SPUsuarioCodigoMax.getValue().toString());
+                FiltroUsuarios+="\"Código de Usuário\">="+min+" AND \"Código de Usuário\"<="+max+" ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroUsuarios+=" AND ";
+            }
+            
+            if(CheckUsuarioNome.isSelected()){
+                FiltroUsuarios+="\"Nome do Usuário\"=\'"+CBUsuarioNome.getSelectedItem().toString()+"\' ";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroUsuarios+=" AND ";
+            }
+            if(CheckUsuarioPermissao.isSelected()){
+                if (CheckUsuarioAdministrador.isSelected()) FiltroUsuarios+="\"Administrador\"=\'t\'";
+                else FiltroUsuarios+="\"Administrador\"=\'f\'";
+                checkedfilters--;
+                if(checkedfilters>0) FiltroUsuarios+=" AND ";
+            }
+            
+            
+        }
+        else FiltroUsuarios="";
+        System.out.println(FiltroUsuarios);
+        achandoMax=true;
+        atualizarTBUsuario();
+        achandoMax=false;
+        atualizarTBUsuario();
+    }//GEN-LAST:event_BContainerFiltrar1ActionPerformed
     private void excluirLinhasTabela(JTable tabela){
         while(tabela.getSelectedRowCount()>0) ((DefaultTableModel)tabela.getModel()).removeRow(tabela.getSelectedRow());
     }
@@ -11658,6 +12292,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BConfirmarExcluirItemRepasse;
     private javax.swing.JButton BConfirmarExcluirRepasse;
     private javax.swing.JButton BConfirmarExcluirUsuario;
+    private javax.swing.JButton BContainerFiltrar;
+    private javax.swing.JButton BContainerFiltrar1;
     private javax.swing.JButton BContainerPaginaAnterior;
     private javax.swing.JButton BContainerProxPagina;
     private javax.swing.JToggleButton BDeslogar;
@@ -11698,10 +12334,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BExibirUsuarios;
     private javax.swing.JButton BFiltrarAcervo;
     private javax.swing.JButton BFiltrarColetor;
+    private javax.swing.JButton BFiltrarContainer;
     private javax.swing.JButton BFiltrarDoacao;
     private javax.swing.JButton BFiltrarEstoque;
+    private javax.swing.JButton BFiltrarImagem;
     private javax.swing.JButton BFiltrarItemRepasse;
     private javax.swing.JButton BFiltrarRepasse;
+    private javax.swing.JButton BFiltrarUsuario;
+    private javax.swing.JButton BImagemFiltrar;
     private javax.swing.JButton BImagemPaginaAnterior;
     private javax.swing.JButton BImagemProxPagina;
     private javax.swing.JButton BItemDoacaoFiltrar;
@@ -11757,6 +12397,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox CBColetor;
     private javax.swing.JComboBox<String> CBColetorColetor;
     private javax.swing.JComboBox<String> CBColetorTipo;
+    private javax.swing.JComboBox<String> CBContainerLocalizacao;
+    private javax.swing.JComboBox<String> CBContainerTipo;
     private javax.swing.JComboBox CBDestinacao;
     private javax.swing.JComboBox CBDestinacaoAlterarRepasse;
     private javax.swing.JComboBox<String> CBDoacaoDoador;
@@ -11769,6 +12411,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox CBEventoOrigem;
     private javax.swing.JComboBox CBEventoOrigemAlterarDoacao;
     private javax.swing.JCheckBox CBFunciona;
+    private javax.swing.JComboBox<String> CBImagemMarca;
+    private javax.swing.JComboBox<String> CBImagemModelo;
     private javax.swing.JComboBox CBInterface;
     private javax.swing.JComboBox CBInterfaceAlterarItemAcervo;
     private javax.swing.JComboBox<String> CBItemDoacaoDoador;
@@ -11798,6 +12442,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox CBTipoContainerCadastrarContainer;
     private javax.swing.JComboBox CBTipoItemAcervo;
     private javax.swing.JComboBox CBUsuarioLogin;
+    private javax.swing.JComboBox<String> CBUsuarioNome;
     private javax.swing.JPanel CadastrarContainer;
     private javax.swing.JPanel CadastrarDoacao;
     private javax.swing.JPanel CadastrarImagem;
@@ -11822,6 +12467,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JCheckBox CheckColetorCodigo;
     private javax.swing.JCheckBox CheckColetorColetor;
     private javax.swing.JCheckBox CheckColetorTipo;
+    private javax.swing.JCheckBox CheckContainerCodigo;
+    private javax.swing.JCheckBox CheckContainerLocalizacao;
+    private javax.swing.JCheckBox CheckContainerTipo;
     private javax.swing.JCheckBox CheckDoacaoCodigo;
     private javax.swing.JCheckBox CheckDoacaoData;
     private javax.swing.JCheckBox CheckDoacaoDoador;
@@ -11835,6 +12483,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JCheckBox CheckEstoqueTipo;
     private javax.swing.JCheckBox CheckFuncionaAlterarItemAcervo;
     private javax.swing.JButton CheckImagemAlterarImagem;
+    private javax.swing.JCheckBox CheckImagemCodigo;
+    private javax.swing.JCheckBox CheckImagemItem;
+    private javax.swing.JCheckBox CheckImagemMarca;
+    private javax.swing.JCheckBox CheckImagemModelo;
     private javax.swing.JCheckBox CheckItemDoacaoCodigo;
     private javax.swing.JCheckBox CheckItemDoacaoData;
     private javax.swing.JCheckBox CheckItemDoacaoDoacaoCodigo;
@@ -11855,6 +12507,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JCheckBox CheckRepasseDestinacao;
     private javax.swing.JCheckBox CheckRepasseTipoColetor;
     private javax.swing.JCheckBox CheckRepasseUsuario;
+    private javax.swing.JCheckBox CheckUsuarioAdministrador;
+    private javax.swing.JCheckBox CheckUsuarioCodigo;
+    private javax.swing.JCheckBox CheckUsuarioNome;
+    private javax.swing.JCheckBox CheckUsuarioPermissao;
     private javax.swing.JPanel Container;
     private javax.swing.JPanel Deslogar;
     private javax.swing.JTabbedPane Doacoes;
@@ -11908,12 +12564,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog JDExcluirUsuario;
     private javax.swing.JDialog JDFiltrarAcervo;
     private javax.swing.JDialog JDFiltrarColetor;
+    private javax.swing.JDialog JDFiltrarContainer;
     private javax.swing.JDialog JDFiltrarDoacao;
     private javax.swing.JDialog JDFiltrarDoador;
     private javax.swing.JDialog JDFiltrarEstoque;
+    private javax.swing.JDialog JDFiltrarImagem;
     private javax.swing.JDialog JDFiltrarItemDoacao;
     private javax.swing.JDialog JDFiltrarItemRepasse;
     private javax.swing.JDialog JDFiltrarRepasse;
+    private javax.swing.JDialog JDFiltrarUsuario;
     private javax.swing.JDialog JDLogin;
     private javax.swing.JFrame JFCarregandoDados;
     private javax.swing.JProgressBar JPBCarregando;
@@ -12162,6 +12821,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner SPColetorCodigoMin;
     private javax.swing.JSpinner SPColetorItensPagina;
     private javax.swing.JScrollPane SPContainer;
+    private javax.swing.JSpinner SPContainerCodigoMax;
+    private javax.swing.JSpinner SPContainerCodigoMin;
     private javax.swing.JSpinner SPContainerItensPagina;
     private javax.swing.JScrollPane SPDescricaoAlterarItemAcervo;
     private javax.swing.JScrollPane SPDescricaoItemAcervo;
@@ -12179,6 +12840,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner SPEstoqueSaldoMax;
     private javax.swing.JSpinner SPEstoqueSaldoMin;
     private javax.swing.JScrollPane SPImagem;
+    private javax.swing.JSpinner SPImagemCodigoMax;
+    private javax.swing.JSpinner SPImagemCodigoMin;
+    private javax.swing.JSpinner SPImagemItemMax;
+    private javax.swing.JSpinner SPImagemItemMin;
     private javax.swing.JSpinner SPImagemItensPagina;
     private javax.swing.JSpinner SPItemDoacaoDoacaoMax;
     private javax.swing.JSpinner SPItemDoacaoDoacaoMin;
@@ -12196,6 +12861,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner SPRepasseItensPagina;
     private javax.swing.JSpinner SPRepasseMax;
     private javax.swing.JSpinner SPRepasseMin;
+    private javax.swing.JSpinner SPUsuarioCodigoMax;
+    private javax.swing.JSpinner SPUsuarioCodigoMin;
     private javax.swing.JSpinner SPUsuariosItensPagina;
     private javax.swing.JPanel SuasInformacoes;
     private javax.swing.JTextArea TADescricaoAlterarItemAcervo;
@@ -12307,6 +12974,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField campoUsuarioExcluirUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -12401,6 +13076,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

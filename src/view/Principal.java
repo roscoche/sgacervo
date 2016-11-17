@@ -12459,13 +12459,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void abrirManual(String secao) {
         try {
-            File manual;
             String currentPath = Principal.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
             currentPath = currentPath.replace("SGACERVO.jar", "");
-            currentPath += "Manual.html";
-            manual = new File(currentPath + secao);
+            currentPath += secao;
             URI uri;
-            uri = new URI("file://"+currentPath+secao);
+            uri = new URI("file://"+currentPath);
             Desktop.getDesktop().browse(uri);
         } catch (URISyntaxException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -12488,27 +12486,27 @@ public class Principal extends javax.swing.JFrame {
                 case 0:
                     switch (Doacoes.getSelectedIndex()) {
                         case 0:
-                            secao = "#doacoes_menu";
+                            secao = "Manual.html#doacoes_menu";
                             abrirManual(secao);
                             break;
                         case 1:
-                            secao = "#doacoes_cadastrar_doacao";
+                            secao = "Manual.html#doacoes_cadastrar_doacao";
                             abrirManual(secao);
                             break;
                         case 2:
-                            secao = "#doacoes_doacoes";
+                            secao = "Manual.html#doacoes_doacoes";
                             abrirManual(secao);
                             break;
                         case 3:
-                            secao = "#doacoes_item_doacoes";
+                            secao = "Manual.html#doacoes_item_doacoes";
                             abrirManual(secao);
                             break;
                         case 4:
-                            secao = "#doacoes_estoque";
+                            secao = "Manual.html#doacoes_estoque";
                             abrirManual(secao);
                             break;
                         case 5:
-                            secao = "#doacoes_doadores";
+                            secao = "Manual.html#doacoes_doadores";
                             abrirManual(secao);
                             break;
                         default:
@@ -12518,23 +12516,23 @@ public class Principal extends javax.swing.JFrame {
                 case 1:
                     switch (Repasses.getSelectedIndex()) {
                         case 0:
-                            secao = "#repasses_menu";
+                            secao = "Manual.html#repasses_menu";
                             abrirManual(secao);
                             break;
                         case 1:
-                            secao = "#repasses_cadastrar_repasse";
+                            secao = "Manual.html#repasses_cadastrar_repasse";
                             abrirManual(secao);
                             break;
                         case 2:
-                            secao = "#repasses_repasses";
+                            secao = "Manual.html#repasses_repasses";
                             abrirManual(secao);
                             break;
                         case 3:
-                            secao = "#repasses_item_repasses";
+                            secao = "Manual.html#repasses_item_repasses";
                             abrirManual(secao);
                             break;
                         case 4:
-                            secao = "#repasses_coletores";
+                            secao = "Manual.html#repasses_coletores";
                             abrirManual(secao);
                             break;
                         default:
@@ -12544,31 +12542,31 @@ public class Principal extends javax.swing.JFrame {
                 case 2:
                     switch (Acervo.getSelectedIndex()) {
                         case 0:
-                            secao = "#acervo_menu";
+                            secao = "Manual.html#acervo_menu";
                             abrirManual(secao);
                             break;
                         case 1:
-                            secao = "#acervo_cadastrar_item_acervo";
+                            secao = "Manual.html#acervo_cadastrar_item_acervo";
                             abrirManual(secao);
                             break;
                         case 2:
-                            secao = "#acervo_cadastrar_imagem";
+                            secao = "Manual.html#acervo_cadastrar_imagem";
                             abrirManual(secao);
                             break;
                         case 3:
-                            secao = "#acervo_cadastrar_container";
+                            secao = "Manual.html#acervo_cadastrar_container";
                             abrirManual(secao);
                             break;
                         case 4:
-                            secao = "#acervo_acervo";
+                            secao = "Manual.html#acervo_acervo";
                             abrirManual(secao);
                             break;
                         case 5:
-                            secao = "#acervo_imagens";
+                            secao = "Manual.html#acervo_imagens";
                             abrirManual(secao);
                             break;
                         case 6:
-                            secao = "#acervo_containers";
+                            secao = "Manual.html#acervo_containers";
                             abrirManual(secao);
                             break;
                         default:
@@ -12578,15 +12576,15 @@ public class Principal extends javax.swing.JFrame {
                 case 3:
                     switch (AbaDoUsuario.getSelectedIndex()) {
                         case 0:
-                            secao = "#abadousuario_menu";
+                            secao = "Manual.html#abadousuario_menu";
                             abrirManual(secao);
                             break;
                         case 1:
-                            secao = "#abadousuario_editar_info";
+                            secao = "Manual.html#abadousuario_editar_info";
                             abrirManual(secao);
                             break;
                         case 2:
-                            secao = "#abadousuario_deslogar";
+                            secao = "Manual.html#abadousuario_deslogar";
                             abrirManual(secao);
                             break;
                         default:
@@ -12596,15 +12594,15 @@ public class Principal extends javax.swing.JFrame {
                 case 4:
                     switch (Usuarios.getSelectedIndex()) {
                         case 0:
-                            secao = "#usuarios_menu";
+                            secao = "Manual_Administrador.html#usuarios_menu";
                             abrirManual(secao);
                             break;
                         case 1:
-                            secao = "#usuarios_cadastrar_usuario";
+                            secao = "Manual_Administrador.html#usuarios_cadastrar_usuario";
                             abrirManual(secao);
                             break;
                         case 2:
-                            secao = "#usuarios_usuarios";
+                            secao = "Manual_Administrador.html#usuarios_usuarios";
                             abrirManual(secao);
                             break;
                         default:
@@ -12619,7 +12617,7 @@ public class Principal extends javax.swing.JFrame {
     
     private void AbrirManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirManualActionPerformed
         // TODO add your handling code here:
-        abrirManual("");
+        abrirManual("Manual.html");
     }//GEN-LAST:event_AbrirManualActionPerformed
 
     private void AbrirManualEspecificoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirManualEspecificoActionPerformed

@@ -1,72 +1,1197 @@
 <html>
-This is a manual
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
 
-<h1 id='doacoes_menu'>Menu Doacao</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='doacoes_cadastrar_doacao'>cadastrar doacao</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='doacoes_doacoes'>Visualizar doacoes</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='doacoes_item_doacoes'>Visualizar Item Doacoes</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='doacoes_estoque'>Visualizar Estoque</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='doacoes_doadores'>Visualizar doadores</h1>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;
+	font-weight:normal;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:2.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;
+	font-weight:normal;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:2.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Calibri Light",sans-serif;
+	color:#1F4D78;
+	font-weight:normal;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:11.0pt;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:22.0pt;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+a:link, span.MsoHyperlink
+	{color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Calibri Light",sans-serif;
+	color:#1F4D78;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 85.05pt 70.85pt 85.05pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
 
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
+</head>
 
-<h1 id='repasses_menu'>Menu Repasse</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='repasses_cadastrar_repasse'>Cadastrar Repasse</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='repasses_repasses'>Visualizar Repasses</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='repasses_item_repasses'>Visualizar Item Repasses</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='repasses_coletores'>Visualizar Coletores</h1>
+<body lang=EN-US link="#0563C1" vlink="#954F72">
 
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
+<div class=WordSection1>
 
-<h1 id='acervo_menu'>Menu Acervo</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='acervo_cadastrar_item_acervo'>Cadastrar Item Acervo</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='acervo_cadastrar_imagem'>Cadastrar Imagem</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='acervo_cadastrar_container'>Cadastrar Container</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='acervo_acervo'>Visualizar Acervo</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='acervo_imagens'>Visualizar Imagens</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='acervo_containers'>Visualizar Containers</h1>
+<p class=MsoTitle><span lang=PT-BR>MANUAL DE UTILIZAÇÃO DO USUÁRIO – SGACERVO </span></p>
 
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
+<p class=MsoNormal><span lang=PT-BR>&nbsp;</span></p>
 
-<h1 id='abadousuario_menu'>Menu do Usuario</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='abadousuario_editar_info'>Editar Minhas Informacoes</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='abadousuario_deslogar'>Deslogar</h1>
+<p class=MsoTocHeading style='line-height:normal'><span style='font-size:20.0pt'>Conteúdo</span></p>
 
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
-<p><br/><br/><br/><br/><br/></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<h1 id='usuarios_menu'>Menu Usuarios</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='usuarios_cadastrar_usuario'>Cadastrar Usuario</h1>
-<p><br/><br/><br/><br/><br/></p>
-<h1 id='usuarios_usuarios'>Visualizar Usuarios</h1>
-<p><br/><br/><br/><br/><br/></p>
+<p class=MsoToc1 style='line-height:normal'><a
+href="#_Toc467161916"><span style='font-size:14.0pt'>1.</span><span
+style='font-size:14.0pt;color:windowtext;text-decoration:none'>    </span><span
+style='font-size:14.0pt'>Começar a utilização do sistema.</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'> </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc1 style='line-height:normal'><a href="#abadousuario_menu"><span
+style='font-size:14.0pt'>2.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Usuário</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#_abadousuario_deslogar"><span
+style='font-size:14.0pt'>2.1.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Sair/ Deslogar
+do sistema.</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'> </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#abadousuario_editar_info"><span
+style='font-size:14.0pt'>2.2.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Editar
+Informações do seu usuário.</span><span style='font-size:14.0pt;color:windowtext;
+display:none;text-decoration:none'> </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc1 style='line-height:normal'><a href="#doacoes_menu"><span
+style='font-size:14.0pt'>3.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Gerenciar
+Doações</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#doacoes_cadastrar_doacao"><span
+style='font-size:14.0pt'>3.1.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Cadastrar
+Doação</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc3 style='line-height:normal'><a href="#_Toc467161922"><span
+style='font-size:14.0pt'>3.1.1.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Cadastrar
+Doador</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc3 style='line-height:normal'><a href="#_Toc467161923"><span
+style='font-size:14.0pt'>3.1.2.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Adicionar Item</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>.. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#doacoes_doacoes"><span
+style='font-size:14.0pt'>3.2.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir Doações</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc3 style='line-height:normal'><a href="#_Toc467161925"><span
+style='font-size:14.0pt'>3.2.1.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Alterar Doação</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc3 style='line-height:normal'><a href="#_Toc467161926"><span
+style='font-size:14.0pt'>3.2.2.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Filtar Doação</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc3 style='line-height:normal'><a href="#_Toc467161927"><span
+style='font-size:14.0pt'>3.2.3.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Gerar Relatório</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#doacoes_item_doacoes"><span
+style='font-size:14.0pt'>3.3.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir Itens
+Doados</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#doacoes_estoque"><span
+style='font-size:14.0pt'>3.4.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir Estoque</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#doacoes_doadores"><span
+style='font-size:14.0pt'>3.5.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir Doadores</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc1 style='line-height:normal'><a href="#repasses_menu"><span
+style='font-size:14.0pt'>4.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Gerenciar
+Repasses</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#repasses_cadastrar_repasse"><span
+style='font-size:14.0pt'>4.1.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Cadastrar
+Repasse</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc3 style='line-height:normal'><a href="#_Toc467161933"><span
+style='font-size:14.0pt'>4.1.1.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Cadastrar
+Destinaçao</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc3 style='line-height:normal'><a href="#_Toc467161934"><span
+style='font-size:14.0pt'>4.1.2.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Cadastrar
+Coletor</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#repasses_repasses"><span
+style='font-size:14.0pt'>4.2.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir Repasses</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#repasses_item_repasses"><span
+style='font-size:14.0pt'>4.3.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir Itens
+Repassados</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#_repasses_coletores"><span
+style='font-size:14.0pt'>4.4.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exbir
+Coletrores</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc1 style='line-height:normal'><a href="#acervo_menu"><span
+style='font-size:14.0pt'>5.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Gerenciar
+Acervo</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#acervo_cadastrar_item_acervo"><span
+style='font-size:14.0pt'>5.1.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Cadastrar Item
+ao Acervo</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#acervo_cadastrar_imagem"><span
+style='font-size:14.0pt'>5.2.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Cadastrar
+Imagem de Item</span><span style='font-size:14.0pt;color:windowtext;display:
+none;text-decoration:none'>.. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#acervo_cadastrar_container"><span
+style='font-size:14.0pt'>5.3.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Cadastrar
+Container</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#acervo_acervo"><span
+style='font-size:14.0pt'>5.4.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir Acervo</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#acervo_imagens"><span
+style='font-size:14.0pt'>5.5.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir Imagens</span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoToc2 style='line-height:normal'><a href="#acervo_containers"><span
+style='font-size:14.0pt'>5.6.</span><span style='font-size:14.0pt;color:windowtext;
+text-decoration:none'>    </span><span style='font-size:14.0pt'>Exibir
+Containeres</span><span style='font-size:14.0pt;color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='font-size:14.0pt;color:windowtext;display:none;text-decoration:none'>1</span></a></p>
+
+<p class=MsoNormal style='line-height:normal'><span lang=PT-BR>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>&nbsp;</span></p>
+
+<h1 style='margin-left:.25in;text-indent:-.25in'><a name="_Toc467161916"><span
+lang=PT-BR>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=PT-BR>Começar a utilização do sistema.</span></a></h1>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Após a
+instalação,  inicialize o programa, a primeira tela é a de autenticaçao ou
+login, como mostrada abaixo:</span></p>
+
+<p class=MsoNormal><span style='position:relative;z-index:251659264;left:-8px;
+top:0px;width:398px;height:212px'><img width=398 height=212
+src="Manual_files/image001.jpg"></span><br
+clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:35.4pt'><span lang=PT-BR>Na opção Usuário
+selecione o seu respectivo usuario que já foi cadastrado previamente pelo
+administrandor do sistema, insira a senha e clique no botao Entrar para acessar
+o as intefaces de trabalho de programa.</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>Caso não esteja cadastrado ou tenha
+esquecido a sua senha contate o administrador do sistema, essa é a mensagem do
+botao Esqueci a senha.</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>Para sair clique no X no canto superior
+direito .</span></p>
+
+<h1 style='margin-left:.25in;text-indent:-.25in'><a name="abadousuario_menu"><span
+lang=PT-BR>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=PT-BR>Usuário</span></a></h1>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="_abadousuario_deslogar"><span
+lang=PT-BR>2.1.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Sair/ Deslogar do sistema.</span></a></h2>
+
+<p class=MsoNormal style='text-indent:.25in'><span style='position:relative;
+z-index:-1895823360;left:-1px;top:0px;width:513px;height:485px'><img width=513
+height=485 src="Manual_files/image002.jpg"></span><br
+clear=ALL>
+<span lang=PT-BR>Uma vez autenticado e já nas interfaces de trabalho do sistema
+para sair/deslogar clique na aba com seu nome de usuario no menu de abas a
+esquerda e clique no botao deslogar que te levará a aba deslogar para confirmar
+essa opção, então clique no botao deslogar e assim voltará a tela inicial de
+autenticação </span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="abadousuario_editar_info"><span
+lang=PT-BR>2.2.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Editar Informações do seu usuário.</span></a></h2>
+
+<p class=MsoNormal style='text-indent:.25in'><span style='position:relative;
+z-index:-1895822336;left:-4px;top:0px;width:1047px;height:482px'><img
+width=1047 height=482
+src="Manual_files/image003.jpg"></span><br
+clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Uma vez
+autenticado e já nas interfaces de trabalho do sistema clique na aba com o seu
+nome no menu de abas na esquerda e então no botão Editar suas Informações que
+te levará a aba Editar Suas Informações onde visulizar todas suas informações e
+poderá alterar sua senha e email</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>&nbsp;</span></p>
+
+<h1 style='margin-left:.25in;text-indent:-.25in'><a name="doacoes_menu"><span
+lang=PT-BR>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=PT-BR>Gerenciar Doações</span></a></h1>
+
+<p class=MsoListParagraph style='margin-left:.25in'><img width=823 height=548
+src="Manual_files/image004.png"><br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Sob a aba Doações
+no meu de abas da esquerda estão todas as opçoes referentes as doacões que
+podem ser acessadas atraves dos botoes ou pelas abas .</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="doacoes_cadastrar_doacao"><span
+lang=PT-BR>3.1.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Cadastrar Doação</span></a></h2>
+
+<p class=MsoListParagraph style='margin-left:.25in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=2 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=819 height=567
+  src="Manual_files/image005.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para cadastrar uma
+doação selecione o doador e o evento de origem nos respectivos campos, caso o
+doador ou evento de origem desejados não estejam previamente cadastrados clique
+no botao + ao lado dos campos para cadastrar.</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>Então adicione os itens desejados clicando
+no botão Adicionar Item, caso o item desejado não estejam previamente
+cadastrados clique no botao + ao lado dos campos para cadastrar. Se quiser
+remover item escolhido, selecione a linha do item e clique em remover.</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>Após todos os itens desejados inseridos
+clique em cadastrar para efetuar o cadastro.</span></p>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+<h3 style='margin-left:.85in;text-indent:-.35in'><a name="_Toc467161922"><span
+lang=PT-BR>3.1.1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=PT-BR>Cadastrar Doador</span></a><span lang=PT-BR>       </span></h3>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:.55in'><img width=304
+height=156 id="Picture 8"
+src="Manual_files/image006.png"></p>
+
+<p class=MsoNormal><span lang=PT-BR>Clique no botão cadastrar doador entao preencha
+o campo Nome do Doador e clique no botao cadastrar para efetuar o cadastro.</span></p>
+
+<h3 style='margin-left:.85in;text-indent:-.35in'><a name="_Toc467161923"><span
+lang=PT-BR>3.1.2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=PT-BR>Adicionar Item</span></a></h3>
+
+<p class=MsoListParagraph style='margin-left:.85in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=57 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=322 height=156
+  src="Manual_files/image007.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal><span lang=PT-BR>Clique em Adicionar Item na aba Cadastrar
+Doação Selecione o tipo do item e escolha a quantidade então clique no botao
+cadastrar para efetuar o cadastro. Caso tipo do item desejado não esteja
+cadastrado clique no + para cadastrar.</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="doacoes_doacoes"><span
+lang=PT-BR>3.2.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exibir Doações</span></a></h2>
+
+<p class=MsoListParagraph style='margin-left:.55in'><img width=1021 height=532
+src="Manual_files/image008.png"><br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todas as Doaçoes
+cadastradas estão listadas. Para alterar alguma doação selecione a sua linha e
+clique no primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para remover
+alguma doação selecione a sua linha e clique no segundo icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para filtrar as
+doaçoes listadas clique no terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>No rodapé da
+pagina encontram-se opções de visualização da lista de item assim como
+navegação entre paginas.</span></p>
+
+<h3 style='margin-left:.85in;text-indent:-.35in'><a name="_Toc467161925"><span
+lang=PT-BR>3.2.1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=PT-BR>Alterar Doação</span></a><span lang=PT-BR>           </span></h3>
+
+<p class=MsoNormal>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=21 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=331 height=221
+  src="Manual_files/image009.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:35.4pt'><span lang=PT-BR>A opção que pode
+ser alterada é a origem, para isso selecione a nova origem e clique salvar.</span></p>
+
+<h3 style='margin-left:.85in;text-indent:-.35in'><a name="_Toc467161926"><span
+lang=PT-BR>3.2.2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=PT-BR>Filtar Doação</span></a></h3>
+
+<p class=MsoListParagraph style='margin-left:.85in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=26 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=378 height=365
+  src="Manual_files/image010.jpg"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:35.4pt'><span lang=PT-BR>Para filtrar a
+lista de doações, preencha as opções mostradas a cima. Os campos de intervalo
+de data são preenchidos clicando nos botões ao lado que abriram um calendario
+para selecionar a data desejada.</span></p>
+
+<h3 style='margin-left:.85in;text-indent:-.35in'><a name="_Toc467161927"><span
+lang=PT-BR>3.2.3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=PT-BR>Gerar Relatório</span></a><span lang=PT-BR> </span></h3>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.85in'><img width=949
+height=700 src="Manual_files/image011.png"><br
+clear=ALL>
+</p>
+
+<p class=MsoListParagraphCxSpLast><span lang=PT-BR>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para gerar um
+relatório da lista apresentada clique no quarto ícone no lado direito da tela,
+abrira entao uma Janela com opçoes para salvar, imprimir e visualizar o
+relatorio</span></p>
+
+<p class=MsoListParagraph><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="doacoes_item_doacoes"><span
+lang=PT-BR>3.3.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exibir Itens Doados</span></a></h2>
+
+<p class=MsoNormal style='text-indent:.25in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=8 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=1008 height=524
+  src="Manual_files/image012.jpg"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todos os itens
+doados estão listados. Para alterar algum item doado selecione a sua linha e
+clique no primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para remover
+algum item doado selecione a sua linha e clique no segundo icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para filtrar os
+itens doados listados clique no terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>No rodapé da
+pagina encontram-se opções de visualização da lista de itens doados assim como
+navegação entre paginas.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todas essas
+opções funcionam da mesma maneira que na aba Doações</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="doacoes_estoque"><span
+lang=PT-BR>3.4.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exibir Estoque</span></a></h2>
+
+<p class=MsoNormal style='text-indent:.25in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=4 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=1096 height=570
+  src="Manual_files/image013.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todos os itens do
+estoque estão listados. Para alterar algum item do estoque selecione a sua
+linha e clique no primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para remover
+algum item do estoque selecione a sua linha e clique no segundo icone a
+direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para filtrar os
+itens do estoque listados clique no terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>No rodapé da
+pagina encontram-se opções de visualização da lista de item assim como
+navegação entre paginas.</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.25in'><span lang=PT-BR>Todas
+essas opções funcionam da mesma maneira que na aba Doações</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:.25in'><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="doacoes_doadores"><span
+lang=PT-BR>3.5.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exibir Doadores</span></a></h2>
+
+<p class=MsoNormal style='text-indent:.25in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=9 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=1096 height=571
+  src="Manual_files/image014.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todos os doadores
+estão listados. Para alterar algum doador selecione a sua linha e clique no
+primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para remover
+algum item do estoque selecione a sua linha e clique no segundo icone a
+direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para filtrar os
+doador listados clique no terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>No rodapé da
+pagina encontram-se opções de visualização da lista de doadores assim como
+navegação entre paginas.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todas essas
+opções funcionam da mesma maneira que na aba Doações.</span></p>
+
+<h1 style='margin-left:.25in;text-indent:-.25in'><a name="repasses_menu"><span
+lang=PT-BR>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=PT-BR>Gerenciar Repasses</span></a></h1>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.25in'><span lang=PT-BR>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:.25in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=9 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=913 height=523
+  src="Manual_files/image015.jpg"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Sob a aba
+Repasses no meu de abas da esquerda estão todas as opções referentes as doacões
+que podem ser acessadas atraves dos botoes ou pelas abas.</span></p>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="repasses_cadastrar_repasse"><span
+lang=PT-BR>4.1.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Cadastrar Repasse</span></a></h2>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=16 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=898 height=542
+  src="Manual_files/image016.jpg"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para cadastrar um
+repasse selecione a destinação e o coletor nos respectivos campos, caso a
+destinação ou o coletor desejados não estejam previamente cadastrados clique no
+botao + ao lado dos campos para cadastrar.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Então adicione os
+itens desejados clicando no botão Adicionar Item, caso o item desejado não
+estejam previamente cadastrados clique no botao + ao lado dos campos para
+cadastrar. Se quiser remover item escolhido, selecione a linha do item e clique
+em remover.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Após todos os
+itens desejados inseridos clique em cadastrar para efetuar o cadastro.</span></p>
+
+<h3 style='margin-left:.85in;text-indent:-.35in'><a name="_Toc467161933"><span
+lang=PT-BR>4.1.1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=PT-BR>Cadastrar Destinaçao</span></a></h3>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+<p class=MsoNormal>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=16 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=303 height=157
+  src="Manual_files/image017.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para cadastrar
+destinação insira o nome do local de destinação e clique em Cadastrar para
+efetuar o cadastro</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>&nbsp;</span></p>
+
+<h3 style='margin-left:.85in;text-indent:-.35in'><a name="_Toc467161934"><span
+lang=PT-BR>4.1.2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=PT-BR>Cadastrar Coletor</span></a></h3>
+
+<p class=MsoListParagraph style='margin-left:.55in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=18 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=319 height=189
+  src="Manual_files/image018.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para cadastrar um
+coletor insira o nome e escolha o tipo de coletor, caso o tipo não esteja
+previamente cadastrado clique no botão + e cadastre o tipo de coletor desejado,
+então clique em no botão Cadastrar para finalizar.</span></p>
+
+<p class=MsoListParagraph><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="repasses_repasses"><span
+lang=PT-BR>4.2.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exibir Repasses</span></a><span lang=PT-BR> </span></h2>
+
+<p class=MsoNormal style='text-indent:.25in'><span style='position:relative;
+z-index:251693056;left:-4px;top:0px;width:1015px;height:543px'><img width=1015
+height=543 src="Manual_files/image019.jpg"></span><br
+clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todos os repasses
+estão listados. Para alterar algum repasse selecione a sua linha e clique no
+primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para remover
+algum repasse selecione a sua linha e clique no segundo icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para filtrar os
+repasses listados clique no terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>No rodapé da
+pagina encontram-se opções de visualização da lista de repasses assim como
+navegação entre paginas.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todas essas
+opções funcionam da mesma maneira que na aba Doações citados no item Gerenciar
+Doações.</span></p>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="repasses_item_repasses"><span
+lang=PT-BR>4.3.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exibir Itens Repassados</span></a><span lang=PT-BR> </span></h2>
+
+<p class=MsoNormal style='text-indent:.25in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=5 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=1039 height=557
+  src="Manual_files/image020.jpg"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todos os itens repassados
+estão listados. Para alterar algum item repassado selecione a sua linha e
+clique no primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para remover
+algum item repassado selecione a sua linha e clique no segundo icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para filtrar os
+itens repassados listados clique no terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>No rodapé da
+pagina encontram-se opções de visualização da lista de item assim como
+navegação entre paginas.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todas essas
+opções funcionam da mesma maneira que na aba Doações como citados no item
+Gerenciar Doações.</span></p>
+
+<p class=MsoListParagraph style='margin-left:.25in;text-indent:17.4pt'><span
+lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="_repasses_coletores"><span
+lang=PT-BR>4.4.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exbir Coletrores</span></a></h2>
+
+<p class=MsoListParagraph style='margin-left:.55in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=9 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=1062 height=571
+  src="Manual_files/image021.jpg"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todos os coletores
+estão listados. Para alterar algum coletor selecione a sua linha e clique no
+primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para remover
+algum coletor selecione a sua linha e clique no segundo icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para filtrar os coletores
+listados clique no terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>No rodapé da
+pagina encontram-se opções de visualização da lista de item assim como
+navegação entre paginas.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Todas essas
+opções funcionam da mesma maneira que na aba Doações como citados no item
+Gerenciar Doações.</span></p>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+<h1 style='margin-left:.25in;text-indent:-.25in'><a name="acervo_menu"><span
+lang=PT-BR>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=PT-BR>Gerenciar Acervo</span></a><span lang=PT-BR> </span></h1>
+
+<p class=MsoListParagraph style='margin-left:.25in'><img width=964 height=609
+src="Manual_files/image022.jpg"><br clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Sob a aba Acervo
+no meu de abas da esquerda estão todas as opçoes referentes ao acervo que podem
+ser acessadas atraves dos botoes ou pelas abas .</span></p>
+
+<p class=MsoListParagraph style='margin-left:.25in'><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="acervo_cadastrar_item_acervo"><span
+lang=PT-BR>5.1.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Cadastrar Item ao Acervo</span></a></h2>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span style='position:relative;
+z-index:251701248;left:-4px;top:0px;width:967px;height:585px'><img width=967
+height=585 src="Manual_files/image023.png"></span><br
+clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para cadastrar um
+item ao acervo ao menos selecione doador, tipo do item, marca e modelo nos
+respectivos campos, caso a não estejam previamente cadastrados clique no botao
++ ao lado dos campos para cadastrar, além disso insira o ano de fabricação e
+uma breve descrição do item alem de marcar se o item funciona.</span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Existem ainda
+campos opcionais sendo eles interface, tecnologia, capacidade que podem ser
+preenchidos caso o item possua tais informações. Já o campo Codigo de Container
+deve ser preenchido se o item está em exposição em algum container.</span></p>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="acervo_cadastrar_imagem"><span
+lang=PT-BR>5.2.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Cadastrar Imagem de Item</span></a></h2>
+
+<p class=MsoNormal><span style='position:relative;z-index:251703296;left:-12px;
+top:0px;width:974px;height:588px'><img width=974 height=588
+src="Manual_files/image024.png"></span><br
+clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Esse é um complemento
+do cadastro de um item ao acervo, preencha o codigo do item de acervo e o link
+para a sua imagem e clique cadastrar para efetuar o cadastro.</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="acervo_cadastrar_container"><span
+lang=PT-BR>5.3.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Cadastrar Container</span></a></h2>
+
+<p class=MsoNormal style='margin-left:.25in'><span style='position:relative;
+z-index:251715584;left:-9px;top:0px;width:976px;height:486px'><img width=976
+height=486 src="Manual_files/image025.jpg"></span><br
+clear=ALL>
+</p>
+
+<p class=MsoNormal style='text-indent:.25in'><span lang=PT-BR>Para cadastrar ou
+container insira a localização de forma mais especifica possivel, ex: <i>UEPG,
+Campus Uvaranas, Bloco L, segundo andar. </i>Além disso selecione o tipo de
+container, caso o tipo não esteja previamente cadastrado clique no botao + para
+cadastrar.</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="acervo_acervo"><span
+lang=PT-BR>5.4.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></a><span
+style='position:relative;z-index:251705344;left:-636px;top:0px;width:543px;
+height:326px'><img width=543 height=326
+src="Manual_files/image026.jpg"></span><br
+clear=ALL>
+<span lang=PT-BR>Exibir Acervo</span></h2>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+.25in'><span style='position:relative;z-index:251709440;left:-4px;top:0px;
+width:961px;height:478px'><img width=961 height=478
+src="Manual_files/image027.jpg"></span><br
+clear=ALL>
+</p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>Todos os itens de acervo estão listados. Para alterar
+algum item de acervo selecione a sua linha e clique no primeiro icone a
+direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>Para remover algum item de acervo selecione a sua
+linha e clique no segundo icone a direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>Para filtrar os itens de acervo listados clique no
+terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>No rodapé da pagina encontram-se opções de
+visualização da lista de itens do acervo assim como navegação entre paginas.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>Todas essas opções funcionam da mesma maneira que na
+aba Doações como citados no item Gerenciar Doações.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+.25in'><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="acervo_imagens"><span
+lang=PT-BR>5.5.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exibir Imagens</span></a></h2>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=7 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=975 height=550
+  src="Manual_files/image028.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>Todos as imagens dos itens de acervo estão listados.
+Para alterar alguma imagem dos itens de acervo selecione a sua linha e clique
+no primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>Para remover alguma imagem item de acervo selecione a
+sua linha e clique no segundo icone a direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>Para filtrar as imagens dos itens de acervo listados
+clique no terceiro icone a direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>No rodapé da pagina encontram-se opções de
+visualização da lista de imagens dos itens do acervo assim como navegação entre
+paginas.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+13.5pt'><span lang=PT-BR>Todas essas opções funcionam da mesma maneira que na
+aba Doações como citados no item Gerenciar Doações.</span></p>
+
+<p class=MsoNormal><span lang=PT-BR>&nbsp;</span></p>
+
+<h2 style='margin-left:.55in;text-indent:-.3in'><a name="acervo_containers"><span
+lang=PT-BR>5.6.<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=PT-BR>Exibir Containeres</span></a></h2>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+.25in'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=16 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=979 height=553
+  src="Manual_files/image029.png"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+.25in'><span lang=PT-BR>Todos os containers estão listados. Para alterar algum
+container selecione a sua linha e clique no primeiro icone a direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+.25in'><span lang=PT-BR>Para remover algum container selecione a sua linha e
+clique no segundo icone a direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+.25in'><span lang=PT-BR>Para filtrar os containers listados clique no terceiro
+icone a direita.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+.25in'><span lang=PT-BR>No rodapé da pagina encontram-se opções de visualização
+da lista de container assim como navegação entre paginas.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+.25in'><span lang=PT-BR>Todas essas opções funcionam da mesma maneira que na
+aba Doações como citados no item Gerenciar Doações.</span></p>
+
+<p class=MsoListParagraph style='margin-left:.55in'><span lang=PT-BR>&nbsp;</span></p>
+
+</div>
+
+</body>
 
 </html>

@@ -1,5 +1,6 @@
 package view;
 
+import static com.lowagie.text.pdf.PdfFileSpecification.url;
 import control.Banco;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -18,12 +19,15 @@ import javax.swing.ImageIcon;
 import model.*;
 import control.ConfigBanco;
 import control.Encryptor;
+import java.awt.Desktop;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.UUID;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -34,125 +38,135 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class Principal extends javax.swing.JFrame {
-    
+
     public Principal() {
-        
+
         this.setIconImage(icone);
         this.setVisible(false);
-        initComponents();    
+        initComponents();
         JDLogin.setIconImage(icone);
         JDLogin.setModal(true);
-        
+
         JDLogin.pack();
         JDLogin.setLocationRelativeTo(null);
         atualizarCBUsuario();
         JDLogin.setVisible(true);
-        
+
     }
 
     @SuppressWarnings("unchecked")
-    
-    private void atualizarCamposCadastrarDoacao(){
-        
-        java.util.Date data=new java.util.Date();
-        Banco b=new Banco();
-        int doacao=b.max("SELECT MAX(cod_doacao) from doacao;");
+
+    private void atualizarCamposCadastrarDoacao() {
+
+        java.util.Date data = new java.util.Date();
+        Banco b = new Banco();
+        int doacao = b.max("SELECT MAX(cod_doacao) from doacao;");
         b.fechar();
         doacao++;
-        
+
     }
 
-    private void atualizarCamposCadastrarDoador(){
-        Banco b=new Banco();
-        campoCodigoDoador.setText(""+(b.max("SELECT MAX(cod_doador) from doador;")+1));
+    private void atualizarCamposCadastrarDoador() {
+        Banco b = new Banco();
+        campoCodigoDoador.setText("" + (b.max("SELECT MAX(cod_doador) from doador;") + 1));
         b.fechar();
         campoNomeDoador.setText("");
     }
-    private void atualizarCamposCadastrarEventoOrigem(){
-        Banco b=new Banco();
-        campoCodigoEventoOrigem.setText(""+(b.max("SELECT MAX(cod_evento_origem) from evento_origem;")+1));
+
+    private void atualizarCamposCadastrarEventoOrigem() {
+        Banco b = new Banco();
+        campoCodigoEventoOrigem.setText("" + (b.max("SELECT MAX(cod_evento_origem) from evento_origem;") + 1));
         b.fechar();
         campoNomeEventoOrigem.setText("");
     }
-    private void atualizarCamposDoacao(){
+
+    private void atualizarCamposDoacao() {
         atualizarCamposCadastrarDoacao();
         atualizarCamposCadastrarDoador();
         atualizarCamposCadastrarEventoOrigem();
     }
-    private void atualizarCamposCadastrarRepasse(){
-        Banco b=new Banco();
-        int max=b.max("SELECT MAX(cod_repasse) from repasse");
+
+    private void atualizarCamposCadastrarRepasse() {
+        Banco b = new Banco();
+        int max = b.max("SELECT MAX(cod_repasse) from repasse");
         b.fechar();
         max++;
-        java.util.Date data=new java.util.Date();
+        java.util.Date data = new java.util.Date();
 
     }
-    private void atualizarCamposCadastrarDestinacao(){
-        Banco b=new Banco();
-        int max=b.max("SELECT MAX(cod_destinacao) from destinacao");
+
+    private void atualizarCamposCadastrarDestinacao() {
+        Banco b = new Banco();
+        int max = b.max("SELECT MAX(cod_destinacao) from destinacao");
         b.fechar();
         max++;
-        campoCodigoDestinacao.setText(""+max);
+        campoCodigoDestinacao.setText("" + max);
         campoNomeDestinacao.setText("");
     }
-    
-    private void atualizarCamposCadastrarColetor(){
-        Banco b=new Banco();
-        campoCodigoColetor.setText(""+(b.max("SELECT MAX(cod_coletor) from coletor;")+1));
+
+    private void atualizarCamposCadastrarColetor() {
+        Banco b = new Banco();
+        campoCodigoColetor.setText("" + (b.max("SELECT MAX(cod_coletor) from coletor;") + 1));
         b.fechar();
         campoNomeColetor.setText("");
     }
-    private void atualizarCamposCadastrarTipoColetor(){
-        Banco b=new Banco();
-        campoCodigoTipoColetor.setText(""+(b.max("SELECT MAX(cod_tipo_coletor) from tipo_coletor;")+1));
+
+    private void atualizarCamposCadastrarTipoColetor() {
+        Banco b = new Banco();
+        campoCodigoTipoColetor.setText("" + (b.max("SELECT MAX(cod_tipo_coletor) from tipo_coletor;") + 1));
         b.fechar();
         campoTipoColetor.setText("");
     }
-    private void atualizarCamposRepasse(){
+
+    private void atualizarCamposRepasse() {
         atualizarCamposCadastrarRepasse();
         atualizarCamposCadastrarDestinacao();
         atualizarCamposCadastrarColetor();
         atualizarCamposCadastrarTipoColetor();
     }
-    private void atualizarCamposCadastrarItemAcervo(){
-           Banco b=new Banco();
-           int max=b.max("SELECT MAX(cod_item_acervo) from item_acervo");
-           b.fechar();
-           max++;
-           java.util.Date data=new java.util.Date();
-           campoDescricaoItemAcervo.setText("");
-           campoAnoItemAcervo.setText("");
-           CBFunciona.setSelected(false);
-           campoCapacidadeItemAcervo.setText("");
-           campoLink.setText("");
-           LFotoAcervo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/fotoacervo.png"))); // NOI18N
+
+    private void atualizarCamposCadastrarItemAcervo() {
+        Banco b = new Banco();
+        int max = b.max("SELECT MAX(cod_item_acervo) from item_acervo");
+        b.fechar();
+        max++;
+        java.util.Date data = new java.util.Date();
+        campoDescricaoItemAcervo.setText("");
+        campoAnoItemAcervo.setText("");
+        CBFunciona.setSelected(false);
+        campoCapacidadeItemAcervo.setText("");
+        campoLink.setText("");
+        LFotoAcervo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/fotoacervo.png"))); // NOI18N
     }
-    private void atualizarCamposAcervo(){
-           atualizarCamposCadastrarItemAcervo();
-           atualizarCamposCadastrarImagem();
-           atualizarCamposCadastrarContainer();
-           
+
+    private void atualizarCamposAcervo() {
+        atualizarCamposCadastrarItemAcervo();
+        atualizarCamposCadastrarImagem();
+        atualizarCamposCadastrarContainer();
+
     }
-    private void atualizarCamposCadastrarUsuario(){
-        Banco b=new Banco();
-        campoCodigoNovoUsuario.setText(""+(b.max("Select MAX(cod_usuario) from usuario")+1));
+
+    private void atualizarCamposCadastrarUsuario() {
+        Banco b = new Banco();
+        campoCodigoNovoUsuario.setText("" + (b.max("Select MAX(cod_usuario) from usuario") + 1));
         b.fechar();
         campoNomeNovoUsuario.setText("");
         campoSenhaCadastrarUsuario.setText("");
         CBAdministrador.setSelected(false);
-        
+
     }
-    private void atualizarCamposUsuario(){
+
+    private void atualizarCamposUsuario() {
         atualizarCamposCadastrarUsuario();
     }
-    private void atualizarCamposAlterarUsuario(){
-        UsuarioDAO daou=new UsuarioDAO();
-        Usuario u=daou.getByCod(codigoUsuario);
+
+    private void atualizarCamposAlterarUsuario() {
+        UsuarioDAO daou = new UsuarioDAO();
+        Usuario u = daou.getByCod(codigoUsuario);
         daou.fechar();
-        
-        campoCodigoAlterarUsuario.setText(""+codigoUsuario);
+
+        campoCodigoAlterarUsuario.setText("" + codigoUsuario);
         campoSenhaAtualAlterarUsuario.setText("");
         campoNovaSenhaAlterarUsuario.setText("");
         campoRepetirSenhaAlterarUsuario.setText("");
@@ -160,62 +174,70 @@ public class Principal extends javax.swing.JFrame {
         campoEmailAlterarUsuario.setText(u.getEmail());
         campoRegistroAcademicoAlterarUsuario.setText(u.getRegistro_academico());
         campoAdministradorAlterarUsuario.setSelected(administrador);
-        
+
     }
-    private void atualizarCamposAbaUsuario(){
+
+    private void atualizarCamposAbaUsuario() {
         atualizarCamposAlterarUsuario();
     }
-    private void atualizarCamposCadastrarTipoItem(){
-        Banco b=new Banco();
-        campoCodigoTipoItem.setText(""+(b.max("Select max(cod_tipo) from tipo_item;")+1));
+
+    private void atualizarCamposCadastrarTipoItem() {
+        Banco b = new Banco();
+        campoCodigoTipoItem.setText("" + (b.max("Select max(cod_tipo) from tipo_item;") + 1));
         b.fechar();
         campoTipoItem.setText("");
     }
-    private void atualizarCamposCadastrarMarca(){
-        Banco b=new Banco();
-        campoCodigoMarca.setText(""+(b.max("Select max(cod_marca) from marca;")+1));
+
+    private void atualizarCamposCadastrarMarca() {
+        Banco b = new Banco();
+        campoCodigoMarca.setText("" + (b.max("Select max(cod_marca) from marca;") + 1));
         b.fechar();
         campoNomeMarca.setText("");
     }
-    private void atualizarCamposCadastrarModelo(){
-        Banco b=new Banco();
-        campoCodigoModelo.setText(""+(b.max("Select max(cod_modelo) from modelo;")+1));
+
+    private void atualizarCamposCadastrarModelo() {
+        Banco b = new Banco();
+        campoCodigoModelo.setText("" + (b.max("Select max(cod_modelo) from modelo;") + 1));
         b.fechar();
         campoNomeModelo.setText("");
     }
-    private void atualizarCamposCadastrarImagem(){
-        Banco b=new Banco();
+
+    private void atualizarCamposCadastrarImagem() {
+        Banco b = new Banco();
         b.fechar();
         campoItemAcervoCadastrarImagem.setText("");
         campoLink.setText("");
     }
-    private void atualizarCamposCadastrarContainer(){
-        Banco b=new Banco();
+
+    private void atualizarCamposCadastrarContainer() {
+        Banco b = new Banco();
         b.fechar();
         campoLocalizacaoCadastrarContainer.setText("");
-        
+
     }
-    private void atualizarCamposCadastrarInterface(){
-        Banco b=new Banco();
-        campoCodigoInterface.setText(""+(b.max("Select max(cod_interface) from interface;")+1));
+
+    private void atualizarCamposCadastrarInterface() {
+        Banco b = new Banco();
+        campoCodigoInterface.setText("" + (b.max("Select max(cod_interface) from interface;") + 1));
         b.fechar();
         campoNomeInterface.setText("");
     }
-    private void atualizarCamposCadastrarTecnologia(){
-        Banco b=new Banco();
-        campoCodigoTecnologia.setText(""+(b.max("Select max(cod_tecnologia) from tecnologia;")+1));
+
+    private void atualizarCamposCadastrarTecnologia() {
+        Banco b = new Banco();
+        campoCodigoTecnologia.setText("" + (b.max("Select max(cod_tecnologia) from tecnologia;") + 1));
         b.fechar();
         campoNomeTecnologia.setText("");
     }
- 
-    private void atualizarCamposCadastrarTipoContainer(){
-           Banco b=new Banco();
-           campoCodigoTipoContainer.setText(""+(b.max("select max(cod_tipo_container) from tipo_container;")+1));
-           b.fechar();
-           campoTipoContainer.setText("");
+
+    private void atualizarCamposCadastrarTipoContainer() {
+        Banco b = new Banco();
+        campoCodigoTipoContainer.setText("" + (b.max("select max(cod_tipo_container) from tipo_container;") + 1));
+        b.fechar();
+        campoTipoContainer.setText("");
     }
-    
-    private void atualizarCampos(){
+
+    private void atualizarCampos() {
         //Atualiza campos referentes à Doação
         atualizarCamposDoacao();
         //Atualiza campos referentes à Repasse
@@ -227,898 +249,855 @@ public class Principal extends javax.swing.JFrame {
         //Atualiza campos referentes à Aba Usuário
         atualizarCamposAbaUsuario();
     }
-    private void atualizarTBDoacao(){
+
+    private void atualizarTBDoacao() {
         Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {statement=SelecaoDoacao+FiltroDoacao;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TDoacao.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaDoacao=1;
-               LDoacaoPagina.setText(numeroPaginaDoacao+"");
-               numeroMaxPaginaDoacao=((TDoacao.getRowCount()-1)/Integer.parseInt(SPDoacaoItensPagina.getValue().toString()))+1;
-               LDoacaoTotalPaginas.setText(numeroMaxPaginaDoacao+"");
-               
-            }
-            catch(Exception e){
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoDoacao + FiltroDoacao;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TDoacao.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaDoacao = 1;
+                LDoacaoPagina.setText(numeroPaginaDoacao + "");
+                numeroMaxPaginaDoacao = ((TDoacao.getRowCount() - 1) / Integer.parseInt(SPDoacaoItensPagina.getValue().toString())) + 1;
+                LDoacaoTotalPaginas.setText(numeroMaxPaginaDoacao + "");
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Doacao.");
 
             }
-         }
-         else {
-             int limit=Integer.parseInt(SPDoacaoItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaDoacao-1);
-             PaginaDoacao=" limit "+limit+" offset "+offset+" ";
-             statement=SelecaoDoacao+FiltroDoacao+PaginaDoacao;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
+        } else {
+            int limit = Integer.parseInt(SPDoacaoItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaDoacao - 1);
+            PaginaDoacao = " limit " + limit + " offset " + offset + " ";
+            statement = SelecaoDoacao + FiltroDoacao + PaginaDoacao;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Doacao.");
 
             }
-             System.out.println(statement);
-             TDoacao.setModel(DbUtils.resultSetToTableModel(rs));
-             LDoacaoPagina.setText(numeroPaginaDoacao+"");
-         }
-         
+            System.out.println(statement);
+            TDoacao.setModel(DbUtils.resultSetToTableModel(rs));
+            LDoacaoPagina.setText(numeroPaginaDoacao + "");
+        }
+
     }
-    private void atualizarTBItemDoacao(){
+
+    private void atualizarTBItemDoacao() {
         Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoItemDoacao+FiltroItemDoacao;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TItemDoacao.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaItemDoacao=1;
-               LItemDoacaoPagina.setText(numeroPaginaItemDoacao+"");
-               numeroMaxPaginaItemDoacao=((TItemDoacao.getRowCount()-1)/Integer.parseInt(SPItemDoacaoItensPagina.getValue().toString()))+1;
-               LItemDoacaoTotalPaginas.setText(numeroMaxPaginaItemDoacao+"");
-               
-            }
-            catch(Exception e){
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoItemDoacao + FiltroItemDoacao;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TItemDoacao.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaItemDoacao = 1;
+                LItemDoacaoPagina.setText(numeroPaginaItemDoacao + "");
+                numeroMaxPaginaItemDoacao = ((TItemDoacao.getRowCount() - 1) / Integer.parseInt(SPItemDoacaoItensPagina.getValue().toString())) + 1;
+                LItemDoacaoTotalPaginas.setText(numeroMaxPaginaItemDoacao + "");
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Item Doacao.");
 
             }
-         }
-         else {
-             int limit=Integer.parseInt(SPItemDoacaoItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaItemDoacao-1);
-             PaginaItemDoacao=" limit "+limit+" offset "+offset+" ";
-             statement=SelecaoItemDoacao+FiltroItemDoacao+PaginaItemDoacao;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
+        } else {
+            int limit = Integer.parseInt(SPItemDoacaoItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaItemDoacao - 1);
+            PaginaItemDoacao = " limit " + limit + " offset " + offset + " ";
+            statement = SelecaoItemDoacao + FiltroItemDoacao + PaginaItemDoacao;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Item Doacao.");
 
             }
-             TItemDoacao.setModel(DbUtils.resultSetToTableModel(rs));
-             LItemDoacaoPagina.setText(numeroPaginaItemDoacao+"");
-         }
-         
-     }
-    private void atualizarTBEstoque(){
+            TItemDoacao.setModel(DbUtils.resultSetToTableModel(rs));
+            LItemDoacaoPagina.setText(numeroPaginaItemDoacao + "");
+        }
+
+    }
+
+    private void atualizarTBEstoque() {
         Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoEstoque+FiltroEstoque;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TEstoque.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaEstoque=1;
-               LEstoquePagina.setText(numeroPaginaEstoque+"");
-               numeroMaxPaginaEstoque=((TEstoque.getRowCount()-1)/Integer.parseInt(SPEstoqueItensPagina.getValue().toString()))+1;
-               LEstoqueTotalPaginas.setText(numeroMaxPaginaEstoque+"");
-               
-            }
-            catch(Exception e){
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoEstoque + FiltroEstoque;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TEstoque.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaEstoque = 1;
+                LEstoquePagina.setText(numeroPaginaEstoque + "");
+                numeroMaxPaginaEstoque = ((TEstoque.getRowCount() - 1) / Integer.parseInt(SPEstoqueItensPagina.getValue().toString())) + 1;
+                LEstoqueTotalPaginas.setText(numeroMaxPaginaEstoque + "");
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Estoque.");
 
             }
-         }
-         else {
-             int limit=Integer.parseInt(SPEstoqueItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaEstoque-1);
-             PaginaEstoque="limit "+limit+" offset "+offset;
-             statement=SelecaoEstoque+FiltroEstoque+PaginaEstoque;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
+        } else {
+            int limit = Integer.parseInt(SPEstoqueItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaEstoque - 1);
+            PaginaEstoque = "limit " + limit + " offset " + offset;
+            statement = SelecaoEstoque + FiltroEstoque + PaginaEstoque;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Estoque.");
 
             }
-             TEstoque.setModel(DbUtils.resultSetToTableModel(rs));
-             LEstoquePagina.setText(numeroPaginaEstoque+"");
-         }
-        
+            TEstoque.setModel(DbUtils.resultSetToTableModel(rs));
+            LEstoquePagina.setText(numeroPaginaEstoque + "");
+        }
+
     }
-    private void atualizarTBImagem(){
+
+    private void atualizarTBImagem() {
         Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoImagem+FiltroImagem;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TImagem.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaImagem=1;
-               LImagemPagina.setText(numeroPaginaImagem+"");
-               numeroMaxPaginaImagem=((TImagem.getRowCount()-1)/Integer.parseInt(SPImagemItensPagina.getValue().toString()))+1;
-               LImagemTotalPaginas.setText(numeroMaxPaginaImagem+"");
-               
-            }
-            catch(Exception e){
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoImagem + FiltroImagem;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TImagem.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaImagem = 1;
+                LImagemPagina.setText(numeroPaginaImagem + "");
+                numeroMaxPaginaImagem = ((TImagem.getRowCount() - 1) / Integer.parseInt(SPImagemItensPagina.getValue().toString())) + 1;
+                LImagemTotalPaginas.setText(numeroMaxPaginaImagem + "");
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Imagem.");
 
             }
-         }
-         else {
-             int limit=Integer.parseInt(SPImagemItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaImagem-1);
-             PaginaImagem="limit "+limit+" offset "+offset;
-             statement=SelecaoImagem+FiltroImagem+PaginaImagem;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
+        } else {
+            int limit = Integer.parseInt(SPImagemItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaImagem - 1);
+            PaginaImagem = "limit " + limit + " offset " + offset;
+            statement = SelecaoImagem + FiltroImagem + PaginaImagem;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Imagem.");
 
             }
-             TImagem.setModel(DbUtils.resultSetToTableModel(rs));
-             LImagemPagina.setText(numeroPaginaImagem+"");
-         }
-        
+            TImagem.setModel(DbUtils.resultSetToTableModel(rs));
+            LImagemPagina.setText(numeroPaginaImagem + "");
+        }
+
     }
-    
-     private void atualizarTBContainer(){
+
+    private void atualizarTBContainer() {
         Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoContainer+FiltroContainer;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TContainer.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaContainer=1;
-               LContainerPagina.setText(numeroPaginaContainer+"");
-               numeroMaxPaginaContainer=((TContainer.getRowCount()-1)/Integer.parseInt(SPContainerItensPagina.getValue().toString()))+1;
-               LContainerTotalPaginas.setText(numeroMaxPaginaContainer+"");
-               
-            }
-            catch(Exception e){
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoContainer + FiltroContainer;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TContainer.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaContainer = 1;
+                LContainerPagina.setText(numeroPaginaContainer + "");
+                numeroMaxPaginaContainer = ((TContainer.getRowCount() - 1) / Integer.parseInt(SPContainerItensPagina.getValue().toString())) + 1;
+                LContainerTotalPaginas.setText(numeroMaxPaginaContainer + "");
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Container.");
 
             }
-         }
-         else {
-             int limit=Integer.parseInt(SPContainerItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaContainer-1);
-             PaginaContainer="limit "+limit+" offset "+offset;
-             statement=SelecaoContainer+FiltroContainer+PaginaContainer;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
+        } else {
+            int limit = Integer.parseInt(SPContainerItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaContainer - 1);
+            PaginaContainer = "limit " + limit + " offset " + offset;
+            statement = SelecaoContainer + FiltroContainer + PaginaContainer;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Container.");
 
             }
-             TContainer.setModel(DbUtils.resultSetToTableModel(rs));
-             LContainerPagina.setText(numeroPaginaContainer+"");
-         }
-        
+            TContainer.setModel(DbUtils.resultSetToTableModel(rs));
+            LContainerPagina.setText(numeroPaginaContainer + "");
+        }
+
     }
-    
-    private void atualizarTBDoador(){
+
+    private void atualizarTBDoador() {
         Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoDoador+FiltroDoador;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TDoador.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaDoador=1;
-               LDoadorPagina.setText(numeroPaginaDoador+"");
-               numeroMaxPaginaDoador=((TDoador.getRowCount()-1)/Integer.parseInt(SPDoadorItensPagina.getValue().toString()))+1;
-               LDoadorTotalPaginas.setText(numeroMaxPaginaDoador+"");
-               
-            }
-            catch(Exception e){
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoDoador + FiltroDoador;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TDoador.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaDoador = 1;
+                LDoadorPagina.setText(numeroPaginaDoador + "");
+                numeroMaxPaginaDoador = ((TDoador.getRowCount() - 1) / Integer.parseInt(SPDoadorItensPagina.getValue().toString())) + 1;
+                LDoadorTotalPaginas.setText(numeroMaxPaginaDoador + "");
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Doador.");
 
             }
-         }
-         else {
-             int limit=Integer.parseInt(SPDoadorItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaDoador-1);
-             PaginaDoador="limit "+limit+" offset "+offset;
-             statement=SelecaoDoador+FiltroDoador+PaginaDoador;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
+        } else {
+            int limit = Integer.parseInt(SPDoadorItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaDoador - 1);
+            PaginaDoador = "limit " + limit + " offset " + offset;
+            statement = SelecaoDoador + FiltroDoador + PaginaDoador;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Doador.");
 
             }
-             TDoador.setModel(DbUtils.resultSetToTableModel(rs));
-             LDoadorPagina.setText(numeroPaginaDoador+"");
-         }
-        
-        
+            TDoador.setModel(DbUtils.resultSetToTableModel(rs));
+            LDoadorPagina.setText(numeroPaginaDoador + "");
+        }
+
     }
-    private void atualizarTBRepasse(){
+
+    private void atualizarTBRepasse() {
         Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoRepasse+FiltroRepasse;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TRepasse.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaRepasse=1;
-               LRepassePagina.setText(numeroPaginaRepasse+"");
-               numeroMaxPaginaRepasse=((TRepasse.getRowCount()-1)/Integer.parseInt(SPRepasseItensPagina.getValue().toString()))+1;
-               LRepasseTotalPaginas.setText(numeroMaxPaginaRepasse+"");
-               
-            }
-            catch(Exception e){
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoRepasse + FiltroRepasse;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TRepasse.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaRepasse = 1;
+                LRepassePagina.setText(numeroPaginaRepasse + "");
+                numeroMaxPaginaRepasse = ((TRepasse.getRowCount() - 1) / Integer.parseInt(SPRepasseItensPagina.getValue().toString())) + 1;
+                LRepasseTotalPaginas.setText(numeroMaxPaginaRepasse + "");
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Repasse.");
 
             }
-         }
-         else {
-             int limit=Integer.parseInt(SPRepasseItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaRepasse-1);
-             PaginaRepasse="limit "+limit+" offset "+offset;
-             statement=SelecaoRepasse+FiltroRepasse+PaginaRepasse;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
+        } else {
+            int limit = Integer.parseInt(SPRepasseItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaRepasse - 1);
+            PaginaRepasse = "limit " + limit + " offset " + offset;
+            statement = SelecaoRepasse + FiltroRepasse + PaginaRepasse;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Repasse.");
 
             }
-             TRepasse.setModel(DbUtils.resultSetToTableModel(rs));
-             LRepassePagina.setText(numeroPaginaRepasse+"");
-         }
-         
-     }
-    private void atualizarTBItemRepasse(){
-        Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoItemRepasse+FiltroItemRepasse;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TItemRepasse.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaItemRepasse=1;
-               LItemRepassePagina.setText(numeroPaginaItemRepasse+"");
-               numeroMaxPaginaItemRepasse=((TItemRepasse.getRowCount()-1)/Integer.parseInt(SPItemRepasseItensPagina.getValue().toString()))+1;
-               LItemRepasseTotalPaginas.setText(numeroMaxPaginaItemRepasse+"");
-               
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro de consulta para Item Repasse.");
+            TRepasse.setModel(DbUtils.resultSetToTableModel(rs));
+            LRepassePagina.setText(numeroPaginaRepasse + "");
+        }
 
-            }
-         }
-         else {
-             int limit=Integer.parseInt(SPItemRepasseItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaItemRepasse-1);
-             PaginaItemRepasse="limit "+limit+" offset "+offset;
-             statement=SelecaoItemRepasse+FiltroItemRepasse+PaginaItemRepasse;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro de consulta para Item Repasse.");
-
-            }
-             TItemRepasse.setModel(DbUtils.resultSetToTableModel(rs));
-             LItemRepassePagina.setText(numeroPaginaItemRepasse+"");
-         }
-         
-     }
-    private void atualizarTBColetor(){
-        Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoColetor+FiltroColetor;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TColetor.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaColetor=1;
-               LColetorPagina.setText(numeroPaginaColetor+"");
-               numeroMaxPaginaColetor=((TColetor.getRowCount()-1)/Integer.parseInt(SPColetorItensPagina.getValue().toString()))+1;
-               LColetorTotalPaginas.setText(numeroMaxPaginaColetor+"");
-               
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro de consulta para Coletor.");
-
-            }
-         }
-         else {
-             int limit=Integer.parseInt(SPColetorItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaColetor-1);
-             PaginaColetor="limit "+limit+" offset "+offset;
-             statement=SelecaoColetor+FiltroColetor+PaginaColetor;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro de consulta para Coletor.");
-
-            }
-             TColetor.setModel(DbUtils.resultSetToTableModel(rs));
-             LColetorPagina.setText(numeroPaginaColetor+"");
-         }
-        
-     }
-    private void atualizarTBAcervo(){
-        Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoAcervo+FiltroAcervo;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TAcervo.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaAcervo=1;
-               LAcervoPagina.setText(numeroPaginaAcervo+"");
-               numeroMaxPaginaAcervo=((TAcervo.getRowCount()-1)/Integer.parseInt(SPAcervoItensPagina.getValue().toString()))+1;
-               LAcervoTotalPaginas.setText(numeroMaxPaginaAcervo+"");
-               
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro de consulta para Acervo.");
-
-            }
-         }
-         else {
-             int limit=Integer.parseInt(SPAcervoItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaAcervo-1);
-             PaginaAcervo="limit "+limit+" offset "+offset;
-             statement=SelecaoAcervo+FiltroAcervo+PaginaAcervo;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro de consulta para Acervo.");
-
-            }
-             TAcervo.setModel(DbUtils.resultSetToTableModel(rs));
-             LAcervoPagina.setText(numeroPaginaAcervo+"");
-         }
-        
-     
-     }
-    private void atualizarTBUsuario(){
-        Connection con;
-         ResultSet rs=null;
-         PreparedStatement ps;
-         String statement;
-         
-         
-         if(achandoMax) {
-            statement=SelecaoUsuarios+FiltroUsuarios;
-            try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-               TUsuarios.setModel(DbUtils.resultSetToTableModel(rs));
-               numeroPaginaUsuarios=1;
-               LUsuariosPagina.setText(numeroPaginaUsuarios+"");
-               numeroMaxPaginaUsuarios=((TUsuarios.getRowCount()-1)/Integer.parseInt(SPUsuariosItensPagina.getValue().toString()))+1;
-               LUsuariosTotalPaginas.setText(numeroMaxPaginaUsuarios+"");
-               
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro de consulta para Usuarios.");
-
-            }
-         }
-         else {
-             int limit=Integer.parseInt(SPUsuariosItensPagina.getValue().toString());
-             int offset=limit*(numeroPaginaUsuarios-1);
-             PaginaUsuarios="limit "+limit+" offset "+offset;
-             statement=SelecaoUsuarios+FiltroUsuarios+PaginaUsuarios;
-             try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-               rs=ps.executeQuery();
-               con.close();
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro de consulta para Usuarios.");
-
-            }
-             TUsuarios.setModel(DbUtils.resultSetToTableModel(rs));
-             LUsuariosPagina.setText(numeroPaginaUsuarios+"");
-         }
-        
     }
-    
-    private void atualizarTB(){
+
+    private void atualizarTBItemRepasse() {
+        Connection con;
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoItemRepasse + FiltroItemRepasse;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TItemRepasse.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaItemRepasse = 1;
+                LItemRepassePagina.setText(numeroPaginaItemRepasse + "");
+                numeroMaxPaginaItemRepasse = ((TItemRepasse.getRowCount() - 1) / Integer.parseInt(SPItemRepasseItensPagina.getValue().toString())) + 1;
+                LItemRepasseTotalPaginas.setText(numeroMaxPaginaItemRepasse + "");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de consulta para Item Repasse.");
+
+            }
+        } else {
+            int limit = Integer.parseInt(SPItemRepasseItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaItemRepasse - 1);
+            PaginaItemRepasse = "limit " + limit + " offset " + offset;
+            statement = SelecaoItemRepasse + FiltroItemRepasse + PaginaItemRepasse;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de consulta para Item Repasse.");
+
+            }
+            TItemRepasse.setModel(DbUtils.resultSetToTableModel(rs));
+            LItemRepassePagina.setText(numeroPaginaItemRepasse + "");
+        }
+
+    }
+
+    private void atualizarTBColetor() {
+        Connection con;
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoColetor + FiltroColetor;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TColetor.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaColetor = 1;
+                LColetorPagina.setText(numeroPaginaColetor + "");
+                numeroMaxPaginaColetor = ((TColetor.getRowCount() - 1) / Integer.parseInt(SPColetorItensPagina.getValue().toString())) + 1;
+                LColetorTotalPaginas.setText(numeroMaxPaginaColetor + "");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de consulta para Coletor.");
+
+            }
+        } else {
+            int limit = Integer.parseInt(SPColetorItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaColetor - 1);
+            PaginaColetor = "limit " + limit + " offset " + offset;
+            statement = SelecaoColetor + FiltroColetor + PaginaColetor;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de consulta para Coletor.");
+
+            }
+            TColetor.setModel(DbUtils.resultSetToTableModel(rs));
+            LColetorPagina.setText(numeroPaginaColetor + "");
+        }
+
+    }
+
+    private void atualizarTBAcervo() {
+        Connection con;
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoAcervo + FiltroAcervo;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TAcervo.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaAcervo = 1;
+                LAcervoPagina.setText(numeroPaginaAcervo + "");
+                numeroMaxPaginaAcervo = ((TAcervo.getRowCount() - 1) / Integer.parseInt(SPAcervoItensPagina.getValue().toString())) + 1;
+                LAcervoTotalPaginas.setText(numeroMaxPaginaAcervo + "");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de consulta para Acervo.");
+
+            }
+        } else {
+            int limit = Integer.parseInt(SPAcervoItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaAcervo - 1);
+            PaginaAcervo = "limit " + limit + " offset " + offset;
+            statement = SelecaoAcervo + FiltroAcervo + PaginaAcervo;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de consulta para Acervo.");
+
+            }
+            TAcervo.setModel(DbUtils.resultSetToTableModel(rs));
+            LAcervoPagina.setText(numeroPaginaAcervo + "");
+        }
+
+    }
+
+    private void atualizarTBUsuario() {
+        Connection con;
+        ResultSet rs = null;
+        PreparedStatement ps;
+        String statement;
+
+        if (achandoMax) {
+            statement = SelecaoUsuarios + FiltroUsuarios;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+                TUsuarios.setModel(DbUtils.resultSetToTableModel(rs));
+                numeroPaginaUsuarios = 1;
+                LUsuariosPagina.setText(numeroPaginaUsuarios + "");
+                numeroMaxPaginaUsuarios = ((TUsuarios.getRowCount() - 1) / Integer.parseInt(SPUsuariosItensPagina.getValue().toString())) + 1;
+                LUsuariosTotalPaginas.setText(numeroMaxPaginaUsuarios + "");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de consulta para Usuarios.");
+
+            }
+        } else {
+            int limit = Integer.parseInt(SPUsuariosItensPagina.getValue().toString());
+            int offset = limit * (numeroPaginaUsuarios - 1);
+            PaginaUsuarios = "limit " + limit + " offset " + offset;
+            statement = SelecaoUsuarios + FiltroUsuarios + PaginaUsuarios;
+            try {
+                con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+                ps = con.prepareCall(statement);
+                rs = ps.executeQuery();
+                con.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de consulta para Usuarios.");
+
+            }
+            TUsuarios.setModel(DbUtils.resultSetToTableModel(rs));
+            LUsuariosPagina.setText(numeroPaginaUsuarios + "");
+        }
+
+    }
+
+    private void atualizarTB() {
         //Atualizar Tabelas Relativas à Doação
         atualizarTBDoacao();
         atualizarTBItemDoacao();
         atualizarTBEstoque();
         atualizarTBDoador();
-       
-        
+
         //Atualizar Tabelas Relativas à Repasse
         atualizarTBRepasse();
         atualizarTBItemRepasse();
         atualizarTBColetor();
-        
+
         //Atualizar Tabelas Relativas à Acervo
         atualizarTBAcervo();
         atualizarTBImagem();
         atualizarTBContainer();
-        
+
         atualizarTBUsuario();
     }
-    
-    private void atualizarCBDoador(){
+
+    private void atualizarCBDoador() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from doador;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_doador"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Doador.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBDoadorItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBDoadorDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBItemDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBDoadorDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBAcervoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from doador;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_doador"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Doador.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBDoadorItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBDoadorDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBItemDoacaoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBDoadorDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBAcervoDoador.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
     }
-    private void atualizarCBEventoOrigem(){
+
+    private void atualizarCBEventoOrigem() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from evento_origem;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_evento_origem"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Evento Origem.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBEventoOrigem.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBEventoOrigemAlterarDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBDoacaoEvento.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBItemDoacaoEvento.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from evento_origem;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_evento_origem"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Evento Origem.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBEventoOrigem.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBEventoOrigemAlterarDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBDoacaoEvento.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBItemDoacaoEvento.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
     }
-    private void atualizarCBDestinacao(){
+
+    private void atualizarCBDestinacao() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from destinacao;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_destinacao"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Destinacao.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBDestinacaoAlterarRepasse.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBRepasseDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBItemRepasseDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
-    
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from destinacao;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_destinacao"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Destinacao.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBDestinacaoAlterarRepasse.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBRepasseDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBItemRepasseDestinacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
     }
-    
-    private void atualizarCBColetor(){
+
+    private void atualizarCBColetor() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from coletor;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_coletor"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Coletor.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBRepasseColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBItemRepasseColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBColetorColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from coletor;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_coletor"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Coletor.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBRepasseColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBItemRepasseColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBColetorColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
     }
-    private void atualizarCBTipoColetor(){
+
+    private void atualizarCBTipoColetor() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from tipo_coletor;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_tipo_coletor"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Tipo Coletor.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBTipoColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBTipoColetorAlterarColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBRepasseTipoColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBColetorTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from tipo_coletor;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_tipo_coletor"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Tipo Coletor.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBTipoColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBTipoColetorAlterarColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBRepasseTipoColetor.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBColetorTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
     }
-    
-    private void atualizarCBTipoItem(){
+
+    private void atualizarCBTipoItem() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from tipo_item;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_tipo"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Tipo Item.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         
-         CBTipoItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBTipoAdicionarItemLista.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBTipoAlterarItemDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBTipoAlterarItemRepasse.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBTipoAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBEstoqueTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBItemRepasseTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBAcervoTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from tipo_item;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_tipo"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Tipo Item.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+
+        CBTipoItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBTipoAdicionarItemLista.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBTipoAlterarItemDoacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBTipoAlterarItemRepasse.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBTipoAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBEstoqueTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBItemRepasseTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBAcervoTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
     }
-   
-    private void atualizarCBMarca(){
+
+    private void atualizarCBMarca() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from marca;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_marca"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Marca.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBMarcaAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBAcervoMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBImagemMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
-    
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from marca;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_marca"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Marca.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBMarcaAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBAcervoMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBImagemMarca.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
     }
-    private void atualizarCBModelo(){
+
+    private void atualizarCBModelo() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from modelo;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_modelo"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Modelo.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBModeloAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBAcervoModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBImagemModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from modelo;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_modelo"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Modelo.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBModeloAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBAcervoModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBImagemModelo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
-    private void atualizarCBInterface(){
-       Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from interface;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_interface"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Interface.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBInterface.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBInterfaceAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBAcervoInterface.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-    }
-    private void atualizarCBTecnologia(){
-       Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from tecnologia;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_tecnologia"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Tecnologia.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBTecnologia.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBTecnologiaAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBAcervoTecnologia.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-    }
-    
-    private void atualizarCBTipoContainer(){
+
+    private void atualizarCBInterface() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from tipo_container;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_tipo_container"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Tipo Container.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         
-         CBTipoContainerCadastrarContainer.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBTipoContainerAlterarContainer.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBContainerTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from interface;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_interface"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Interface.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBInterface.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBInterfaceAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBAcervoInterface.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
-    private void atualizarCBLocalizacaoContainer(){
+
+    private void atualizarCBTecnologia() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from container;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("localizacao_container"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Localização Container.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         
-         CBContainerLocalizacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from tecnologia;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_tecnologia"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Tecnologia.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBTecnologia.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBTecnologiaAlterarItemAcervo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBAcervoTecnologia.setModel(new javax.swing.DefaultComboBoxModel(tipos));
     }
-    private void atualizarCBUsuario(){
+
+    private void atualizarCBTipoContainer() {
         Connection con;
-         ResultSet rs;
-         PreparedStatement ps;
-         String statement="SELECT * from usuario;";
-         ArrayList list = new ArrayList();  
-         try{
-                con=DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                ps=con.prepareCall(statement);
-                rs=ps.executeQuery();
-                con.close();
-                
-                while(rs.next()){
-                    list.add(rs.getString("nome_usuario"));
-                }
-         }
-         catch(Exception e){
-             JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Usuario.");
-         }
-         Object[] objectList=list.toArray();
-         String[] tipos=Arrays.copyOf(objectList,objectList.length,String[].class);
-         CBUsuarioLogin.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBDoacaoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBItemDoacaoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBItemRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBAcervoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
-         CBUsuarioNome.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from tipo_container;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_tipo_container"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Tipo Container.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+
+        CBTipoContainerCadastrarContainer.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBTipoContainerAlterarContainer.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBContainerTipo.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
     }
-    private void atualizarCB(){
+
+    private void atualizarCBLocalizacaoContainer() {
+        Connection con;
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from container;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("localizacao_container"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Localização Container.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+
+        CBContainerLocalizacao.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+
+    }
+
+    private void atualizarCBUsuario() {
+        Connection con;
+        ResultSet rs;
+        PreparedStatement ps;
+        String statement = "SELECT * from usuario;";
+        ArrayList list = new ArrayList();
+        try {
+            con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            ps = con.prepareCall(statement);
+            rs = ps.executeQuery();
+            con.close();
+
+            while (rs.next()) {
+                list.add(rs.getString("nome_usuario"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Usuario.");
+        }
+        Object[] objectList = list.toArray();
+        String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
+        CBUsuarioLogin.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBDoacaoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBItemDoacaoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBItemRepasseUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBAcervoUsuario.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+        CBUsuarioNome.setModel(new javax.swing.DefaultComboBoxModel(tipos));
+    }
+
+    private void atualizarCB() {
         //Atualizar ComboBox Relativos à Doacao
         atualizarCBDoador();
         atualizarCBEventoOrigem();
@@ -1137,10 +1116,10 @@ public class Principal extends javax.swing.JFrame {
         //Atualizar ComboBox relativos à Usuário
         atualizarCBUsuario();
     }
-    
-    private void cancelarLogin(){
-        if(!logado)
-        {   this.setVisible(false);
+
+    private void cancelarLogin() {
+        if (!logado) {
+            this.setVisible(false);
             this.dispose();
             JDLogin.dispose();
         }
@@ -2008,6 +1987,12 @@ public class Principal extends javax.swing.JFrame {
         Deslogar = new javax.swing.JPanel();
         BDeslogar = new javax.swing.JToggleButton();
         LCertezaDeslogar = new javax.swing.JLabel();
+        BarraMenu = new javax.swing.JMenuBar();
+        MenuAjuda = new javax.swing.JMenu();
+        AbrirManual = new javax.swing.JMenuItem();
+        AbrirManualEspecifico = new javax.swing.JMenuItem();
+        MenuOpcoes = new javax.swing.JMenu();
+        AbrirCodigoFonte = new javax.swing.JMenuItem();
 
         JDLogin.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         JDLogin.setTitle("SGACERVO - Login");
@@ -5976,6 +5961,11 @@ public class Principal extends javax.swing.JFrame {
                 PrincipalMouseClicked(evt);
             }
         });
+        Principal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PrincipalKeyPressed(evt);
+            }
+        });
 
         Doacoes.setOpaque(true);
 
@@ -6059,7 +6049,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(BAbrirEstoque)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BAbrirDoadores)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         Doacoes.addTab("Menu", MenuDoacoes);
@@ -6206,7 +6196,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BRemoverItemDoacao)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BCadastrarDoacao)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Doacoes.addTab("Cadastrar Doação", new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png")), CadastrarDoacao); // NOI18N
@@ -6332,8 +6322,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BFiltrarDoacao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioDoacao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 309, Short.MAX_VALUE))
-                    .addComponent(RelatorioDoacoes, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                        .addGap(0, 272, Short.MAX_VALUE))
+                    .addComponent(RelatorioDoacoes, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelDoacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -6471,7 +6461,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BRelatorioItemDoacao1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioItemDoacao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(RelatorioItemDoacao, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(RelatorioItemDoacao, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelItemDoacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -6593,8 +6583,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(BFiltrarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 372, Short.MAX_VALUE))
-                    .addComponent(RelatorioEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                        .addGap(0, 335, Short.MAX_VALUE))
+                    .addComponent(RelatorioEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -6735,7 +6725,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioDoadores, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(ExibirDoadores, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(ExibirDoadores, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelDoadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
@@ -6826,7 +6816,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(BAbrirItemRepasse)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BExibirColetores)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         Repasses.addTab("Menu", MenuRepasse);
@@ -7107,7 +7097,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(RelatorioRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
@@ -7254,7 +7244,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioItemRepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(RelatorioItemRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(RelatorioItemRepasse, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelItemRepasseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
@@ -7398,7 +7388,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioColetor, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(ExibirColetores, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(ExibirColetores, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelColetoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
@@ -7499,7 +7489,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(BExibirImagens)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BExibirContainer)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         Acervo.addTab("Menu", MenuAcervo);
@@ -7695,7 +7685,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(CadastrarItemAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LContainer)
                             .addComponent(campoCodContainerCadastrarItemAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 323, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(CadastrarItemAcervoLayout.createSequentialGroup()
                         .addComponent(LInfoDoacao2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -7822,7 +7812,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(LFotoAcervo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BCadastrarImagem)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         Acervo.addTab("Cadastrar Imagem", new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png")), CadastrarImagem); // NOI18N
@@ -7894,7 +7884,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(BNovoTipoContainer, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BCadastrarContainer)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
 
         Acervo.addTab("Cadastrar Container", new javax.swing.ImageIcon(getClass().getResource("/view/imagens/plus16.png")), CadastrarContainer); // NOI18N
@@ -8032,7 +8022,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BRelatorioAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(RelatorioAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(RelatorioAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelAcervoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
@@ -8169,7 +8159,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirImagem)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(SPImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ImagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39)
@@ -8308,7 +8298,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirContainer)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(SPContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel43)
@@ -8369,7 +8359,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(BAbrirCadastrarUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BExibirUsuarios)
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
 
         Usuarios.addTab("Menu", MenuUsuarios);
@@ -8582,7 +8572,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BExcluirUsuario)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                    .addComponent(ExibirUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel47)
@@ -8641,7 +8631,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(BAbrirEditarInformacoes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BAbrirDeslogar)
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
 
         AbaDoUsuario.addTab("Menu", MenuAbaUsuario);
@@ -8790,12 +8780,52 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(LCertezaDeslogar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BDeslogar)
-                .addContainerGap(426, Short.MAX_VALUE))
+                .addContainerGap(389, Short.MAX_VALUE))
         );
 
         AbaDoUsuario.addTab("Deslogar", new javax.swing.ImageIcon(getClass().getResource("/view/imagens/logout.png")), Deslogar); // NOI18N
 
         Principal.addTab("AbaDoUsuario", new javax.swing.ImageIcon(getClass().getResource("/view/imagens/userlittle.png")), AbaDoUsuario); // NOI18N
+
+        MenuAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/help32.png"))); // NOI18N
+        MenuAjuda.setText("Ajuda");
+
+        AbrirManual.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        AbrirManual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/help32.png"))); // NOI18N
+        AbrirManual.setText("Abrir Manual");
+        AbrirManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirManualActionPerformed(evt);
+            }
+        });
+        MenuAjuda.add(AbrirManual);
+
+        AbrirManualEspecifico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        AbrirManualEspecifico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/help32.png"))); // NOI18N
+        AbrirManualEspecifico.setText("Abrir Manual para Tela Atual");
+        AbrirManualEspecifico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirManualEspecificoActionPerformed(evt);
+            }
+        });
+        MenuAjuda.add(AbrirManualEspecifico);
+
+        BarraMenu.add(MenuAjuda);
+
+        MenuOpcoes.setText("Opções");
+
+        AbrirCodigoFonte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/github.png"))); // NOI18N
+        AbrirCodigoFonte.setText("Ver Código Fonte");
+        AbrirCodigoFonte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirCodigoFonteActionPerformed(evt);
+            }
+        });
+        MenuOpcoes.add(AbrirCodigoFonte);
+
+        BarraMenu.add(MenuOpcoes);
+
+        setJMenuBar(BarraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -8805,7 +8835,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Principal)
+            .addComponent(Principal, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -8813,143 +8843,145 @@ public class Principal extends javax.swing.JFrame {
     private void BCadastrarDoadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarDoadorActionPerformed
         // TODO add your handling code here:
 
-        
-        Doador d=new Doador();
-        
-        try{        
+        Doador d = new Doador();
+
+        try {
             d.setNome_doador(campoNomeDoador.getText());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(CadastrarDoacao, "Campos de preenchimento obrigatório estão vazios.\nPreencha e tente novamente.","Erro",0);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(CadastrarDoacao, "Campos de preenchimento obrigatório estão vazios.\nPreencha e tente novamente.", "Erro", 0);
         }
-        DoadorDAO daod=new DoadorDAO();
-        int sucesso=daod.inserir(d);
+        DoadorDAO daod = new DoadorDAO();
+        int sucesso = daod.inserir(d);
         daod.fechar();
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarDoador,"Falha na Inserção.","Erro",0);
-        else {
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarDoador, "Falha na Inserção.", "Erro", 0);
+        } else {
             Banco b = new Banco();
-            sucesso=b.max("SELECT MAX(cod_doador) from doador;");
+            sucesso = b.max("SELECT MAX(cod_doador) from doador;");
             b.fechar();
             atualizarCBDoador();
             atualizarTBDoador();
             JDCadastrarDoador.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarDoador,"Código de Doador: "+sucesso,"Doador Registrado.",JOptionPane.INFORMATION_MESSAGE);
-            CBDoadorDoacao.setSelectedIndex((CBDoadorDoacao.getItemCount()-1));
-            CBDoadorItemAcervo.setSelectedIndex((CBDoadorDoacao.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarDoador, "Código de Doador: " + sucesso, "Doador Registrado.", JOptionPane.INFORMATION_MESSAGE);
+            CBDoadorDoacao.setSelectedIndex((CBDoadorDoacao.getItemCount() - 1));
+            CBDoadorItemAcervo.setSelectedIndex((CBDoadorDoacao.getItemCount() - 1));
         }
-        
+
     }//GEN-LAST:event_BCadastrarDoadorActionPerformed
     private void BCadastrarDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarDoacaoActionPerformed
         // TODO add your handling code here:
-        
-        Doacao d=new Doacao();
+
+        Doacao d = new Doacao();
         Doador doador;
         Evento_origem eo;
-        
+
         d.setCod_usuario(codigoUsuario);
-        
-        DoadorDAO daodoador=new DoadorDAO();
-        doador=daodoador.getByNome(CBDoadorDoacao.getSelectedItem().toString());
+
+        DoadorDAO daodoador = new DoadorDAO();
+        doador = daodoador.getByNome(CBDoadorDoacao.getSelectedItem().toString());
         daodoador.fechar();
         d.setCod_doador(doador.getCod_doador());
-        
-        Evento_origemDAO daoeo=new Evento_origemDAO();
-        eo=daoeo.getByNome(CBEventoOrigem.getSelectedItem().toString());
+
+        Evento_origemDAO daoeo = new Evento_origemDAO();
+        eo = daoeo.getByNome(CBEventoOrigem.getSelectedItem().toString());
         daoeo.fechar();
         d.setCod_evento_origem(eo.getCod_evento_origem());
-        
-        DoacaoDAO daod=new DoacaoDAO();
-        int sucesso=daod.inserir(d);
+
+        DoacaoDAO daod = new DoacaoDAO();
+        int sucesso = daod.inserir(d);
         daod.fechar();
-        if(sucesso==0) JOptionPane.showMessageDialog(CadastrarDoacao,"Falha na inserção.","Erro",0);
-        else{
-            
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_doacao) from doacao;");
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(CadastrarDoacao, "Falha na inserção.", "Erro", 0);
+        } else {
+
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_doacao) from doacao;");
             b.fechar();
-            lista=(DefaultTableModel) TAdicionarItemDoacao.getModel();
-            int items=lista.getRowCount();
-            for(int i=0;i<items;i++){
-                CadastrarItemDoacao(sucesso,lista.getValueAt(i,1).toString(),Integer.parseInt(lista.getValueAt(i, 2).toString()));
+            lista = (DefaultTableModel) TAdicionarItemDoacao.getModel();
+            int items = lista.getRowCount();
+            for (int i = 0; i < items; i++) {
+                CadastrarItemDoacao(sucesso, lista.getValueAt(i, 1).toString(), Integer.parseInt(lista.getValueAt(i, 2).toString()));
             }
             lista.setRowCount(0);
-            JOptionPane.showMessageDialog(CadastrarDoacao,"Código de Doação: "+sucesso,"Doação Registrada.",JOptionPane.INFORMATION_MESSAGE);
-            achandoMax=true;
+            JOptionPane.showMessageDialog(CadastrarDoacao, "Código de Doação: " + sucesso, "Doação Registrada.", JOptionPane.INFORMATION_MESSAGE);
+            achandoMax = true;
             atualizarTBDoacao();
-            achandoMax=false;
+            achandoMax = false;
             atualizarTBDoacao();
         }
-        
-       atualizarCamposCadastrarDoacao();
+
+        atualizarCamposCadastrarDoacao();
     }//GEN-LAST:event_BCadastrarDoacaoActionPerformed
-    private void CadastrarItemDoacao(int numeroDoacao,String tipo,int quantidade){
-        Item_doacao itemd=new Item_doacao();
-        Doacao doaaux=new Doacao();
+    private void CadastrarItemDoacao(int numeroDoacao, String tipo, int quantidade) {
+        Item_doacao itemd = new Item_doacao();
+        Doacao doaaux = new Doacao();
         Tipo_item t;
-       
-        int sucesso=0;
-        try{
-            DoacaoDAO daodoaaux=new DoacaoDAO();
-            doaaux=daodoaaux.getByCod(numeroDoacao);
+
+        int sucesso = 0;
+        try {
+            DoacaoDAO daodoaaux = new DoacaoDAO();
+            doaaux = daodoaaux.getByCod(numeroDoacao);
             daodoaaux.fechar();
             itemd.setCod_doacao(numeroDoacao);
             itemd.setQuantidade_item_doacao(quantidade);
-            Tipo_itemDAO daot=new Tipo_itemDAO();
-            t=daot.getByNome(tipo);
+            Tipo_itemDAO daot = new Tipo_itemDAO();
+            t = daot.getByNome(tipo);
             daot.fechar();
-            if(t==null) JOptionPane.showMessageDialog(CadastrarDoacao,"Tipo Inexistente.","Erro",0);
-            else itemd.setCod_tipo(t.getCod_tipo());
-            Item_doacaoDAO daoitemd=new Item_doacaoDAO();
-            sucesso=daoitemd.inserir(itemd);
+            if (t == null) {
+                JOptionPane.showMessageDialog(CadastrarDoacao, "Tipo Inexistente.", "Erro", 0);
+            } else {
+                itemd.setCod_tipo(t.getCod_tipo());
+            }
+            Item_doacaoDAO daoitemd = new Item_doacaoDAO();
+            sucesso = daoitemd.inserir(itemd);
             daoitemd.fechar();
-        }catch(NumberFormatException | HeadlessException e){
-            JOptionPane.showMessageDialog(CadastrarDoacao,"Campos Incorretos.\nVerifique e tente novamente.","Erro",0);
-        }
-        finally{
-            if (sucesso==0) {JOptionPane.showMessageDialog(CadastrarDoacao,"Falha na inserção.","Erro",0);
-                            }
-            else {
-                achandoMax=true;
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(CadastrarDoacao, "Campos Incorretos.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (sucesso == 0) {
+                JOptionPane.showMessageDialog(CadastrarDoacao, "Falha na inserção.", "Erro", 0);
+            } else {
+                achandoMax = true;
                 atualizarTBItemDoacao();
                 atualizarTBEstoque();
-                achandoMax=false;
+                achandoMax = false;
                 atualizarTBItemDoacao();
                 atualizarTBEstoque();
-                }
-            
+            }
+
         }
     }
     private void BCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarUsuarioActionPerformed
-        
-        Usuario u=new Usuario();
+
+        Usuario u = new Usuario();
         u.setNome_usuario(campoNomeNovoUsuario.getText());
         u.setUsuario_administrador(CBAdministrador.isSelected());
         u.setChave_encriptacao(UUID.randomUUID().toString().substring(0, 16));
         u.setEmail(campoEmailCadastrarUsuario.getText());
         u.setRegistro_academico(campoRegistroAcademicoCadastrarUsuario.getText());
-        
-        String senha=new String(campoSenhaCadastrarUsuario.getPassword());
-        String repetirsenha=new String(campoRepetirSenhaCadastrarUsuario.getPassword());
-        
-        if (u.getNome_usuario().equals("")||u.getEmail().equals("")||u.getRegistro_academico().equals("")||senha.equals("")){
-            JOptionPane.showMessageDialog(CadastrarUsuario,"Campos obrigatórios vazios","Erro",0);
-        }
-        else if (!senha.equals(repetirsenha)) {
-            JOptionPane.showMessageDialog(CadastrarUsuario,"Senhas diferem.","Erro",0);
-        }
-        else{
-            Encryptor aes=new Encryptor();
-            String encriptada=aes.encrypt(u.getChave_encriptacao(), senha);
+
+        String senha = new String(campoSenhaCadastrarUsuario.getPassword());
+        String repetirsenha = new String(campoRepetirSenhaCadastrarUsuario.getPassword());
+
+        if (u.getNome_usuario().equals("") || u.getEmail().equals("") || u.getRegistro_academico().equals("") || senha.equals("")) {
+            JOptionPane.showMessageDialog(CadastrarUsuario, "Campos obrigatórios vazios", "Erro", 0);
+        } else if (!senha.equals(repetirsenha)) {
+            JOptionPane.showMessageDialog(CadastrarUsuario, "Senhas diferem.", "Erro", 0);
+        } else {
+            Encryptor aes = new Encryptor();
+            String encriptada = aes.encrypt(u.getChave_encriptacao(), senha);
             u.setSenha_usuario(encriptada);
-            
-            UsuarioDAO daou=new UsuarioDAO();
-            int sucesso=daou.inserir(u);
+
+            UsuarioDAO daou = new UsuarioDAO();
+            int sucesso = daou.inserir(u);
             daou.fechar();
-            if (sucesso==0) JOptionPane.showMessageDialog(CadastrarUsuario,"Falha na Inserção.","Erro",0);
-            else {
-                Banco b=new Banco();
-                sucesso=b.max("SELECT MAX(cod_usuario) from usuario;");
+            if (sucesso == 0) {
+                JOptionPane.showMessageDialog(CadastrarUsuario, "Falha na Inserção.", "Erro", 0);
+            } else {
+                Banco b = new Banco();
+                sucesso = b.max("SELECT MAX(cod_usuario) from usuario;");
                 b.fechar();
-                JOptionPane.showMessageDialog(CadastrarUsuario,"Código de Usuário: "+sucesso,"Usuário Registrado.",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(CadastrarUsuario, "Código de Usuário: " + sucesso, "Usuário Registrado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBUsuario();
                 atualizarCBUsuario();
             }
@@ -8958,44 +8990,42 @@ public class Principal extends javax.swing.JFrame {
     private void BLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLogarActionPerformed
 
         Usuario u;
-        UsuarioDAO daou=new UsuarioDAO();
-        u=daou.getByNome(CBUsuarioLogin.getSelectedItem().toString());
+        UsuarioDAO daou = new UsuarioDAO();
+        u = daou.getByNome(CBUsuarioLogin.getSelectedItem().toString());
         daou.fechar();
-        String senha=new String(campoSenhaLogin.getPassword());
-        
-        Encryptor aes=new Encryptor();
-        String encriptada=aes.encrypt(u.getChave_encriptacao(), senha);
-        
-        if(u!=null&&u.getSenha_usuario().equals(encriptada))
-        {
+        String senha = new String(campoSenhaLogin.getPassword());
+
+        Encryptor aes = new Encryptor();
+        String encriptada = aes.encrypt(u.getChave_encriptacao(), senha);
+
+        if (u != null && u.getSenha_usuario().equals(encriptada)) {
             campoSenhaLogin.setText("");
-            logado=true;
-            nomeUsuario=u.getNome_usuario();
-            senhaUsuario=u.getSenha_usuario();
-            administrador=u.isUsuario_administrador();
-            codigoUsuario=u.getCod_usuario();
-            
+            logado = true;
+            nomeUsuario = u.getNome_usuario();
+            senhaUsuario = u.getSenha_usuario();
+            administrador = u.isUsuario_administrador();
+            codigoUsuario = u.getCod_usuario();
+
             this.remove(AbaDoUsuario);
             Principal.addTab(nomeUsuario, new javax.swing.ImageIcon(getClass().getResource("/view/imagens/userlittle.png")), AbaDoUsuario);
-           
+
             atualizarTB();
-            achandoMax=false;
+            achandoMax = false;
             atualizarTB();
             atualizarCB();
             atualizarCampos();
             JDLogin.setModal(false);
             JDLogin.setVisible(false);
             JDLogin.dispose();
-            
-            if(!administrador) {
+
+            if (!administrador) {
                 Principal.remove(Usuarios);
                 campoNomeAlterarUsuario.setEditable(false);
                 campoRegistroAcademicoAlterarUsuario.setEditable(false);
                 campoNomeAlterarUsuario.setEnabled(false);
                 campoRegistroAcademicoAlterarUsuario.setEnabled(false);
-                
-            }
-            else{
+
+            } else {
                 Principal.addTab("Usuários", new javax.swing.ImageIcon(getClass().getResource("/view/imagens/users.png")), Usuarios); // NOI18N
                 campoNomeAlterarUsuario.setEditable(true);
                 campoRegistroAcademicoAlterarUsuario.setEditable(true);
@@ -9003,126 +9033,127 @@ public class Principal extends javax.swing.JFrame {
                 campoRegistroAcademicoAlterarUsuario.setEnabled(true);
             }
             Principal.repaint();
-            
+
             this.setVisible(true);
-            
+
+        } else {
+            JOptionPane.showMessageDialog(JDLogin, "Usuário ou Senha Incorretos.\nTente Novamente.", "Erro de Autenticação", 0);
         }
-        else JOptionPane.showMessageDialog(JDLogin,"Usuário ou Senha Incorretos.\nTente Novamente.","Erro de Autenticação",0);
     }//GEN-LAST:event_BLogarActionPerformed
     private void BCadastrarColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarColetorActionPerformed
         // TODO add your handling code here:
-        Coletor c=new Coletor();
+        Coletor c = new Coletor();
         Tipo_coletor tc;
-        
+
         c.setNome(campoNomeColetor.getText());
-        Tipo_coletorDAO daotc=new Tipo_coletorDAO();
-        tc=daotc.getByNome(CBTipoColetor.getSelectedItem().toString());
+        Tipo_coletorDAO daotc = new Tipo_coletorDAO();
+        tc = daotc.getByNome(CBTipoColetor.getSelectedItem().toString());
         daotc.fechar();
         c.setCod_tipo_coletor(tc.getCod_tipo_coletor());
-        ColetorDAO daoc=new ColetorDAO();
-        int sucesso=daoc.inserir(c);
+        ColetorDAO daoc = new ColetorDAO();
+        int sucesso = daoc.inserir(c);
         daoc.fechar();
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarColetor,"Falha na Inserção.","Erro",0);
-        else {
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_coletor) from coletor");
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarColetor, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_coletor) from coletor");
             b.fechar();
             atualizarTBColetor();
             atualizarCBColetor();
             JDCadastrarColetor.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarColetor,"Código de Coletor: "+sucesso,"Coletor Registrado.",JOptionPane.INFORMATION_MESSAGE);
-            CBColetor.setSelectedIndex((CBColetor.getItemCount()-1));
-            
+            JOptionPane.showMessageDialog(JDCadastrarColetor, "Código de Coletor: " + sucesso, "Coletor Registrado.", JOptionPane.INFORMATION_MESSAGE);
+            CBColetor.setSelectedIndex((CBColetor.getItemCount() - 1));
+
         }
         atualizarCamposCadastrarColetor();
-        
+
     }//GEN-LAST:event_BCadastrarColetorActionPerformed
-    private void CadastrarItemRepasse(int numeroRepasse,String tipo, int quantidade){
-        Item_repasse itemd=new Item_repasse();
+    private void CadastrarItemRepasse(int numeroRepasse, String tipo, int quantidade) {
+        Item_repasse itemd = new Item_repasse();
         Repasse doaaux;
         Tipo_item t;
-        
-        RepasseDAO daor=new RepasseDAO();
-        doaaux=daor.getByCod(numeroRepasse);
+
+        RepasseDAO daor = new RepasseDAO();
+        doaaux = daor.getByCod(numeroRepasse);
         daor.fechar();
-        if(doaaux==null) JOptionPane.showMessageDialog(CadastrarRepasse, "","Erro",0);
-        else {
-            
+        if (doaaux == null) {
+            JOptionPane.showMessageDialog(CadastrarRepasse, "", "Erro", 0);
+        } else {
+
             itemd.setCod_repasse(numeroRepasse);
             itemd.setQuantidade_item_repasse(quantidade);
-            Tipo_itemDAO daot=new Tipo_itemDAO();
-            t=daot.getByNome(tipo);
+            Tipo_itemDAO daot = new Tipo_itemDAO();
+            t = daot.getByNome(tipo);
             daot.fechar();
             itemd.setCod_tipo(t.getCod_tipo());
-            Item_repasseDAO daoitemd=new Item_repasseDAO();
-            int sucesso=daoitemd.inserir(itemd);
+            Item_repasseDAO daoitemd = new Item_repasseDAO();
+            int sucesso = daoitemd.inserir(itemd);
             daoitemd.fechar();
-            if (sucesso==0) JOptionPane.showMessageDialog(CadastrarRepasse,"Falha no cadastro do item.\nVerifique se ha unidades disponiveis em Estoque.","Erro",0);
-            
-            else {
+            if (sucesso == 0) {
+                JOptionPane.showMessageDialog(CadastrarRepasse, "Falha no cadastro do item.\nVerifique se ha unidades disponiveis em Estoque.", "Erro", 0);
+            } else {
                 atualizarTBItemRepasse();
                 atualizarTBEstoque();
             }
         }
-        
-        
+
     }
     private void BCadastrarRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarRepasseActionPerformed
         // TODO add your handling code here:
-        
-        Repasse r=new Repasse();
+
+        Repasse r = new Repasse();
         Destinacao d;
         Coletor coletor;
-        
-        ColetorDAO daocoletor=new ColetorDAO();
-        coletor=daocoletor.getByNome(CBColetor.getSelectedItem().toString());
+
+        ColetorDAO daocoletor = new ColetorDAO();
+        coletor = daocoletor.getByNome(CBColetor.getSelectedItem().toString());
         daocoletor.fechar();
-        
-        DestinacaoDAO daod=new DestinacaoDAO();
-        d=daod.getByNome(CBDestinacao.getSelectedItem().toString());
+
+        DestinacaoDAO daod = new DestinacaoDAO();
+        d = daod.getByNome(CBDestinacao.getSelectedItem().toString());
         daod.fechar();
-        
+
         r.setCod_destinacao(d.getCod_destinacao());
         r.setCod_coletor(coletor.getCod_coletor());
         r.setCod_usuario(codigoUsuario);
-        
-        RepasseDAO daor=new RepasseDAO();
-        int sucesso=daor.inserir(r);
+
+        RepasseDAO daor = new RepasseDAO();
+        int sucesso = daor.inserir(r);
         daor.fechar();
-        if(sucesso==0) JOptionPane.showMessageDialog(CadastrarRepasse,"Falha na Inserção.","Erro",0);
-        else{
-            
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_repasse) from repasse;");
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(CadastrarRepasse, "Falha na Inserção.", "Erro", 0);
+        } else {
+
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_repasse) from repasse;");
             b.fechar();
-            lista=(DefaultTableModel) TAdicionarItemRepasse.getModel();
-            int items=lista.getRowCount();
-            for(int i=0;i<items;i++){
-                CadastrarItemRepasse(sucesso,lista.getValueAt(i,1).toString(),Integer.parseInt(lista.getValueAt(i, 2).toString()));
+            lista = (DefaultTableModel) TAdicionarItemRepasse.getModel();
+            int items = lista.getRowCount();
+            for (int i = 0; i < items; i++) {
+                CadastrarItemRepasse(sucesso, lista.getValueAt(i, 1).toString(), Integer.parseInt(lista.getValueAt(i, 2).toString()));
             }
             lista.setRowCount(0);
-            JOptionPane.showMessageDialog(CadastrarRepasse,"Código de Repasse: "+sucesso,"Repasse Registrado.",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(CadastrarRepasse, "Código de Repasse: " + sucesso, "Repasse Registrado.", JOptionPane.INFORMATION_MESSAGE);
             atualizarTBRepasse();
         }
-        
-        
+
         atualizarCamposCadastrarRepasse();
     }//GEN-LAST:event_BCadastrarRepasseActionPerformed
     private void BEsqueciSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEsqueciSenhaActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(JDLogin, "Contate o Administrador", "Acesso perdido",0);
+        JOptionPane.showMessageDialog(JDLogin, "Contate o Administrador", "Acesso perdido", 0);
     }//GEN-LAST:event_BEsqueciSenhaActionPerformed
     private void JDLoginWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_JDLoginWindowClosed
-        if(!logado)
-        {   
+        if (!logado) {
             this.setVisible(false);
             this.dispose();
         }
     }//GEN-LAST:event_JDLoginWindowClosed
     private void BCadastrarItemAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarItemAcervoActionPerformed
         // TODO add your handling code here:
-        
-        Item_acervo ia=new Item_acervo();
+
+        Item_acervo ia = new Item_acervo();
         Doador d;
         Tipo_item t;
         Marca ma;
@@ -9130,53 +9161,55 @@ public class Principal extends javax.swing.JFrame {
         Interface i;
         Tecnologia tec;
         Container c;
-        Imagem img=new Imagem();
-        
+        Imagem img = new Imagem();
+
         ia.setCod_usuario(codigoUsuario);
-        
-        try{
+
+        try {
             ia.setDescricao(campoDescricaoItemAcervo.getText());
             ia.setAno(Integer.parseInt(campoAnoItemAcervo.getText()));
             ia.setFunciona(CBFunciona.isSelected());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(CadastrarItemAcervo,"Campos obrigatórios em branco.\nPreencha-os e tente novamente.","Erro",0);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(CadastrarItemAcervo, "Campos obrigatórios em branco.\nPreencha-os e tente novamente.", "Erro", 0);
         }
-        
-        
-        if(!campoCapacidadeItemAcervo.getText().equals(""))
+
+        if (!campoCapacidadeItemAcervo.getText().equals("")) {
             ia.setCapacidade(Integer.parseInt(campoCapacidadeItemAcervo.getText()));
-        
-        
-        try{
-            DoadorDAO daod=new DoadorDAO();
-            d=daod.getByNome(CBDoadorItemAcervo.getSelectedItem().toString());
+        }
+
+        try {
+            DoadorDAO daod = new DoadorDAO();
+            d = daod.getByNome(CBDoadorItemAcervo.getSelectedItem().toString());
             daod.fechar();
-            
-            Tipo_itemDAO daot=new Tipo_itemDAO();
-            t=daot.getByNome(CBTipoItemAcervo.getSelectedItem().toString());
+
+            Tipo_itemDAO daot = new Tipo_itemDAO();
+            t = daot.getByNome(CBTipoItemAcervo.getSelectedItem().toString());
             daot.fechar();
-            
-            MarcaDAO daoma=new MarcaDAO();
-            ma=daoma.getByNome(CBMarca.getSelectedItem().toString());
+
+            MarcaDAO daoma = new MarcaDAO();
+            ma = daoma.getByNome(CBMarca.getSelectedItem().toString());
             daoma.fechar();
-            
-            ModeloDAO daomo=new ModeloDAO();
-            mo=daomo.getByNome(CBModelo.getSelectedItem().toString());
+
+            ModeloDAO daomo = new ModeloDAO();
+            mo = daomo.getByNome(CBModelo.getSelectedItem().toString());
             daomo.fechar();
-            
-            InterfaceDAO daoi=new InterfaceDAO();
-            i=daoi.getByNome(CBInterface.getSelectedItem().toString());
+
+            InterfaceDAO daoi = new InterfaceDAO();
+            i = daoi.getByNome(CBInterface.getSelectedItem().toString());
             daoi.fechar();
-            
-            TecnologiaDAO daotec=new TecnologiaDAO();
-            tec=daotec.getByNome(CBTecnologia.getSelectedItem().toString());
+
+            TecnologiaDAO daotec = new TecnologiaDAO();
+            tec = daotec.getByNome(CBTecnologia.getSelectedItem().toString());
             daotec.fechar();
-            
-            ContainerDAO daoc=new ContainerDAO();
-            if(campoCodContainerCadastrarItemAcervo.getText().equals("")) c=daoc.getByCod(1);
-            else c=daoc.getByCod(Integer.parseInt(campoCodContainerCadastrarItemAcervo.getText()));
+
+            ContainerDAO daoc = new ContainerDAO();
+            if (campoCodContainerCadastrarItemAcervo.getText().equals("")) {
+                c = daoc.getByCod(1);
+            } else {
+                c = daoc.getByCod(Integer.parseInt(campoCodContainerCadastrarItemAcervo.getText()));
+            }
             daoc.fechar();
-            
+
             ia.setCod_doador(d.getCod_doador());
             ia.setCod_tipo(t.getCod_tipo());
             ia.setCod_marca(ma.getCod_marca());
@@ -9184,54 +9217,55 @@ public class Principal extends javax.swing.JFrame {
             ia.setCod_interface(i.getCod_interface());
             ia.setCod_tecnologia(tec.getCod_tecnologia());
             ia.setCod_container(c.getCod_container());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(CadastrarItemAcervo,"O sistema não pode localizar algum dos itens selecionados.\nTente novamente.","Erro",0);
-        }
-        finally{
-            Item_acervoDAO daoia=new Item_acervoDAO();
-            int sucesso=daoia.inserir(ia);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(CadastrarItemAcervo, "O sistema não pode localizar algum dos itens selecionados.\nTente novamente.", "Erro", 0);
+        } finally {
+            Item_acervoDAO daoia = new Item_acervoDAO();
+            int sucesso = daoia.inserir(ia);
             daoia.fechar();
-            if(sucesso==0) JOptionPane.showMessageDialog(CadastrarItemAcervo,"Falha na Inserção.","Erro",0);
-            else{   
-                    Banco b=new Banco();
-                    sucesso=b.max("SELECT MAX(cod_item_acervo) from item_acervo;");
-                    b.fechar();
-                    JOptionPane.showMessageDialog(CadastrarItemAcervo,"Código de Item-Acervo: "+sucesso,"Item-Acervo Registrado.",JOptionPane.INFORMATION_MESSAGE);
-                    
+            if (sucesso == 0) {
+                JOptionPane.showMessageDialog(CadastrarItemAcervo, "Falha na Inserção.", "Erro", 0);
+            } else {
+                Banco b = new Banco();
+                sucesso = b.max("SELECT MAX(cod_item_acervo) from item_acervo;");
+                b.fechar();
+                JOptionPane.showMessageDialog(CadastrarItemAcervo, "Código de Item-Acervo: " + sucesso, "Item-Acervo Registrado.", JOptionPane.INFORMATION_MESSAGE);
+
                 atualizarTBAcervo();
-                }
-        atualizarCamposCadastrarItemAcervo();
-        
+            }
+            atualizarCamposCadastrarItemAcervo();
+
         }
-        
+
     }//GEN-LAST:event_BCadastrarItemAcervoActionPerformed
     private void BCadastrarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarTipoActionPerformed
         // TODO add your handling code here:
-        
-        Tipo_item t=new Tipo_item();
-        
-        int sucesso=0;
-        if(!campoTipoItem.getText().equals("")){
+
+        Tipo_item t = new Tipo_item();
+
+        int sucesso = 0;
+        if (!campoTipoItem.getText().equals("")) {
             t.setNome(campoTipoItem.getText());
-            Tipo_itemDAO daot=new Tipo_itemDAO();
-            sucesso=daot.inserir(t);
+            Tipo_itemDAO daot = new Tipo_itemDAO();
+            sucesso = daot.inserir(t);
             daot.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarTipoItem, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarTipoItem,"Campo Nome Vazio","Erro",0);
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarTipoItem,"Falha na Inserção.","Erro",0);
-        else{
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_tipo) from tipo_item;");
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarTipoItem, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_tipo) from tipo_item;");
             b.fechar();
             atualizarCBTipoItem();
             JDCadastrarTipoItem.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarTipoItem,"Código de Tipo: "+sucesso,"Tipo Registrado.",JOptionPane.INFORMATION_MESSAGE);
-            CBTipoItemAcervo.setSelectedIndex((CBTipoItemAcervo.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarTipoItem, "Código de Tipo: " + sucesso, "Tipo Registrado.", JOptionPane.INFORMATION_MESSAGE);
+            CBTipoItemAcervo.setSelectedIndex((CBTipoItemAcervo.getItemCount() - 1));
 
-            
         }
         atualizarCamposCadastrarTipoItem();
-        
+
     }//GEN-LAST:event_BCadastrarTipoActionPerformed
     private void BNovoTipoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNovoTipoItemActionPerformed
         // TODO add your handling code here:
@@ -9241,31 +9275,33 @@ public class Principal extends javax.swing.JFrame {
         JDCadastrarTipoItem.setLocationRelativeTo(null);
         JDCadastrarTipoItem.pack();
         JDCadastrarTipoItem.setVisible(true);
-        
+
     }//GEN-LAST:event_BNovoTipoItemActionPerformed
     private void BCadastrarMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarMarcaActionPerformed
         // TODO add your handling code here:
-        
-        Marca m=new Marca();
-        
-        int sucesso=0;
-        if(!campoNomeMarca.getText().equals("")){
+
+        Marca m = new Marca();
+
+        int sucesso = 0;
+        if (!campoNomeMarca.getText().equals("")) {
             m.setNome(campoNomeMarca.getText());
-            MarcaDAO daom=new MarcaDAO();
-            sucesso=daom.inserir(m);
+            MarcaDAO daom = new MarcaDAO();
+            sucesso = daom.inserir(m);
             daom.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarMarca, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarMarca,"Campo Nome Vazio","Erro",0);
-        
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarMarca,"Falha na Inserção.","Erro",0);
-        else{
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_marca) from marca;");
+
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarMarca, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_marca) from marca;");
             b.fechar();
             atualizarCBMarca();
             JDCadastrarMarca.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarMarca,"Código de Marca: "+sucesso,"Marca Registrada.",JOptionPane.INFORMATION_MESSAGE);
-            CBMarca.setSelectedIndex((CBMarca.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarMarca, "Código de Marca: " + sucesso, "Marca Registrada.", JOptionPane.INFORMATION_MESSAGE);
+            CBMarca.setSelectedIndex((CBMarca.getItemCount() - 1));
         }
         atualizarCamposCadastrarMarca();
     }//GEN-LAST:event_BCadastrarMarcaActionPerformed
@@ -9280,27 +9316,29 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BNovoMarcaActionPerformed
     private void BCadastrarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarModeloActionPerformed
         // TODO add your handling code here:
-        
-        Modelo m=new Modelo();
-        
-        int sucesso=0;
-        if(!campoNomeModelo.getText().equals("")){
+
+        Modelo m = new Modelo();
+
+        int sucesso = 0;
+        if (!campoNomeModelo.getText().equals("")) {
             m.setNome(campoNomeModelo.getText());
-            ModeloDAO daom=new ModeloDAO();
-            sucesso=daom.inserir(m);
+            ModeloDAO daom = new ModeloDAO();
+            sucesso = daom.inserir(m);
             daom.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarModelo, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarModelo,"Campo Nome Vazio","Erro",0);
-        
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarModelo,"Falha na Inserção.","Erro",0);
-        else{
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_modelo) from modelo;");
+
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarModelo, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_modelo) from modelo;");
             b.fechar();
             atualizarCBModelo();
             JDCadastrarModelo.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarModelo,"Código de Modelo: "+sucesso,"Modelo Registrado.",JOptionPane.INFORMATION_MESSAGE);
-            CBModelo.setSelectedIndex((CBModelo.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarModelo, "Código de Modelo: " + sucesso, "Modelo Registrado.", JOptionPane.INFORMATION_MESSAGE);
+            CBModelo.setSelectedIndex((CBModelo.getItemCount() - 1));
         }
         atualizarCamposCadastrarModelo();
     }//GEN-LAST:event_BCadastrarModeloActionPerformed
@@ -9315,30 +9353,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BNovoModeloActionPerformed
     private void BCadastrarInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarInterfaceActionPerformed
         // TODO add your handling code here:
-        
-        Interface i=new Interface();
-        
-        int sucesso=0;
-        if(!campoNomeInterface.getText().equals("")){
+
+        Interface i = new Interface();
+
+        int sucesso = 0;
+        if (!campoNomeInterface.getText().equals("")) {
             i.setNome(campoNomeInterface.getText());
-            InterfaceDAO daoi=new InterfaceDAO();
-            sucesso=daoi.inserir(i);
+            InterfaceDAO daoi = new InterfaceDAO();
+            sucesso = daoi.inserir(i);
             daoi.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarInterface, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarInterface,"Campo Nome Vazio","Erro",0);
-        
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarInterface,"Falha na Inserção.","Erro",0);
-        else{
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_interface) from interface;");
+
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarInterface, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_interface) from interface;");
             b.fechar();
             atualizarCBInterface();
             JDCadastrarInterface.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarInterface,"Código de Interface: "+sucesso,"Interface Registrada.",JOptionPane.INFORMATION_MESSAGE);
-            CBInterface.setSelectedIndex((CBInterface.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarInterface, "Código de Interface: " + sucesso, "Interface Registrada.", JOptionPane.INFORMATION_MESSAGE);
+            CBInterface.setSelectedIndex((CBInterface.getItemCount() - 1));
         }
         atualizarCamposCadastrarInterface();
-        
+
     }//GEN-LAST:event_BCadastrarInterfaceActionPerformed
     private void BNovoInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNovoInterfaceActionPerformed
         // TODO add your handling code here:
@@ -9351,30 +9391,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BNovoInterfaceActionPerformed
     private void BCadastrarTecnologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarTecnologiaActionPerformed
         // TODO add your handling code here:
-        
-        Tecnologia t=new Tecnologia();
-        
-        int sucesso=0;
-        if(!campoNomeTecnologia.getText().equals("")){
+
+        Tecnologia t = new Tecnologia();
+
+        int sucesso = 0;
+        if (!campoNomeTecnologia.getText().equals("")) {
             t.setNome(campoNomeTecnologia.getText());
-            TecnologiaDAO daot=new TecnologiaDAO();
-            sucesso=daot.inserir(t);
+            TecnologiaDAO daot = new TecnologiaDAO();
+            sucesso = daot.inserir(t);
             daot.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarTecnologia, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarTecnologia,"Campo Nome Vazio","Erro",0);
-        
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarTecnologia,"Falha na Inserção.","Erro",0);
-        else{
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_tecnologia) from tecnologia;");
+
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarTecnologia, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_tecnologia) from tecnologia;");
             b.fechar();
             atualizarCBTecnologia();
             JDCadastrarTecnologia.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarTecnologia,"Código de Tecnologia: "+sucesso,"Tecnologia Registrada.",JOptionPane.INFORMATION_MESSAGE);
-            CBTecnologia.setSelectedIndex((CBTecnologia.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarTecnologia, "Código de Tecnologia: " + sucesso, "Tecnologia Registrada.", JOptionPane.INFORMATION_MESSAGE);
+            CBTecnologia.setSelectedIndex((CBTecnologia.getItemCount() - 1));
         }
         atualizarCamposCadastrarTecnologia();
-        
+
     }//GEN-LAST:event_BCadastrarTecnologiaActionPerformed
     private void BNovoTecnologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNovoTecnologiaActionPerformed
         // TODO add your handling code here:
@@ -9414,60 +9456,61 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BNovoDoadorAcervoActionPerformed
     private void BAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarUsuarioActionPerformed
         // TODO add your handling code here:
-        UsuarioDAO daou=new UsuarioDAO();
-        Usuario u=new Usuario();
-        u=daou.getByCod(codigoUsuario);
-        
+        UsuarioDAO daou = new UsuarioDAO();
+        Usuario u = new Usuario();
+        u = daou.getByCod(codigoUsuario);
+
         u.setCod_usuario(codigoUsuario);
         u.setNome_usuario(campoNomeAlterarUsuario.getText());
         u.setEmail(campoEmailAlterarUsuario.getText());
         u.setRegistro_academico(campoRegistroAcademicoAlterarUsuario.getText());
         u.setUsuario_administrador(administrador);
-        
-        String senhaatual=new String(campoSenhaAtualAlterarUsuario.getPassword());
-        String novasenha=new String(campoNovaSenhaAlterarUsuario.getPassword());
-        String repetirnovasenha=new String(campoRepetirSenhaAlterarUsuario.getPassword());
-        
+
+        String senhaatual = new String(campoSenhaAtualAlterarUsuario.getPassword());
+        String novasenha = new String(campoNovaSenhaAlterarUsuario.getPassword());
+        String repetirnovasenha = new String(campoRepetirSenhaAlterarUsuario.getPassword());
+
         boolean procedermudanca;
-        boolean alterandosenha=!senhaatual.equals("");
-        Encryptor aes=new Encryptor();
-        
-        if(!alterandosenha) {
-            procedermudanca=true;
-            if(!novasenha.equals("")||!repetirnovasenha.equals("")){
-                JOptionPane.showMessageDialog(SuasInformacoes,"Para alterar a senha, digite a senha atual.","Erro",0);
-                procedermudanca=false;
+        boolean alterandosenha = !senhaatual.equals("");
+        Encryptor aes = new Encryptor();
+
+        if (!alterandosenha) {
+            procedermudanca = true;
+            if (!novasenha.equals("") || !repetirnovasenha.equals("")) {
+                JOptionPane.showMessageDialog(SuasInformacoes, "Para alterar a senha, digite a senha atual.", "Erro", 0);
+                procedermudanca = false;
+            }
+        } else {
+            senhaatual = aes.encrypt(u.getChave_encriptacao(), senhaatual);
+            procedermudanca = (senhaatual.equals(u.getSenha_usuario()));
+            if (novasenha.equals("")) {
+                procedermudanca = false;
             }
         }
-        else{
-            senhaatual=aes.encrypt(u.getChave_encriptacao(),senhaatual);
-            procedermudanca=(senhaatual.equals(u.getSenha_usuario()));
-            if(novasenha.equals("")) procedermudanca=false;
-        }
-        
-        if(!novasenha.equals(repetirnovasenha)
-                ||!procedermudanca
-                ||novasenha.equals("")
-                ||u.getNome_usuario().equals("")
-                ||u.getEmail().equals("")
-                ||u.getRegistro_academico().equals("")){
-            JOptionPane.showMessageDialog(SuasInformacoes,"Senha atual errada, senhas novas nao coincidem ou campos vazios.\nVerifique os campos e tente novamente","Erro",0);
-        }
-        else{
-            if(alterandosenha&&procedermudanca){
-                u.setChave_encriptacao(UUID.randomUUID().toString().substring(0,16));
-                String encriptada=aes.encrypt(u.getChave_encriptacao(),novasenha);
+
+        if (!novasenha.equals(repetirnovasenha)
+                || !procedermudanca
+                || novasenha.equals("")
+                || u.getNome_usuario().equals("")
+                || u.getEmail().equals("")
+                || u.getRegistro_academico().equals("")) {
+            JOptionPane.showMessageDialog(SuasInformacoes, "Senha atual errada, senhas novas nao coincidem ou campos vazios.\nVerifique os campos e tente novamente", "Erro", 0);
+        } else {
+            if (alterandosenha && procedermudanca) {
+                u.setChave_encriptacao(UUID.randomUUID().toString().substring(0, 16));
+                String encriptada = aes.encrypt(u.getChave_encriptacao(), novasenha);
                 u.setSenha_usuario(encriptada);
-                
+
             }
-            
-            boolean sucesso=daou.alterar(u);
-            
-            if(!sucesso) JOptionPane.showMessageDialog(SuasInformacoes,"Erro na alteração.\nVerifique os campos e tente novamente","Erro",0);
-            else{ 
-                JOptionPane.showMessageDialog(SuasInformacoes,"Informações Atualizadas","Concluido",1);
-                nomeUsuario=u.getNome_usuario();
-                senhaUsuario=u.getSenha_usuario();
+
+            boolean sucesso = daou.alterar(u);
+
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(SuasInformacoes, "Erro na alteração.\nVerifique os campos e tente novamente", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(SuasInformacoes, "Informações Atualizadas", "Concluido", 1);
+                nomeUsuario = u.getNome_usuario();
+                senhaUsuario = u.getSenha_usuario();
                 atualizarCBUsuario();
                 atualizarTBUsuario();
                 atualizarCamposAlterarUsuario();
@@ -9486,36 +9529,35 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BNovoTipoItemDoacaoActionPerformed
     private void campoLinkKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoLinkKeyTyped
         // TODO add your handling code here:
-        if(campoLink.getText().equals(""));
+        if (campoLink.getText().equals(""));
         LFotoAcervo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/fotoacervo.png"))); // NOI18N
     }//GEN-LAST:event_campoLinkKeyTyped
     private void BCheckLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCheckLinkActionPerformed
         // TODO add your handling code here:
         BufferedImage image;
-        int h,w,times;
+        int h, w, times;
         try {
             image = ImageIO.read(new URL(campoLink.getText()));
-            h=image.getHeight();
-            w=image.getWidth();
-            if(w>=h){
-            times=w/LFotoAcervo.getWidth();
-            w=w/(times+1);
-            h=h/(times+1);
+            h = image.getHeight();
+            w = image.getWidth();
+            if (w >= h) {
+                times = w / LFotoAcervo.getWidth();
+                w = w / (times + 1);
+                h = h / (times + 1);
+            } else {
+                times = h / LFotoAcervo.getHeight();
+                w = w / (times + 1);
+                h = h / (times + 1);
             }
-        else{
-            times=h/LFotoAcervo.getHeight();
-            w=w/(times+1);
-            h=h/(times+1);
-        }
-        Image resizedImage = image.getScaledInstance(w, h, 0);
-        LFotoAcervo.setIcon(new javax.swing.ImageIcon(resizedImage));
-        //return true;
+            Image resizedImage = image.getScaledInstance(w, h, 0);
+            LFotoAcervo.setIcon(new javax.swing.ImageIcon(resizedImage));
+            //return true;
         } catch (MalformedURLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_BCheckLinkActionPerformed
     private void BDeslogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDeslogarActionPerformed
         // TODO add your handling code here:
@@ -9523,10 +9565,10 @@ public class Principal extends javax.swing.JFrame {
         Doacoes.setSelectedIndex(0);
         Principal.setSelectedIndex(0);
         this.dispose();
-        nomeUsuario=null;
-        senhaUsuario=null;
-        administrador=false;
-        
+        nomeUsuario = null;
+        senhaUsuario = null;
+        administrador = false;
+
         JDLogin.setIconImage(icone);
         JDLogin.setModal(true);
         JDLogin.setLocationRelativeTo(null);
@@ -9537,46 +9579,50 @@ public class Principal extends javax.swing.JFrame {
         Doador donator;
         Doacao d;
         Evento_origem eo;
-        
-        DoadorDAO daodonator=new DoadorDAO();
-        donator=daodonator.getByNome(campoDoadorAlterarDoacao.getText());
+
+        DoadorDAO daodonator = new DoadorDAO();
+        donator = daodonator.getByNome(campoDoadorAlterarDoacao.getText());
         daodonator.fechar();
-        
-        Evento_origemDAO daoeo=new Evento_origemDAO();
-        eo=daoeo.getByNome(CBEventoOrigemAlterarDoacao.getSelectedItem().toString());
+
+        Evento_origemDAO daoeo = new Evento_origemDAO();
+        eo = daoeo.getByNome(CBEventoOrigemAlterarDoacao.getSelectedItem().toString());
         daoeo.fechar();
-        
-        DoacaoDAO daod=new DoacaoDAO();
-        d=daod.getByCod(Integer.parseInt(campoDoacaoAlterarDoacao.getText()));
-        
+
+        DoacaoDAO daod = new DoacaoDAO();
+        d = daod.getByCod(Integer.parseInt(campoDoacaoAlterarDoacao.getText()));
+
         d.setCod_evento_origem(eo.getCod_evento_origem());
         d.setCod_doador(donator.getCod_doador());
-        
-        boolean sucesso=daod.alterar(d);
+
+        boolean sucesso = daod.alterar(d);
         daod.fechar();
-        if(sucesso) {JOptionPane.showMessageDialog(JDAlterarDoacao, "Alterações Salvas","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                    atualizarTBDoacao();
-                    JDAlterarDoacao.setVisible(false);
-                    JDAlterarDoacao.dispose();
-                    
-                    }
-        else JOptionPane.showMessageDialog(JDAlterarDoacao, "Alterações não foram Salvas","Erro",0);
-        
+        if (sucesso) {
+            JOptionPane.showMessageDialog(JDAlterarDoacao, "Alterações Salvas", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+            atualizarTBDoacao();
+            JDAlterarDoacao.setVisible(false);
+            JDAlterarDoacao.dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(JDAlterarDoacao, "Alterações não foram Salvas", "Erro", 0);
+        }
+
     }//GEN-LAST:event_BAlterarDoacaoActionPerformed
     private void BConfirmarExcluirDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirDoacaoActionPerformed
         // TODO add your handling code here:
-        int cod_excluirdoacao=Integer.parseInt(campoDoacaoExcluirDoacao.getText());
-        DoacaoDAO daodoa=new DoacaoDAO();
-        boolean sucesso=daodoa.excluir(cod_excluirdoacao);
+        int cod_excluirdoacao = Integer.parseInt(campoDoacaoExcluirDoacao.getText());
+        DoacaoDAO daodoa = new DoacaoDAO();
+        boolean sucesso = daodoa.excluir(cod_excluirdoacao);
         daodoa.fechar();
-        if(sucesso) {JOptionPane.showMessageDialog(JDExcluirDoacao, "Item excluido","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                    atualizarTBDoacao();
-                    atualizarTBItemDoacao();
-                    JDExcluirDoacao.setVisible(false);
-                    JDExcluirDoacao.dispose();
-                    }
-        else JOptionPane.showMessageDialog(JDExcluirDoacao, "Item não excluido.\nVerificar se há itens atrelados à Doação. Se houver, excluir todos os itens da mesma.","Erro",0);
-        
+        if (sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirDoacao, "Item excluido", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+            atualizarTBDoacao();
+            atualizarTBItemDoacao();
+            JDExcluirDoacao.setVisible(false);
+            JDExcluirDoacao.dispose();
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirDoacao, "Item não excluido.\nVerificar se há itens atrelados à Doação. Se houver, excluir todos os itens da mesma.", "Erro", 0);
+        }
+
     }//GEN-LAST:event_BConfirmarExcluirDoacaoActionPerformed
     private void BCancelarExcluirDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirDoacaoActionPerformed
         // TODO add your handling code here:
@@ -9585,26 +9631,28 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BCancelarExcluirDoacaoActionPerformed
     private void BCadastrarEventoOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarEventoOrigemActionPerformed
         // TODO add your handling code here:
-        Evento_origem eo=new Evento_origem();
-        
-        int sucesso=0;
-        if(!campoNomeEventoOrigem.getText().equals("")){
+        Evento_origem eo = new Evento_origem();
+
+        int sucesso = 0;
+        if (!campoNomeEventoOrigem.getText().equals("")) {
             eo.setNome_evento_origem(campoNomeEventoOrigem.getText());
-            Evento_origemDAO daoeo=new Evento_origemDAO();
-            sucesso=daoeo.inserir(eo);
+            Evento_origemDAO daoeo = new Evento_origemDAO();
+            sucesso = daoeo.inserir(eo);
             daoeo.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarEventoOrigem, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarEventoOrigem,"Campo Nome Vazio","Erro",0);
-        
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarEventoOrigem,"Falha na Inserção.","Erro",0);
-        else{
-             Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_evento_origem) from evento_origem;");
+
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarEventoOrigem, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_evento_origem) from evento_origem;");
             b.fechar();
             atualizarCBEventoOrigem();
             JDCadastrarEventoOrigem.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarEventoOrigem,"Código de Evento Origem: "+sucesso,"Evento origem Registrado.",JOptionPane.INFORMATION_MESSAGE);
-            CBEventoOrigem.setSelectedIndex((CBEventoOrigem.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarEventoOrigem, "Código de Evento Origem: " + sucesso, "Evento origem Registrado.", JOptionPane.INFORMATION_MESSAGE);
+            CBEventoOrigem.setSelectedIndex((CBEventoOrigem.getItemCount() - 1));
         }
     }//GEN-LAST:event_BCadastrarEventoOrigemActionPerformed
     private void BNovoEventoOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNovoEventoOrigemActionPerformed
@@ -9626,53 +9674,57 @@ public class Principal extends javax.swing.JFrame {
         JDCadastrarDestinacao.setVisible(true);
     }//GEN-LAST:event_BNovoDestinacaoActionPerformed
     private void BCadastrarDestinacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarDestinacaoActionPerformed
-        
-        Destinacao d=new Destinacao();
-        
-        int sucesso=0;
-        if(!campoNomeDestinacao.getText().equals("")){
+
+        Destinacao d = new Destinacao();
+
+        int sucesso = 0;
+        if (!campoNomeDestinacao.getText().equals("")) {
             d.setNome_destinacao(campoNomeDestinacao.getText());
-            DestinacaoDAO daod=new DestinacaoDAO();
-            sucesso=daod.inserir(d);
+            DestinacaoDAO daod = new DestinacaoDAO();
+            sucesso = daod.inserir(d);
             daod.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarDestinacao, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarDestinacao,"Campo Nome Vazio","Erro",0);
-        
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarDestinacao,"Falha na Inserção.","Erro",0);
-        else{
-             Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_destinacao) from destinacao;");
+
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarDestinacao, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_destinacao) from destinacao;");
             b.fechar();
             atualizarCBDestinacao();
             JDCadastrarDestinacao.dispose();
-            JOptionPane.showMessageDialog(JDCadastrarDestinacao,"Código de Destinação: "+sucesso,"Destinação Registrado.",JOptionPane.INFORMATION_MESSAGE);
-            CBDestinacao.setSelectedIndex((CBDestinacao.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarDestinacao, "Código de Destinação: " + sucesso, "Destinação Registrado.", JOptionPane.INFORMATION_MESSAGE);
+            CBDestinacao.setSelectedIndex((CBDestinacao.getItemCount() - 1));
         }
     }//GEN-LAST:event_BCadastrarDestinacaoActionPerformed
     private void BCadastrarTipoColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarTipoColetorActionPerformed
         // TODO add your handling code here:
-        
-        Tipo_coletor tc=new Tipo_coletor();
-        
-        int sucesso=0;
-        if(!campoTipoColetor.getText().equals("")){
+
+        Tipo_coletor tc = new Tipo_coletor();
+
+        int sucesso = 0;
+        if (!campoTipoColetor.getText().equals("")) {
             tc.setNome_tipo_coletor(campoTipoColetor.getText());
-            Tipo_coletorDAO daod=new Tipo_coletorDAO();
-            sucesso=daod.inserir(tc);
+            Tipo_coletorDAO daod = new Tipo_coletorDAO();
+            sucesso = daod.inserir(tc);
             daod.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarTipoColetor, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarTipoColetor,"Campo Nome Vazio","Erro",0);
-        
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarTipoColetor,"Falha na Inserção.","Erro",0);
-        else{
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_tipo_coletor) from tipo_coletor;");
+
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarTipoColetor, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_tipo_coletor) from tipo_coletor;");
             b.fechar();
             atualizarCBTipoColetor();
             JDCadastrarTipoColetor.dispose();
             JDCadastrarColetor.pack();
-            JOptionPane.showMessageDialog(JDCadastrarTipoColetor,"Código de Tipo Coletor: "+sucesso,"Tipo Coletor Registrado.",JOptionPane.INFORMATION_MESSAGE);
-            CBTipoColetor.setSelectedIndex((CBTipoColetor.getItemCount()-1));
+            JOptionPane.showMessageDialog(JDCadastrarTipoColetor, "Código de Tipo Coletor: " + sucesso, "Tipo Coletor Registrado.", JOptionPane.INFORMATION_MESSAGE);
+            CBTipoColetor.setSelectedIndex((CBTipoColetor.getItemCount() - 1));
         }
     }//GEN-LAST:event_BCadastrarTipoColetorActionPerformed
     private void BNovoTipoColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNovoTipoColetorActionPerformed
@@ -9686,26 +9738,28 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BNovoTipoColetorActionPerformed
     private void BCadastrarTipoContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarTipoContainerActionPerformed
         // TODO add your handling code here:
-        Tipo_container tc=new Tipo_container();
-        
-        int sucesso=0;
-        if(!campoTipoContainer.getText().equals("")){
+        Tipo_container tc = new Tipo_container();
+
+        int sucesso = 0;
+        if (!campoTipoContainer.getText().equals("")) {
             tc.setNome_tipo_container(campoTipoContainer.getText());
-            Tipo_containerDAO daod=new Tipo_containerDAO();
-            sucesso=daod.inserir(tc);
+            Tipo_containerDAO daod = new Tipo_containerDAO();
+            sucesso = daod.inserir(tc);
             daod.fechar();
+        } else {
+            JOptionPane.showMessageDialog(JDCadastrarTipoContainer, "Campo Nome Vazio", "Erro", 0);
         }
-        else JOptionPane.showMessageDialog(JDCadastrarTipoContainer,"Campo Nome Vazio","Erro",0);
-        if(sucesso==0) JOptionPane.showMessageDialog(JDCadastrarTipoContainer,"Falha na Inserção.","Erro",0);
-        else{
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_tipo_container) from tipo_container;");
+        if (sucesso == 0) {
+            JOptionPane.showMessageDialog(JDCadastrarTipoContainer, "Falha na Inserção.", "Erro", 0);
+        } else {
+            Banco b = new Banco();
+            sucesso = b.max("SELECT MAX(cod_tipo_container) from tipo_container;");
             b.fechar();
             atualizarCBTipoContainer();
             JDCadastrarTipoContainer.dispose();
-            
-            JOptionPane.showMessageDialog(JDCadastrarTipoContainer,"Código de Tipo Container: "+sucesso,"Tipo Container Registrado.",JOptionPane.INFORMATION_MESSAGE);
-            CBTipoContainerCadastrarContainer.setSelectedIndex((CBTipoContainerCadastrarContainer.getItemCount()-1));
+
+            JOptionPane.showMessageDialog(JDCadastrarTipoContainer, "Código de Tipo Container: " + sucesso, "Tipo Container Registrado.", JOptionPane.INFORMATION_MESSAGE);
+            CBTipoContainerCadastrarContainer.setSelectedIndex((CBTipoContainerCadastrarContainer.getItemCount() - 1));
         }
     }//GEN-LAST:event_BCadastrarTipoContainerActionPerformed
     private void BNovoTipoContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNovoTipoContainerActionPerformed
@@ -9720,86 +9774,84 @@ public class Principal extends javax.swing.JFrame {
 
     private void JPBCarregandoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_JPBCarregandoStateChanged
         // TODO add your handling code here:
-       
-        
+
+
     }//GEN-LAST:event_JPBCarregandoStateChanged
 
     private void JDCarregandoDadosWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_JDCarregandoDadosWindowActivated
         // TODO add your handling code here:
-            
-            
-            JDCarregandoDados.setModal(false);
-            JDCarregandoDados.setVisible(false);
-            JDCarregandoDados.dispose();
-            
-            
-            
+
+        JDCarregandoDados.setModal(false);
+        JDCarregandoDados.setVisible(false);
+        JDCarregandoDados.dispose();
+
+
     }//GEN-LAST:event_JDCarregandoDadosWindowActivated
 
     private void JFCarregandoDadosWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_JFCarregandoDadosWindowActivated
         // TODO add your handling code here:
 //            SwingUtilities.invokeLater(() -> {
-                JPBCarregando.setValue(0);
-                atualizarTB();
-                JPBCarregando.setValue(33);
-                JPBCarregando.setString("Progresso: "+JPBCarregando.getValue());
-                atualizarCB();
-                JPBCarregando.setValue(66);
-                JPBCarregando.setString("Progresso: "+JPBCarregando.getValue());
-                atualizarCampos();
-                JPBCarregando.setValue(100);
-                JPBCarregando.setString("Progresso: "+JPBCarregando.getValue());
-                JPBCarregando.setString("Finalizado");
-                JFCarregandoDados.setVisible(false);
-                JFCarregandoDados.dispose();
-                if(!administrador) {
-                    Usuarios.remove(CadastrarUsuario);
-                }
-   //         });
-            //this.setVisible(true);
+        JPBCarregando.setValue(0);
+        atualizarTB();
+        JPBCarregando.setValue(33);
+        JPBCarregando.setString("Progresso: " + JPBCarregando.getValue());
+        atualizarCB();
+        JPBCarregando.setValue(66);
+        JPBCarregando.setString("Progresso: " + JPBCarregando.getValue());
+        atualizarCampos();
+        JPBCarregando.setValue(100);
+        JPBCarregando.setString("Progresso: " + JPBCarregando.getValue());
+        JPBCarregando.setString("Finalizado");
+        JFCarregandoDados.setVisible(false);
+        JFCarregandoDados.dispose();
+        if (!administrador) {
+            Usuarios.remove(CadastrarUsuario);
+        }
+        //         });
+        //this.setVisible(true);
     }//GEN-LAST:event_JFCarregandoDadosWindowActivated
 
     private void BEditarItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarItemDoacaoActionPerformed
         // TODO add your handling code here:
-        if(!TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(),2).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelItemDoacao, "Você nao possui permissão para editar esse item.","Erro",0);
+        if (!TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(), 2).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelItemDoacao, "Você nao possui permissão para editar esse item.", "Erro", 0);
             return;
         }
-        int cod_alteraritemdoacao=Integer.parseInt(TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(), 0).toString());
+        int cod_alteraritemdoacao = Integer.parseInt(TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(), 0).toString());
         Item_doacao item;
         Doacao d;
         Usuario u;
         Doador doa;
         Evento_origem eo;
         Tipo_item t;
-        
-        Item_doacaoDAO itemdd=new Item_doacaoDAO();
-        item=itemdd.getByCod(cod_alteraritemdoacao);
+
+        Item_doacaoDAO itemdd = new Item_doacaoDAO();
+        item = itemdd.getByCod(cod_alteraritemdoacao);
         itemdd.fechar();
-        
-        DoacaoDAO daod=new DoacaoDAO();
-        d=daod.getByCod(item.getCod_doacao());
+
+        DoacaoDAO daod = new DoacaoDAO();
+        d = daod.getByCod(item.getCod_doacao());
         daod.fechar();
-        
-        UsuarioDAO daou=new UsuarioDAO();
-        u=daou.getByCod(d.getCod_usuario());
+
+        UsuarioDAO daou = new UsuarioDAO();
+        u = daou.getByCod(d.getCod_usuario());
         daou.fechar();
-        
-        DoadorDAO daodoa=new DoadorDAO();
-        doa=daodoa.getByCod(d.getCod_doador());
+
+        DoadorDAO daodoa = new DoadorDAO();
+        doa = daodoa.getByCod(d.getCod_doador());
         daodoa.fechar();
-        
-        Tipo_itemDAO tdao=new Tipo_itemDAO();
-        t=tdao.getByCod(item.getCod_tipo());
+
+        Tipo_itemDAO tdao = new Tipo_itemDAO();
+        t = tdao.getByCod(item.getCod_tipo());
         tdao.fechar();
-        
-        campoItemDoacaoAlterarItemDoacao.setText(item.getCod_item_doacao()+"");
+
+        campoItemDoacaoAlterarItemDoacao.setText(item.getCod_item_doacao() + "");
         campoUsuarioAlterarItemDoacao.setText(u.getNome_usuario());
         campoDoadorAlterarItemDoacao.setText(doa.getNome_doador());
-        
+
         CBTipoAlterarItemDoacao.setSelectedItem(t.getNome());
-        campoQuantidadeAlterarItemDoacao.setText(item.getQuantidade_item_doacao()+"");
-        
+        campoQuantidadeAlterarItemDoacao.setText(item.getQuantidade_item_doacao() + "");
+
         JDAlterarItemDoacao.setLocationRelativeTo(null);
         JDAlterarItemDoacao.setIconImage(icone);
         //JDAlterarItemDoacao.
@@ -9808,65 +9860,58 @@ public class Principal extends javax.swing.JFrame {
 
     private void BAlterarItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarItemDoacaoActionPerformed
         // TODO add your handling code here:
-        boolean sucesso=false;
-        Item_doacao item=new Item_doacao();
-        try{
-        
-        
-        Item_doacaoDAO itemdd=new Item_doacaoDAO();
-        item=itemdd.getByCod(Integer.parseInt(campoItemDoacaoAlterarItemDoacao.getText()));
-        
-        
-        Tipo_item t;
-        Tipo_itemDAO daot=new Tipo_itemDAO();
-        t=daot.getByNome(CBTipoAlterarItemDoacao.getSelectedItem().toString());
-        daot.fechar();
-        
-        
-        item.setCod_tipo(t.getCod_tipo());
-        item.setQuantidade_item_doacao(Integer.parseInt(campoQuantidadeAlterarItemDoacao.getText()));
-        sucesso=itemdd.alterar(item);
-        itemdd.fechar();
-        
-        }
-        catch(NumberFormatException | HeadlessException e){
-            JOptionPane.showMessageDialog(PainelItemDoacao,"Campos Incorretos.\nVerifique e tente novamente.","Erro",0);
-        }
-        finally{
-            if (!sucesso) {JOptionPane.showMessageDialog(PainelItemDoacao,"Falha na alteração.","Erro",0);
-                            }
-            else {
-                JOptionPane.showMessageDialog(PainelItemDoacao,"Código de Item-Doacao: "+item.getCod_tipo(),"Item-Doacao Alterado.",JOptionPane.INFORMATION_MESSAGE);
+        boolean sucesso = false;
+        Item_doacao item = new Item_doacao();
+        try {
+
+            Item_doacaoDAO itemdd = new Item_doacaoDAO();
+            item = itemdd.getByCod(Integer.parseInt(campoItemDoacaoAlterarItemDoacao.getText()));
+
+            Tipo_item t;
+            Tipo_itemDAO daot = new Tipo_itemDAO();
+            t = daot.getByNome(CBTipoAlterarItemDoacao.getSelectedItem().toString());
+            daot.fechar();
+
+            item.setCod_tipo(t.getCod_tipo());
+            item.setQuantidade_item_doacao(Integer.parseInt(campoQuantidadeAlterarItemDoacao.getText()));
+            sucesso = itemdd.alterar(item);
+            itemdd.fechar();
+
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(PainelItemDoacao, "Campos Incorretos.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(PainelItemDoacao, "Falha na alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(PainelItemDoacao, "Código de Item-Doacao: " + item.getCod_tipo(), "Item-Doacao Alterado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBItemDoacao();
                 atualizarTBEstoque();
                 JDAlterarItemDoacao.setModal(false);
                 JDAlterarItemDoacao.setVisible(false);
                 JDAlterarItemDoacao.dispose();
-                }
+            }
         }
-        
-        
+
+
     }//GEN-LAST:event_BAlterarItemDoacaoActionPerformed
 
     private void BAlterarDoadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarDoadorActionPerformed
         // TODO add your handling code here:
-        boolean sucesso=false;
-        Doador doador=new Doador();
-        try{
-            DoadorDAO daodoador=new DoadorDAO();
-            doador=daodoador.getByCod(Integer.parseInt(campoCodigoDoadorAlterarDoador.getText()));
+        boolean sucesso = false;
+        Doador doador = new Doador();
+        try {
+            DoadorDAO daodoador = new DoadorDAO();
+            doador = daodoador.getByCod(Integer.parseInt(campoCodigoDoadorAlterarDoador.getText()));
             doador.setNome_doador(campoNomeDoadorAlterarDoador.getText());
-            sucesso=daodoador.alterar(doador);
+            sucesso = daodoador.alterar(doador);
             daodoador.fechar();
-        }
-        catch(NumberFormatException | HeadlessException e){
-            JOptionPane.showMessageDialog(PainelDoadores,"Campo Incorreto.\nVerifique e tente novamente.","Erro",0);
-        }
-        finally{
-            if (!sucesso) {JOptionPane.showMessageDialog(PainelDoadores,"Falha na alteração.","Erro",0);
-                            }
-            else {
-                JOptionPane.showMessageDialog(PainelDoadores,"Código de Doador: "+doador.getCod_doador(),"Doador Alterado.",JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(PainelDoadores, "Campo Incorreto.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(PainelDoadores, "Falha na alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(PainelDoadores, "Código de Doador: " + doador.getCod_doador(), "Doador Alterado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBDoacao();
                 atualizarTBItemDoacao();
                 atualizarTBDoador();
@@ -9875,21 +9920,21 @@ public class Principal extends javax.swing.JFrame {
                 JDAlterarDoador.setModal(false);
                 JDAlterarDoador.setVisible(false);
                 JDAlterarDoador.dispose();
-                }
+            }
         }
     }//GEN-LAST:event_BAlterarDoadorActionPerformed
 
     private void BEditarDoadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarDoadorActionPerformed
         // TODO add your handling code here:
-        int cod_alterardoador=Integer.parseInt(TDoador.getValueAt(TDoador.getSelectedRow(), 0).toString());
-        
-        DoadorDAO daodoador=new DoadorDAO();
-        Doador doador=daodoador.getByCod(cod_alterardoador);
+        int cod_alterardoador = Integer.parseInt(TDoador.getValueAt(TDoador.getSelectedRow(), 0).toString());
+
+        DoadorDAO daodoador = new DoadorDAO();
+        Doador doador = daodoador.getByCod(cod_alterardoador);
         daodoador.fechar();
-        
-        campoCodigoDoadorAlterarDoador.setText(doador.getCod_doador()+"");
+
+        campoCodigoDoadorAlterarDoador.setText(doador.getCod_doador() + "");
         campoNomeDoadorAlterarDoador.setText(doador.getNome_doador());
-        
+
         JDAlterarDoador.setLocationRelativeTo(null);
         JDAlterarDoador.setIconImage(icone);
         JDAlterarDoador.setVisible(true);
@@ -9897,39 +9942,39 @@ public class Principal extends javax.swing.JFrame {
 
     private void BEditarRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarRepasseActionPerformed
         // TODO add your handling code here:
-        if(!TRepasse.getValueAt(TRepasse.getSelectedRow(),1).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelRepasse, "Você nao possui permissão para editar esse item.","Erro",0);
+        if (!TRepasse.getValueAt(TRepasse.getSelectedRow(), 1).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelRepasse, "Você nao possui permissão para editar esse item.", "Erro", 0);
             return;
         }
-        int cod_alterarrepasse=Integer.parseInt(TRepasse.getValueAt(TRepasse.getSelectedRow(), 0).toString());
+        int cod_alterarrepasse = Integer.parseInt(TRepasse.getValueAt(TRepasse.getSelectedRow(), 0).toString());
         Repasse r;
         Usuario u;
         Coletor c;
         Destinacao d;
-        
-        RepasseDAO daor=new RepasseDAO();
-        r=daor.getByCod(cod_alterarrepasse);
+
+        RepasseDAO daor = new RepasseDAO();
+        r = daor.getByCod(cod_alterarrepasse);
         daor.fechar();
-        
-        UsuarioDAO daou=new UsuarioDAO();
-        u=daou.getByCod(r.getCod_usuario());
+
+        UsuarioDAO daou = new UsuarioDAO();
+        u = daou.getByCod(r.getCod_usuario());
         daou.fechar();
-        
-        ColetorDAO daoc=new ColetorDAO();
-        c=daoc.getByCod(r.getCod_coletor());
+
+        ColetorDAO daoc = new ColetorDAO();
+        c = daoc.getByCod(r.getCod_coletor());
         daoc.fechar();
-        
-        DestinacaoDAO daod=new DestinacaoDAO();
-        d=daod.getByCod(r.getCod_destinacao());
+
+        DestinacaoDAO daod = new DestinacaoDAO();
+        d = daod.getByCod(r.getCod_destinacao());
         daod.fechar();
-        
-        campoRepasseAlterarRepasse.setText(r.getCod_repasse()+"");
+
+        campoRepasseAlterarRepasse.setText(r.getCod_repasse() + "");
         campoUsuarioAlterarRepasse.setText(u.getNome_usuario());
-        java.util.Date data=r.getData_repasse();
-        campoDataAlterarRepasse.setText(data.getDate()+"/"+(data.getMonth()+1)+"/"+(1900+data.getYear()));
+        java.util.Date data = r.getData_repasse();
+        campoDataAlterarRepasse.setText(data.getDate() + "/" + (data.getMonth() + 1) + "/" + (1900 + data.getYear()));
         campoColetorAlterarRepasse.setText(c.getNome());
         CBDestinacaoAlterarRepasse.setSelectedItem(d.getNome_destinacao());
-        
+
         JDAlterarRepasse.setLocationRelativeTo(null);
         JDAlterarRepasse.setIconImage(icone);
         JDAlterarRepasse.setVisible(true);
@@ -9937,118 +9982,114 @@ public class Principal extends javax.swing.JFrame {
 
     private void BAlterarRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarRepasseActionPerformed
         // TODO add your handling code here:
-        boolean sucesso=false;
-        Repasse r=new Repasse();
-        try{
-            RepasseDAO rdao=new RepasseDAO();
-            r=rdao.getByCod(Integer.parseInt(campoRepasseAlterarRepasse.getText()));
-            
-            DestinacaoDAO daod=new DestinacaoDAO();
-            Destinacao d=daod.getByNome(CBDestinacaoAlterarRepasse.getSelectedItem().toString());
+        boolean sucesso = false;
+        Repasse r = new Repasse();
+        try {
+            RepasseDAO rdao = new RepasseDAO();
+            r = rdao.getByCod(Integer.parseInt(campoRepasseAlterarRepasse.getText()));
+
+            DestinacaoDAO daod = new DestinacaoDAO();
+            Destinacao d = daod.getByNome(CBDestinacaoAlterarRepasse.getSelectedItem().toString());
             daod.fechar();
-            
+
             r.setCod_destinacao(d.getCod_destinacao());
-            sucesso=rdao.alterar(r);
-        
-        }
-        catch(NumberFormatException | HeadlessException e){
-            JOptionPane.showMessageDialog(PainelRepasse,"Campos Incorretos.\nVerifique e tente novamente.","Erro",0);
-        }
-        finally{
-            if (!sucesso) {JOptionPane.showMessageDialog(PainelRepasse,"Falha na alteração.","Erro",0);
-                            }
-            else {
-                JOptionPane.showMessageDialog(PainelRepasse,"Código de Item-Doacao: "+r.getCod_repasse(),"Repasse Alterado.",JOptionPane.INFORMATION_MESSAGE);
+            sucesso = rdao.alterar(r);
+
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(PainelRepasse, "Campos Incorretos.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(PainelRepasse, "Falha na alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(PainelRepasse, "Código de Item-Doacao: " + r.getCod_repasse(), "Repasse Alterado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBRepasse();
                 atualizarTBItemRepasse();
                 atualizarTBEstoque();
                 JDAlterarRepasse.setModal(false);
                 JDAlterarRepasse.setVisible(false);
                 JDAlterarRepasse.dispose();
-                }
+            }
         }
-        
-        
+
+
     }//GEN-LAST:event_BAlterarRepasseActionPerformed
 
     private void BAlterarItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarItemRepasseActionPerformed
         // TODO add your handling code here:
-        boolean sucesso=false;
-        Item_repasse item=new Item_repasse();
-        try{
-            
-            Item_repasseDAO daoitem=new Item_repasseDAO();
-            item=daoitem.getByCod(Integer.parseInt(campoItemRepasseAlterarItemRepasse.getText()));
-            
-            Tipo_item t=new Tipo_item();
-            Tipo_itemDAO daot=new Tipo_itemDAO();
-            t=daot.getByNome(CBTipoAlterarItemRepasse.getSelectedItem().toString());
+        boolean sucesso = false;
+        Item_repasse item = new Item_repasse();
+        try {
+
+            Item_repasseDAO daoitem = new Item_repasseDAO();
+            item = daoitem.getByCod(Integer.parseInt(campoItemRepasseAlterarItemRepasse.getText()));
+
+            Tipo_item t = new Tipo_item();
+            Tipo_itemDAO daot = new Tipo_itemDAO();
+            t = daot.getByNome(CBTipoAlterarItemRepasse.getSelectedItem().toString());
             daot.fechar();
-            
+
             item.setCod_tipo(t.getCod_tipo());
             item.setQuantidade_item_repasse(Integer.parseInt(campoQuantidadeAlterarItemRepasse.getText()));
-            
-            sucesso=daoitem.alterar(item);
+
+            sucesso = daoitem.alterar(item);
             daoitem.fechar();
-        }
-        catch(NumberFormatException | HeadlessException e){
-            JOptionPane.showMessageDialog(PainelItemRepasse,"Campo Incorreto.\nVerifique e tente novamente.","Erro",0);
-            
-        }
-        finally{
-            if (!sucesso) {JOptionPane.showMessageDialog(PainelItemRepasse,"Falha na alteração.","Erro",0);
-                            }
-            else {
-                JOptionPane.showMessageDialog(PainelItemRepasse,"Código de Repasse: "+item.getCod_item_repasse(),"Item Repasse Alterado.",JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(PainelItemRepasse, "Campo Incorreto.\nVerifique e tente novamente.", "Erro", 0);
+
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(PainelItemRepasse, "Falha na alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(PainelItemRepasse, "Código de Repasse: " + item.getCod_item_repasse(), "Item Repasse Alterado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBItemRepasse();
                 atualizarTBEstoque();
                 JDAlterarItemRepasse.setModal(false);
                 JDAlterarItemRepasse.setVisible(false);
                 JDAlterarItemRepasse.dispose();
-                }
+            }
         }
-        
+
     }//GEN-LAST:event_BAlterarItemRepasseActionPerformed
 
     private void BEditarItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarItemRepasseActionPerformed
         // TODO add your handling code here:
-        if(!TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(),2).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelItemRepasse, "Você nao possui permissão para editar esse item.","Erro",0);
+        if (!TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(), 2).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelItemRepasse, "Você nao possui permissão para editar esse item.", "Erro", 0);
             return;
         }
-        int cod_alteraritemrepasse=Integer.parseInt(TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(), 0).toString());
+        int cod_alteraritemrepasse = Integer.parseInt(TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(), 0).toString());
         Repasse r;
         Item_repasse item;
         Usuario u;
         Coletor c;
         Tipo_item t;
-        
-        Item_repasseDAO daoitem=new Item_repasseDAO();
-        item=daoitem.getByCod(cod_alteraritemrepasse);
+
+        Item_repasseDAO daoitem = new Item_repasseDAO();
+        item = daoitem.getByCod(cod_alteraritemrepasse);
         daoitem.fechar();
-        
-        RepasseDAO daor=new RepasseDAO();
-        r=daor.getByCod(item.getCod_repasse());
+
+        RepasseDAO daor = new RepasseDAO();
+        r = daor.getByCod(item.getCod_repasse());
         daor.fechar();
-        
-        UsuarioDAO daou=new UsuarioDAO();
-        u=daou.getByCod(r.getCod_usuario());
+
+        UsuarioDAO daou = new UsuarioDAO();
+        u = daou.getByCod(r.getCod_usuario());
         daou.fechar();
-        
-        ColetorDAO daoc=new ColetorDAO();
-        c=daoc.getByCod(r.getCod_coletor());
+
+        ColetorDAO daoc = new ColetorDAO();
+        c = daoc.getByCod(r.getCod_coletor());
         daoc.fechar();
-        
-        Tipo_itemDAO titem=new Tipo_itemDAO();
-        t=titem.getByCod(item.getCod_tipo());
+
+        Tipo_itemDAO titem = new Tipo_itemDAO();
+        t = titem.getByCod(item.getCod_tipo());
         titem.fechar();
-        
-        campoItemRepasseAlterarItemRepasse.setText(r.getCod_repasse()+"");
+
+        campoItemRepasseAlterarItemRepasse.setText(r.getCod_repasse() + "");
         campoUsuarioAlterarItemRepasse.setText(u.getNome_usuario());
         campoColetorAlterarItemRepasse.setText(c.getNome());
         CBTipoAlterarItemRepasse.setSelectedItem(t.getNome());
-        campoQuantidadeAlterarItemRepasse.setText(item.getQuantidade_item_repasse()+"");
-        
+        campoQuantidadeAlterarItemRepasse.setText(item.getQuantidade_item_repasse() + "");
+
         JDAlterarItemRepasse.setLocationRelativeTo(null);
         JDAlterarItemRepasse.setIconImage(icone);
         JDAlterarItemRepasse.setVisible(true);
@@ -10056,61 +10097,58 @@ public class Principal extends javax.swing.JFrame {
 
     private void BAlterarColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarColetorActionPerformed
         // TODO add your handling code here:
-        boolean sucesso=false;
-        Coletor coletor=new Coletor();
-        try{
-            ColetorDAO daocoletor=new ColetorDAO();
-            coletor=daocoletor.getByCod(Integer.parseInt(campoCodigoColetorAlterarColetor.getText()));
-            
-            
+        boolean sucesso = false;
+        Coletor coletor = new Coletor();
+        try {
+            ColetorDAO daocoletor = new ColetorDAO();
+            coletor = daocoletor.getByCod(Integer.parseInt(campoCodigoColetorAlterarColetor.getText()));
+
             Tipo_coletor t;
-            Tipo_coletorDAO daot=new Tipo_coletorDAO();
-            t=daot.getByNome(CBTipoColetorAlterarColetor.getSelectedItem().toString());
+            Tipo_coletorDAO daot = new Tipo_coletorDAO();
+            t = daot.getByNome(CBTipoColetorAlterarColetor.getSelectedItem().toString());
             daot.fechar();
-            
+
             coletor.setNome(campoNomeColetorAlterarColetor.getText());
             coletor.setCod_tipo_coletor(t.getCod_tipo_coletor());
-            
-            sucesso=daocoletor.alterar(coletor);
+
+            sucesso = daocoletor.alterar(coletor);
             daocoletor.fechar();
-        }
-        catch(NumberFormatException | HeadlessException e){
-            JOptionPane.showMessageDialog(PainelColetores,"Campo Incorreto.\nVerifique e tente novamente.","Erro",0);
-        }
-        finally{
-            if (!sucesso) {JOptionPane.showMessageDialog(PainelColetores,"Falha na alteração.","Erro",0);
-                            }
-            else {
-                JOptionPane.showMessageDialog(PainelColetores,"Código de Coletor: "+coletor.getCod_coletor(),"Coletor Alterado.",JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(PainelColetores, "Campo Incorreto.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(PainelColetores, "Falha na alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(PainelColetores, "Código de Coletor: " + coletor.getCod_coletor(), "Coletor Alterado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBRepasse();
                 atualizarTBItemRepasse();
                 atualizarTBColetor();
                 atualizarCBColetor();
-                
+
                 JDAlterarColetor.setModal(false);
                 JDAlterarColetor.setVisible(false);
                 JDAlterarColetor.dispose();
-                }
+            }
         }
     }//GEN-LAST:event_BAlterarColetorActionPerformed
 
     private void BEditarColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarColetorActionPerformed
         // TODO add your handling code here:
-        int cod_alterarcoletor=Integer.parseInt(TColetor.getValueAt(TColetor.getSelectedRow(), 0).toString());
-        
-        ColetorDAO daocoletor=new ColetorDAO();
-        Coletor coletor=daocoletor.getByCod(cod_alterarcoletor);
+        int cod_alterarcoletor = Integer.parseInt(TColetor.getValueAt(TColetor.getSelectedRow(), 0).toString());
+
+        ColetorDAO daocoletor = new ColetorDAO();
+        Coletor coletor = daocoletor.getByCod(cod_alterarcoletor);
         daocoletor.fechar();
-        
+
         Tipo_coletor tipo;
-        Tipo_coletorDAO daotipo=new Tipo_coletorDAO();
-        tipo=daotipo.getByCod(coletor.getCod_tipo_coletor());
+        Tipo_coletorDAO daotipo = new Tipo_coletorDAO();
+        tipo = daotipo.getByCod(coletor.getCod_tipo_coletor());
         daotipo.fechar();
-        
-        campoCodigoColetorAlterarColetor.setText(coletor.getCod_coletor()+"");
+
+        campoCodigoColetorAlterarColetor.setText(coletor.getCod_coletor() + "");
         campoNomeColetorAlterarColetor.setText(coletor.getNome());
         CBTipoColetorAlterarColetor.setSelectedItem(tipo.getNome_tipo_coletor());
-        
+
         JDAlterarColetor.setLocationRelativeTo(null);
         JDAlterarColetor.setIconImage(icone);
         JDAlterarColetor.setVisible(true);
@@ -10118,15 +10156,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void BEditarItemAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarItemAcervoActionPerformed
         // TODO add your handling code here:
-        if(!TAcervo.getValueAt(TAcervo.getSelectedRow(),1).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelAcervo, "Você nao possui permissão para editar esse item.","Erro",0);
+        if (!TAcervo.getValueAt(TAcervo.getSelectedRow(), 1).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelAcervo, "Você nao possui permissão para editar esse item.", "Erro", 0);
             return;
         }
-        Item_acervoDAO daoitem=new Item_acervoDAO();
-        int coditem=Integer.parseInt(TAcervo.getValueAt(TAcervo.getSelectedRow(), 0).toString());
-        Item_acervo item=daoitem.getByCod(coditem);
+        Item_acervoDAO daoitem = new Item_acervoDAO();
+        int coditem = Integer.parseInt(TAcervo.getValueAt(TAcervo.getSelectedRow(), 0).toString());
+        Item_acervo item = daoitem.getByCod(coditem);
         daoitem.fechar();
-        
+
         Usuario usuario;
         Doador doador;
         Tipo_item tipo;
@@ -10136,69 +10174,69 @@ public class Principal extends javax.swing.JFrame {
         Tecnologia tecnologia;
         Container container;
         Imagem imagem;
-        
-        UsuarioDAO usuariodao=new UsuarioDAO();
-        usuario=usuariodao.getByCod(item.getCod_usuario());
+
+        UsuarioDAO usuariodao = new UsuarioDAO();
+        usuario = usuariodao.getByCod(item.getCod_usuario());
         usuariodao.fechar();
-        
-        DoadorDAO doadordao=new DoadorDAO();
-        doador=doadordao.getByCod(item.getCod_doador());
+
+        DoadorDAO doadordao = new DoadorDAO();
+        doador = doadordao.getByCod(item.getCod_doador());
         doadordao.fechar();
-        
-        Tipo_itemDAO tipodao=new Tipo_itemDAO();
-        tipo=tipodao.getByCod(item.getCod_tipo());
+
+        Tipo_itemDAO tipodao = new Tipo_itemDAO();
+        tipo = tipodao.getByCod(item.getCod_tipo());
         tipodao.fechar();
-        
-        MarcaDAO marcadao=new MarcaDAO();
-        marca=marcadao.getByCod(item.getCod_marca());
+
+        MarcaDAO marcadao = new MarcaDAO();
+        marca = marcadao.getByCod(item.getCod_marca());
         marcadao.fechar();
-        
-        ModeloDAO modelodao=new ModeloDAO();
-        modelo=modelodao.getByCod(item.getCod_modelo());
+
+        ModeloDAO modelodao = new ModeloDAO();
+        modelo = modelodao.getByCod(item.getCod_modelo());
         modelodao.fechar();
-        
-        InterfaceDAO ifacedao=new InterfaceDAO();
-        iface=ifacedao.getByCod(item.getCod_interface());
+
+        InterfaceDAO ifacedao = new InterfaceDAO();
+        iface = ifacedao.getByCod(item.getCod_interface());
         ifacedao.fechar();
-        
-        TecnologiaDAO tecnologiadao=new TecnologiaDAO();
-        tecnologia=tecnologiadao.getByCod(item.getCod_tecnologia());
+
+        TecnologiaDAO tecnologiadao = new TecnologiaDAO();
+        tecnologia = tecnologiadao.getByCod(item.getCod_tecnologia());
         tecnologiadao.fechar();
-        
-        ContainerDAO containerdao=new ContainerDAO();
-        container=containerdao.getByCod(item.getCod_container());
+
+        ContainerDAO containerdao = new ContainerDAO();
+        container = containerdao.getByCod(item.getCod_container());
         containerdao.fechar();
-        
-        campoItemAcervoAlterarItemAcervo.setText(item.getCod_item_acervo()+"");
+
+        campoItemAcervoAlterarItemAcervo.setText(item.getCod_item_acervo() + "");
         campoUsuarioAlterarItemAcervo.setText(usuario.getNome_usuario());
         campoDoadorAlterarItemAcervo.setText(doador.getNome_doador());
-        Date data=item.getData_cadastro_item_acervo();
-        campoDataAlterarItemAcervo.setText(data.getDate()+"/"+(data.getMonth()+1)+"/"+(1900+data.getYear()));
+        Date data = item.getData_cadastro_item_acervo();
+        campoDataAlterarItemAcervo.setText(data.getDate() + "/" + (data.getMonth() + 1) + "/" + (1900 + data.getYear()));
         CBTipoAlterarItemAcervo.setSelectedItem(tipo.getNome());
         CBMarcaAlterarItemAcervo.setSelectedItem(marca.getNome());
         CBModeloAlterarItemAcervo.setSelectedItem(modelo.getNome());
         CBInterfaceAlterarItemAcervo.setSelectedItem(iface.getNome());
         CBTecnologiaAlterarItemAcervo.setSelectedItem(tecnologia.getNome());
-        campoCapacidadeAlterarItemAcervo.setText(item.getCapacidade()+"");
-        campoAnoAlterarItemAcervo.setText(item.getAno()+"");
-        campoContainerAlterarItemAcervo.setText(item.getCod_container()+"");
+        campoCapacidadeAlterarItemAcervo.setText(item.getCapacidade() + "");
+        campoAnoAlterarItemAcervo.setText(item.getAno() + "");
+        campoContainerAlterarItemAcervo.setText(item.getCod_container() + "");
         TADescricaoAlterarItemAcervo.setText(item.getDescricao());
         CheckFuncionaAlterarItemAcervo.setSelected(item.isFunciona());
-        
+
         JDAlterarItemAcervo.setLocationRelativeTo(null);
         JDAlterarItemAcervo.setIconImage(icone);
         JDAlterarItemAcervo.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_BEditarItemAcervoActionPerformed
 
     private void BAlterarItemAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarItemAcervoActionPerformed
         // TODO add your handling code here:
-        int coditem=Integer.parseInt(campoItemAcervoAlterarItemAcervo.getText());
-        Item_acervoDAO daoitem=new Item_acervoDAO();
-        boolean sucesso=false;
-        try{
-            Item_acervo item=daoitem.getByCod(coditem);
+        int coditem = Integer.parseInt(campoItemAcervoAlterarItemAcervo.getText());
+        Item_acervoDAO daoitem = new Item_acervoDAO();
+        boolean sucesso = false;
+        try {
+            Item_acervo item = daoitem.getByCod(coditem);
 
             Tipo_item tipo;
             Marca marca;
@@ -10207,28 +10245,28 @@ public class Principal extends javax.swing.JFrame {
             Tecnologia tecnologia;
             Container container;
 
-            Tipo_itemDAO tipodao=new Tipo_itemDAO();
-            tipo=tipodao.getByNome(CBTipoAlterarItemAcervo.getSelectedItem().toString());
+            Tipo_itemDAO tipodao = new Tipo_itemDAO();
+            tipo = tipodao.getByNome(CBTipoAlterarItemAcervo.getSelectedItem().toString());
             tipodao.fechar();
 
-            MarcaDAO marcadao=new MarcaDAO();
-            marca=marcadao.getByNome(CBMarcaAlterarItemAcervo.getSelectedItem().toString());
+            MarcaDAO marcadao = new MarcaDAO();
+            marca = marcadao.getByNome(CBMarcaAlterarItemAcervo.getSelectedItem().toString());
             marcadao.fechar();
 
-            ModeloDAO modelodao=new ModeloDAO();
-            modelo=modelodao.getByNome(CBModeloAlterarItemAcervo.getSelectedItem().toString());
+            ModeloDAO modelodao = new ModeloDAO();
+            modelo = modelodao.getByNome(CBModeloAlterarItemAcervo.getSelectedItem().toString());
             modelodao.fechar();
 
-            InterfaceDAO ifacedao=new InterfaceDAO();
-            iface=ifacedao.getByNome(CBInterfaceAlterarItemAcervo.getSelectedItem().toString());
+            InterfaceDAO ifacedao = new InterfaceDAO();
+            iface = ifacedao.getByNome(CBInterfaceAlterarItemAcervo.getSelectedItem().toString());
             ifacedao.fechar();
 
-            TecnologiaDAO tecnologiadao=new TecnologiaDAO();
-            tecnologia=tecnologiadao.getByNome(CBTecnologiaAlterarItemAcervo.getSelectedItem().toString());
+            TecnologiaDAO tecnologiadao = new TecnologiaDAO();
+            tecnologia = tecnologiadao.getByNome(CBTecnologiaAlterarItemAcervo.getSelectedItem().toString());
             tecnologiadao.fechar();
 
-            ContainerDAO containerdao=new ContainerDAO();
-            container=containerdao.getByCod(Integer.parseInt(campoContainerAlterarItemAcervo.getText()));
+            ContainerDAO containerdao = new ContainerDAO();
+            container = containerdao.getByCod(Integer.parseInt(campoContainerAlterarItemAcervo.getText()));
             containerdao.fechar();
 
             item.setCod_tipo(tipo.getCod_tipo());
@@ -10242,156 +10280,148 @@ public class Principal extends javax.swing.JFrame {
             item.setDescricao(TADescricaoAlterarItemAcervo.getText());
             item.setFunciona(CheckFuncionaAlterarItemAcervo.isSelected());
 
-            sucesso=daoitem.alterar(item);
+            sucesso = daoitem.alterar(item);
             daoitem.fechar();
-        }catch(NumberFormatException|HeadlessException e){
-           JOptionPane.showMessageDialog(PainelAcervo,"Campos Incorretos.\nVerifique e tente novamente.","Erro",0);
-        }
-        finally{
-            if (!sucesso) {JOptionPane.showMessageDialog(PainelAcervo,"Falha na alteração.","Erro",0);
-                            }
-            else {
-                JOptionPane.showMessageDialog(PainelAcervo,"Código de Item Acervo: "+campoItemAcervoAlterarItemAcervo.getText(),"Item Acervo Alterado.",JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(PainelAcervo, "Campos Incorretos.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(PainelAcervo, "Falha na alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(PainelAcervo, "Código de Item Acervo: " + campoItemAcervoAlterarItemAcervo.getText(), "Item Acervo Alterado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBAcervo();
-                
-                
+
                 JDAlterarItemAcervo.setModal(false);
                 JDAlterarItemAcervo.setVisible(false);
                 JDAlterarItemAcervo.dispose();
-                }
+            }
         }
-        
+
     }//GEN-LAST:event_BAlterarItemAcervoActionPerformed
 
     private void BEditarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarImagemActionPerformed
         // TODO add your handling code here:
-        Imagem imagem=new Imagem();
-        int codimagem=Integer.parseInt(TImagem.getValueAt(TImagem.getSelectedRow(), 0).toString());
-        ImagemDAO imagemdao=new ImagemDAO();
-        imagem=imagemdao.getByCod(codimagem);
+        Imagem imagem = new Imagem();
+        int codimagem = Integer.parseInt(TImagem.getValueAt(TImagem.getSelectedRow(), 0).toString());
+        ImagemDAO imagemdao = new ImagemDAO();
+        imagem = imagemdao.getByCod(codimagem);
         imagemdao.fechar();
-        
-        campoCodImagemAlterarImagem.setText(imagem.getCod_imagem()+"");
-        campoCodItemAcervoAlterarImagem.setText(imagem.getCod_item_acervo()+"");
+
+        campoCodImagemAlterarImagem.setText(imagem.getCod_imagem() + "");
+        campoCodItemAcervoAlterarImagem.setText(imagem.getCod_item_acervo() + "");
         campoLinkAlterarImagem.setText(imagem.getLink());
-        
+
         JDAlterarImagem.setLocationRelativeTo(null);
         JDAlterarImagem.setIconImage(icone);
         JDAlterarImagem.setVisible(true);
         JDAlterarImagem.pack();
-        
-        
+
         validaImagemAlterarImagem();
-        
+
     }//GEN-LAST:event_BEditarImagemActionPerformed
 
     private void BEditarContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarContainerActionPerformed
         // TODO add your handling code here:
-        Container container=new Container();
-        int codcontainer=Integer.parseInt(TContainer.getValueAt(TContainer.getSelectedRow(), 0).toString());
-        ContainerDAO containerdao=new ContainerDAO();
-        container=containerdao.getByCod(codcontainer);
+        Container container = new Container();
+        int codcontainer = Integer.parseInt(TContainer.getValueAt(TContainer.getSelectedRow(), 0).toString());
+        ContainerDAO containerdao = new ContainerDAO();
+        container = containerdao.getByCod(codcontainer);
         containerdao.fechar();
-        
-        Tipo_container tipo=new Tipo_container();
-        Tipo_containerDAO tipodao=new Tipo_containerDAO();
-        tipo=tipodao.getByCod(container.getCod_tipo_container());
+
+        Tipo_container tipo = new Tipo_container();
+        Tipo_containerDAO tipodao = new Tipo_containerDAO();
+        tipo = tipodao.getByCod(container.getCod_tipo_container());
         tipodao.fechar();
-        
-        campoCodContainerAlterarContainer.setText(container.getCod_container()+"");
+
+        campoCodContainerAlterarContainer.setText(container.getCod_container() + "");
         campoLocalizacaoAlterarContainer.setText(container.getLocalizacao_container());
         CBTipoContainerAlterarContainer.setSelectedItem(tipo.getNome_tipo_container());
-        
+
         JDAlterarContainer.setLocationRelativeTo(null);
         JDAlterarContainer.setIconImage(icone);
         JDAlterarContainer.setVisible(true);
         JDAlterarContainer.pack();
-        
+
     }//GEN-LAST:event_BEditarContainerActionPerformed
 
     private void BCadastrarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarImagemActionPerformed
         // TODO add your handling code here:
-        Imagem imagem=new Imagem();
-        int sucesso=0;
-        try{
+        Imagem imagem = new Imagem();
+        int sucesso = 0;
+        try {
             imagem.setCod_item_acervo(Integer.parseInt(campoItemAcervoCadastrarImagem.getText()));
             imagem.setLink(campoLink.getText());
-            ImagemDAO imagemdao=new ImagemDAO();
-            sucesso=imagemdao.inserir(imagem);
+            ImagemDAO imagemdao = new ImagemDAO();
+            sucesso = imagemdao.inserir(imagem);
             imagemdao.fechar();
-            
+
+        } catch (HeadlessException | NumberFormatException e) {
+
+        } finally {
+            if (sucesso == 0) {
+                JOptionPane.showMessageDialog(CadastrarImagem, "Falha na Inserção.", "Erro", 0);
+            } else {
+                Banco b = new Banco();
+                sucesso = b.max("SELECT MAX(cod_imagem) from imagem;");
+                b.fechar();
+                atualizarTBImagem();
+                JOptionPane.showMessageDialog(CadastrarImagem, "Código de Imagem: " + sucesso, "Imagem cadastrada.", JOptionPane.INFORMATION_MESSAGE);
+                resetarImagem();
+            }
+
         }
-        catch(HeadlessException|NumberFormatException e){
-            
-        }
-        finally{
-            if(sucesso==0) JOptionPane.showMessageDialog(CadastrarImagem,"Falha na Inserção.","Erro",0);
-        else{
-            Banco b=new Banco();
-            sucesso=b.max("SELECT MAX(cod_imagem) from imagem;");
-            b.fechar();
-            atualizarTBImagem();
-            JOptionPane.showMessageDialog(CadastrarImagem,"Código de Imagem: "+sucesso,"Imagem cadastrada.",JOptionPane.INFORMATION_MESSAGE);
-            resetarImagem();
-        }
-            
-        }
-        
+
     }//GEN-LAST:event_BCadastrarImagemActionPerformed
 
     private void BCadastrarContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCadastrarContainerActionPerformed
         // TODO add your handling code here:
-        Container container=new Container();
-        int sucesso=0;
-        try{
-            Tipo_containerDAO tipodao=new Tipo_containerDAO();
-            Tipo_container tipo=tipodao.getByNome(CBTipoContainerCadastrarContainer.getSelectedItem().toString());
+        Container container = new Container();
+        int sucesso = 0;
+        try {
+            Tipo_containerDAO tipodao = new Tipo_containerDAO();
+            Tipo_container tipo = tipodao.getByNome(CBTipoContainerCadastrarContainer.getSelectedItem().toString());
             System.out.println(CBTipoContainerCadastrarContainer.getSelectedItem().toString());
             tipodao.fechar();
-            
+
             container.setCod_tipo_container(tipo.getCod_tipo_container());
             container.setLocalizacao_container(campoLocalizacaoCadastrarContainer.getText());
-            ContainerDAO containerdao=new ContainerDAO();
-            sucesso=containerdao.inserir(container);
+            ContainerDAO containerdao = new ContainerDAO();
+            sucesso = containerdao.inserir(container);
             containerdao.fechar();
-        }
-        catch(NumberFormatException|HeadlessException e){
-            JOptionPane.showMessageDialog(CadastrarContainer,"Falha na Inserção.","Erro",0);
-        }
-        finally{
-            if(sucesso==0) JOptionPane.showMessageDialog(CadastrarContainer,"Falha na Inserção.","Erro",0);
-            else{
-                Banco b=new Banco();
-                sucesso=b.max("SELECT MAX(cod_container) from container;");
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(CadastrarContainer, "Falha na Inserção.", "Erro", 0);
+        } finally {
+            if (sucesso == 0) {
+                JOptionPane.showMessageDialog(CadastrarContainer, "Falha na Inserção.", "Erro", 0);
+            } else {
+                Banco b = new Banco();
+                sucesso = b.max("SELECT MAX(cod_container) from container;");
                 b.fechar();
                 atualizarTBContainer();
                 atualizarCamposAcervo();
-                JOptionPane.showMessageDialog(CadastrarContainer,"Código de Container: "+sucesso,"Container cadastrado.",JOptionPane.INFORMATION_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(CadastrarContainer, "Código de Container: " + sucesso, "Container cadastrado.", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_BCadastrarContainerActionPerformed
 
     private void BAlterarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarImagemActionPerformed
         // TODO add your handling code here:
         Imagem imagem;
-        boolean sucesso=false;
-        try{
-            ImagemDAO imagemdao=new ImagemDAO();
-            imagem=imagemdao.getByCod(Integer.parseInt(campoCodImagemAlterarImagem.getText()));
+        boolean sucesso = false;
+        try {
+            ImagemDAO imagemdao = new ImagemDAO();
+            imagem = imagemdao.getByCod(Integer.parseInt(campoCodImagemAlterarImagem.getText()));
             imagem.setLink(campoLinkAlterarImagem.getText());
-            sucesso=imagemdao.alterar(imagem);
+            sucesso = imagemdao.alterar(imagem);
             imagemdao.fechar();
-            
-        }
-        catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(PainelAcervo,"Campos Incorretos.\nVerifique e tente novamente.","Erro",0);
-        }
-        finally{
-            if(!sucesso) {
-                JOptionPane.showMessageDialog(JDAlterarImagem,"Falha na Alteração.","Erro",0);
-            }
-            else{
-                JOptionPane.showMessageDialog(JDAlterarImagem,"Código de Imagem: "+campoCodImagemAlterarImagem.getText(),"Imagem Alterada.",JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(PainelAcervo, "Campos Incorretos.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(JDAlterarImagem, "Falha na Alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(JDAlterarImagem, "Código de Imagem: " + campoCodImagemAlterarImagem.getText(), "Imagem Alterada.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBImagem();
                 atualizarTBAcervo();
                 JDAlterarImagem.setModal(false);
@@ -10399,8 +10429,8 @@ public class Principal extends javax.swing.JFrame {
                 JDAlterarImagem.dispose();
             }
         }
-                
-        
+
+
     }//GEN-LAST:event_BAlterarImagemActionPerformed
 
     private void CheckImagemAlterarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckImagemAlterarImagemActionPerformed
@@ -10410,7 +10440,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void campoLinkAlterarImagemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoLinkAlterarImagemKeyTyped
         // TODO add your handling code here:
-        if(campoLinkAlterarImagem.getText().equals(""));
+        if (campoLinkAlterarImagem.getText().equals(""));
         LImagemAlterarImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/fotoacervo.png")));
         JDAlterarImagem.pack();
     }//GEN-LAST:event_campoLinkAlterarImagemKeyTyped
@@ -10418,61 +10448,59 @@ public class Principal extends javax.swing.JFrame {
     private void BAlterarContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarContainerActionPerformed
         // TODO add your handling code here:
         Container container;
-        boolean sucesso=false;
-        try{
-            ContainerDAO containerdao=new ContainerDAO();
-            container=containerdao.getByCod(Integer.parseInt(campoCodContainerAlterarContainer.getText()));
-            
-            Tipo_containerDAO tipodao=new Tipo_containerDAO();
-            Tipo_container tipo=tipodao.getByNome(CBTipoContainerAlterarContainer.getSelectedItem().toString());
+        boolean sucesso = false;
+        try {
+            ContainerDAO containerdao = new ContainerDAO();
+            container = containerdao.getByCod(Integer.parseInt(campoCodContainerAlterarContainer.getText()));
+
+            Tipo_containerDAO tipodao = new Tipo_containerDAO();
+            Tipo_container tipo = tipodao.getByNome(CBTipoContainerAlterarContainer.getSelectedItem().toString());
             tipodao.fechar();
-            
+
             container.setLocalizacao_container(campoLocalizacaoAlterarContainer.getText());
             container.setCod_tipo_container(tipo.getCod_tipo_container());
-            
-            sucesso=containerdao.alterar(container);
+
+            sucesso = containerdao.alterar(container);
             containerdao.fechar();
-            
-            
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(Container,"Campos Incorretos.\nVerifique e tente novamente.","Erro",0);
-            }
-        finally{
-            if(!sucesso){
-                JOptionPane.showMessageDialog(JDAlterarContainer,"Falha na Alteração.","Erro",0);
-            }
-            else{
-                JOptionPane.showMessageDialog(Container,"Código de Container: "+campoCodContainerAlterarContainer.getText(),"Container alterado.",JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(Container, "Campos Incorretos.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(JDAlterarContainer, "Falha na Alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(Container, "Código de Container: " + campoCodContainerAlterarContainer.getText(), "Container alterado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBContainer();
-                
+
                 JDAlterarContainer.setModal(false);
                 JDAlterarContainer.setVisible(false);
                 JDAlterarContainer.dispose();
             }
         }
-        
+
     }//GEN-LAST:event_BAlterarContainerActionPerformed
 
     private void BConfirmarExcluirItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirItemDoacaoActionPerformed
         // TODO add your handling code here:
         Item_doacao item;
-        boolean sucesso=false;
-        
-            Item_doacaoDAO itemdao=new Item_doacaoDAO();
-            item=itemdao.getByCod(Integer.parseInt(campoItemDoacaoExcluirItemDoacao.getText()));
-            sucesso=itemdao.excluir(item.getCod_item_doacao());
-            itemdao.fechar();
-            if(!sucesso) JOptionPane.showMessageDialog(JDExcluirItemDoacao, "Item não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-            else{
-                JOptionPane.showMessageDialog(JDExcluirItemDoacao, "Item excluido","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBItemDoacao();
-                atualizarTBEstoque();
-                JDExcluirItemDoacao.setModal(false);
-                JDExcluirItemDoacao.setVisible(false);
-                JDExcluirItemDoacao.dispose();
-            }
-        
+        boolean sucesso = false;
+
+        Item_doacaoDAO itemdao = new Item_doacaoDAO();
+        item = itemdao.getByCod(Integer.parseInt(campoItemDoacaoExcluirItemDoacao.getText()));
+        sucesso = itemdao.excluir(item.getCod_item_doacao());
+        itemdao.fechar();
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirItemDoacao, "Item não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirItemDoacao, "Item excluido", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBItemDoacao();
+            atualizarTBEstoque();
+            JDExcluirItemDoacao.setModal(false);
+            JDExcluirItemDoacao.setVisible(false);
+            JDExcluirItemDoacao.dispose();
+        }
+
     }//GEN-LAST:event_BConfirmarExcluirItemDoacaoActionPerformed
 
     private void BCancelarExcluirItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirItemDoacaoActionPerformed
@@ -10484,43 +10512,44 @@ public class Principal extends javax.swing.JFrame {
 
     private void BExcluirItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirItemDoacaoActionPerformed
         // TODO add your handling code here:
-        if(!TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(),2).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelItemDoacao, "Você nao possui permissão para excluir esse item.","Erro",0);
+        if (!TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(), 2).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelItemDoacao, "Você nao possui permissão para excluir esse item.", "Erro", 0);
             return;
         }
         Item_doacao item;
-        Item_doacaoDAO itemdao=new Item_doacaoDAO();
-        item=itemdao.getByCod(Integer.parseInt(TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(), 0).toString()));
+        Item_doacaoDAO itemdao = new Item_doacaoDAO();
+        item = itemdao.getByCod(Integer.parseInt(TItemDoacao.getValueAt(TItemDoacao.getSelectedRow(), 0).toString()));
         itemdao.fechar();
-        campoItemDoacaoExcluirItemDoacao.setText(item.getCod_item_doacao()+"");
-        
+        campoItemDoacaoExcluirItemDoacao.setText(item.getCod_item_doacao() + "");
+
         JDExcluirItemDoacao.setLocationRelativeTo(null);
         JDExcluirItemDoacao.setIconImage(icone);
         JDExcluirItemDoacao.setVisible(true);
-        JDExcluirItemDoacao.pack();       
-                
+        JDExcluirItemDoacao.pack();
+
     }//GEN-LAST:event_BExcluirItemDoacaoActionPerformed
 
     private void BConfirmarExcluirDoadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirDoadorActionPerformed
         // TODO add your handling code here:
         Doador doador;
-        DoadorDAO doadordao=new DoadorDAO();
-        boolean sucesso=false;
-        doador=doadordao.getByCod(Integer.parseInt(campoDoadorExcluirDoador.getText()));
-        sucesso=doadordao.excluir(doador.getCod_doador());
+        DoadorDAO doadordao = new DoadorDAO();
+        boolean sucesso = false;
+        doador = doadordao.getByCod(Integer.parseInt(campoDoadorExcluirDoador.getText()));
+        sucesso = doadordao.excluir(doador.getCod_doador());
         doadordao.fechar();
-        if(!sucesso) JOptionPane.showMessageDialog(JDExcluirDoador, "Doador não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-        else{
-                JOptionPane.showMessageDialog(JDExcluirDoador, "Doador excluido","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBDoador();
-                atualizarCBDoador();
-                
-                JDExcluirDoador.setModal(false);
-                JDExcluirDoador.setVisible(false);
-                JDExcluirDoador.dispose();
-            }
-        
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirDoador, "Doador não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirDoador, "Doador excluido", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBDoador();
+            atualizarCBDoador();
+
+            JDExcluirDoador.setModal(false);
+            JDExcluirDoador.setVisible(false);
+            JDExcluirDoador.dispose();
+        }
+
     }//GEN-LAST:event_BConfirmarExcluirDoadorActionPerformed
 
     private void BCancelarExcluirDoadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirDoadorActionPerformed
@@ -10533,36 +10562,37 @@ public class Principal extends javax.swing.JFrame {
     private void BExcluirDoadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirDoadorActionPerformed
         // TODO add your handling code here:
         Doador doador;
-        DoadorDAO doadordao=new DoadorDAO();
-        doador=doadordao.getByCod(Integer.parseInt(TDoador.getValueAt(TDoador.getSelectedRow(), 0).toString()));
+        DoadorDAO doadordao = new DoadorDAO();
+        doador = doadordao.getByCod(Integer.parseInt(TDoador.getValueAt(TDoador.getSelectedRow(), 0).toString()));
         doadordao.fechar();
-        
-        campoDoadorExcluirDoador.setText(doador.getCod_doador()+"");
+
+        campoDoadorExcluirDoador.setText(doador.getCod_doador() + "");
         JDExcluirDoador.setLocationRelativeTo(null);
         JDExcluirDoador.setIconImage(icone);
         JDExcluirDoador.setVisible(true);
-        JDExcluirDoador.pack(); 
+        JDExcluirDoador.pack();
     }//GEN-LAST:event_BExcluirDoadorActionPerformed
 
     private void BConfirmarExcluirRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirRepasseActionPerformed
         // TODO add your handling code here:
         Repasse repasse;
-        RepasseDAO repassedao=new RepasseDAO();
-        boolean sucesso=false;
-        repasse=repassedao.getByCod(Integer.parseInt(campoRepasseExcluirRepasse.getText()));
-        sucesso=repassedao.excluir(repasse.getCod_repasse());
+        RepasseDAO repassedao = new RepasseDAO();
+        boolean sucesso = false;
+        repasse = repassedao.getByCod(Integer.parseInt(campoRepasseExcluirRepasse.getText()));
+        sucesso = repassedao.excluir(repasse.getCod_repasse());
         repassedao.fechar();
-        if(!sucesso) JOptionPane.showMessageDialog(JDExcluirRepasse, "Repasse não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-        else{
-                JOptionPane.showMessageDialog(JDExcluirRepasse, "Repasse excluido","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBRepasse();
-                
-                JDExcluirRepasse.setModal(false);
-                JDExcluirRepasse.setVisible(false);
-                JDExcluirRepasse.dispose();
-            }
-        
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirRepasse, "Repasse não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirRepasse, "Repasse excluido", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBRepasse();
+
+            JDExcluirRepasse.setModal(false);
+            JDExcluirRepasse.setVisible(false);
+            JDExcluirRepasse.dispose();
+        }
+
     }//GEN-LAST:event_BConfirmarExcluirRepasseActionPerformed
 
     private void BCancelarExcluirRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirRepasseActionPerformed
@@ -10574,19 +10604,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void BExcluirRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirRepasseActionPerformed
         // TODO add your handling code here:
-        if(!TRepasse.getValueAt(TRepasse.getSelectedRow(),1).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelRepasse, "Você nao possui permissão para excluir esse item.","Erro",0);
+        if (!TRepasse.getValueAt(TRepasse.getSelectedRow(), 1).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelRepasse, "Você nao possui permissão para excluir esse item.", "Erro", 0);
             return;
         }
-        int cod_excluirrepasse=Integer.parseInt(TRepasse.getValueAt(TRepasse.getSelectedRow(), 0).toString());
+        int cod_excluirrepasse = Integer.parseInt(TRepasse.getValueAt(TRepasse.getSelectedRow(), 0).toString());
         Repasse r;
-        
-        RepasseDAO daor=new RepasseDAO();
-        r=daor.getByCod(cod_excluirrepasse);
+
+        RepasseDAO daor = new RepasseDAO();
+        r = daor.getByCod(cod_excluirrepasse);
         daor.fechar();
-        
-        campoRepasseExcluirRepasse.setText(r.getCod_repasse()+"");
-        
+
+        campoRepasseExcluirRepasse.setText(r.getCod_repasse() + "");
+
         JDExcluirRepasse.setLocationRelativeTo(null);
         JDExcluirRepasse.setIconImage(icone);
         JDExcluirRepasse.setVisible(true);
@@ -10595,22 +10625,23 @@ public class Principal extends javax.swing.JFrame {
     private void BConfirmarExcluirItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirItemRepasseActionPerformed
         // TODO add your handling code here:
         Item_repasse item;
-        Item_repasseDAO itemdao=new Item_repasseDAO();
-        boolean sucesso=false;
-        item=itemdao.getByCod(Integer.parseInt(campoItemRepasseExcluirItemRepasse.getText()));
-        sucesso=itemdao.excluir(item.getCod_item_repasse());
+        Item_repasseDAO itemdao = new Item_repasseDAO();
+        boolean sucesso = false;
+        item = itemdao.getByCod(Integer.parseInt(campoItemRepasseExcluirItemRepasse.getText()));
+        sucesso = itemdao.excluir(item.getCod_item_repasse());
         itemdao.fechar();
-        if(!sucesso) JOptionPane.showMessageDialog(JDExcluirItemRepasse, "Item Repasse não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-        else{
-                JOptionPane.showMessageDialog(JDExcluirItemRepasse, "Item Repasse excluido","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBItemRepasse();
-                atualizarTBEstoque();
-                
-                JDExcluirItemRepasse.setModal(false);
-                JDExcluirItemRepasse.setVisible(false);
-                JDExcluirItemRepasse.dispose();
-            }
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirItemRepasse, "Item Repasse não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirItemRepasse, "Item Repasse excluido", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBItemRepasse();
+            atualizarTBEstoque();
+
+            JDExcluirItemRepasse.setModal(false);
+            JDExcluirItemRepasse.setVisible(false);
+            JDExcluirItemRepasse.dispose();
+        }
     }//GEN-LAST:event_BConfirmarExcluirItemRepasseActionPerformed
 
     private void BCancelarExcluirItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirItemRepasseActionPerformed
@@ -10622,19 +10653,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void BExcluirItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirItemRepasseActionPerformed
         // TODO add your handling code here:
-        if(!TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(),2).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelItemRepasse, "Você nao possui permissão para excluir esse item.","Erro",0);
+        if (!TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(), 2).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelItemRepasse, "Você nao possui permissão para excluir esse item.", "Erro", 0);
             return;
         }
-        int cod_item=Integer.parseInt(TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(), 0).toString());
+        int cod_item = Integer.parseInt(TItemRepasse.getValueAt(TItemRepasse.getSelectedRow(), 0).toString());
         Item_repasse r;
-        
-        Item_repasseDAO daoitem=new Item_repasseDAO();
-        r=daoitem.getByCod(cod_item);
+
+        Item_repasseDAO daoitem = new Item_repasseDAO();
+        r = daoitem.getByCod(cod_item);
         daoitem.fechar();
-        
-        campoItemRepasseExcluirItemRepasse.setText(r.getCod_item_repasse()+"");
-        
+
+        campoItemRepasseExcluirItemRepasse.setText(r.getCod_item_repasse() + "");
+
         JDExcluirItemRepasse.setLocationRelativeTo(null);
         JDExcluirItemRepasse.setIconImage(icone);
         JDExcluirItemRepasse.setVisible(true);
@@ -10643,23 +10674,24 @@ public class Principal extends javax.swing.JFrame {
     private void BConfirmarExcluirColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirColetorActionPerformed
         // TODO add your handling code here:
         Coletor coletor;
-        ColetorDAO coletordao=new ColetorDAO();
-        boolean sucesso=false;
-        coletor=coletordao.getByCod(Integer.parseInt(campoColetorExcluirColetor.getText()));
-        sucesso=coletordao.excluir(coletor.getCod_coletor());
+        ColetorDAO coletordao = new ColetorDAO();
+        boolean sucesso = false;
+        coletor = coletordao.getByCod(Integer.parseInt(campoColetorExcluirColetor.getText()));
+        sucesso = coletordao.excluir(coletor.getCod_coletor());
         coletordao.fechar();
-        if(!sucesso) JOptionPane.showMessageDialog(JDExcluirColetor, "Coletor não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-        else{
-                JOptionPane.showMessageDialog(JDExcluirColetor, "Coletor excluido","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBColetor();
-                atualizarCBColetor();
-                
-                JDExcluirColetor.setModal(false);
-                JDExcluirColetor.setVisible(false);
-                JDExcluirColetor.dispose();
-            }
-        
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirColetor, "Coletor não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirColetor, "Coletor excluido", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBColetor();
+            atualizarCBColetor();
+
+            JDExcluirColetor.setModal(false);
+            JDExcluirColetor.setVisible(false);
+            JDExcluirColetor.dispose();
+        }
+
     }//GEN-LAST:event_BConfirmarExcluirColetorActionPerformed
 
     private void BCancelarExcluirColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirColetorActionPerformed
@@ -10672,54 +10704,54 @@ public class Principal extends javax.swing.JFrame {
     private void BExcluirColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirColetorActionPerformed
         // TODO add your handling code here:
         Coletor coletor;
-        ColetorDAO coletordao=new ColetorDAO();
-        coletor=coletordao.getByCod(Integer.parseInt(TColetor.getValueAt(TColetor.getSelectedRow(), 0).toString()));
+        ColetorDAO coletordao = new ColetorDAO();
+        coletor = coletordao.getByCod(Integer.parseInt(TColetor.getValueAt(TColetor.getSelectedRow(), 0).toString()));
         coletordao.fechar();
-        
-        campoColetorExcluirColetor.setText(coletor.getCod_coletor()+"");
+
+        campoColetorExcluirColetor.setText(coletor.getCod_coletor() + "");
         JDExcluirColetor.setLocationRelativeTo(null);
         JDExcluirColetor.setIconImage(icone);
         JDExcluirColetor.setVisible(true);
-        JDExcluirColetor.pack(); 
+        JDExcluirColetor.pack();
     }//GEN-LAST:event_BExcluirColetorActionPerformed
 
     private void BExcluirItemAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirItemAcervoActionPerformed
         // TODO add your handling code here:
-        if(!TAcervo.getValueAt(TAcervo.getSelectedRow(),1).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelAcervo, "Você nao possui permissão para excluir esse item.","Erro",0);
+        if (!TAcervo.getValueAt(TAcervo.getSelectedRow(), 1).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelAcervo, "Você nao possui permissão para excluir esse item.", "Erro", 0);
             return;
         }
         Item_acervo item_acervo;
-        Item_acervoDAO item_acervodao=new Item_acervoDAO();
-        item_acervo=item_acervodao.getByCod(Integer.parseInt(TAcervo.getValueAt(TAcervo.getSelectedRow(), 0).toString()));
+        Item_acervoDAO item_acervodao = new Item_acervoDAO();
+        item_acervo = item_acervodao.getByCod(Integer.parseInt(TAcervo.getValueAt(TAcervo.getSelectedRow(), 0).toString()));
         item_acervodao.fechar();
-        
-        campoItemAcervoExcluirItemAcervo.setText(item_acervo.getCod_item_acervo()+"");
+
+        campoItemAcervoExcluirItemAcervo.setText(item_acervo.getCod_item_acervo() + "");
         JDExcluirItemAcervo.setLocationRelativeTo(null);
         JDExcluirItemAcervo.setIconImage(icone);
         JDExcluirItemAcervo.setVisible(true);
-        JDExcluirItemAcervo.pack(); 
+        JDExcluirItemAcervo.pack();
     }//GEN-LAST:event_BExcluirItemAcervoActionPerformed
 
     private void BConfirmarExcluirItemAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirItemAcervoActionPerformed
         // TODO add your handling code here:
         Item_acervo item_acervo;
-        Item_acervoDAO item_acervodao=new Item_acervoDAO();
-        boolean sucesso=false;
-        item_acervo=item_acervodao.getByCod(Integer.parseInt(campoItemAcervoExcluirItemAcervo.getText()));
-        sucesso=item_acervodao.excluir(item_acervo.getCod_item_acervo());
+        Item_acervoDAO item_acervodao = new Item_acervoDAO();
+        boolean sucesso = false;
+        item_acervo = item_acervodao.getByCod(Integer.parseInt(campoItemAcervoExcluirItemAcervo.getText()));
+        sucesso = item_acervodao.excluir(item_acervo.getCod_item_acervo());
         item_acervodao.fechar();
-        if(!sucesso) JOptionPane.showMessageDialog(JDExcluirItemAcervo, "Item Acervo não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-        else{
-                JOptionPane.showMessageDialog(JDExcluirItemAcervo, "Item Acervo excluido","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBAcervo();
-                
-                
-                JDExcluirItemAcervo.setModal(false);
-                JDExcluirItemAcervo.setVisible(false);
-                JDExcluirItemAcervo.dispose();
-            }
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirItemAcervo, "Item Acervo não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirItemAcervo, "Item Acervo excluido", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBAcervo();
+
+            JDExcluirItemAcervo.setModal(false);
+            JDExcluirItemAcervo.setVisible(false);
+            JDExcluirItemAcervo.dispose();
+        }
     }//GEN-LAST:event_BConfirmarExcluirItemAcervoActionPerformed
 
     private void BCancelarExcluirItemAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirItemAcervoActionPerformed
@@ -10732,21 +10764,22 @@ public class Principal extends javax.swing.JFrame {
     private void BConfirmarExcluirImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirImagemActionPerformed
         // TODO add your handling code here:
         Imagem imagem;
-        ImagemDAO imagemdao=new ImagemDAO();
-        boolean sucesso=false;
-        imagem=imagemdao.getByCod(Integer.parseInt(campoImagemExcluirImagem.getText()));
-        sucesso=imagemdao.excluir(imagem.getCod_imagem());
+        ImagemDAO imagemdao = new ImagemDAO();
+        boolean sucesso = false;
+        imagem = imagemdao.getByCod(Integer.parseInt(campoImagemExcluirImagem.getText()));
+        sucesso = imagemdao.excluir(imagem.getCod_imagem());
         imagemdao.fechar();
-        if(!sucesso) JOptionPane.showMessageDialog(JDExcluirImagem, "Imagem não excluida.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-        else{
-                JOptionPane.showMessageDialog(JDExcluirImagem, "Imagem excluida","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBImagem();
-                
-                JDExcluirImagem.setModal(false);
-                JDExcluirImagem.setVisible(false);
-                JDExcluirImagem.dispose();
-            }
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirImagem, "Imagem não excluida.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirImagem, "Imagem excluida", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBImagem();
+
+            JDExcluirImagem.setModal(false);
+            JDExcluirImagem.setVisible(false);
+            JDExcluirImagem.dispose();
+        }
     }//GEN-LAST:event_BConfirmarExcluirImagemActionPerformed
 
     private void BCancelarExcluirImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirImagemActionPerformed
@@ -10759,49 +10792,50 @@ public class Principal extends javax.swing.JFrame {
     private void BExcluirImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirImagemActionPerformed
         // TODO add your handling code here:
         Imagem imagem;
-        ImagemDAO imagemdao=new ImagemDAO();
-        imagem=imagemdao.getByCod(Integer.parseInt(TImagem.getValueAt(TImagem.getSelectedRow(), 0).toString()));
+        ImagemDAO imagemdao = new ImagemDAO();
+        imagem = imagemdao.getByCod(Integer.parseInt(TImagem.getValueAt(TImagem.getSelectedRow(), 0).toString()));
         imagemdao.fechar();
-        
-        campoImagemExcluirImagem.setText(imagem.getCod_imagem()+"");
+
+        campoImagemExcluirImagem.setText(imagem.getCod_imagem() + "");
         JDExcluirImagem.setLocationRelativeTo(null);
         JDExcluirImagem.setIconImage(icone);
         JDExcluirImagem.setVisible(true);
-        JDExcluirImagem.pack(); 
+        JDExcluirImagem.pack();
     }//GEN-LAST:event_BExcluirImagemActionPerformed
 
     private void BExcluirContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirContainerActionPerformed
         // TODO add your handling code here:
         Container container;
-        ContainerDAO containerdao=new ContainerDAO();
-        container=containerdao.getByCod(Integer.parseInt(TContainer.getValueAt(TContainer.getSelectedRow(), 0).toString()));
+        ContainerDAO containerdao = new ContainerDAO();
+        container = containerdao.getByCod(Integer.parseInt(TContainer.getValueAt(TContainer.getSelectedRow(), 0).toString()));
         containerdao.fechar();
-        
-        campoContainerExcluirContainer.setText(container.getCod_container()+"");
+
+        campoContainerExcluirContainer.setText(container.getCod_container() + "");
         JDExcluirContainer.setLocationRelativeTo(null);
         JDExcluirContainer.setIconImage(icone);
         JDExcluirContainer.setVisible(true);
-        JDExcluirContainer.pack(); 
+        JDExcluirContainer.pack();
     }//GEN-LAST:event_BExcluirContainerActionPerformed
 
     private void BConfirmarExcluirContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirContainerActionPerformed
         // TODO add your handling code here:
         Container container;
-        ContainerDAO containerdao=new ContainerDAO();
-        boolean sucesso=false;
-        container=containerdao.getByCod(Integer.parseInt(campoContainerExcluirContainer.getText()));
-        sucesso=containerdao.excluir(container.getCod_container());
+        ContainerDAO containerdao = new ContainerDAO();
+        boolean sucesso = false;
+        container = containerdao.getByCod(Integer.parseInt(campoContainerExcluirContainer.getText()));
+        sucesso = containerdao.excluir(container.getCod_container());
         containerdao.fechar();
-        if(!sucesso) JOptionPane.showMessageDialog(JDExcluirContainer, "Container não excluida.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-        else{
-                JOptionPane.showMessageDialog(JDExcluirContainer, "Container excluida","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBContainer();
-                
-                JDExcluirContainer.setModal(false);
-                JDExcluirContainer.setVisible(false);
-                JDExcluirContainer.dispose();
-            }
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirContainer, "Container não excluida.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirContainer, "Container excluida", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBContainer();
+
+            JDExcluirContainer.setModal(false);
+            JDExcluirContainer.setVisible(false);
+            JDExcluirContainer.dispose();
+        }
     }//GEN-LAST:event_BConfirmarExcluirContainerActionPerformed
 
     private void BCancelarExcluirContainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirContainerActionPerformed
@@ -10813,36 +10847,36 @@ public class Principal extends javax.swing.JFrame {
 
     private void resetarImagem(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_resetarImagem
         // TODO add your handling code here:
-         resetarImagem();
+        resetarImagem();
     }//GEN-LAST:event_resetarImagem
 
     private void BExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirUsuarioActionPerformed
         // TODO add your handling code here:
-        Usuario u=new Usuario();
-        int codusuario=Integer.parseInt(TUsuarios.getValueAt(TUsuarios.getSelectedRow(), 0).toString());
-        UsuarioDAO daou=new UsuarioDAO();
-        u=daou.getByCod(codusuario);
+        Usuario u = new Usuario();
+        int codusuario = Integer.parseInt(TUsuarios.getValueAt(TUsuarios.getSelectedRow(), 0).toString());
+        UsuarioDAO daou = new UsuarioDAO();
+        u = daou.getByCod(codusuario);
         daou.fechar();
-        
-        
+
+
     }//GEN-LAST:event_BExcluirUsuarioActionPerformed
 
     private void BEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarUsuarioActionPerformed
         // TODO add your handling code here:
-        Usuario u=new Usuario();
-        int codusuario=Integer.parseInt(TUsuarios.getValueAt(TUsuarios.getSelectedRow(), 0).toString());
-        UsuarioDAO daou=new UsuarioDAO();
-        u=daou.getByCod(codusuario);
+        Usuario u = new Usuario();
+        int codusuario = Integer.parseInt(TUsuarios.getValueAt(TUsuarios.getSelectedRow(), 0).toString());
+        UsuarioDAO daou = new UsuarioDAO();
+        u = daou.getByCod(codusuario);
         daou.fechar();
-        
-        campoCodigoUsuarioAlterarUsuarioJD.setText(u.getCod_usuario()+"");
+
+        campoCodigoUsuarioAlterarUsuarioJD.setText(u.getCod_usuario() + "");
         campoNomeUsuarioAlterarUsuarioJD.setText(u.getNome_usuario());
         campoRegistroAcademicoAlterarUsuarioJD.setText(u.getRegistro_academico());
         campoEmailAlterarUsuarioJD.setText(u.getEmail());
         campoNovaSenhaAlterarUsuarioJD.setText("");
         campoRepetirNovaSenhaAlterarUsuarioJD.setText("");
         CheckAdministradorAlterarUsuarioJD.setSelected(u.isUsuario_administrador());
-        
+
         JDAlterarUsuario.setLocationRelativeTo(null);
         JDAlterarUsuario.setIconImage(icone);
         JDAlterarUsuario.setVisible(true);
@@ -10852,35 +10886,33 @@ public class Principal extends javax.swing.JFrame {
     private void BAlterarUsuarioJDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAlterarUsuarioJDActionPerformed
         // TODO add your handling code here:
         Usuario u;
-        UsuarioDAO daou=new UsuarioDAO();
-        u=daou.getByCod(Integer.parseInt(campoCodigoUsuarioAlterarUsuarioJD.getText()));
-        boolean sucesso=false;
-        
-        try{
-            String novasenha=new String(campoNovaSenhaAlterarUsuarioJD.getPassword());
-            String repetirnovasenha=new String(campoRepetirNovaSenhaAlterarUsuarioJD.getPassword());
-            if(novasenha.equals(repetirnovasenha)&&!novasenha.equals("")){
-                u.setChave_encriptacao(UUID.randomUUID().toString().substring(0,16));
-                Encryptor aes=new Encryptor();
+        UsuarioDAO daou = new UsuarioDAO();
+        u = daou.getByCod(Integer.parseInt(campoCodigoUsuarioAlterarUsuarioJD.getText()));
+        boolean sucesso = false;
+
+        try {
+            String novasenha = new String(campoNovaSenhaAlterarUsuarioJD.getPassword());
+            String repetirnovasenha = new String(campoRepetirNovaSenhaAlterarUsuarioJD.getPassword());
+            if (novasenha.equals(repetirnovasenha) && !novasenha.equals("")) {
+                u.setChave_encriptacao(UUID.randomUUID().toString().substring(0, 16));
+                Encryptor aes = new Encryptor();
                 u.setSenha_usuario(aes.encrypt(u.getChave_encriptacao(), novasenha));
             }
             u.setEmail(campoEmailAlterarUsuarioJD.getText());
             u.setNome_usuario(campoNomeUsuarioAlterarUsuarioJD.getText());
             u.setRegistro_academico(campoRegistroAcademicoAlterarUsuarioJD.getText());
             u.setUsuario_administrador(CheckAdministradorAlterarUsuarioJD.isSelected());
-            sucesso=daou.alterar(u);
-            
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(Usuarios,"Campos Incorretos.\nVerifique e tente novamente.","Erro",0);
-            }
-        finally{
-            if(!sucesso){
-                JOptionPane.showMessageDialog(JDAlterarUsuario,"Falha na Alteração.","Erro",0);
-            }
-            else{
-                JOptionPane.showMessageDialog(Usuarios,"Código de Usuário: "+campoCodigoUsuarioAlterarUsuarioJD.getText(),"Usuario alterado.",JOptionPane.INFORMATION_MESSAGE);
+            sucesso = daou.alterar(u);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(Usuarios, "Campos Incorretos.\nVerifique e tente novamente.", "Erro", 0);
+        } finally {
+            if (!sucesso) {
+                JOptionPane.showMessageDialog(JDAlterarUsuario, "Falha na Alteração.", "Erro", 0);
+            } else {
+                JOptionPane.showMessageDialog(Usuarios, "Código de Usuário: " + campoCodigoUsuarioAlterarUsuarioJD.getText(), "Usuario alterado.", JOptionPane.INFORMATION_MESSAGE);
                 atualizarTBUsuario();
-                
+
                 JDAlterarUsuario.setModal(false);
                 JDAlterarUsuario.setVisible(false);
                 JDAlterarUsuario.dispose();
@@ -10892,102 +10924,108 @@ public class Principal extends javax.swing.JFrame {
     private void BConfirmarExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirmarExcluirUsuarioActionPerformed
         // TODO add your handling code here:
         Usuario u;
-        UsuarioDAO udao=new UsuarioDAO();
-        boolean sucesso=false;
-        u=udao.getByCod(Integer.parseInt(campoUsuarioExcluirUsuario.getText()));
-        sucesso=udao.excluir(u.getCod_usuario());
+        UsuarioDAO udao = new UsuarioDAO();
+        boolean sucesso = false;
+        u = udao.getByCod(Integer.parseInt(campoUsuarioExcluirUsuario.getText()));
+        sucesso = udao.excluir(u.getCod_usuario());
         udao.fechar();
-        if(!sucesso) JOptionPane.showMessageDialog(JDExcluirUsuario, "Usuario não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.","Erro",0);
-        else{
-                JOptionPane.showMessageDialog(JDExcluirUsuario, "Usuario excluido","Sucesso",JOptionPane.PLAIN_MESSAGE);
-                
-                atualizarTBUsuario();
-                atualizarCBUsuario();
-                JDExcluirUsuario.setModal(false);
-                JDExcluirUsuario.setVisible(false);
-                JDExcluirUsuario.dispose();
-            }
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(JDExcluirUsuario, "Usuario não excluido.Verificar dependências.\nSe houver, excluir todos os itens da mesma.", "Erro", 0);
+        } else {
+            JOptionPane.showMessageDialog(JDExcluirUsuario, "Usuario excluido", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+
+            atualizarTBUsuario();
+            atualizarCBUsuario();
+            JDExcluirUsuario.setModal(false);
+            JDExcluirUsuario.setVisible(false);
+            JDExcluirUsuario.dispose();
+        }
     }//GEN-LAST:event_BConfirmarExcluirUsuarioActionPerformed
 
     private void BCancelarExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarExcluirUsuarioActionPerformed
         // TODO add your handling code here:
-        
+
         JDExcluirUsuario.setModal(false);
         JDExcluirUsuario.setVisible(false);
         JDExcluirUsuario.dispose();
     }//GEN-LAST:event_BCancelarExcluirUsuarioActionPerformed
-    private void MostrarRelatorio(String consultaSQL,String formatoXml){
-        Banco b=new Banco();
+    private void MostrarRelatorio(String consultaSQL, String formatoXml) {
+        Banco b = new Banco();
         try {
-            
+            String currentPath = Principal.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            currentPath = currentPath.replace("SGACERVO.jar", "");
+            formatoXml = currentPath + formatoXml;
+            //JOptionPane.showMessageDialog(null, "SRC: "+formatoXml);
             JasperDesign jasperDesign = JRXmlLoader.load(formatoXml);
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(consultaSQL);
             jasperDesign.setQuery(newQuery);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, b.getConexao());
-            JasperViewer.viewReport(jasperPrint,false);
-            
-           
+            JasperViewer.viewReport(jasperPrint, false);
+
         } catch (JRException e) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "ERRO CARREGAMENTO: " + formatoXml);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERRO URI: " + formatoXml);
         }
-        
-        
+
         b.fechar();
     }
     private void BRelatorioItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioItemDoacaoActionPerformed
         // TODO add your handling code here:
-        String form="src/relatorios/relatorioItemDoacao.jrxml";
-        String sql = SelecaoItemDoacao+FiltroItemDoacao;
-        MostrarRelatorio(sql,form);
+        String form = "relatorios/relatorioItemDoacao.jrxml";
+        String sql = SelecaoItemDoacao + FiltroItemDoacao;
+        MostrarRelatorio(sql, form);
     }//GEN-LAST:event_BRelatorioItemDoacaoActionPerformed
 
     private void BRelatorioEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioEstoqueActionPerformed
         // TODO add your handling code here:
-        String form="src/relatorios/relatorioEstoque.jrxml";
-        String sql = SelecaoEstoque+FiltroEstoque;
-        MostrarRelatorio(sql,form);
+        String form = "relatorios/relatorioEstoque.jrxml";
+        String sql = SelecaoEstoque + FiltroEstoque;
+        MostrarRelatorio(sql, form);
     }//GEN-LAST:event_BRelatorioEstoqueActionPerformed
 
     private void BRelatorioDoadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioDoadoresActionPerformed
         // TODO add your handling code here:
-        String form="src/relatorios/relatorioDoador.jrxml";
-        String sql = SelecaoDoador+FiltroDoador;
-        MostrarRelatorio(sql,form);
+        String form = "relatorios/relatorioDoador.jrxml";
+        String sql = SelecaoDoador + FiltroDoador;
+        MostrarRelatorio(sql, form);
     }//GEN-LAST:event_BRelatorioDoadoresActionPerformed
 
     private void BRelatorioRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioRepasseActionPerformed
         // TODO add your handling code here:
-        String form="src/relatorios/relatorioRepasse.jrxml";
-        String sql = SelecaoRepasse+FiltroRepasse;
-        MostrarRelatorio(sql,form);
+        String form = "relatorios/relatorioRepasse.jrxml";
+        String sql = SelecaoRepasse + FiltroRepasse;
+        MostrarRelatorio(sql, form);
     }//GEN-LAST:event_BRelatorioRepasseActionPerformed
 
     private void BRelatorioItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioItemRepasseActionPerformed
         // TODO add your handling code here:
-        String form="src/relatorios/relatorioItemRepasse.jrxml";
-        String sql = SelecaoItemRepasse+FiltroItemRepasse;
-        MostrarRelatorio(sql,form);
+        String form = "relatorios/relatorioItemRepasse.jrxml";
+        String sql = SelecaoItemRepasse + FiltroItemRepasse;
+        MostrarRelatorio(sql, form);
     }//GEN-LAST:event_BRelatorioItemRepasseActionPerformed
 
     private void BRelatorioColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioColetorActionPerformed
         // TODO add your handling code here:
-        String form="src/relatorios/relatorioColetor.jrxml";
-        String sql = SelecaoColetor+FiltroColetor;
-        MostrarRelatorio(sql,form);
+        String form = "relatorios/relatorioColetor.jrxml";
+        String sql = SelecaoColetor + FiltroColetor;
+        MostrarRelatorio(sql, form);
     }//GEN-LAST:event_BRelatorioColetorActionPerformed
 
     private void BRelatorioAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioAcervoActionPerformed
         // TODO add your handling code here:
-        String form="src/relatorios/relatorioAcervo.jrxml";
-        String sql = SelecaoAcervo+FiltroAcervo;
-        MostrarRelatorio(sql,form);
+        String form = "relatorios/relatorioAcervo.jrxml";
+        String sql = SelecaoAcervo + FiltroAcervo;
+        MostrarRelatorio(sql, form);
     }//GEN-LAST:event_BRelatorioAcervoActionPerformed
 
     private void BAdicionarItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAdicionarItemDoacaoActionPerformed
         // TODO add your handling code here:
-        lista=(DefaultTableModel) TAdicionarItemDoacao.getModel();
+        lista = (DefaultTableModel) TAdicionarItemDoacao.getModel();
         JDAdicionarItemLista.setLocationRelativeTo(null);
         JDAdicionarItemLista.setIconImage(icone);
         JDAdicionarItemLista.setVisible(true);
@@ -10996,19 +11034,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void BAdicionarItemListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAdicionarItemListaActionPerformed
         // TODO add your handling code here:
-        int linha=lista.getRowCount();
-        lista.insertRow(linha,(Object[])null);
-        lista.setValueAt(linha+1, linha,0);
-        lista.setValueAt(CBTipoAdicionarItemLista.getSelectedItem().toString(), linha,1);
-        lista.setValueAt(SPQuantidadeItemLista.getValue(), linha,2);
+        int linha = lista.getRowCount();
+        lista.insertRow(linha, (Object[]) null);
+        lista.setValueAt(linha + 1, linha, 0);
+        lista.setValueAt(CBTipoAdicionarItemLista.getSelectedItem().toString(), linha, 1);
+        lista.setValueAt(SPQuantidadeItemLista.getValue(), linha, 2);
         CBTipoAdicionarItemLista.setSelectedIndex(0);
         SPQuantidadeItemLista.setValue(1);
-        
+
     }//GEN-LAST:event_BAdicionarItemListaActionPerformed
 
     private void BAdicionarItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAdicionarItemRepasseActionPerformed
         // TODO add your handling code here:
-        lista=(DefaultTableModel) TAdicionarItemRepasse.getModel();
+        lista = (DefaultTableModel) TAdicionarItemRepasse.getModel();
         JDAdicionarItemLista.setLocationRelativeTo(null);
         JDAdicionarItemLista.setIconImage(icone);
         JDAdicionarItemLista.setVisible(true);
@@ -11192,63 +11230,86 @@ public class Principal extends javax.swing.JFrame {
 
     private void BDoacaoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoacaoFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroDoacao=" ";
-        int checkedfilters=0;
-        if(CheckDoacaoCodigo.isSelected()) checkedfilters++;
-        if(CheckDoacaoUsuario.isSelected()) checkedfilters++;
-        if(CheckDoacaoDoador.isSelected()) checkedfilters++;
-        if(CheckDoacaoEvento.isSelected()) checkedfilters++;
-        if(CheckDoacaoData.isSelected()) checkedfilters++;
-        if(checkedfilters>0){
-            FiltroDoacao+=" WHERE ";
-            if(CheckDoacaoCodigo.isSelected()){
-                int min=Integer.parseInt(SPDoacaoMin.getValue().toString());
-                int max=Integer.parseInt(SPDoacaoMax.getValue().toString());
-                FiltroDoacao+="\"Código de Doação\">="+min+" AND \"Código de Doação\"<="+max+" ";
+        FiltroDoacao = " ";
+        int checkedfilters = 0;
+        if (CheckDoacaoCodigo.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckDoacaoUsuario.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckDoacaoDoador.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckDoacaoEvento.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckDoacaoData.isSelected()) {
+            checkedfilters++;
+        }
+        if (checkedfilters > 0) {
+            FiltroDoacao += " WHERE ";
+            if (CheckDoacaoCodigo.isSelected()) {
+                int min = Integer.parseInt(SPDoacaoMin.getValue().toString());
+                int max = Integer.parseInt(SPDoacaoMax.getValue().toString());
+                FiltroDoacao += "\"Código de Doação\">=" + min + " AND \"Código de Doação\"<=" + max + " ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroDoacao += " AND ";
+                }
             }
-            if(CheckDoacaoUsuario.isSelected()){
-                FiltroDoacao+="\"Usuário\"=\'"+CBDoacaoUsuario.getSelectedItem().toString()+"\' ";
+            if (CheckDoacaoUsuario.isSelected()) {
+                FiltroDoacao += "\"Usuário\"=\'" + CBDoacaoUsuario.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroDoacao += " AND ";
+                }
             }
-            if(CheckDoacaoDoador.isSelected()){
-                FiltroDoacao+="\"Doador\"=\'"+CBDoacaoDoador.getSelectedItem().toString()+"\' ";
+            if (CheckDoacaoDoador.isSelected()) {
+                FiltroDoacao += "\"Doador\"=\'" + CBDoacaoDoador.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroDoacao += " AND ";
+                }
             }
-            if(CheckDoacaoEvento.isSelected()){
-                FiltroDoacao+="\"Evento de Origem\"=\'"+CBDoacaoEvento.getSelectedItem().toString()+"\' ";
+            if (CheckDoacaoEvento.isSelected()) {
+                FiltroDoacao += "\"Evento de Origem\"=\'" + CBDoacaoEvento.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroDoacao += " AND ";
+                }
             }
-            if(CheckDoacaoData.isSelected()){
+            if (CheckDoacaoData.isSelected()) {
                 //"Data"::date > '2016-11-13'
-                FiltroDoacao+="\"Data\"::date>=\'"+(JDCDoacaoMin.getDate().getYear()+1900)+"-"+(JDCDoacaoMin.getDate().getMonth()+1)+"-"+JDCDoacaoMin.getDate().getDate()+"\' AND ";
-                FiltroDoacao+="\"Data\"::date<=\'"+(JDCDoacaoMax.getDate().getYear()+1900)+"-"+(JDCDoacaoMax.getDate().getMonth()+1)+"-"+JDCDoacaoMax.getDate().getDate()+"\' ";
+                FiltroDoacao += "\"Data\"::date>=\'" + (JDCDoacaoMin.getDate().getYear() + 1900) + "-" + (JDCDoacaoMin.getDate().getMonth() + 1) + "-" + JDCDoacaoMin.getDate().getDate() + "\' AND ";
+                FiltroDoacao += "\"Data\"::date<=\'" + (JDCDoacaoMax.getDate().getYear() + 1900) + "-" + (JDCDoacaoMax.getDate().getMonth() + 1) + "-" + JDCDoacaoMax.getDate().getDate() + "\' ";
                 System.out.println(FiltroDoacao);
                 checkedfilters--;
-                if(checkedfilters>0) FiltroDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroDoacao += " AND ";
+                }
             }
+        } else {
+            FiltroDoacao = "";
         }
-        else FiltroDoacao="";
-        
-        achandoMax=true;
+
+        achandoMax = true;
         atualizarTBDoacao();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBDoacao();
     }//GEN-LAST:event_BDoacaoFiltrarActionPerformed
 
     private void BItemDoacaoPaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemDoacaoPaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaItemDoacao>1) numeroPaginaItemDoacao--;
+        if (numeroPaginaItemDoacao > 1) {
+            numeroPaginaItemDoacao--;
+        }
         atualizarTBItemDoacao();
     }//GEN-LAST:event_BItemDoacaoPaginaAnteriorActionPerformed
 
     private void BItemDoacaoProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemDoacaoProxPaginaActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaItemDoacao<numeroMaxPaginaItemDoacao){
+        if (numeroPaginaItemDoacao < numeroMaxPaginaItemDoacao) {
             numeroPaginaItemDoacao++;
         }
         atualizarTBItemDoacao();
@@ -11256,13 +11317,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void BEstoquePaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoquePaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaEstoque>1) numeroPaginaEstoque--;
+        if (numeroPaginaEstoque > 1) {
+            numeroPaginaEstoque--;
+        }
         atualizarTBEstoque();
     }//GEN-LAST:event_BEstoquePaginaAnteriorActionPerformed
 
     private void BEstoqueProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueProxPaginaActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaEstoque<numeroMaxPaginaEstoque){
+        if (numeroPaginaEstoque < numeroMaxPaginaEstoque) {
             numeroPaginaEstoque++;
         }
         atualizarTBEstoque();
@@ -11270,13 +11333,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void BDoadorPaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoadorPaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaDoador>1) numeroPaginaDoador--;
+        if (numeroPaginaDoador > 1) {
+            numeroPaginaDoador--;
+        }
         atualizarTBDoador();
     }//GEN-LAST:event_BDoadorPaginaAnteriorActionPerformed
 
     private void BDoadorProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoadorProxPaginaActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaDoador<numeroMaxPaginaDoador){
+        if (numeroPaginaDoador < numeroMaxPaginaDoador) {
             numeroPaginaDoador++;
         }
         atualizarTBDoador();
@@ -11284,13 +11349,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void BDoacaoPaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoacaoPaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaDoacao>1) numeroPaginaDoacao--;
+        if (numeroPaginaDoacao > 1) {
+            numeroPaginaDoacao--;
+        }
         atualizarTBDoacao();
     }//GEN-LAST:event_BDoacaoPaginaAnteriorActionPerformed
 
     private void BDoacaoProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoacaoProxPaginaActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaDoacao<numeroMaxPaginaDoacao){
+        if (numeroPaginaDoacao < numeroMaxPaginaDoacao) {
             numeroPaginaDoacao++;
         }
         atualizarTBDoacao();
@@ -11307,44 +11374,44 @@ public class Principal extends javax.swing.JFrame {
 
     private void BRelatorioDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioDoacaoActionPerformed
         // TODO add your handling code here:
-        String form="src/relatorios/relatorioDoacao.jrxml";
-        String sql = SelecaoDoacao+FiltroDoacao;
-        MostrarRelatorio(sql,form);
+        String form = "relatorios/relatorioDoacao.jrxml";
+        String sql = SelecaoDoacao + FiltroDoacao;
+        MostrarRelatorio(sql, form);
 
     }//GEN-LAST:event_BRelatorioDoacaoActionPerformed
 
     private void BEditarDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEditarDoacaoActionPerformed
 
-        if(!TDoacao.getValueAt(TDoacao.getSelectedRow(),1).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelDoacoes, "Você nao possui permissão para editar esse item.","Erro",0);
+        if (!TDoacao.getValueAt(TDoacao.getSelectedRow(), 1).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelDoacoes, "Você nao possui permissão para editar esse item.", "Erro", 0);
             return;
         }
-        int cod_alterardoacao=Integer.parseInt(TDoacao.getValueAt(TDoacao.getSelectedRow(), 0).toString());
+        int cod_alterardoacao = Integer.parseInt(TDoacao.getValueAt(TDoacao.getSelectedRow(), 0).toString());
         Doacao d;
         Usuario u;
         Doador doa;
         Evento_origem eo;
 
-        DoacaoDAO daod=new DoacaoDAO();
-        d=daod.getByCod(cod_alterardoacao);
+        DoacaoDAO daod = new DoacaoDAO();
+        d = daod.getByCod(cod_alterardoacao);
         daod.fechar();
 
-        UsuarioDAO daou=new UsuarioDAO();
-        u=daou.getByCod(d.getCod_usuario());
+        UsuarioDAO daou = new UsuarioDAO();
+        u = daou.getByCod(d.getCod_usuario());
         daou.fechar();
 
-        DoadorDAO daodoa=new DoadorDAO();
-        doa=daodoa.getByCod(d.getCod_doador());
+        DoadorDAO daodoa = new DoadorDAO();
+        doa = daodoa.getByCod(d.getCod_doador());
         daodoa.fechar();
 
-        Evento_origemDAO daoeo=new Evento_origemDAO();
-        eo=daoeo.getByCod(d.getCod_evento_origem());
+        Evento_origemDAO daoeo = new Evento_origemDAO();
+        eo = daoeo.getByCod(d.getCod_evento_origem());
         daoeo.fechar();
 
-        campoDoacaoAlterarDoacao.setText(d.getCod_doacao()+"");
+        campoDoacaoAlterarDoacao.setText(d.getCod_doacao() + "");
         campoUsuarioAlterarDoacao.setText(u.getNome_usuario());
-        java.util.Date data=d.getData_doacao();
-        campoDataAlterarDoacao.setText(data.getDate()+"/"+(data.getMonth()+1)+"/"+(1900+data.getYear()));
+        java.util.Date data = d.getData_doacao();
+        campoDataAlterarDoacao.setText(data.getDate() + "/" + (data.getMonth() + 1) + "/" + (1900 + data.getYear()));
         CBEventoOrigemAlterarDoacao.setSelectedItem(eo.getNome_evento_origem());
         campoDoadorAlterarDoacao.setText(doa.getNome_doador());
 
@@ -11355,18 +11422,18 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BEditarDoacaoActionPerformed
 
     private void BExcluirDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BExcluirDoacaoActionPerformed
-        if(!TDoacao.getValueAt(TDoacao.getSelectedRow(),1).toString().equals(nomeUsuario)){
-            JOptionPane.showMessageDialog(PainelDoacoes, "Você nao possui permissão para excluir esse item.","Erro",0);
+        if (!TDoacao.getValueAt(TDoacao.getSelectedRow(), 1).toString().equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(PainelDoacoes, "Você nao possui permissão para excluir esse item.", "Erro", 0);
             return;
         }
-        int cod_alterardoacao=Integer.parseInt(TDoacao.getValueAt(TDoacao.getSelectedRow(), 0).toString());
+        int cod_alterardoacao = Integer.parseInt(TDoacao.getValueAt(TDoacao.getSelectedRow(), 0).toString());
         Doacao d;
 
-        DoacaoDAO daod=new DoacaoDAO();
-        d=daod.getByCod(cod_alterardoacao);
+        DoacaoDAO daod = new DoacaoDAO();
+        d = daod.getByCod(cod_alterardoacao);
         daod.fechar();
 
-        campoDoacaoExcluirDoacao.setText(d.getCod_doacao()+"");
+        campoDoacaoExcluirDoacao.setText(d.getCod_doacao() + "");
 
         JDExcluirDoacao.setLocationRelativeTo(null);
         JDExcluirDoacao.setIconImage(icone);
@@ -11376,53 +11443,55 @@ public class Principal extends javax.swing.JFrame {
 
     private void SPDoacaoItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPDoacaoItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBDoacao();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBDoacao();
     }//GEN-LAST:event_SPDoacaoItensPaginaStateChanged
 
     private void SPItemDoacaoItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPItemDoacaoItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBItemDoacao();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBItemDoacao();
     }//GEN-LAST:event_SPItemDoacaoItensPaginaStateChanged
 
     private void SPEstoqueItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPEstoqueItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBEstoque();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBEstoque();
     }//GEN-LAST:event_SPEstoqueItensPaginaStateChanged
 
     private void SPDoadorItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPDoadorItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBDoador();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBDoador();
     }//GEN-LAST:event_SPDoadorItensPaginaStateChanged
 
     private void SPRepasseItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPRepasseItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBRepasse();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBRepasse();
     }//GEN-LAST:event_SPRepasseItensPaginaStateChanged
 
     private void BRepassePaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRepassePaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaRepasse>1) numeroPaginaRepasse--;
+        if (numeroPaginaRepasse > 1) {
+            numeroPaginaRepasse--;
+        }
         atualizarTBRepasse();
     }//GEN-LAST:event_BRepassePaginaAnteriorActionPerformed
 
     private void BRepasseProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRepasseProxPaginaActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaRepasse<numeroMaxPaginaRepasse){
+        if (numeroPaginaRepasse < numeroMaxPaginaRepasse) {
             numeroPaginaRepasse++;
         }
         atualizarTBRepasse();
@@ -11430,21 +11499,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void SPItemRepasseItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPItemRepasseItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBItemRepasse();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBItemRepasse();
     }//GEN-LAST:event_SPItemRepasseItensPaginaStateChanged
 
     private void BItemRepassePaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemRepassePaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaItemRepasse>1) numeroPaginaItemRepasse--;
+        if (numeroPaginaItemRepasse > 1) {
+            numeroPaginaItemRepasse--;
+        }
         atualizarTBItemRepasse();
     }//GEN-LAST:event_BItemRepassePaginaAnteriorActionPerformed
 
     private void BItemRepasseProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemRepasseProxPaginaActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaItemRepasse<numeroMaxPaginaItemRepasse){
+        if (numeroPaginaItemRepasse < numeroMaxPaginaItemRepasse) {
             numeroPaginaItemRepasse++;
         }
         atualizarTBItemRepasse();
@@ -11452,21 +11523,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void SPColetorItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPColetorItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBColetor();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBColetor();
     }//GEN-LAST:event_SPColetorItensPaginaStateChanged
 
     private void BColetorPaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BColetorPaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaColetor>1) numeroPaginaColetor--;
+        if (numeroPaginaColetor > 1) {
+            numeroPaginaColetor--;
+        }
         atualizarTBColetor();
     }//GEN-LAST:event_BColetorPaginaAnteriorActionPerformed
 
     private void BColetorProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BColetorProxPaginaActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaColetor<numeroMaxPaginaColetor){
+        if (numeroPaginaColetor < numeroMaxPaginaColetor) {
             numeroPaginaColetor++;
         }
         atualizarTBColetor();
@@ -11501,21 +11574,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void SPAcervoItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPAcervoItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBAcervo();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBAcervo();
     }//GEN-LAST:event_SPAcervoItensPaginaStateChanged
 
     private void BAcervoPaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAcervoPaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaAcervo>1) numeroPaginaAcervo--;
+        if (numeroPaginaAcervo > 1) {
+            numeroPaginaAcervo--;
+        }
         atualizarTBAcervo();
     }//GEN-LAST:event_BAcervoPaginaAnteriorActionPerformed
 
     private void BAcervoProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAcervoProxPaginaActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaAcervo<numeroMaxPaginaAcervo){
+        if (numeroPaginaAcervo < numeroMaxPaginaAcervo) {
             numeroPaginaAcervo++;
         }
         atualizarTBAcervo();
@@ -11532,21 +11607,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void SPImagemItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPImagemItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBImagem();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBImagem();
     }//GEN-LAST:event_SPImagemItensPaginaStateChanged
 
     private void BImagemPaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BImagemPaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaImagem>1) numeroPaginaImagem--;
+        if (numeroPaginaImagem > 1) {
+            numeroPaginaImagem--;
+        }
         atualizarTBImagem();
     }//GEN-LAST:event_BImagemPaginaAnteriorActionPerformed
 
     private void BImagemProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BImagemProxPaginaActionPerformed
         // TODO add your handling code here:
-         if(numeroPaginaImagem<numeroMaxPaginaImagem){
+        if (numeroPaginaImagem < numeroMaxPaginaImagem) {
             numeroPaginaImagem++;
         }
         atualizarTBImagem();
@@ -11554,21 +11631,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void SPContainerItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPContainerItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBContainer();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBContainer();
     }//GEN-LAST:event_SPContainerItensPaginaStateChanged
 
     private void BContainerPaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerPaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaContainer>1) numeroPaginaContainer--;
+        if (numeroPaginaContainer > 1) {
+            numeroPaginaContainer--;
+        }
         atualizarTBContainer();
     }//GEN-LAST:event_BContainerPaginaAnteriorActionPerformed
 
     private void BContainerProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerProxPaginaActionPerformed
         // TODO add your handling code here:
-         if(numeroPaginaContainer<numeroMaxPaginaContainer){
+        if (numeroPaginaContainer < numeroMaxPaginaContainer) {
             numeroPaginaContainer++;
         }
         atualizarTBContainer();
@@ -11576,21 +11655,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void SPUsuariosItensPaginaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SPUsuariosItensPaginaStateChanged
         // TODO add your handling code here:
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBUsuario();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBUsuario();
     }//GEN-LAST:event_SPUsuariosItensPaginaStateChanged
 
     private void BUsuariosPaginaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUsuariosPaginaAnteriorActionPerformed
         // TODO add your handling code here:
-        if(numeroPaginaUsuarios>1) numeroPaginaUsuarios--;
+        if (numeroPaginaUsuarios > 1) {
+            numeroPaginaUsuarios--;
+        }
         atualizarTBUsuario();
     }//GEN-LAST:event_BUsuariosPaginaAnteriorActionPerformed
 
     private void BUsuariosProxPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUsuariosProxPaginaActionPerformed
         // TODO add your handling code here:
-         if(numeroPaginaUsuarios<numeroMaxPaginaUsuarios){
+        if (numeroPaginaUsuarios < numeroMaxPaginaUsuarios) {
             numeroPaginaUsuarios++;
         }
         atualizarTBUsuario();
@@ -11598,454 +11679,648 @@ public class Principal extends javax.swing.JFrame {
 
     private void BItemDoacaoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemDoacaoFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroItemDoacao=" ";
-        int checkedfilters=0;
-        if(CheckItemDoacaoDoacaoCodigo.isSelected()) checkedfilters++;
-        if(CheckItemDoacaoCodigo.isSelected()) checkedfilters++;
-        if(CheckItemDoacaoUsuario.isSelected()) checkedfilters++;
-        if(CheckItemDoacaoDoador.isSelected()) checkedfilters++;
-        if(CheckItemDoacaoEvento.isSelected()) checkedfilters++;
-        if(CheckItemDoacaoData.isSelected()) checkedfilters++;
-        if(checkedfilters>0){
-            FiltroItemDoacao+=" WHERE ";
-            if(CheckItemDoacaoDoacaoCodigo.isSelected()){
-                int min=Integer.parseInt(SPItemDoacaoDoacaoMin.getValue().toString());
-                int max=Integer.parseInt(SPItemDoacaoDoacaoMax.getValue().toString());
-                FiltroItemDoacao+="\"Código de Doação\">="+min+" AND \"Código de Doação\"<="+max+" ";
+        FiltroItemDoacao = " ";
+        int checkedfilters = 0;
+        if (CheckItemDoacaoDoacaoCodigo.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemDoacaoCodigo.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemDoacaoUsuario.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemDoacaoDoador.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemDoacaoEvento.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemDoacaoData.isSelected()) {
+            checkedfilters++;
+        }
+        if (checkedfilters > 0) {
+            FiltroItemDoacao += " WHERE ";
+            if (CheckItemDoacaoDoacaoCodigo.isSelected()) {
+                int min = Integer.parseInt(SPItemDoacaoDoacaoMin.getValue().toString());
+                int max = Integer.parseInt(SPItemDoacaoDoacaoMax.getValue().toString());
+                FiltroItemDoacao += "\"Código de Doação\">=" + min + " AND \"Código de Doação\"<=" + max + " ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemDoacao += " AND ";
+                }
             }
-            if(CheckItemDoacaoCodigo.isSelected()){
-                int min=Integer.parseInt(SPItemDoacaoMin.getValue().toString());
-                int max=Integer.parseInt(SPItemDoacaoMax.getValue().toString());
-                FiltroItemDoacao+="\"Código de Item-Doação\">="+min+" AND \"Código de Item-Doação\"<="+max+" ";
+            if (CheckItemDoacaoCodigo.isSelected()) {
+                int min = Integer.parseInt(SPItemDoacaoMin.getValue().toString());
+                int max = Integer.parseInt(SPItemDoacaoMax.getValue().toString());
+                FiltroItemDoacao += "\"Código de Item-Doação\">=" + min + " AND \"Código de Item-Doação\"<=" + max + " ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemDoacao += " AND ";
+                }
             }
-            if(CheckItemDoacaoUsuario.isSelected()){
-                FiltroItemDoacao+="\"Usuário\"=\'"+CBItemDoacaoUsuario.getSelectedItem().toString()+"\' ";
+            if (CheckItemDoacaoUsuario.isSelected()) {
+                FiltroItemDoacao += "\"Usuário\"=\'" + CBItemDoacaoUsuario.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemDoacao += " AND ";
+                }
             }
-            if(CheckItemDoacaoDoador.isSelected()){
-                FiltroItemDoacao+="\"Doador\"=\'"+CBItemDoacaoDoador.getSelectedItem().toString()+"\' ";
+            if (CheckItemDoacaoDoador.isSelected()) {
+                FiltroItemDoacao += "\"Doador\"=\'" + CBItemDoacaoDoador.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemDoacao += " AND ";
+                }
             }
-            if(CheckItemDoacaoEvento.isSelected()){
-                FiltroItemDoacao+="\"Origem\"=\'"+CBItemDoacaoEvento.getSelectedItem().toString()+"\' ";
+            if (CheckItemDoacaoEvento.isSelected()) {
+                FiltroItemDoacao += "\"Origem\"=\'" + CBItemDoacaoEvento.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemDoacao += " AND ";
+                }
             }
-            if(CheckItemDoacaoData.isSelected()){
+            if (CheckItemDoacaoData.isSelected()) {
                 //"Data"::date > '2016-11-13'
-                FiltroItemDoacao+="\"Data\"::date>=\'"+(JDCItemDoacaoMin.getDate().getYear()+1900)+"-"+(JDCItemDoacaoMin.getDate().getMonth()+1)+"-"+JDCItemDoacaoMin.getDate().getDate()+"\' AND ";
-                FiltroItemDoacao+="\"Data\"::date<=\'"+(JDCItemDoacaoMax.getDate().getYear()+1900)+"-"+(JDCItemDoacaoMax.getDate().getMonth()+1)+"-"+JDCItemDoacaoMax.getDate().getDate()+"\' ";
+                FiltroItemDoacao += "\"Data\"::date>=\'" + (JDCItemDoacaoMin.getDate().getYear() + 1900) + "-" + (JDCItemDoacaoMin.getDate().getMonth() + 1) + "-" + JDCItemDoacaoMin.getDate().getDate() + "\' AND ";
+                FiltroItemDoacao += "\"Data\"::date<=\'" + (JDCItemDoacaoMax.getDate().getYear() + 1900) + "-" + (JDCItemDoacaoMax.getDate().getMonth() + 1) + "-" + JDCItemDoacaoMax.getDate().getDate() + "\' ";
                 System.out.println(FiltroItemDoacao);
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemDoacao+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemDoacao += " AND ";
+                }
             }
+        } else {
+            FiltroItemDoacao = "";
         }
-        else FiltroItemDoacao="";
         System.out.println(FiltroItemDoacao);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBItemDoacao();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBItemDoacao();
     }//GEN-LAST:event_BItemDoacaoFiltrarActionPerformed
 
     private void BEstoqueFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroEstoque=" ";
-        int checkedfilters=0;
-        if(CheckEstoqueTipo.isSelected()) checkedfilters++;
-        if(CheckEstoqueDoacao.isSelected()) checkedfilters++;
-        if(CheckEstoqueRepasse.isSelected()) checkedfilters++;
-        if(CheckEstoqueSaldo.isSelected()) checkedfilters++;
-        if(checkedfilters>0){
-            FiltroEstoque+=" WHERE ";
-            if(CheckEstoqueTipo.isSelected()){
-                FiltroEstoque+="\"Tipo\"=\'"+CBEstoqueTipo.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroEstoque+=" AND ";
-            }
-            if(CheckEstoqueDoacao.isSelected()){
-                int min=Integer.parseInt(SPEstoqueDoacaoMin.getValue().toString());
-                int max=Integer.parseInt(SPEstoqueDoacaoMax.getValue().toString());
-                FiltroEstoque+="\"Quantidade de Doações\">="+min+" AND \"Quantidade de Doações\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroEstoque+=" AND ";
-            }
-            if(CheckEstoqueRepasse.isSelected()){
-                int min=Integer.parseInt(SPEstoqueRepasseMin.getValue().toString());
-                int max=Integer.parseInt(SPEstoqueRepasseMax.getValue().toString());
-                FiltroEstoque+="\"Quantidade de Repasses\">="+min+" AND \"Quantidade de Repasses\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroEstoque+=" AND ";
-            }
-            if(CheckEstoqueSaldo.isSelected()){
-                int min=Integer.parseInt(SPEstoqueSaldoMin.getValue().toString());
-                int max=Integer.parseInt(SPEstoqueSaldoMax.getValue().toString());
-                FiltroEstoque+="\"Saldo\">="+min+" AND \"Saldo\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroEstoque+=" AND ";
-            }
-            
+        FiltroEstoque = " ";
+        int checkedfilters = 0;
+        if (CheckEstoqueTipo.isSelected()) {
+            checkedfilters++;
         }
-        else FiltroEstoque="";
+        if (CheckEstoqueDoacao.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckEstoqueRepasse.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckEstoqueSaldo.isSelected()) {
+            checkedfilters++;
+        }
+        if (checkedfilters > 0) {
+            FiltroEstoque += " WHERE ";
+            if (CheckEstoqueTipo.isSelected()) {
+                FiltroEstoque += "\"Tipo\"=\'" + CBEstoqueTipo.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroEstoque += " AND ";
+                }
+            }
+            if (CheckEstoqueDoacao.isSelected()) {
+                int min = Integer.parseInt(SPEstoqueDoacaoMin.getValue().toString());
+                int max = Integer.parseInt(SPEstoqueDoacaoMax.getValue().toString());
+                FiltroEstoque += "\"Quantidade de Doações\">=" + min + " AND \"Quantidade de Doações\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroEstoque += " AND ";
+                }
+            }
+            if (CheckEstoqueRepasse.isSelected()) {
+                int min = Integer.parseInt(SPEstoqueRepasseMin.getValue().toString());
+                int max = Integer.parseInt(SPEstoqueRepasseMax.getValue().toString());
+                FiltroEstoque += "\"Quantidade de Repasses\">=" + min + " AND \"Quantidade de Repasses\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroEstoque += " AND ";
+                }
+            }
+            if (CheckEstoqueSaldo.isSelected()) {
+                int min = Integer.parseInt(SPEstoqueSaldoMin.getValue().toString());
+                int max = Integer.parseInt(SPEstoqueSaldoMax.getValue().toString());
+                FiltroEstoque += "\"Saldo\">=" + min + " AND \"Saldo\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroEstoque += " AND ";
+                }
+            }
+
+        } else {
+            FiltroEstoque = "";
+        }
         System.out.println(FiltroEstoque);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBEstoque();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBEstoque();
     }//GEN-LAST:event_BEstoqueFiltrarActionPerformed
 
     private void BDoadorFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoadorFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroDoador=" ";
-        int checkedfilters=0;
-        if(CheckDoadorCodigo.isSelected()) checkedfilters++;
-        if(CheckDoadorDoador.isSelected()) checkedfilters++;
-        if(checkedfilters>0){
-            FiltroDoador+=" WHERE ";
-            if(CheckDoadorDoador.isSelected()){
-                FiltroDoador+="\"Nome do Doador\"=\'"+CBDoadorDoador.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroDoador+=" AND ";
-            }
-            if(CheckDoadorCodigo.isSelected()){
-                int min=Integer.parseInt(SPDoadorCodigoMin.getValue().toString());
-                int max=Integer.parseInt(SPDoadorCodigoMax.getValue().toString());
-                FiltroDoador+="\"Código do Doador\">="+min+" AND \"Código do Doador\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroDoador+=" AND ";
-            }
-            
+        FiltroDoador = " ";
+        int checkedfilters = 0;
+        if (CheckDoadorCodigo.isSelected()) {
+            checkedfilters++;
         }
-        else FiltroDoador="";
+        if (CheckDoadorDoador.isSelected()) {
+            checkedfilters++;
+        }
+        if (checkedfilters > 0) {
+            FiltroDoador += " WHERE ";
+            if (CheckDoadorDoador.isSelected()) {
+                FiltroDoador += "\"Nome do Doador\"=\'" + CBDoadorDoador.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroDoador += " AND ";
+                }
+            }
+            if (CheckDoadorCodigo.isSelected()) {
+                int min = Integer.parseInt(SPDoadorCodigoMin.getValue().toString());
+                int max = Integer.parseInt(SPDoadorCodigoMax.getValue().toString());
+                FiltroDoador += "\"Código do Doador\">=" + min + " AND \"Código do Doador\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroDoador += " AND ";
+                }
+            }
+
+        } else {
+            FiltroDoador = "";
+        }
         System.out.println(FiltroDoador);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBDoador();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBDoador();
     }//GEN-LAST:event_BDoadorFiltrarActionPerformed
 
     private void BRepasseFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRepasseFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroRepasse=" ";
-        int checkedfilters=0;
-        if(CheckRepasseCodigo.isSelected()) checkedfilters++;
-        if(CheckRepasseUsuario.isSelected()) checkedfilters++;
-        if(CheckRepasseColetor.isSelected()) checkedfilters++;
-        if(CheckRepasseTipoColetor.isSelected()) checkedfilters++;
-        if(CheckRepasseDestinacao.isSelected()) checkedfilters++;
-        if(CheckRepasseData.isSelected()) checkedfilters++;
-        if(checkedfilters>0){
-            FiltroRepasse+=" WHERE ";
-            if(CheckRepasseCodigo.isSelected()){
-                int min=Integer.parseInt(SPRepasseMin.getValue().toString());
-                int max=Integer.parseInt(SPRepasseMax.getValue().toString());
-                FiltroRepasse+="\"Código do Repasse\">="+min+" AND \"Código do Repasse\"<="+max+" ";
+        FiltroRepasse = " ";
+        int checkedfilters = 0;
+        if (CheckRepasseCodigo.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckRepasseUsuario.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckRepasseColetor.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckRepasseTipoColetor.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckRepasseDestinacao.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckRepasseData.isSelected()) {
+            checkedfilters++;
+        }
+        if (checkedfilters > 0) {
+            FiltroRepasse += " WHERE ";
+            if (CheckRepasseCodigo.isSelected()) {
+                int min = Integer.parseInt(SPRepasseMin.getValue().toString());
+                int max = Integer.parseInt(SPRepasseMax.getValue().toString());
+                FiltroRepasse += "\"Código do Repasse\">=" + min + " AND \"Código do Repasse\"<=" + max + " ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroRepasse += " AND ";
+                }
             }
-            if(CheckRepasseUsuario.isSelected()){
-                FiltroRepasse+="\"Usuário\"=\'"+CBRepasseUsuario.getSelectedItem().toString()+"\' ";
+            if (CheckRepasseUsuario.isSelected()) {
+                FiltroRepasse += "\"Usuário\"=\'" + CBRepasseUsuario.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroRepasse += " AND ";
+                }
             }
-            if(CheckRepasseColetor.isSelected()){
-                FiltroRepasse+="\"Coletor\"=\'"+CBRepasseColetor.getSelectedItem().toString()+"\' ";
+            if (CheckRepasseColetor.isSelected()) {
+                FiltroRepasse += "\"Coletor\"=\'" + CBRepasseColetor.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroRepasse += " AND ";
+                }
             }
-            if(CheckRepasseTipoColetor.isSelected()){
-                FiltroRepasse+="\"Tipo de Coletor\"=\'"+CBRepasseTipoColetor.getSelectedItem().toString()+"\' ";
+            if (CheckRepasseTipoColetor.isSelected()) {
+                FiltroRepasse += "\"Tipo de Coletor\"=\'" + CBRepasseTipoColetor.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroRepasse += " AND ";
+                }
             }
-            if(CheckRepasseDestinacao.isSelected()){
-                FiltroRepasse+="\"Destinação\"=\'"+CBRepasseDestinacao.getSelectedItem().toString()+"\' ";
+            if (CheckRepasseDestinacao.isSelected()) {
+                FiltroRepasse += "\"Destinação\"=\'" + CBRepasseDestinacao.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroRepasse += " AND ";
+                }
             }
-            if(CheckRepasseData.isSelected()){
+            if (CheckRepasseData.isSelected()) {
                 //"Data"::date > '2016-11-13'
-                FiltroRepasse+="\"Data\"::date>=\'"+(JDCRepasseMin.getDate().getYear()+1900)+"-"+(JDCRepasseMin.getDate().getMonth()+1)+"-"+JDCRepasseMin.getDate().getDate()+"\' AND ";
-                FiltroRepasse+="\"Data\"::date<=\'"+(JDCRepasseMax.getDate().getYear()+1900)+"-"+(JDCRepasseMax.getDate().getMonth()+1)+"-"+JDCRepasseMax.getDate().getDate()+"\' ";
+                FiltroRepasse += "\"Data\"::date>=\'" + (JDCRepasseMin.getDate().getYear() + 1900) + "-" + (JDCRepasseMin.getDate().getMonth() + 1) + "-" + JDCRepasseMin.getDate().getDate() + "\' AND ";
+                FiltroRepasse += "\"Data\"::date<=\'" + (JDCRepasseMax.getDate().getYear() + 1900) + "-" + (JDCRepasseMax.getDate().getMonth() + 1) + "-" + JDCRepasseMax.getDate().getDate() + "\' ";
                 System.out.println(FiltroRepasse);
                 checkedfilters--;
-                if(checkedfilters>0) FiltroRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroRepasse += " AND ";
+                }
             }
+        } else {
+            FiltroRepasse = "";
         }
-        else FiltroRepasse="";
         System.out.println(FiltroRepasse);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBRepasse();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBRepasse();
     }//GEN-LAST:event_BRepasseFiltrarActionPerformed
 
     private void BItemRepasseFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemRepasseFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroItemRepasse=" ";
-        int checkedfilters=0;
-        if(CheckItemRepasseCodigo.isSelected()) checkedfilters++;
-        if(CheckItemRepasseRepasse.isSelected()) checkedfilters++;
-        if(CheckItemRepasseUsuario.isSelected()) checkedfilters++;
-        if(CheckItemRepasseColetor.isSelected()) checkedfilters++;
-        if(CheckItemRepasseTipo.isSelected()) checkedfilters++;
-        if(CheckItemRepasseDestinacao.isSelected()) checkedfilters++;
-        if(CheckItemRepasseQuantidade.isSelected()) checkedfilters++;
-        if(CheckItemRepasseData.isSelected()) checkedfilters++;
-        if(checkedfilters>0){
-            FiltroItemRepasse+=" WHERE ";
-            if(CheckItemRepasseCodigo.isSelected()){
-                int min=Integer.parseInt(SPItemRepasseMin.getValue().toString());
-                int max=Integer.parseInt(SPItemRepasseMax.getValue().toString());
-                FiltroItemRepasse+="\"Código do Item-Repasse\">="+min+" AND \"Código do Item-Repasse\"<="+max+" ";
+        FiltroItemRepasse = " ";
+        int checkedfilters = 0;
+        if (CheckItemRepasseCodigo.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemRepasseRepasse.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemRepasseUsuario.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemRepasseColetor.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemRepasseTipo.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemRepasseDestinacao.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemRepasseQuantidade.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckItemRepasseData.isSelected()) {
+            checkedfilters++;
+        }
+        if (checkedfilters > 0) {
+            FiltroItemRepasse += " WHERE ";
+            if (CheckItemRepasseCodigo.isSelected()) {
+                int min = Integer.parseInt(SPItemRepasseMin.getValue().toString());
+                int max = Integer.parseInt(SPItemRepasseMax.getValue().toString());
+                FiltroItemRepasse += "\"Código do Item-Repasse\">=" + min + " AND \"Código do Item-Repasse\"<=" + max + " ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemRepasse += " AND ";
+                }
             }
-            if(CheckItemRepasseRepasse.isSelected()){
-                int min=Integer.parseInt(SPItemRepasseRepasseMin.getValue().toString());
-                int max=Integer.parseInt(SPItemRepasseRepasseMax.getValue().toString());
-                FiltroItemRepasse+="\"Codigo do Repasse\">="+min+" AND \"Codigo do Repasse\"<="+max+" ";
+            if (CheckItemRepasseRepasse.isSelected()) {
+                int min = Integer.parseInt(SPItemRepasseRepasseMin.getValue().toString());
+                int max = Integer.parseInt(SPItemRepasseRepasseMax.getValue().toString());
+                FiltroItemRepasse += "\"Codigo do Repasse\">=" + min + " AND \"Codigo do Repasse\"<=" + max + " ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemRepasse += " AND ";
+                }
             }
-            if(CheckItemRepasseQuantidade.isSelected()){
-                int min=Integer.parseInt(SPItemRepasseQuantidadeMin.getValue().toString());
-                int max=Integer.parseInt(SPItemRepasseQuantidadeMax.getValue().toString());
-                FiltroItemRepasse+="\"Quantidade\">="+min+" AND \"Quantidade\"<="+max+" ";
+            if (CheckItemRepasseQuantidade.isSelected()) {
+                int min = Integer.parseInt(SPItemRepasseQuantidadeMin.getValue().toString());
+                int max = Integer.parseInt(SPItemRepasseQuantidadeMax.getValue().toString());
+                FiltroItemRepasse += "\"Quantidade\">=" + min + " AND \"Quantidade\"<=" + max + " ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemRepasse += " AND ";
+                }
             }
-            if(CheckItemRepasseUsuario.isSelected()){
-                FiltroItemRepasse+="\"Usuário\"=\'"+CBItemRepasseUsuario.getSelectedItem().toString()+"\' ";
+            if (CheckItemRepasseUsuario.isSelected()) {
+                FiltroItemRepasse += "\"Usuário\"=\'" + CBItemRepasseUsuario.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemRepasse += " AND ";
+                }
             }
-            if(CheckItemRepasseColetor.isSelected()){
-                FiltroItemRepasse+="\"Coletor\"=\'"+CBItemRepasseColetor.getSelectedItem().toString()+"\' ";
+            if (CheckItemRepasseColetor.isSelected()) {
+                FiltroItemRepasse += "\"Coletor\"=\'" + CBItemRepasseColetor.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemRepasse += " AND ";
+                }
             }
-            if(CheckItemRepasseTipo.isSelected()){
-                FiltroItemRepasse+="\"Tipo de Item\"=\'"+CBItemRepasseTipo.getSelectedItem().toString()+"\' ";
+            if (CheckItemRepasseTipo.isSelected()) {
+                FiltroItemRepasse += "\"Tipo de Item\"=\'" + CBItemRepasseTipo.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemRepasse += " AND ";
+                }
             }
-            if(CheckItemRepasseDestinacao.isSelected()){
-                FiltroItemRepasse+="\"Destinação\"=\'"+CBItemRepasseDestinacao.getSelectedItem().toString()+"\' ";
+            if (CheckItemRepasseDestinacao.isSelected()) {
+                FiltroItemRepasse += "\"Destinação\"=\'" + CBItemRepasseDestinacao.getSelectedItem().toString() + "\' ";
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemRepasse += " AND ";
+                }
             }
-            if(CheckItemRepasseData.isSelected()){
+            if (CheckItemRepasseData.isSelected()) {
                 //"Data"::date > '2016-11-13'
-                FiltroItemRepasse+="\"Data\"::date>=\'"+(JDCItemRepasseMin.getDate().getYear()+1900)+"-"+(JDCItemRepasseMin.getDate().getMonth()+1)+"-"+JDCItemRepasseMin.getDate().getDate()+"\' AND ";
-                FiltroItemRepasse+="\"Data\"::date<=\'"+(JDCItemRepasseMax.getDate().getYear()+1900)+"-"+(JDCItemRepasseMax.getDate().getMonth()+1)+"-"+JDCItemRepasseMax.getDate().getDate()+"\' ";
+                FiltroItemRepasse += "\"Data\"::date>=\'" + (JDCItemRepasseMin.getDate().getYear() + 1900) + "-" + (JDCItemRepasseMin.getDate().getMonth() + 1) + "-" + JDCItemRepasseMin.getDate().getDate() + "\' AND ";
+                FiltroItemRepasse += "\"Data\"::date<=\'" + (JDCItemRepasseMax.getDate().getYear() + 1900) + "-" + (JDCItemRepasseMax.getDate().getMonth() + 1) + "-" + JDCItemRepasseMax.getDate().getDate() + "\' ";
                 System.out.println(FiltroItemRepasse);
                 checkedfilters--;
-                if(checkedfilters>0) FiltroItemRepasse+=" AND ";
+                if (checkedfilters > 0) {
+                    FiltroItemRepasse += " AND ";
+                }
             }
+        } else {
+            FiltroItemRepasse = "";
         }
-        else FiltroItemRepasse="";
         System.out.println(FiltroItemRepasse);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBItemRepasse();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBItemRepasse();
     }//GEN-LAST:event_BItemRepasseFiltrarActionPerformed
 
     private void BColetorFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BColetorFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroColetor=" ";
-        int checkedfilters=0;
-        if(CheckColetorCodigo.isSelected()) checkedfilters++;
-        if(CheckColetorColetor.isSelected()) checkedfilters++;
-        if(CheckColetorTipo.isSelected()) checkedfilters++;
-        
-        if(checkedfilters>0){
-            FiltroColetor+=" WHERE ";
-            if(CheckColetorCodigo.isSelected()){
-                int min=Integer.parseInt(SPColetorCodigoMin.getValue().toString());
-                int max=Integer.parseInt(SPColetorCodigoMax.getValue().toString());
-                FiltroColetor+="\"Código do Coletor\">="+min+" AND \"Código do Coletor\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroColetor+=" AND ";
-            }
-            
-            if(CheckColetorColetor.isSelected()){
-                FiltroColetor+="\"Nome do Coletor\"=\'"+CBColetorColetor.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroColetor+=" AND ";
-            }
-            if(CheckColetorTipo.isSelected()){
-                FiltroColetor+="\"Tipo do Coletor\"=\'"+CBColetorTipo.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroColetor+=" AND ";
-            }
-            
+        FiltroColetor = " ";
+        int checkedfilters = 0;
+        if (CheckColetorCodigo.isSelected()) {
+            checkedfilters++;
         }
-        else FiltroColetor="";
+        if (CheckColetorColetor.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckColetorTipo.isSelected()) {
+            checkedfilters++;
+        }
+
+        if (checkedfilters > 0) {
+            FiltroColetor += " WHERE ";
+            if (CheckColetorCodigo.isSelected()) {
+                int min = Integer.parseInt(SPColetorCodigoMin.getValue().toString());
+                int max = Integer.parseInt(SPColetorCodigoMax.getValue().toString());
+                FiltroColetor += "\"Código do Coletor\">=" + min + " AND \"Código do Coletor\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroColetor += " AND ";
+                }
+            }
+
+            if (CheckColetorColetor.isSelected()) {
+                FiltroColetor += "\"Nome do Coletor\"=\'" + CBColetorColetor.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroColetor += " AND ";
+                }
+            }
+            if (CheckColetorTipo.isSelected()) {
+                FiltroColetor += "\"Tipo do Coletor\"=\'" + CBColetorTipo.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroColetor += " AND ";
+                }
+            }
+
+        } else {
+            FiltroColetor = "";
+        }
         System.out.println(FiltroColetor);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBColetor();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBColetor();
     }//GEN-LAST:event_BColetorFiltrarActionPerformed
 
     private void BAcervoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAcervoFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroAcervo=" ";
-        int checkedfilters=0;
-        if(CheckAcervoCodigo.isSelected()) checkedfilters++;
-        if(CheckAcervoUsuario.isSelected()) checkedfilters++;
-        if(CheckAcervoDoador.isSelected()) checkedfilters++;
-        if(CheckAcervoData.isSelected()) checkedfilters++;
-        if(CheckAcervoTipo.isSelected()) checkedfilters++;
-        if(CheckAcervoMarca.isSelected()) checkedfilters++;
-        if(CheckAcervoModelo.isSelected()) checkedfilters++;
-        if(CheckAcervoInterface.isSelected()) checkedfilters++;
-        if(CheckAcervoTecnologia.isSelected()) checkedfilters++;
-        if(CheckAcervoCapacidade.isSelected()) checkedfilters++;
-        if(CheckAcervoAno.isSelected()) checkedfilters++;
-        if(CheckAcervoFuncionamento.isSelected()) checkedfilters++;
-        if(CheckAcervoContainer.isSelected()) checkedfilters++;
-        
-        if(checkedfilters>0){
-            FiltroAcervo+=" WHERE ";
-            if(CheckAcervoCodigo.isSelected()){
-                int min=Integer.parseInt(SPAcervoCodigoMin.getValue().toString());
-                int max=Integer.parseInt(SPAcervoCodigoMax.getValue().toString());
-                FiltroAcervo+="\"Código de Item do Acervo\">="+min+" AND \"Código de Item do Acervo\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoUsuario.isSelected()){
-                FiltroAcervo+="\"Usuário\"=\'"+CBAcervoUsuario.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoDoador.isSelected()){
-                FiltroAcervo+="\"Doador\"=\'"+CBAcervoDoador.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoData.isSelected()){
-                //"Data"::date > '2016-11-13'
-                FiltroAcervo+="\"Data\"::date>=\'"+(JDCAcervoDataMin.getDate().getYear()+1900)+"-"+(JDCAcervoDataMin.getDate().getMonth()+1)+"-"+JDCAcervoDataMin.getDate().getDate()+"\' AND ";
-                FiltroAcervo+="\"Data\"::date<=\'"+(JDCAcervoDataMax.getDate().getYear()+1900)+"-"+(JDCAcervoDataMax.getDate().getMonth()+1)+"-"+JDCAcervoDataMax.getDate().getDate()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoTipo.isSelected()){
-                FiltroAcervo+="\"Tipo\"=\'"+CBAcervoTipo.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoMarca.isSelected()){
-                FiltroAcervo+="\"Marca\"=\'"+CBAcervoMarca.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoModelo.isSelected()){
-                FiltroAcervo+="\"Modelo\"=\'"+CBAcervoModelo.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoInterface.isSelected()){
-                FiltroAcervo+="\"Interface\"=\'"+CBAcervoInterface.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoTecnologia.isSelected()){
-                FiltroAcervo+="\"Tecnologia\"=\'"+CBAcervoTecnologia.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoCapacidade.isSelected()){
-                int min=Integer.parseInt(SPAcervoCapacidadeMin.getValue().toString());
-                int max=Integer.parseInt(SPAcervoCapacidadeMax.getValue().toString());
-                FiltroAcervo+="\"Capacidade\">="+min+" AND \"Capacidade\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoAno.isSelected()){
-                int min=Integer.parseInt(SPAcervoAnoMin.getValue().toString());
-                int max=Integer.parseInt(SPAcervoAnoMax.getValue().toString());
-                FiltroAcervo+="\"Ano\">="+min+" AND \"Ano\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoFuncionamento.isSelected()){
-                if (CheckAcervoFunciona.isSelected()) FiltroAcervo+="\"Funciona\"='t'";
-                else FiltroAcervo+="\"Funciona\"='f'";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            if(CheckAcervoContainer.isSelected()){
-                int min=Integer.parseInt(SPAcervoContainerMin.getValue().toString());
-                int max=Integer.parseInt(SPAcervoContainerMax.getValue().toString());
-                FiltroAcervo+="\"Código de Container\">="+min+" AND \"Código de Container\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroAcervo+=" AND ";
-            }
-            
+        FiltroAcervo = " ";
+        int checkedfilters = 0;
+        if (CheckAcervoCodigo.isSelected()) {
+            checkedfilters++;
         }
-        else FiltroAcervo="";
+        if (CheckAcervoUsuario.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoDoador.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoData.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoTipo.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoMarca.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoModelo.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoInterface.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoTecnologia.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoCapacidade.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoAno.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoFuncionamento.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckAcervoContainer.isSelected()) {
+            checkedfilters++;
+        }
+
+        if (checkedfilters > 0) {
+            FiltroAcervo += " WHERE ";
+            if (CheckAcervoCodigo.isSelected()) {
+                int min = Integer.parseInt(SPAcervoCodigoMin.getValue().toString());
+                int max = Integer.parseInt(SPAcervoCodigoMax.getValue().toString());
+                FiltroAcervo += "\"Código de Item do Acervo\">=" + min + " AND \"Código de Item do Acervo\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoUsuario.isSelected()) {
+                FiltroAcervo += "\"Usuário\"=\'" + CBAcervoUsuario.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoDoador.isSelected()) {
+                FiltroAcervo += "\"Doador\"=\'" + CBAcervoDoador.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoData.isSelected()) {
+                //"Data"::date > '2016-11-13'
+                FiltroAcervo += "\"Data\"::date>=\'" + (JDCAcervoDataMin.getDate().getYear() + 1900) + "-" + (JDCAcervoDataMin.getDate().getMonth() + 1) + "-" + JDCAcervoDataMin.getDate().getDate() + "\' AND ";
+                FiltroAcervo += "\"Data\"::date<=\'" + (JDCAcervoDataMax.getDate().getYear() + 1900) + "-" + (JDCAcervoDataMax.getDate().getMonth() + 1) + "-" + JDCAcervoDataMax.getDate().getDate() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoTipo.isSelected()) {
+                FiltroAcervo += "\"Tipo\"=\'" + CBAcervoTipo.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoMarca.isSelected()) {
+                FiltroAcervo += "\"Marca\"=\'" + CBAcervoMarca.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoModelo.isSelected()) {
+                FiltroAcervo += "\"Modelo\"=\'" + CBAcervoModelo.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoInterface.isSelected()) {
+                FiltroAcervo += "\"Interface\"=\'" + CBAcervoInterface.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoTecnologia.isSelected()) {
+                FiltroAcervo += "\"Tecnologia\"=\'" + CBAcervoTecnologia.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoCapacidade.isSelected()) {
+                int min = Integer.parseInt(SPAcervoCapacidadeMin.getValue().toString());
+                int max = Integer.parseInt(SPAcervoCapacidadeMax.getValue().toString());
+                FiltroAcervo += "\"Capacidade\">=" + min + " AND \"Capacidade\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoAno.isSelected()) {
+                int min = Integer.parseInt(SPAcervoAnoMin.getValue().toString());
+                int max = Integer.parseInt(SPAcervoAnoMax.getValue().toString());
+                FiltroAcervo += "\"Ano\">=" + min + " AND \"Ano\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoFuncionamento.isSelected()) {
+                if (CheckAcervoFunciona.isSelected()) {
+                    FiltroAcervo += "\"Funciona\"='t'";
+                } else {
+                    FiltroAcervo += "\"Funciona\"='f'";
+                }
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+            if (CheckAcervoContainer.isSelected()) {
+                int min = Integer.parseInt(SPAcervoContainerMin.getValue().toString());
+                int max = Integer.parseInt(SPAcervoContainerMax.getValue().toString());
+                FiltroAcervo += "\"Código de Container\">=" + min + " AND \"Código de Container\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroAcervo += " AND ";
+                }
+            }
+
+        } else {
+            FiltroAcervo = "";
+        }
         System.out.println(FiltroAcervo);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBAcervo();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBAcervo();
     }//GEN-LAST:event_BAcervoFiltrarActionPerformed
 
     private void BImagemFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BImagemFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroImagem=" ";
-        int checkedfilters=0;
-        if(CheckImagemCodigo.isSelected()) checkedfilters++;
-        if(CheckImagemItem.isSelected()) checkedfilters++;
-        if(CheckImagemMarca.isSelected()) checkedfilters++;
-        if(CheckImagemModelo.isSelected()) checkedfilters++;
-        
-        if(checkedfilters>0){
-            FiltroImagem+=" WHERE ";
-            if(CheckImagemCodigo.isSelected()){
-                int min=Integer.parseInt(SPImagemCodigoMin.getValue().toString());
-                int max=Integer.parseInt(SPImagemCodigoMax.getValue().toString());
-                FiltroImagem+="\"Código de Imagem\">="+min+" AND \"Código de Imagem\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroImagem+=" AND ";
-            }
-            if(CheckImagemItem.isSelected()){
-                int min=Integer.parseInt(SPImagemItemMin.getValue().toString());
-                int max=Integer.parseInt(SPImagemItemMax.getValue().toString());
-                FiltroImagem+="\"Código de Item Acervo\">="+min+" AND \"Código de Item Acervo\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroImagem+=" AND ";
-            }
-            
-            if(CheckImagemMarca.isSelected()){
-                FiltroImagem+="\"Marca\"=\'"+CBImagemMarca.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroImagem+=" AND ";
-            }
-            if(CheckImagemModelo.isSelected()){
-                FiltroImagem+="\"Modelo\"=\'"+CBImagemModelo.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroImagem+=" AND ";
-            }
-            
-            
+        FiltroImagem = " ";
+        int checkedfilters = 0;
+        if (CheckImagemCodigo.isSelected()) {
+            checkedfilters++;
         }
-        else FiltroImagem="";
+        if (CheckImagemItem.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckImagemMarca.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckImagemModelo.isSelected()) {
+            checkedfilters++;
+        }
+
+        if (checkedfilters > 0) {
+            FiltroImagem += " WHERE ";
+            if (CheckImagemCodigo.isSelected()) {
+                int min = Integer.parseInt(SPImagemCodigoMin.getValue().toString());
+                int max = Integer.parseInt(SPImagemCodigoMax.getValue().toString());
+                FiltroImagem += "\"Código de Imagem\">=" + min + " AND \"Código de Imagem\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroImagem += " AND ";
+                }
+            }
+            if (CheckImagemItem.isSelected()) {
+                int min = Integer.parseInt(SPImagemItemMin.getValue().toString());
+                int max = Integer.parseInt(SPImagemItemMax.getValue().toString());
+                FiltroImagem += "\"Código de Item Acervo\">=" + min + " AND \"Código de Item Acervo\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroImagem += " AND ";
+                }
+            }
+
+            if (CheckImagemMarca.isSelected()) {
+                FiltroImagem += "\"Marca\"=\'" + CBImagemMarca.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroImagem += " AND ";
+                }
+            }
+            if (CheckImagemModelo.isSelected()) {
+                FiltroImagem += "\"Modelo\"=\'" + CBImagemModelo.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroImagem += " AND ";
+                }
+            }
+
+        } else {
+            FiltroImagem = "";
+        }
         System.out.println(FiltroImagem);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBImagem();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBImagem();
     }//GEN-LAST:event_BImagemFiltrarActionPerformed
 
@@ -12069,40 +12344,52 @@ public class Principal extends javax.swing.JFrame {
 
     private void BContainerFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerFiltrarActionPerformed
         // TODO add your handling code here:
-        FiltroContainer=" ";
-        int checkedfilters=0;
-        if(CheckContainerCodigo.isSelected()) checkedfilters++;
-        if(CheckContainerLocalizacao.isSelected()) checkedfilters++;
-        if(CheckContainerTipo.isSelected()) checkedfilters++;
-        
-        if(checkedfilters>0){
-            FiltroContainer+=" WHERE ";
-            if(CheckContainerCodigo.isSelected()){
-                int min=Integer.parseInt(SPContainerCodigoMin.getValue().toString());
-                int max=Integer.parseInt(SPContainerCodigoMax.getValue().toString());
-                FiltroContainer+="\"Código do Container\">="+min+" AND \"Código do Container\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroContainer+=" AND ";
-            }
-            
-            if(CheckContainerLocalizacao.isSelected()){
-                FiltroContainer+="\"Localização do Container\"=\'"+CBContainerLocalizacao.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroContainer+=" AND ";
-            }
-            if(CheckContainerTipo.isSelected()){
-                FiltroContainer+="\"Tipo do Container\"=\'"+CBContainerTipo.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroContainer+=" AND ";
-            }
-            
-            
+        FiltroContainer = " ";
+        int checkedfilters = 0;
+        if (CheckContainerCodigo.isSelected()) {
+            checkedfilters++;
         }
-        else FiltroContainer="";
+        if (CheckContainerLocalizacao.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckContainerTipo.isSelected()) {
+            checkedfilters++;
+        }
+
+        if (checkedfilters > 0) {
+            FiltroContainer += " WHERE ";
+            if (CheckContainerCodigo.isSelected()) {
+                int min = Integer.parseInt(SPContainerCodigoMin.getValue().toString());
+                int max = Integer.parseInt(SPContainerCodigoMax.getValue().toString());
+                FiltroContainer += "\"Código do Container\">=" + min + " AND \"Código do Container\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroContainer += " AND ";
+                }
+            }
+
+            if (CheckContainerLocalizacao.isSelected()) {
+                FiltroContainer += "\"Localização do Container\"=\'" + CBContainerLocalizacao.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroContainer += " AND ";
+                }
+            }
+            if (CheckContainerTipo.isSelected()) {
+                FiltroContainer += "\"Tipo do Container\"=\'" + CBContainerTipo.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroContainer += " AND ";
+                }
+            }
+
+        } else {
+            FiltroContainer = "";
+        }
         System.out.println(FiltroContainer);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBContainer();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBContainer();
     }//GEN-LAST:event_BContainerFiltrarActionPerformed
 
@@ -12117,66 +12404,267 @@ public class Principal extends javax.swing.JFrame {
 
     private void BContainerFiltrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerFiltrar1ActionPerformed
         // TODO add your handling code here:
-        FiltroUsuarios=" ";
-        int checkedfilters=0;
-        if(CheckUsuarioCodigo.isSelected()) checkedfilters++;
-        if(CheckUsuarioNome.isSelected()) checkedfilters++;
-        if(CheckUsuarioPermissao.isSelected()) checkedfilters++;
-        
-        if(checkedfilters>0){
-            FiltroUsuarios+=" WHERE ";
-            if(CheckUsuarioCodigo.isSelected()){
-                int min=Integer.parseInt(SPUsuarioCodigoMin.getValue().toString());
-                int max=Integer.parseInt(SPUsuarioCodigoMax.getValue().toString());
-                FiltroUsuarios+="\"Código de Usuário\">="+min+" AND \"Código de Usuário\"<="+max+" ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroUsuarios+=" AND ";
-            }
-            
-            if(CheckUsuarioNome.isSelected()){
-                FiltroUsuarios+="\"Nome do Usuário\"=\'"+CBUsuarioNome.getSelectedItem().toString()+"\' ";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroUsuarios+=" AND ";
-            }
-            if(CheckUsuarioPermissao.isSelected()){
-                if (CheckUsuarioAdministrador.isSelected()) FiltroUsuarios+="\"Administrador\"=\'t\'";
-                else FiltroUsuarios+="\"Administrador\"=\'f\'";
-                checkedfilters--;
-                if(checkedfilters>0) FiltroUsuarios+=" AND ";
-            }
-            
-            
+        FiltroUsuarios = " ";
+        int checkedfilters = 0;
+        if (CheckUsuarioCodigo.isSelected()) {
+            checkedfilters++;
         }
-        else FiltroUsuarios="";
+        if (CheckUsuarioNome.isSelected()) {
+            checkedfilters++;
+        }
+        if (CheckUsuarioPermissao.isSelected()) {
+            checkedfilters++;
+        }
+
+        if (checkedfilters > 0) {
+            FiltroUsuarios += " WHERE ";
+            if (CheckUsuarioCodigo.isSelected()) {
+                int min = Integer.parseInt(SPUsuarioCodigoMin.getValue().toString());
+                int max = Integer.parseInt(SPUsuarioCodigoMax.getValue().toString());
+                FiltroUsuarios += "\"Código de Usuário\">=" + min + " AND \"Código de Usuário\"<=" + max + " ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroUsuarios += " AND ";
+                }
+            }
+
+            if (CheckUsuarioNome.isSelected()) {
+                FiltroUsuarios += "\"Nome do Usuário\"=\'" + CBUsuarioNome.getSelectedItem().toString() + "\' ";
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroUsuarios += " AND ";
+                }
+            }
+            if (CheckUsuarioPermissao.isSelected()) {
+                if (CheckUsuarioAdministrador.isSelected()) {
+                    FiltroUsuarios += "\"Administrador\"=\'t\'";
+                } else {
+                    FiltroUsuarios += "\"Administrador\"=\'f\'";
+                }
+                checkedfilters--;
+                if (checkedfilters > 0) {
+                    FiltroUsuarios += " AND ";
+                }
+            }
+
+        } else {
+            FiltroUsuarios = "";
+        }
         System.out.println(FiltroUsuarios);
-        achandoMax=true;
+        achandoMax = true;
         atualizarTBUsuario();
-        achandoMax=false;
+        achandoMax = false;
         atualizarTBUsuario();
     }//GEN-LAST:event_BContainerFiltrar1ActionPerformed
-    private void excluirLinhasTabela(JTable tabela){
-        while(tabela.getSelectedRowCount()>0) ((DefaultTableModel)tabela.getModel()).removeRow(tabela.getSelectedRow());
+
+    private void abrirManual(String secao) {
+        try {
+            File manual;
+            String currentPath = Principal.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            currentPath = currentPath.replace("SGACERVO.jar", "");
+            currentPath += "Manual.html";
+            manual = new File(currentPath + secao);
+            URI uri;
+            uri = new URI("file://"+currentPath+secao);
+            Desktop.getDesktop().browse(uri);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    private void validaImagemAlterarImagem(){
+    private void PrincipalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PrincipalKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_F1) {
+            abrirManualEspecifico();
+        }
+
+    }//GEN-LAST:event_PrincipalKeyPressed
+
+    private void abrirManualEspecifico(){
+        String secao;
+            switch (Principal.getSelectedIndex()) {
+                case 0:
+                    switch (Doacoes.getSelectedIndex()) {
+                        case 0:
+                            secao = "#doacoes_menu";
+                            abrirManual(secao);
+                            break;
+                        case 1:
+                            secao = "#doacoes_cadastrar_doacao";
+                            abrirManual(secao);
+                            break;
+                        case 2:
+                            secao = "#doacoes_doacoes";
+                            abrirManual(secao);
+                            break;
+                        case 3:
+                            secao = "#doacoes_item_doacoes";
+                            abrirManual(secao);
+                            break;
+                        case 4:
+                            secao = "#doacoes_estoque";
+                            abrirManual(secao);
+                            break;
+                        case 5:
+                            secao = "#doacoes_doadores";
+                            abrirManual(secao);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case 1:
+                    switch (Repasses.getSelectedIndex()) {
+                        case 0:
+                            secao = "#repasses_menu";
+                            abrirManual(secao);
+                            break;
+                        case 1:
+                            secao = "#repasses_cadastrar_repasse";
+                            abrirManual(secao);
+                            break;
+                        case 2:
+                            secao = "#repasses_repasses";
+                            abrirManual(secao);
+                            break;
+                        case 3:
+                            secao = "#repasses_item_repasses";
+                            abrirManual(secao);
+                            break;
+                        case 4:
+                            secao = "#repasses_coletores";
+                            abrirManual(secao);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (Acervo.getSelectedIndex()) {
+                        case 0:
+                            secao = "#acervo_menu";
+                            abrirManual(secao);
+                            break;
+                        case 1:
+                            secao = "#acervo_cadastrar_item_acervo";
+                            abrirManual(secao);
+                            break;
+                        case 2:
+                            secao = "#acervo_cadastrar_imagem";
+                            abrirManual(secao);
+                            break;
+                        case 3:
+                            secao = "#acervo_cadastrar_container";
+                            abrirManual(secao);
+                            break;
+                        case 4:
+                            secao = "#acervo_acervo";
+                            abrirManual(secao);
+                            break;
+                        case 5:
+                            secao = "#acervo_imagens";
+                            abrirManual(secao);
+                            break;
+                        case 6:
+                            secao = "#acervo_containers";
+                            abrirManual(secao);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case 3:
+                    switch (AbaDoUsuario.getSelectedIndex()) {
+                        case 0:
+                            secao = "#abadousuario_menu";
+                            abrirManual(secao);
+                            break;
+                        case 1:
+                            secao = "#abadousuario_editar_info";
+                            abrirManual(secao);
+                            break;
+                        case 2:
+                            secao = "#abadousuario_deslogar";
+                            abrirManual(secao);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case 4:
+                    switch (Usuarios.getSelectedIndex()) {
+                        case 0:
+                            secao = "#usuarios_menu";
+                            abrirManual(secao);
+                            break;
+                        case 1:
+                            secao = "#usuarios_cadastrar_usuario";
+                            abrirManual(secao);
+                            break;
+                        case 2:
+                            secao = "#usuarios_usuarios";
+                            abrirManual(secao);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            
+    }
+    
+    private void AbrirManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirManualActionPerformed
+        // TODO add your handling code here:
+        abrirManual("");
+    }//GEN-LAST:event_AbrirManualActionPerformed
+
+    private void AbrirManualEspecificoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirManualEspecificoActionPerformed
+        // TODO add your handling code here:
+        abrirManualEspecifico();
+    }//GEN-LAST:event_AbrirManualEspecificoActionPerformed
+
+    private void AbrirCodigoFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirCodigoFonteActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            URI codigofonte=new URI("https://github.com/roscoche/sgacervo");
+            Desktop.getDesktop().browse(codigofonte);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AbrirCodigoFonteActionPerformed
+
+    private void excluirLinhasTabela(JTable tabela) {
+        while (tabela.getSelectedRowCount() > 0) {
+            ((DefaultTableModel) tabela.getModel()).removeRow(tabela.getSelectedRow());
+        }
+    }
+
+    private void validaImagemAlterarImagem() {
         BufferedImage image;
-        int h,w,times;
+        int h, w, times;
         try {
             image = ImageIO.read(new URL(campoLinkAlterarImagem.getText()));
-            h=image.getHeight();
-            w=image.getWidth();
-            if(w>=h){
-            times=w/LImagemAlterarImagem.getWidth();
-            w=w/(times+1);
-            h=h/(times+1);
+            h = image.getHeight();
+            w = image.getWidth();
+            if (w >= h) {
+                times = w / LImagemAlterarImagem.getWidth();
+                w = w / (times + 1);
+                h = h / (times + 1);
+            } else {
+                times = h / LImagemAlterarImagem.getHeight();
+                w = w / (times + 1);
+                h = h / (times + 1);
             }
-        else{
-            times=h/LImagemAlterarImagem.getHeight();
-            w=w/(times+1);
-            h=h/(times+1);
-        }
-        Image resizedImage = image.getScaledInstance(w, h, 0);
-        LImagemAlterarImagem.setIcon(new javax.swing.ImageIcon(resizedImage));
-        //return true;
+            Image resizedImage = image.getScaledInstance(w, h, 0);
+            LImagemAlterarImagem.setIcon(new javax.swing.ImageIcon(resizedImage));
+            //return true;
         } catch (MalformedURLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -12184,9 +12672,11 @@ public class Principal extends javax.swing.JFrame {
         }
         JDAlterarImagem.pack();
     }
-    private void resetarImagem(){
+
+    private void resetarImagem() {
         LImagemAlterarImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/fotoacervo.png")));
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -12204,24 +12694,26 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
-        
-        java.awt.EventQueue.invokeLater(new Runnable(){
-             public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new Principal().setVisible(true);
             }
             //Principal p=new Principal();
             //p.setExtendedState(JFrame.MAXIMIZED_BOTH);
             //p.setVisible(true);
-       });
+        });
     }
-	
+
 //Variáveis
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane AbaDoUsuario;
+    private javax.swing.JMenuItem AbrirCodigoFonte;
+    private javax.swing.JMenuItem AbrirManual;
+    private javax.swing.JMenuItem AbrirManualEspecifico;
     private javax.swing.JTabbedPane Acervo;
     private javax.swing.JButton BAbrirCadastrarDoacao;
     private javax.swing.JButton BAbrirCadastrarDoacao1;
@@ -12386,6 +12878,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BRepasseProxPagina;
     private javax.swing.JButton BUsuariosPaginaAnterior;
     private javax.swing.JButton BUsuariosProxPagina;
+    private javax.swing.JMenuBar BarraMenu;
     private javax.swing.JComboBox<String> CBAcervoDoador;
     private javax.swing.JComboBox<String> CBAcervoInterface;
     private javax.swing.JComboBox<String> CBAcervoMarca;
@@ -12788,7 +13281,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel Ldoador;
     private javax.swing.JPanel MenuAbaUsuario;
     private javax.swing.JPanel MenuAcervo;
+    private javax.swing.JMenu MenuAjuda;
     private javax.swing.JPanel MenuDoacoes;
+    private javax.swing.JMenu MenuOpcoes;
     private javax.swing.JPanel MenuRepasse;
     private javax.swing.JPanel MenuUsuarios;
     private javax.swing.JPanel PainelAcervo;
@@ -13082,79 +13577,74 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
-    private String nomeUsuario,senhaUsuario;
+    private String nomeUsuario, senhaUsuario;
     private int codigoUsuario;
     private int progresso;
-    private boolean logado=false,administrador;
-    private final ConfigBanco cb=new ConfigBanco();
-    private final String dbURL=cb.getDbURL();
-    private final String dbUser=cb.getLogin();
-    private final String dbPassword=cb.getPassword();
+    private boolean logado = false, administrador;
+    private final ConfigBanco cb = new ConfigBanco();
+    private final String dbURL = cb.getDbURL();
+    private final String dbUser = cb.getLogin();
+    private final String dbPassword = cb.getPassword();
     private DefaultTableModel lista;
     private final ImageIcon iconeaux = new ImageIcon(Principal.class.getResource("imagens/acervo32.png"));
-    private final Image icone=iconeaux.getImage();
-    private int numeroPaginaDoacao=1,
-            numeroPaginaItemDoacao=1,
-            numeroPaginaDoador=1,
-            numeroPaginaEstoque=1,
-            numeroPaginaRepasse=1,
-            numeroPaginaItemRepasse=1,
-            numeroPaginaColetor=1,
-            numeroPaginaAcervo=1,
-            numeroPaginaImagem=1,
-            numeroPaginaContainer=1,
-            numeroPaginaUsuarios=1,
-            numeroMaxPaginaDoacao=1,
-            numeroMaxPaginaItemDoacao=1,
-            numeroMaxPaginaDoador=1,
-            numeroMaxPaginaEstoque=1,
-            numeroMaxPaginaRepasse=1,
-            numeroMaxPaginaItemRepasse=1,
-            numeroMaxPaginaColetor=1,
-            numeroMaxPaginaAcervo=1,
-            numeroMaxPaginaImagem=1,
-            numeroMaxPaginaUsuarios=1,
-            numeroMaxPaginaContainer=1;
-    
-    private boolean achandoMax=true;
+    private final Image icone = iconeaux.getImage();
+    private int numeroPaginaDoacao = 1,
+            numeroPaginaItemDoacao = 1,
+            numeroPaginaDoador = 1,
+            numeroPaginaEstoque = 1,
+            numeroPaginaRepasse = 1,
+            numeroPaginaItemRepasse = 1,
+            numeroPaginaColetor = 1,
+            numeroPaginaAcervo = 1,
+            numeroPaginaImagem = 1,
+            numeroPaginaContainer = 1,
+            numeroPaginaUsuarios = 1,
+            numeroMaxPaginaDoacao = 1,
+            numeroMaxPaginaItemDoacao = 1,
+            numeroMaxPaginaDoador = 1,
+            numeroMaxPaginaEstoque = 1,
+            numeroMaxPaginaRepasse = 1,
+            numeroMaxPaginaItemRepasse = 1,
+            numeroMaxPaginaColetor = 1,
+            numeroMaxPaginaAcervo = 1,
+            numeroMaxPaginaImagem = 1,
+            numeroMaxPaginaUsuarios = 1,
+            numeroMaxPaginaContainer = 1;
+
+    private boolean achandoMax = true;
     private final String SelecaoDoacao = "SELECT * from doacao_detalhado ",
-                    SelecaoItemDoacao="SELECT * from item_doacao_detalhado ",
-                    SelecaoDoador="SELECT * from doador_detalhado ",
-                    SelecaoEstoque="SELECT * from estoque_detalhado ",
-                    SelecaoRepasse="SELECT * from repasse_detalhado ",
-                    SelecaoItemRepasse="SELECT * from item_repasse_detalhado ",
-                    SelecaoColetor="SELECT * from coletor_detalhado ",
-                    SelecaoAcervo="SELECT * from acervo_detalhado ",
-                    SelecaoImagem="SELECT * from imagem_detalhado ",
-                    SelecaoContainer="SELECT * from container_detalhado ",
-                    SelecaoUsuarios="SELECT * from usuario_detalhado ";
+            SelecaoItemDoacao = "SELECT * from item_doacao_detalhado ",
+            SelecaoDoador = "SELECT * from doador_detalhado ",
+            SelecaoEstoque = "SELECT * from estoque_detalhado ",
+            SelecaoRepasse = "SELECT * from repasse_detalhado ",
+            SelecaoItemRepasse = "SELECT * from item_repasse_detalhado ",
+            SelecaoColetor = "SELECT * from coletor_detalhado ",
+            SelecaoAcervo = "SELECT * from acervo_detalhado ",
+            SelecaoImagem = "SELECT * from imagem_detalhado ",
+            SelecaoContainer = "SELECT * from container_detalhado ",
+            SelecaoUsuarios = "SELECT * from usuario_detalhado ";
 
-    private String  FiltroDoacao="",
-                    FiltroItemDoacao="",
-                    FiltroDoador="",    
-                    FiltroEstoque="",
-                    FiltroRepasse="",
-                    FiltroItemRepasse="",
-                    FiltroColetor="",
-                    FiltroAcervo="",
-                    FiltroImagem="",
-                    FiltroContainer="",
-                    FiltroUsuarios="",
-            
-                    PaginaDoacao="",
-                    PaginaItemDoacao="",
-                    PaginaDoador="",
-                    PaginaEstoque="",
-                    PaginaRepasse="",
-                    PaginaItemRepasse="",
-                    PaginaColetor="",
-                    PaginaAcervo="",
-                    PaginaImagem="",
-                    PaginaUsuarios="",
-                    PaginaContainer="";
+    private String FiltroDoacao = "",
+            FiltroItemDoacao = "",
+            FiltroDoador = "",
+            FiltroEstoque = "",
+            FiltroRepasse = "",
+            FiltroItemRepasse = "",
+            FiltroColetor = "",
+            FiltroAcervo = "",
+            FiltroImagem = "",
+            FiltroContainer = "",
+            FiltroUsuarios = "",
+            PaginaDoacao = "",
+            PaginaItemDoacao = "",
+            PaginaDoador = "",
+            PaginaEstoque = "",
+            PaginaRepasse = "",
+            PaginaItemRepasse = "",
+            PaginaColetor = "",
+            PaginaAcervo = "",
+            PaginaImagem = "",
+            PaginaUsuarios = "",
+            PaginaContainer = "";
 
-    
-  
-
-    
 }

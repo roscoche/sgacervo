@@ -6706,6 +6706,66 @@
         </Component>
       </SubComponents>
     </Container>
+    <Menu class="javax.swing.JMenuBar" name="BarraMenu">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="MenuAjuda">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/view/imagens/help32.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ajuda"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="AbrirManual">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F2"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/view/imagens/help32.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Abrir Manual"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AbrirManualActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="AbrirManualEspecifico">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/view/imagens/help32.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Abrir Manual para Tela Atual"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AbrirManualEspecificoActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="MenuOpcoes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="AbrirCodigoFonte">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/view/imagens/github.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Ver C&#xf3;digo Fonte"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AbrirCodigoFonteActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -6715,6 +6775,7 @@
     </Property>
   </Properties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="BarraMenu"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -6738,7 +6799,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="Principal" alignment="0" max="32767" attributes="0"/>
+          <Component id="Principal" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -6755,6 +6816,7 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PrincipalMouseClicked"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PrincipalKeyPressed"/>
       </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
@@ -6822,7 +6884,7 @@
                           <Component id="BAbrirEstoque" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BAbrirDoadores" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="250" max="32767" attributes="0"/>
+                          <EmptySpace pref="213" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -6978,7 +7040,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BCadastrarDoacao" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="82" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -7192,9 +7254,9 @@
                                   <Component id="BFiltrarDoacao" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BRelatorioDoacao" min="-2" pref="24" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="309" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="272" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioDoacoes" pref="426" max="32767" attributes="0"/>
+                              <Component id="RelatorioDoacoes" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -7441,7 +7503,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BRelatorioItemDoacao" min="-2" pref="24" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioItemDoacao" pref="426" max="32767" attributes="0"/>
+                              <Component id="RelatorioItemDoacao" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -7686,9 +7748,9 @@
                                   <Component id="BFiltrarEstoque" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="BRelatorioEstoque" min="-2" pref="24" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="372" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="335" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioEstoque" pref="426" max="32767" attributes="0"/>
+                              <Component id="RelatorioEstoque" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -7886,7 +7948,7 @@
                                   <Component id="BRelatorioDoadores" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="ExibirDoadores" pref="426" max="32767" attributes="0"/>
+                              <Component id="ExibirDoadores" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -8111,7 +8173,7 @@
                           <Component id="BAbrirItemRepasse" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BExibirColetores" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="283" max="32767" attributes="0"/>
+                          <EmptySpace pref="246" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -8480,7 +8542,7 @@
                                   <Component id="BRelatorioRepasse" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioRepasse" pref="426" max="32767" attributes="0"/>
+                              <Component id="RelatorioRepasse" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -8723,7 +8785,7 @@
                                   <Component id="BRelatorioItemRepasse" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioItemRepasse" pref="426" max="32767" attributes="0"/>
+                              <Component id="RelatorioItemRepasse" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -8976,7 +9038,7 @@
                                   <Component id="BRelatorioColetor" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="ExibirColetores" pref="426" max="32767" attributes="0"/>
+                              <Component id="ExibirColetores" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -9214,7 +9276,7 @@
                           <Component id="BExibirImagens" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BExibirContainer" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="250" max="32767" attributes="0"/>
+                          <EmptySpace pref="213" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -9404,7 +9466,7 @@
                                       <Component id="LContainer" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="campoCodContainerCadastrarItemAcervo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="323" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="LInfoDoacao2" min="-2" max="-2" attributes="0"/>
@@ -9776,7 +9838,7 @@
                           <Component id="LFotoAcervo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BCadastrarImagem" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="136" max="32767" attributes="0"/>
+                          <EmptySpace pref="99" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -9901,7 +9963,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BCadastrarContainer" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="326" max="32767" attributes="0"/>
+                          <EmptySpace pref="289" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -10030,7 +10092,7 @@
                                   <Component id="BRelatorioAcervo" min="-2" pref="24" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="RelatorioAcervo" pref="426" max="32767" attributes="0"/>
+                              <Component id="RelatorioAcervo" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -10297,7 +10359,7 @@
                                   <Component id="BExcluirImagem" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="SPImagem" pref="426" max="32767" attributes="0"/>
+                              <Component id="SPImagem" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -10501,7 +10563,7 @@
                                   <Component id="BExcluirContainer" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="SPContainer" pref="426" max="32767" attributes="0"/>
+                              <Component id="SPContainer" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -10699,7 +10761,7 @@
                           <Component id="BAbrirCadastrarUsuario" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BExibirUsuarios" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="382" max="32767" attributes="0"/>
+                          <EmptySpace pref="345" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -10964,7 +11026,7 @@
                                   <Component id="BExcluirUsuario" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="ExibirUsuarios" pref="426" max="32767" attributes="0"/>
+                              <Component id="ExibirUsuarios" pref="389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -11173,7 +11235,7 @@
                           <Component id="BAbrirEditarInformacoes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BAbrirDeslogar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="382" max="32767" attributes="0"/>
+                          <EmptySpace pref="345" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -11434,7 +11496,7 @@
                           <Component id="LCertezaDeslogar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BDeslogar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="426" max="32767" attributes="0"/>
+                          <EmptySpace pref="389" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

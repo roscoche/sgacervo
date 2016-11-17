@@ -12463,7 +12463,7 @@ public class Principal extends javax.swing.JFrame {
             currentPath = currentPath.replace("SGACERVO.jar", "");
             currentPath += secao;
             URI uri;
-            uri = new URI("file://"+currentPath);
+            uri = new URI("file://" + currentPath);
             Desktop.getDesktop().browse(uri);
         } catch (URISyntaxException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -12480,141 +12480,141 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_PrincipalKeyPressed
 
-    private void abrirManualEspecifico(){
+    private void abrirManualEspecifico() {
         String secao;
-            switch (Principal.getSelectedIndex()) {
-                case 0:
-                    switch (Doacoes.getSelectedIndex()) {
-                        case 0:
-                            secao = "Manual.html#doacoes_menu";
-                            abrirManual(secao);
-                            break;
-                        case 1:
-                            secao = "Manual.html#doacoes_cadastrar_doacao";
-                            abrirManual(secao);
-                            break;
-                        case 2:
-                            secao = "Manual.html#doacoes_doacoes";
-                            abrirManual(secao);
-                            break;
-                        case 3:
-                            secao = "Manual.html#doacoes_item_doacoes";
-                            abrirManual(secao);
-                            break;
-                        case 4:
-                            secao = "Manual.html#doacoes_estoque";
-                            abrirManual(secao);
-                            break;
-                        case 5:
-                            secao = "Manual.html#doacoes_doadores";
-                            abrirManual(secao);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case 1:
-                    switch (Repasses.getSelectedIndex()) {
-                        case 0:
-                            secao = "Manual.html#repasses_menu";
-                            abrirManual(secao);
-                            break;
-                        case 1:
-                            secao = "Manual.html#repasses_cadastrar_repasse";
-                            abrirManual(secao);
-                            break;
-                        case 2:
-                            secao = "Manual.html#repasses_repasses";
-                            abrirManual(secao);
-                            break;
-                        case 3:
-                            secao = "Manual.html#repasses_item_repasses";
-                            abrirManual(secao);
-                            break;
-                        case 4:
-                            secao = "Manual.html#repasses_coletores";
-                            abrirManual(secao);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case 2:
-                    switch (Acervo.getSelectedIndex()) {
-                        case 0:
-                            secao = "Manual.html#acervo_menu";
-                            abrirManual(secao);
-                            break;
-                        case 1:
-                            secao = "Manual.html#acervo_cadastrar_item_acervo";
-                            abrirManual(secao);
-                            break;
-                        case 2:
-                            secao = "Manual.html#acervo_cadastrar_imagem";
-                            abrirManual(secao);
-                            break;
-                        case 3:
-                            secao = "Manual.html#acervo_cadastrar_container";
-                            abrirManual(secao);
-                            break;
-                        case 4:
-                            secao = "Manual.html#acervo_acervo";
-                            abrirManual(secao);
-                            break;
-                        case 5:
-                            secao = "Manual.html#acervo_imagens";
-                            abrirManual(secao);
-                            break;
-                        case 6:
-                            secao = "Manual.html#acervo_containers";
-                            abrirManual(secao);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case 3:
-                    switch (AbaDoUsuario.getSelectedIndex()) {
-                        case 0:
-                            secao = "Manual.html#abadousuario_menu";
-                            abrirManual(secao);
-                            break;
-                        case 1:
-                            secao = "Manual.html#abadousuario_editar_info";
-                            abrirManual(secao);
-                            break;
-                        case 2:
-                            secao = "Manual.html#abadousuario_deslogar";
-                            abrirManual(secao);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case 4:
-                    switch (Usuarios.getSelectedIndex()) {
-                        case 0:
-                            secao = "Manual_Administrador.html#usuarios_menu";
-                            abrirManual(secao);
-                            break;
-                        case 1:
-                            secao = "Manual_Administrador.html#usuarios_cadastrar_usuario";
-                            abrirManual(secao);
-                            break;
-                        case 2:
-                            secao = "Manual_Administrador.html#usuarios_usuarios";
-                            abrirManual(secao);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            
+        switch (Principal.getSelectedIndex()) {
+            case 0:
+                switch (Doacoes.getSelectedIndex()) {
+                    case 0:
+                        secao = "Manual.html#doacoes_menu";
+                        abrirManual(secao);
+                        break;
+                    case 1:
+                        secao = "Manual.html#doacoes_cadastrar_doacao";
+                        abrirManual(secao);
+                        break;
+                    case 2:
+                        secao = "Manual.html#doacoes_doacoes";
+                        abrirManual(secao);
+                        break;
+                    case 3:
+                        secao = "Manual.html#doacoes_item_doacoes";
+                        abrirManual(secao);
+                        break;
+                    case 4:
+                        secao = "Manual.html#doacoes_estoque";
+                        abrirManual(secao);
+                        break;
+                    case 5:
+                        secao = "Manual.html#doacoes_doadores";
+                        abrirManual(secao);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 1:
+                switch (Repasses.getSelectedIndex()) {
+                    case 0:
+                        secao = "Manual.html#repasses_menu";
+                        abrirManual(secao);
+                        break;
+                    case 1:
+                        secao = "Manual.html#repasses_cadastrar_repasse";
+                        abrirManual(secao);
+                        break;
+                    case 2:
+                        secao = "Manual.html#repasses_repasses";
+                        abrirManual(secao);
+                        break;
+                    case 3:
+                        secao = "Manual.html#repasses_item_repasses";
+                        abrirManual(secao);
+                        break;
+                    case 4:
+                        secao = "Manual.html#repasses_coletores";
+                        abrirManual(secao);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 2:
+                switch (Acervo.getSelectedIndex()) {
+                    case 0:
+                        secao = "Manual.html#acervo_menu";
+                        abrirManual(secao);
+                        break;
+                    case 1:
+                        secao = "Manual.html#acervo_cadastrar_item_acervo";
+                        abrirManual(secao);
+                        break;
+                    case 2:
+                        secao = "Manual.html#acervo_cadastrar_imagem";
+                        abrirManual(secao);
+                        break;
+                    case 3:
+                        secao = "Manual.html#acervo_cadastrar_container";
+                        abrirManual(secao);
+                        break;
+                    case 4:
+                        secao = "Manual.html#acervo_acervo";
+                        abrirManual(secao);
+                        break;
+                    case 5:
+                        secao = "Manual.html#acervo_imagens";
+                        abrirManual(secao);
+                        break;
+                    case 6:
+                        secao = "Manual.html#acervo_containers";
+                        abrirManual(secao);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 3:
+                switch (AbaDoUsuario.getSelectedIndex()) {
+                    case 0:
+                        secao = "Manual.html#abadousuario_menu";
+                        abrirManual(secao);
+                        break;
+                    case 1:
+                        secao = "Manual.html#abadousuario_editar_info";
+                        abrirManual(secao);
+                        break;
+                    case 2:
+                        secao = "Manual.html#abadousuario_deslogar";
+                        abrirManual(secao);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 4:
+                switch (Usuarios.getSelectedIndex()) {
+                    case 0:
+                        secao = "Manual_Administrador.html#usuarios_menu";
+                        abrirManual(secao);
+                        break;
+                    case 1:
+                        secao = "Manual_Administrador.html#usuarios_cadastrar_usuario";
+                        abrirManual(secao);
+                        break;
+                    case 2:
+                        secao = "Manual_Administrador.html#usuarios_usuarios";
+                        abrirManual(secao);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+
     }
-    
+
     private void AbrirManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirManualActionPerformed
         // TODO add your handling code here:
         abrirManual("Manual.html");
@@ -12627,9 +12627,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void AbrirCodigoFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirCodigoFonteActionPerformed
         // TODO add your handling code here:
-        
+
         try {
-            URI codigofonte=new URI("https://github.com/roscoche/sgacervo");
+            URI codigofonte = new URI("https://github.com/roscoche/sgacervo");
             Desktop.getDesktop().browse(codigofonte);
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);

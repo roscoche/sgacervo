@@ -25,6 +25,8 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import javax.swing.JTable;
 import static javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN;
@@ -2067,7 +2069,7 @@ public class Principal extends javax.swing.JFrame {
 
         LSenhaLogin.setText("Senha:");
 
-        campoSenhaLogin.setText("admin");
+        campoSenhaLogin.setText("*****");
         campoSenhaLogin.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 campoSenhaLoginFocusGained(evt);
@@ -4838,7 +4840,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel59.setText("Filtrar por:");
 
-        BEstoqueFiltrar.setText("Filtrar Doacao");
+        BEstoqueFiltrar.setText("Filtrar Estoque");
         BEstoqueFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BEstoqueFiltrarActionPerformed(evt);
@@ -4949,8 +4951,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel67)
                         .addComponent(SPEstoqueRepasseMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel61))
-                    .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(CheckEstoqueRepasse)))
+                    .addComponent(CheckEstoqueRepasse))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -4958,8 +4959,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel68)
                         .addComponent(SPEstoqueSaldoMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel62))
-                    .addGroup(JDFiltrarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(CheckEstoqueSaldo)))
+                    .addComponent(CheckEstoqueSaldo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BEstoqueFiltrar)
                 .addContainerGap())
@@ -4999,25 +4999,23 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
                         .addComponent(jLabel63)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(BDoadorFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
-                        .addGroup(JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BDoadorFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
-                                .addComponent(CheckDoadorCodigo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel65)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SPDoadorCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel64)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SPDoadorCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
-                                .addComponent(CheckDoadorDoador)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(CBDoadorDoador, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                        .addComponent(CheckDoadorCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel65)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPDoadorCodigoMin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel64)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SPDoadorCodigoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDFiltrarDoadorLayout.createSequentialGroup()
+                        .addComponent(CheckDoadorDoador)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBDoadorDoador, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         JDFiltrarDoadorLayout.setVerticalGroup(
             JDFiltrarDoadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -11011,7 +11009,7 @@ public class Principal extends javax.swing.JFrame {
         JDExcluirUsuario.setVisible(false);
         JDExcluirUsuario.dispose();
     }//GEN-LAST:event_BCancelarExcluirUsuarioActionPerformed
-    private void MostrarRelatorio(String consultaSQL, String formatoXml) {
+    private void MostrarRelatorio(String consultaSQL, String formatoXml, Map params) {
         Banco b = new Banco();
         try {
             String currentPath = Principal.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
@@ -11023,7 +11021,9 @@ public class Principal extends javax.swing.JFrame {
             newQuery.setText(consultaSQL);
             jasperDesign.setQuery(newQuery);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, b.getConexao());
+            System.out.println(params);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, b.getConexao());
+            
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (JRException e) {
@@ -11040,49 +11040,70 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String form = "relatorios/relatorioItemDoacao.jrxml";
         String sql = SelecaoItemDoacao + FiltroItemDoacao;
-        MostrarRelatorio(sql, form);
+        Map<String,String> filtros;
+        filtros=new HashMap<>();
+        filtros.put("filtros", DescricaoFiltroItemDoacao);
+        MostrarRelatorio(sql, form,filtros);
     }//GEN-LAST:event_BRelatorioItemDoacaoActionPerformed
 
     private void BRelatorioEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioEstoqueActionPerformed
         // TODO add your handling code here:
         String form = "relatorios/relatorioEstoque.jrxml";
         String sql = SelecaoEstoque + FiltroEstoque;
-        MostrarRelatorio(sql, form);
+        Map<String,String> filtros;
+        filtros=new HashMap<>();
+        filtros.put("filtros", DescricaoFiltroEstoque);
+        MostrarRelatorio(sql, form,filtros);
     }//GEN-LAST:event_BRelatorioEstoqueActionPerformed
 
     private void BRelatorioDoadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioDoadoresActionPerformed
         // TODO add your handling code here:
         String form = "relatorios/relatorioDoador.jrxml";
         String sql = SelecaoDoador + FiltroDoador;
-        MostrarRelatorio(sql, form);
+        Map<String,String> filtros;
+        filtros=new HashMap<>();
+        filtros.put("filtros", DescricaoFiltroDoador);
+        MostrarRelatorio(sql, form,filtros);
     }//GEN-LAST:event_BRelatorioDoadoresActionPerformed
 
     private void BRelatorioRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioRepasseActionPerformed
         // TODO add your handling code here:
         String form = "relatorios/relatorioRepasse.jrxml";
         String sql = SelecaoRepasse + FiltroRepasse;
-        MostrarRelatorio(sql, form);
+        Map<String,String> filtros;
+        filtros=new HashMap<>();
+        filtros.put("filtros", DescricaoFiltroRepasse);
+        MostrarRelatorio(sql, form,filtros);
     }//GEN-LAST:event_BRelatorioRepasseActionPerformed
 
     private void BRelatorioItemRepasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioItemRepasseActionPerformed
         // TODO add your handling code here:
         String form = "relatorios/relatorioItemRepasse.jrxml";
         String sql = SelecaoItemRepasse + FiltroItemRepasse;
-        MostrarRelatorio(sql, form);
+        Map<String,String> filtros;
+        filtros=new HashMap<>();
+        filtros.put("filtros", DescricaoFiltroItemRepasse);
+        MostrarRelatorio(sql, form,filtros);
     }//GEN-LAST:event_BRelatorioItemRepasseActionPerformed
 
     private void BRelatorioColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioColetorActionPerformed
         // TODO add your handling code here:
         String form = "relatorios/relatorioColetor.jrxml";
         String sql = SelecaoColetor + FiltroColetor;
-        MostrarRelatorio(sql, form);
+        Map<String,String> filtros;
+        filtros=new HashMap<>();
+        filtros.put("filtros", DescricaoFiltroColetor);
+        MostrarRelatorio(sql, form,filtros);
     }//GEN-LAST:event_BRelatorioColetorActionPerformed
 
     private void BRelatorioAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRelatorioAcervoActionPerformed
         // TODO add your handling code here:
         String form = "relatorios/relatorioAcervo.jrxml";
         String sql = SelecaoAcervo + FiltroAcervo;
-        MostrarRelatorio(sql, form);
+        Map<String,String> filtros;
+        filtros=new HashMap<>();
+        filtros.put("filtros", DescricaoFiltroAcervo);
+        MostrarRelatorio(sql, form,filtros);
     }//GEN-LAST:event_BRelatorioAcervoActionPerformed
 
     private void BAdicionarItemDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAdicionarItemDoacaoActionPerformed
@@ -11293,6 +11314,8 @@ public class Principal extends javax.swing.JFrame {
     private void BDoacaoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoacaoFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroDoacao = " ";
+        DescricaoFiltroDoacao = "Filtros: ";
+        
         int checkedfilters = 0;
         if (CheckDoacaoCodigo.isSelected()) {
             checkedfilters++;
@@ -11315,6 +11338,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPDoacaoMin.getValue().toString());
                 int max = Integer.parseInt(SPDoacaoMax.getValue().toString());
                 FiltroDoacao += "\"Código de Doação\">=" + min + " AND \"Código de Doação\"<=" + max + " ";
+                DescricaoFiltroDoacao += "\nCódigo de Doação: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroDoacao += " AND ";
@@ -11322,6 +11346,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckDoacaoUsuario.isSelected()) {
                 FiltroDoacao += "\"Usuário\"=\'" + CBDoacaoUsuario.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroDoacao += "\nUsuário: " + CBDoacaoUsuario.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroDoacao += " AND ";
@@ -11329,6 +11354,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckDoacaoDoador.isSelected()) {
                 FiltroDoacao += "\"Doador\"=\'" + CBDoacaoDoador.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroDoacao += "\nDoador: " + CBDoacaoDoador.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroDoacao += " AND ";
@@ -11336,6 +11362,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckDoacaoEvento.isSelected()) {
                 FiltroDoacao += "\"Evento de Origem\"=\'" + CBDoacaoEvento.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroDoacao += "\nEvento de Origem: " + CBDoacaoEvento.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroDoacao += " AND ";
@@ -11345,6 +11372,8 @@ public class Principal extends javax.swing.JFrame {
                 //"Data"::date > '2016-11-13'
                 FiltroDoacao += "\"Data\"::date>=\'" + (JDCDoacaoMin.getDate().getYear() + 1900) + "-" + (JDCDoacaoMin.getDate().getMonth() + 1) + "-" + JDCDoacaoMin.getDate().getDate() + "\' AND ";
                 FiltroDoacao += "\"Data\"::date<=\'" + (JDCDoacaoMax.getDate().getYear() + 1900) + "-" + (JDCDoacaoMax.getDate().getMonth() + 1) + "-" + JDCDoacaoMax.getDate().getDate() + "\' ";
+                DescricaoFiltroDoacao += "\nData: entre " + (JDCDoacaoMin.getDate().getYear() + 1900) + "-" + (JDCDoacaoMin.getDate().getMonth() + 1) + "-" + JDCDoacaoMin.getDate().getDate() + " e ";
+                DescricaoFiltroDoacao += (JDCDoacaoMax.getDate().getYear() + 1900) + "-" + (JDCDoacaoMax.getDate().getMonth() + 1) + "-" + JDCDoacaoMax.getDate().getDate() + ". ";
                 System.out.println(FiltroDoacao);
                 checkedfilters--;
                 if (checkedfilters > 0) {
@@ -11352,7 +11381,8 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } else {
-            FiltroDoacao = "";
+            FiltroDoacao = " ";
+            DescricaoFiltroDoacao += " Nenhum.";
         }
 
         achandoMax = true;
@@ -11438,7 +11468,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String form = "relatorios/relatorioDoacao.jrxml";
         String sql = SelecaoDoacao + FiltroDoacao;
-        MostrarRelatorio(sql, form);
+        Map<String,String> filtros;
+        filtros=new HashMap<>();
+        filtros.put("filtros", DescricaoFiltroDoacao);
+        MostrarRelatorio(sql, form,filtros);
 
     }//GEN-LAST:event_BRelatorioDoacaoActionPerformed
 
@@ -11742,6 +11775,7 @@ public class Principal extends javax.swing.JFrame {
     private void BItemDoacaoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemDoacaoFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroItemDoacao = " ";
+        DescricaoFiltroItemDoacao = "Filtros: ";
         int checkedfilters = 0;
         if (CheckItemDoacaoDoacaoCodigo.isSelected()) {
             checkedfilters++;
@@ -11767,6 +11801,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPItemDoacaoDoacaoMin.getValue().toString());
                 int max = Integer.parseInt(SPItemDoacaoDoacaoMax.getValue().toString());
                 FiltroItemDoacao += "\"Código de Doação\">=" + min + " AND \"Código de Doação\"<=" + max + " ";
+                DescricaoFiltroItemDoacao += "\nCódigo de Doação: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemDoacao += " AND ";
@@ -11776,6 +11811,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPItemDoacaoMin.getValue().toString());
                 int max = Integer.parseInt(SPItemDoacaoMax.getValue().toString());
                 FiltroItemDoacao += "\"Código de Item-Doação\">=" + min + " AND \"Código de Item-Doação\"<=" + max + " ";
+                DescricaoFiltroItemDoacao += "\nCódigo de Item-Doação: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemDoacao += " AND ";
@@ -11783,6 +11819,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckItemDoacaoUsuario.isSelected()) {
                 FiltroItemDoacao += "\"Usuário\"=\'" + CBItemDoacaoUsuario.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroItemDoacao += "\nUsuário: " + CBItemDoacaoUsuario.getSelectedItem().toString() +". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemDoacao += " AND ";
@@ -11790,6 +11827,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckItemDoacaoDoador.isSelected()) {
                 FiltroItemDoacao += "\"Doador\"=\'" + CBItemDoacaoDoador.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroItemDoacao += "\nDoador: " + CBItemDoacaoDoador.getSelectedItem().toString() +". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemDoacao += " AND ";
@@ -11797,6 +11835,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckItemDoacaoEvento.isSelected()) {
                 FiltroItemDoacao += "\"Origem\"=\'" + CBItemDoacaoEvento.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroItemDoacao += "\nEvento de Origem: " + CBItemDoacaoEvento.getSelectedItem().toString() +". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemDoacao += " AND ";
@@ -11806,6 +11845,8 @@ public class Principal extends javax.swing.JFrame {
                 //"Data"::date > '2016-11-13'
                 FiltroItemDoacao += "\"Data\"::date>=\'" + (JDCItemDoacaoMin.getDate().getYear() + 1900) + "-" + (JDCItemDoacaoMin.getDate().getMonth() + 1) + "-" + JDCItemDoacaoMin.getDate().getDate() + "\' AND ";
                 FiltroItemDoacao += "\"Data\"::date<=\'" + (JDCItemDoacaoMax.getDate().getYear() + 1900) + "-" + (JDCItemDoacaoMax.getDate().getMonth() + 1) + "-" + JDCItemDoacaoMax.getDate().getDate() + "\' ";
+                DescricaoFiltroItemDoacao += "\nData: entre " + JDCItemDoacaoMin.getDate().getDate()+"/"+(JDCItemDoacaoMin.getDate().getMonth() + 1) + "/" +(JDCItemDoacaoMin.getDate().getYear() + 1900);
+                DescricaoFiltroItemDoacao += " e " + JDCItemDoacaoMax.getDate().getDate()+"/"+(JDCItemDoacaoMax.getDate().getMonth() + 1) + "/" +(JDCItemDoacaoMax.getDate().getYear() + 1900)+". ";
                 System.out.println(FiltroItemDoacao);
                 checkedfilters--;
                 if (checkedfilters > 0) {
@@ -11814,6 +11855,7 @@ public class Principal extends javax.swing.JFrame {
             }
         } else {
             FiltroItemDoacao = "";
+            DescricaoFiltroItemDoacao += "nenhum. ";
         }
         System.out.println(FiltroItemDoacao);
         achandoMax = true;
@@ -11825,6 +11867,8 @@ public class Principal extends javax.swing.JFrame {
     private void BEstoqueFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEstoqueFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroEstoque = " ";
+        DescricaoFiltroEstoque = "Filtros: ";
+        
         int checkedfilters = 0;
         if (CheckEstoqueTipo.isSelected()) {
             checkedfilters++;
@@ -11842,6 +11886,7 @@ public class Principal extends javax.swing.JFrame {
             FiltroEstoque += " WHERE ";
             if (CheckEstoqueTipo.isSelected()) {
                 FiltroEstoque += "\"Tipo\"=\'" + CBEstoqueTipo.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroEstoque += "\nTipo: " + CBEstoqueTipo.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroEstoque += " AND ";
@@ -11851,6 +11896,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPEstoqueDoacaoMin.getValue().toString());
                 int max = Integer.parseInt(SPEstoqueDoacaoMax.getValue().toString());
                 FiltroEstoque += "\"Quantidade de Doações\">=" + min + " AND \"Quantidade de Doações\"<=" + max + " ";
+                DescricaoFiltroEstoque += "\nQuantidade de Doações: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroEstoque += " AND ";
@@ -11860,6 +11906,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPEstoqueRepasseMin.getValue().toString());
                 int max = Integer.parseInt(SPEstoqueRepasseMax.getValue().toString());
                 FiltroEstoque += "\"Quantidade de Repasses\">=" + min + " AND \"Quantidade de Repasses\"<=" + max + " ";
+                DescricaoFiltroEstoque += "\nQuantidade de Repasses: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroEstoque += " AND ";
@@ -11869,6 +11916,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPEstoqueSaldoMin.getValue().toString());
                 int max = Integer.parseInt(SPEstoqueSaldoMax.getValue().toString());
                 FiltroEstoque += "\"Saldo\">=" + min + " AND \"Saldo\"<=" + max + " ";
+                DescricaoFiltroEstoque += "\nSaldo: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroEstoque += " AND ";
@@ -11877,6 +11925,7 @@ public class Principal extends javax.swing.JFrame {
 
         } else {
             FiltroEstoque = "";
+            DescricaoFiltroEstoque += "nenhum. ";
         }
         System.out.println(FiltroEstoque);
         achandoMax = true;
@@ -11888,6 +11937,7 @@ public class Principal extends javax.swing.JFrame {
     private void BDoadorFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDoadorFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroDoador = " ";
+        DescricaoFiltroDoador = "Filtros: ";
         int checkedfilters = 0;
         if (CheckDoadorCodigo.isSelected()) {
             checkedfilters++;
@@ -11899,6 +11949,7 @@ public class Principal extends javax.swing.JFrame {
             FiltroDoador += " WHERE ";
             if (CheckDoadorDoador.isSelected()) {
                 FiltroDoador += "\"Nome do Doador\"=\'" + CBDoadorDoador.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroDoador += "\nNome do Doador: " + CBDoadorDoador.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroDoador += " AND ";
@@ -11908,6 +11959,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPDoadorCodigoMin.getValue().toString());
                 int max = Integer.parseInt(SPDoadorCodigoMax.getValue().toString());
                 FiltroDoador += "\"Código do Doador\">=" + min + " AND \"Código do Doador\"<=" + max + " ";
+                DescricaoFiltroDoador += "\nCódigo do Doador: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroDoador += " AND ";
@@ -11916,6 +11968,7 @@ public class Principal extends javax.swing.JFrame {
 
         } else {
             FiltroDoador = "";
+            DescricaoFiltroDoador += "nenhum. ";
         }
         System.out.println(FiltroDoador);
         achandoMax = true;
@@ -11927,6 +11980,7 @@ public class Principal extends javax.swing.JFrame {
     private void BRepasseFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRepasseFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroRepasse = " ";
+        DescricaoFiltroRepasse = "Filtros: ";
         int checkedfilters = 0;
         if (CheckRepasseCodigo.isSelected()) {
             checkedfilters++;
@@ -11952,6 +12006,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPRepasseMin.getValue().toString());
                 int max = Integer.parseInt(SPRepasseMax.getValue().toString());
                 FiltroRepasse += "\"Código do Repasse\">=" + min + " AND \"Código do Repasse\"<=" + max + " ";
+                DescricaoFiltroRepasse += "\nCódigo do Repasse: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroRepasse += " AND ";
@@ -11959,6 +12014,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckRepasseUsuario.isSelected()) {
                 FiltroRepasse += "\"Usuário\"=\'" + CBRepasseUsuario.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroRepasse += "\nUsuário: " + CBRepasseUsuario.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroRepasse += " AND ";
@@ -11966,6 +12022,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckRepasseColetor.isSelected()) {
                 FiltroRepasse += "\"Coletor\"=\'" + CBRepasseColetor.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroRepasse += "\nColetor: " + CBRepasseColetor.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroRepasse += " AND ";
@@ -11973,6 +12030,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckRepasseTipoColetor.isSelected()) {
                 FiltroRepasse += "\"Tipo de Coletor\"=\'" + CBRepasseTipoColetor.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroRepasse += "\nTipo de Coletor: " + CBRepasseTipoColetor.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroRepasse += " AND ";
@@ -11980,6 +12038,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckRepasseDestinacao.isSelected()) {
                 FiltroRepasse += "\"Destinação\"=\'" + CBRepasseDestinacao.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroRepasse += "\nDestinação: " + CBRepasseDestinacao.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroRepasse += " AND ";
@@ -11989,6 +12048,8 @@ public class Principal extends javax.swing.JFrame {
                 //"Data"::date > '2016-11-13'
                 FiltroRepasse += "\"Data\"::date>=\'" + (JDCRepasseMin.getDate().getYear() + 1900) + "-" + (JDCRepasseMin.getDate().getMonth() + 1) + "-" + JDCRepasseMin.getDate().getDate() + "\' AND ";
                 FiltroRepasse += "\"Data\"::date<=\'" + (JDCRepasseMax.getDate().getYear() + 1900) + "-" + (JDCRepasseMax.getDate().getMonth() + 1) + "-" + JDCRepasseMax.getDate().getDate() + "\' ";
+                DescricaoFiltroRepasse += "\nData: entre " + JDCRepasseMin.getDate().getDate() + "/" + (JDCRepasseMin.getDate().getMonth() + 1) + "/" + (JDCRepasseMin.getDate().getYear() + 1900);
+                DescricaoFiltroRepasse += " e " + JDCRepasseMax.getDate().getDate() + "/" + (JDCRepasseMax.getDate().getMonth() + 1) + "/" + (JDCRepasseMax.getDate().getYear() + 1900)+". ";
                 System.out.println(FiltroRepasse);
                 checkedfilters--;
                 if (checkedfilters > 0) {
@@ -11997,6 +12058,7 @@ public class Principal extends javax.swing.JFrame {
             }
         } else {
             FiltroRepasse = "";
+            DescricaoFiltroRepasse += "nenhum. ";
         }
         System.out.println(FiltroRepasse);
         achandoMax = true;
@@ -12008,6 +12070,7 @@ public class Principal extends javax.swing.JFrame {
     private void BItemRepasseFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BItemRepasseFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroItemRepasse = " ";
+        DescricaoFiltroItemRepasse = "Filtros: ";
         int checkedfilters = 0;
         if (CheckItemRepasseCodigo.isSelected()) {
             checkedfilters++;
@@ -12039,6 +12102,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPItemRepasseMin.getValue().toString());
                 int max = Integer.parseInt(SPItemRepasseMax.getValue().toString());
                 FiltroItemRepasse += "\"Código do Item-Repasse\">=" + min + " AND \"Código do Item-Repasse\"<=" + max + " ";
+                DescricaoFiltroItemRepasse += "\nCódigo do Item-Repasse: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemRepasse += " AND ";
@@ -12048,6 +12112,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPItemRepasseRepasseMin.getValue().toString());
                 int max = Integer.parseInt(SPItemRepasseRepasseMax.getValue().toString());
                 FiltroItemRepasse += "\"Codigo do Repasse\">=" + min + " AND \"Codigo do Repasse\"<=" + max + " ";
+                DescricaoFiltroItemRepasse += "\nCodigo do Repasse: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemRepasse += " AND ";
@@ -12057,6 +12122,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPItemRepasseQuantidadeMin.getValue().toString());
                 int max = Integer.parseInt(SPItemRepasseQuantidadeMax.getValue().toString());
                 FiltroItemRepasse += "\"Quantidade\">=" + min + " AND \"Quantidade\"<=" + max + " ";
+                DescricaoFiltroItemRepasse += "\nQuantidade: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemRepasse += " AND ";
@@ -12064,6 +12130,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckItemRepasseUsuario.isSelected()) {
                 FiltroItemRepasse += "\"Usuário\"=\'" + CBItemRepasseUsuario.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroItemRepasse += "\nUsuário: " + CBItemRepasseUsuario.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemRepasse += " AND ";
@@ -12071,6 +12138,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckItemRepasseColetor.isSelected()) {
                 FiltroItemRepasse += "\"Coletor\"=\'" + CBItemRepasseColetor.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroItemRepasse += "\nColetor: " + CBItemRepasseColetor.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemRepasse += " AND ";
@@ -12078,6 +12146,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckItemRepasseTipo.isSelected()) {
                 FiltroItemRepasse += "\"Tipo de Item\"=\'" + CBItemRepasseTipo.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroItemRepasse += "\nTipo de Item: " + CBItemRepasseTipo.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemRepasse += " AND ";
@@ -12085,6 +12154,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckItemRepasseDestinacao.isSelected()) {
                 FiltroItemRepasse += "\"Destinação\"=\'" + CBItemRepasseDestinacao.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroItemRepasse += "\nDestinação: " + CBItemRepasseDestinacao.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemRepasse += " AND ";
@@ -12094,6 +12164,9 @@ public class Principal extends javax.swing.JFrame {
                 //"Data"::date > '2016-11-13'
                 FiltroItemRepasse += "\"Data\"::date>=\'" + (JDCItemRepasseMin.getDate().getYear() + 1900) + "-" + (JDCItemRepasseMin.getDate().getMonth() + 1) + "-" + JDCItemRepasseMin.getDate().getDate() + "\' AND ";
                 FiltroItemRepasse += "\"Data\"::date<=\'" + (JDCItemRepasseMax.getDate().getYear() + 1900) + "-" + (JDCItemRepasseMax.getDate().getMonth() + 1) + "-" + JDCItemRepasseMax.getDate().getDate() + "\' ";
+                DescricaoFiltroItemRepasse += "\nData: entre " + JDCItemRepasseMin.getDate().getDate()+"/"+(JDCItemRepasseMin.getDate().getMonth() + 1)+"/"+(JDCItemRepasseMin.getDate().getYear() + 1900);
+                DescricaoFiltroItemRepasse += " e " + JDCItemRepasseMax.getDate().getDate()+"/"+(JDCItemRepasseMax.getDate().getMonth() + 1)+"/"+(JDCItemRepasseMax.getDate().getYear() + 1900)+". ";
+                
                 System.out.println(FiltroItemRepasse);
                 checkedfilters--;
                 if (checkedfilters > 0) {
@@ -12102,6 +12175,7 @@ public class Principal extends javax.swing.JFrame {
             }
         } else {
             FiltroItemRepasse = "";
+            DescricaoFiltroItemRepasse += "nenhum. ";
         }
         System.out.println(FiltroItemRepasse);
         achandoMax = true;
@@ -12113,6 +12187,7 @@ public class Principal extends javax.swing.JFrame {
     private void BColetorFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BColetorFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroColetor = " ";
+        DescricaoFiltroColetor = "Filtros: ";
         int checkedfilters = 0;
         if (CheckColetorCodigo.isSelected()) {
             checkedfilters++;
@@ -12130,6 +12205,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPColetorCodigoMin.getValue().toString());
                 int max = Integer.parseInt(SPColetorCodigoMax.getValue().toString());
                 FiltroColetor += "\"Código do Coletor\">=" + min + " AND \"Código do Coletor\"<=" + max + " ";
+                DescricaoFiltroColetor += "\nCódigo do Coletor: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroColetor += " AND ";
@@ -12138,6 +12214,7 @@ public class Principal extends javax.swing.JFrame {
 
             if (CheckColetorColetor.isSelected()) {
                 FiltroColetor += "\"Nome do Coletor\"=\'" + CBColetorColetor.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroColetor += "\nNome do Coletor: " + CBColetorColetor.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroColetor += " AND ";
@@ -12145,6 +12222,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckColetorTipo.isSelected()) {
                 FiltroColetor += "\"Tipo do Coletor\"=\'" + CBColetorTipo.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroColetor += "\nTipo do Coletor: " + CBColetorTipo.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroColetor += " AND ";
@@ -12153,6 +12231,7 @@ public class Principal extends javax.swing.JFrame {
 
         } else {
             FiltroColetor = "";
+            DescricaoFiltroColetor += "nenhum. ";
         }
         System.out.println(FiltroColetor);
         achandoMax = true;
@@ -12164,6 +12243,7 @@ public class Principal extends javax.swing.JFrame {
     private void BAcervoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAcervoFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroAcervo = " ";
+        DescricaoFiltroAcervo = "Filtros: ";
         int checkedfilters = 0;
         if (CheckAcervoCodigo.isSelected()) {
             checkedfilters++;
@@ -12211,6 +12291,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPAcervoCodigoMin.getValue().toString());
                 int max = Integer.parseInt(SPAcervoCodigoMax.getValue().toString());
                 FiltroAcervo += "\"Código de Item do Acervo\">=" + min + " AND \"Código de Item do Acervo\"<=" + max + " ";
+                DescricaoFiltroAcervo += "\nCódigo de Item do Acervo: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12218,6 +12299,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckAcervoUsuario.isSelected()) {
                 FiltroAcervo += "\"Usuário\"=\'" + CBAcervoUsuario.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroAcervo += "\nUsuário: " + CBAcervoUsuario.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12225,6 +12307,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckAcervoDoador.isSelected()) {
                 FiltroAcervo += "\"Doador\"=\'" + CBAcervoDoador.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroAcervo += "\nDoador: " + CBAcervoDoador.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12234,6 +12317,8 @@ public class Principal extends javax.swing.JFrame {
                 //"Data"::date > '2016-11-13'
                 FiltroAcervo += "\"Data\"::date>=\'" + (JDCAcervoDataMin.getDate().getYear() + 1900) + "-" + (JDCAcervoDataMin.getDate().getMonth() + 1) + "-" + JDCAcervoDataMin.getDate().getDate() + "\' AND ";
                 FiltroAcervo += "\"Data\"::date<=\'" + (JDCAcervoDataMax.getDate().getYear() + 1900) + "-" + (JDCAcervoDataMax.getDate().getMonth() + 1) + "-" + JDCAcervoDataMax.getDate().getDate() + "\' ";
+                DescricaoFiltroAcervo += "\nData: entre " + JDCAcervoDataMin.getDate().getDate()+"/"+ (JDCAcervoDataMin.getDate().getMonth() + 1)+"/"+(JDCAcervoDataMin.getDate().getYear() + 1900);
+                DescricaoFiltroAcervo += " e " + JDCAcervoDataMax.getDate().getDate()+"/"+ (JDCAcervoDataMax.getDate().getMonth() + 1)+"/"+(JDCAcervoDataMax.getDate().getYear() + 1900) + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12241,6 +12326,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckAcervoTipo.isSelected()) {
                 FiltroAcervo += "\"Tipo\"=\'" + CBAcervoTipo.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroAcervo += "\nTipo: " + CBAcervoTipo.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12248,6 +12334,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckAcervoMarca.isSelected()) {
                 FiltroAcervo += "\"Marca\"=\'" + CBAcervoMarca.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroAcervo += "\nMarca: " + CBAcervoMarca.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12255,6 +12342,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckAcervoModelo.isSelected()) {
                 FiltroAcervo += "\"Modelo\"=\'" + CBAcervoModelo.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroAcervo += "\nModelo: " + CBAcervoModelo.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12262,6 +12350,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckAcervoInterface.isSelected()) {
                 FiltroAcervo += "\"Interface\"=\'" + CBAcervoInterface.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroAcervo += "\nInterface: " + CBAcervoInterface.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12269,6 +12358,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckAcervoTecnologia.isSelected()) {
                 FiltroAcervo += "\"Tecnologia\"=\'" + CBAcervoTecnologia.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroAcervo += "\nTecnologia: " + CBAcervoTecnologia.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12278,6 +12368,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPAcervoCapacidadeMin.getValue().toString());
                 int max = Integer.parseInt(SPAcervoCapacidadeMax.getValue().toString());
                 FiltroAcervo += "\"Capacidade\">=" + min + " AND \"Capacidade\"<=" + max + " ";
+                DescricaoFiltroAcervo += "\nCapacidade: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12287,6 +12378,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPAcervoAnoMin.getValue().toString());
                 int max = Integer.parseInt(SPAcervoAnoMax.getValue().toString());
                 FiltroAcervo += "\"Ano\">=" + min + " AND \"Ano\"<=" + max + " ";
+                DescricaoFiltroAcervo += "\nAno: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12295,8 +12387,10 @@ public class Principal extends javax.swing.JFrame {
             if (CheckAcervoFuncionamento.isSelected()) {
                 if (CheckAcervoFunciona.isSelected()) {
                     FiltroAcervo += "\"Funciona\"='t'";
+                    DescricaoFiltroAcervo += "\nFunciona: Sim. ";
                 } else {
                     FiltroAcervo += "\"Funciona\"='f'";
+                    DescricaoFiltroAcervo += "\nFunciona: Nao. ";
                 }
                 checkedfilters--;
                 if (checkedfilters > 0) {
@@ -12307,6 +12401,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPAcervoContainerMin.getValue().toString());
                 int max = Integer.parseInt(SPAcervoContainerMax.getValue().toString());
                 FiltroAcervo += "\"Código de Container\">=" + min + " AND \"Código de Container\"<=" + max + " ";
+                DescricaoFiltroAcervo += "\nCódigo de Container: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroAcervo += " AND ";
@@ -12315,6 +12410,7 @@ public class Principal extends javax.swing.JFrame {
 
         } else {
             FiltroAcervo = "";
+            DescricaoFiltroAcervo += "nenhum. ";
         }
         System.out.println(FiltroAcervo);
         achandoMax = true;
@@ -12326,6 +12422,7 @@ public class Principal extends javax.swing.JFrame {
     private void BImagemFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BImagemFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroImagem = " ";
+        DescricaoFiltroImagem = "Filtros: ";
         int checkedfilters = 0;
         if (CheckImagemCodigo.isSelected()) {
             checkedfilters++;
@@ -12346,6 +12443,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPImagemCodigoMin.getValue().toString());
                 int max = Integer.parseInt(SPImagemCodigoMax.getValue().toString());
                 FiltroImagem += "\"Código de Imagem\">=" + min + " AND \"Código de Imagem\"<=" + max + " ";
+                DescricaoFiltroImagem += "\nCódigo de Imagem: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroImagem += " AND ";
@@ -12355,6 +12453,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPImagemItemMin.getValue().toString());
                 int max = Integer.parseInt(SPImagemItemMax.getValue().toString());
                 FiltroImagem += "\"Código de Item Acervo\">=" + min + " AND \"Código de Item Acervo\"<=" + max + " ";
+                DescricaoFiltroImagem += "\nCódigo de Item Acervo: entre " + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroImagem += " AND ";
@@ -12363,6 +12462,7 @@ public class Principal extends javax.swing.JFrame {
 
             if (CheckImagemMarca.isSelected()) {
                 FiltroImagem += "\"Marca\"=\'" + CBImagemMarca.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroImagem += "\nMarca: " + CBImagemMarca.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroImagem += " AND ";
@@ -12370,6 +12470,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckImagemModelo.isSelected()) {
                 FiltroImagem += "\"Modelo\"=\'" + CBImagemModelo.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroImagem += "\nModelo: " + CBImagemModelo.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroImagem += " AND ";
@@ -12378,6 +12479,7 @@ public class Principal extends javax.swing.JFrame {
 
         } else {
             FiltroImagem = "";
+            DescricaoFiltroImagem += "nenhum. ";
         }
         System.out.println(FiltroImagem);
         achandoMax = true;
@@ -12407,6 +12509,7 @@ public class Principal extends javax.swing.JFrame {
     private void BContainerFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroContainer = " ";
+        DescricaoFiltroContainer = "Filtros: ";
         int checkedfilters = 0;
         if (CheckContainerCodigo.isSelected()) {
             checkedfilters++;
@@ -12424,6 +12527,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPContainerCodigoMin.getValue().toString());
                 int max = Integer.parseInt(SPContainerCodigoMax.getValue().toString());
                 FiltroContainer += "\"Código do Container\">=" + min + " AND \"Código do Container\"<=" + max + " ";
+                DescricaoFiltroContainer += "\nCódigo do Container: entre" + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroContainer += " AND ";
@@ -12432,6 +12536,7 @@ public class Principal extends javax.swing.JFrame {
 
             if (CheckContainerLocalizacao.isSelected()) {
                 FiltroContainer += "\"Localização do Container\"=\'" + CBContainerLocalizacao.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroContainer += "\nLocalização do Container: " + CBContainerLocalizacao.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroContainer += " AND ";
@@ -12439,6 +12544,7 @@ public class Principal extends javax.swing.JFrame {
             }
             if (CheckContainerTipo.isSelected()) {
                 FiltroContainer += "\"Tipo do Container\"=\'" + CBContainerTipo.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroContainer += "\nTipo do Container: " + CBContainerTipo.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroContainer += " AND ";
@@ -12447,6 +12553,7 @@ public class Principal extends javax.swing.JFrame {
 
         } else {
             FiltroContainer = "";
+            DescricaoFiltroContainer += "nenhum. ";
         }
         System.out.println(FiltroContainer);
         achandoMax = true;
@@ -12467,6 +12574,7 @@ public class Principal extends javax.swing.JFrame {
     private void BContainerFiltrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerFiltrar1ActionPerformed
         // TODO add your handling code here:
         FiltroUsuarios = " ";
+        DescricaoFiltroUsuarios = "Filtros: ";
         int checkedfilters = 0;
         if (CheckUsuarioCodigo.isSelected()) {
             checkedfilters++;
@@ -12484,6 +12592,7 @@ public class Principal extends javax.swing.JFrame {
                 int min = Integer.parseInt(SPUsuarioCodigoMin.getValue().toString());
                 int max = Integer.parseInt(SPUsuarioCodigoMax.getValue().toString());
                 FiltroUsuarios += "\"Código de Usuário\">=" + min + " AND \"Código de Usuário\"<=" + max + " ";
+                DescricaoFiltroUsuarios += "\nCódigo de Usuário: entre" + min + " e " + max + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroUsuarios += " AND ";
@@ -12492,6 +12601,7 @@ public class Principal extends javax.swing.JFrame {
 
             if (CheckUsuarioNome.isSelected()) {
                 FiltroUsuarios += "\"Nome do Usuário\"=\'" + CBUsuarioNome.getSelectedItem().toString() + "\' ";
+                DescricaoFiltroUsuarios += "\nNome do Usuário: " + CBUsuarioNome.getSelectedItem().toString() + ". ";
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroUsuarios += " AND ";
@@ -12500,8 +12610,10 @@ public class Principal extends javax.swing.JFrame {
             if (CheckUsuarioPermissao.isSelected()) {
                 if (CheckUsuarioAdministrador.isSelected()) {
                     FiltroUsuarios += "\"Administrador\"=\'t\'";
+                    DescricaoFiltroUsuarios += "\"Administrador: Sim. ";
                 } else {
                     FiltroUsuarios += "\"Administrador\"=\'f\'";
+                    DescricaoFiltroUsuarios += "\"Administrador: Nao. ";
                 }
                 checkedfilters--;
                 if (checkedfilters > 0) {
@@ -12511,6 +12623,7 @@ public class Principal extends javax.swing.JFrame {
 
         } else {
             FiltroUsuarios = "";
+            DescricaoFiltroUsuarios += "nenhum. ";
         }
         System.out.println(FiltroUsuarios);
         achandoMax = true;
@@ -12527,7 +12640,7 @@ public class Principal extends javax.swing.JFrame {
             //currentPath += secao;
             //uri = new URI("file://" + currentPath);
             
-            uri = new URI("http://htmlpreview.github.io/?https://github.com/roscoche/sgacervo/blob/master/"+secao);
+            uri = new URI("http://htmlpreview.github.io/?https://github.com/roscoche/sgacervo/blob/master/manuais/"+secao);
             Desktop.getDesktop().browse(uri);
         } catch (URISyntaxException | IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -13695,6 +13808,17 @@ public class Principal extends javax.swing.JFrame {
             FiltroImagem = "",
             FiltroContainer = "",
             FiltroUsuarios = "",
+            DescricaoFiltroDoacao = "Filtros: nenhum.",
+            DescricaoFiltroItemDoacao = "Filtros: nenhum.",
+            DescricaoFiltroDoador = "Filtros: nenhum.",
+            DescricaoFiltroEstoque = "Filtros: nenhum.",
+            DescricaoFiltroRepasse = "Filtros: nenhum.",
+            DescricaoFiltroItemRepasse = "Filtros: nenhum.",
+            DescricaoFiltroColetor = "Filtros: nenhum.",
+            DescricaoFiltroAcervo = "Filtros: nenhum.",
+            DescricaoFiltroImagem = "Filtros: nenhum.",
+            DescricaoFiltroContainer = "Filtros: nenhum.",
+            DescricaoFiltroUsuarios = "Filtros: nenhum.",
             PaginaDoacao = "",
             PaginaItemDoacao = "",
             PaginaDoador = "",

@@ -3,6 +3,7 @@
 	<property name="ireport.zoom" value="1.771561000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="filtros" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[select * from estoque_detalhado]]>
 	</queryString>
@@ -36,7 +37,12 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="13"/>
+		<band height="65">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="65" uuid="cc585c15-eb4a-437f-8ca7-d024a4a43ce7"/>
+				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="21">
@@ -137,7 +143,7 @@
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="5a10fe88-b942-418f-8461-b5893a7ce5df"/>
+				<reportElement x="0" y="4" width="222" height="13" uuid="5a10fe88-b942-418f-8461-b5893a7ce5df"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

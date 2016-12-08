@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioColetor" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9327610d-7d6f-43e4-9248-d34d2c9c02c2">
 	<property name="ireport.zoom" value="2.3579476910000015"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="62"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="filtros" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[select * from coletor_detalhado;]]>
 	</queryString>
@@ -34,7 +35,12 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="13"/>
+		<band height="48">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="48" uuid="f5e7a849-f806-4299-88d6-a8795ddf4695"/>
+				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="21">
@@ -107,7 +113,7 @@
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="4ea4fbc4-c006-4724-b213-b7209cb65e07"/>
+				<reportElement x="0" y="4" width="256" height="13" uuid="4ea4fbc4-c006-4724-b213-b7209cb65e07"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

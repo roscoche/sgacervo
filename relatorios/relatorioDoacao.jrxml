@@ -3,6 +3,7 @@
 	<property name="ireport.zoom" value="2.1435888100000016"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="filtros" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[select * from doacao_detalhado;]]>
 	</queryString>
@@ -36,7 +37,15 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="13"/>
+		<band height="77">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="77" uuid="846bb304-af26-4c45-b073-4e4dc92dbf6c"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="21">
@@ -45,35 +54,35 @@
 			</line>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7341dd71-d104-48e5-81d2-bf827019149c"/>
-				<textElement textAlignment="Center">
-					<font size="11" isBold="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Código de Doação]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="111" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4ca7eef7-2a54-41db-95bf-1b71bcd4e908"/>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuário]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="222" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="64f103b7-f90b-449e-adf1-10ebf4bf9a9b"/>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Doador]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="333" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="31715550-904c-4959-8688-ac74190abd53"/>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Evento de Origem]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="93882133-60e8-414b-8bee-199db0bf269f"/>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data]]></text>
@@ -137,7 +146,10 @@
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="44499e27-409f-4983-b828-627d016ae3d4"/>
+				<reportElement x="0" y="4" width="222" height="13" uuid="44499e27-409f-4983-b828-627d016ae3d4"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

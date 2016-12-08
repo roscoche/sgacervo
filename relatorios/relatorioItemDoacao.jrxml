@@ -3,6 +3,7 @@
 	<property name="ireport.zoom" value="1.7715610000000013"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="filtros" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[select * from item_doacao_detalhado;]]>
 	</queryString>
@@ -39,7 +40,12 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="13"/>
+		<band height="89">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="89" uuid="05d4fc83-8e02-45ea-9a36-78ae71a55b53"/>
+				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="21">
@@ -159,7 +165,7 @@
 				<textFieldExpression><![CDATA[$F{Quantidade}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="483" y="0" width="69" height="20" uuid="809644a0-f842-4e50-860e-fec87a0adb43"/>
+				<reportElement x="483" y="0" width="72" height="20" uuid="809644a0-f842-4e50-860e-fec87a0adb43"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
@@ -182,7 +188,7 @@
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="69067fc5-711d-44b6-8d8b-1595f1029f49"/>
+				<reportElement x="0" y="4" width="276" height="13" uuid="69067fc5-711d-44b6-8d8b-1595f1029f49"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

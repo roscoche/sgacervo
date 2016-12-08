@@ -27,6 +27,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
 import javax.swing.JTable;
+import static javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN;
+import static javax.swing.JTable.AUTO_RESIZE_OFF;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -249,7 +251,15 @@ public class Principal extends javax.swing.JFrame {
         //Atualiza campos referentes à Aba Usuário
         atualizarCamposAbaUsuario();
     }
-
+    private void setTableColumnsWidths(JTable tabela,int[] percents){
+        tabela.setAutoResizeMode(AUTO_RESIZE_LAST_COLUMN);
+        
+        int tmax=tabela.getWidth();
+        int apercent=tmax/100;
+        //System.out.println("tmax"+tmax);
+        //System.out.println("apercent"+apercent);
+        for(int i=0;i<percents.length;i++) tabela.getColumnModel().getColumn(i).setPreferredWidth(percents[i]*apercent);
+    }
     private void atualizarTBDoacao() {
         Connection con;
         ResultSet rs = null;
@@ -264,6 +274,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TDoacao.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={10,30,30,20,10};
+                setTableColumnsWidths(TDoacao,percents);
                 numeroPaginaDoacao = 1;
                 LDoacaoPagina.setText(numeroPaginaDoacao + "");
                 numeroMaxPaginaDoacao = ((TDoacao.getRowCount() - 1) / Integer.parseInt(SPDoacaoItensPagina.getValue().toString())) + 1;
@@ -289,6 +301,8 @@ public class Principal extends javax.swing.JFrame {
             }
             System.out.println(statement);
             TDoacao.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={10,30,30,20,10};
+            setTableColumnsWidths(TDoacao,percents);
             LDoacaoPagina.setText(numeroPaginaDoacao + "");
         }
 
@@ -308,6 +322,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TItemDoacao.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={6,6,20,20,20,10,10,7};
+                setTableColumnsWidths(TItemDoacao,percents);
                 numeroPaginaItemDoacao = 1;
                 LItemDoacaoPagina.setText(numeroPaginaItemDoacao + "");
                 numeroMaxPaginaItemDoacao = ((TItemDoacao.getRowCount() - 1) / Integer.parseInt(SPItemDoacaoItensPagina.getValue().toString())) + 1;
@@ -332,6 +348,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TItemDoacao.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={6,6,20,20,20,10,10,7};
+            setTableColumnsWidths(TItemDoacao,percents);
             LItemDoacaoPagina.setText(numeroPaginaItemDoacao + "");
         }
 
@@ -351,6 +369,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TEstoque.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={10,30,20,20,20};
+                setTableColumnsWidths(TEstoque,percents);
                 numeroPaginaEstoque = 1;
                 LEstoquePagina.setText(numeroPaginaEstoque + "");
                 numeroMaxPaginaEstoque = ((TEstoque.getRowCount() - 1) / Integer.parseInt(SPEstoqueItensPagina.getValue().toString())) + 1;
@@ -375,6 +395,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TEstoque.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={10,30,20,20,20};
+            setTableColumnsWidths(TEstoque,percents);
             LEstoquePagina.setText(numeroPaginaEstoque + "");
         }
 
@@ -394,6 +416,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TImagem.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={10,10,25,25,30};
+                setTableColumnsWidths(TImagem,percents);
                 numeroPaginaImagem = 1;
                 LImagemPagina.setText(numeroPaginaImagem + "");
                 numeroMaxPaginaImagem = ((TImagem.getRowCount() - 1) / Integer.parseInt(SPImagemItensPagina.getValue().toString())) + 1;
@@ -418,6 +442,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TImagem.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={10,10,25,25,30};
+            setTableColumnsWidths(TImagem,percents);
             LImagemPagina.setText(numeroPaginaImagem + "");
         }
 
@@ -437,6 +463,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TContainer.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={10,45,45};
+                setTableColumnsWidths(TContainer,percents);
                 numeroPaginaContainer = 1;
                 LContainerPagina.setText(numeroPaginaContainer + "");
                 numeroMaxPaginaContainer = ((TContainer.getRowCount() - 1) / Integer.parseInt(SPContainerItensPagina.getValue().toString())) + 1;
@@ -461,6 +489,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TContainer.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={10,45,45};
+            setTableColumnsWidths(TContainer,percents);
             LContainerPagina.setText(numeroPaginaContainer + "");
         }
 
@@ -480,6 +510,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TDoador.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={15,75};
+                setTableColumnsWidths(TDoador,percents);
                 numeroPaginaDoador = 1;
                 LDoadorPagina.setText(numeroPaginaDoador + "");
                 numeroMaxPaginaDoador = ((TDoador.getRowCount() - 1) / Integer.parseInt(SPDoadorItensPagina.getValue().toString())) + 1;
@@ -504,6 +536,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TDoador.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={15,75};
+            setTableColumnsWidths(TDoador,percents);
             LDoadorPagina.setText(numeroPaginaDoador + "");
         }
 
@@ -523,6 +557,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TRepasse.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={10,20,20,20,20,10};
+                setTableColumnsWidths(TRepasse,percents);
                 numeroPaginaRepasse = 1;
                 LRepassePagina.setText(numeroPaginaRepasse + "");
                 numeroMaxPaginaRepasse = ((TRepasse.getRowCount() - 1) / Integer.parseInt(SPRepasseItensPagina.getValue().toString())) + 1;
@@ -547,6 +583,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TRepasse.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={10,20,20,20,20,10};
+            setTableColumnsWidths(TRepasse,percents);
             LRepassePagina.setText(numeroPaginaRepasse + "");
         }
 
@@ -566,6 +604,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TItemRepasse.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={5,5,15,20,20,20,5,10};
+                setTableColumnsWidths(TItemRepasse,percents);
                 numeroPaginaItemRepasse = 1;
                 LItemRepassePagina.setText(numeroPaginaItemRepasse + "");
                 numeroMaxPaginaItemRepasse = ((TItemRepasse.getRowCount() - 1) / Integer.parseInt(SPItemRepasseItensPagina.getValue().toString())) + 1;
@@ -590,6 +630,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TItemRepasse.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={5,5,15,20,20,20,5,10};
+            setTableColumnsWidths(TItemRepasse,percents);
             LItemRepassePagina.setText(numeroPaginaItemRepasse + "");
         }
 
@@ -609,6 +651,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TColetor.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={20,40,40};
+                setTableColumnsWidths(TColetor,percents);
                 numeroPaginaColetor = 1;
                 LColetorPagina.setText(numeroPaginaColetor + "");
                 numeroMaxPaginaColetor = ((TColetor.getRowCount() - 1) / Integer.parseInt(SPColetorItensPagina.getValue().toString())) + 1;
@@ -633,6 +677,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TColetor.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={20,40,40};
+            setTableColumnsWidths(TColetor,percents);
             LColetorPagina.setText(numeroPaginaColetor + "");
         }
 
@@ -652,6 +698,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TAcervo.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={5,10,10,5,10,10,10,10,10,2,3,10,2,3};
+                setTableColumnsWidths(TAcervo,percents);
                 numeroPaginaAcervo = 1;
                 LAcervoPagina.setText(numeroPaginaAcervo + "");
                 numeroMaxPaginaAcervo = ((TAcervo.getRowCount() - 1) / Integer.parseInt(SPAcervoItensPagina.getValue().toString())) + 1;
@@ -676,6 +724,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TAcervo.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={5,10,10,5,10,10,10,10,10,2,3,10,2,3};
+            setTableColumnsWidths(TAcervo,percents);
             LAcervoPagina.setText(numeroPaginaAcervo + "");
         }
 
@@ -695,6 +745,8 @@ public class Principal extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 con.close();
                 TUsuarios.setModel(DbUtils.resultSetToTableModel(rs));
+                int[] percents={10,15,25,25,25};
+                setTableColumnsWidths(TUsuarios,percents);
                 numeroPaginaUsuarios = 1;
                 LUsuariosPagina.setText(numeroPaginaUsuarios + "");
                 numeroMaxPaginaUsuarios = ((TUsuarios.getRowCount() - 1) / Integer.parseInt(SPUsuariosItensPagina.getValue().toString())) + 1;
@@ -719,6 +771,8 @@ public class Principal extends javax.swing.JFrame {
 
             }
             TUsuarios.setModel(DbUtils.resultSetToTableModel(rs));
+            int[] percents={10,15,25,25,25};
+            setTableColumnsWidths(TUsuarios,percents);
             LUsuariosPagina.setText(numeroPaginaUsuarios + "");
         }
 
@@ -12467,16 +12521,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void abrirManual(String secao) {
         try {
-            String currentPath = Principal.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-            currentPath = currentPath.replace("SGACERVO.jar", "");
-            currentPath += secao;
             URI uri;
-            uri = new URI("file://" + currentPath);
+            //String currentPath = Principal.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            //currentPath = currentPath.replace("SGACERVO.jar", "");
+            //currentPath += secao;
+            //uri = new URI("file://" + currentPath);
+            
             uri = new URI("http://htmlpreview.github.io/?https://github.com/roscoche/sgacervo/blob/master/"+secao);
             Desktop.getDesktop().browse(uri);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (URISyntaxException | IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
 

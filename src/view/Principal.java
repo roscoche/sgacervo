@@ -21,6 +21,7 @@ import control.ConfigBanco;
 import control.Encryptor;
 import java.awt.Desktop;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.net.URI;
@@ -2078,6 +2079,11 @@ public class Principal extends javax.swing.JFrame {
         campoSenhaLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoSenhaLoginActionPerformed(evt);
+            }
+        });
+        campoSenhaLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoSenhaLoginKeyPressed(evt);
             }
         });
 
@@ -12812,6 +12818,13 @@ public class Principal extends javax.swing.JFrame {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AbrirCodigoFonteActionPerformed
+
+    private void campoSenhaLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSenhaLoginKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BLogarActionPerformed(new ActionEvent(JDLogin, 0, null));
+        }
+    }//GEN-LAST:event_campoSenhaLoginKeyPressed
 
     private void excluirLinhasTabela(JTable tabela) {
         while (tabela.getSelectedRowCount() > 0) {

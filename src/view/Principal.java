@@ -748,7 +748,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from doador;";
+        String statement = "SELECT * from doador order by nome_doador ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -777,7 +777,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from evento_origem;";
+        String statement = "SELECT * from evento_origem ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -804,7 +804,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from destinacao;";
+        String statement = "SELECT * from destinacao order by nome_destinacao ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -831,7 +831,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from coletor;";
+        String statement = "SELECT * from coletor order by nome_coletor ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -858,7 +858,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from tipo_coletor;";
+        String statement = "SELECT * from tipo_coletor order by nome_tipo_coletor ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -885,7 +885,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from tipo_item;";
+        String statement = "SELECT * from tipo_item order by nome_tipo ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -917,7 +917,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from marca;";
+        String statement = "SELECT * from marca order by nome_marca ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -944,7 +944,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from modelo;";
+        String statement = "SELECT * from modelo order by nome_modelo ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -970,7 +970,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from interface;";
+        String statement = "SELECT * from interface order by nome_interface ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -995,7 +995,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from tecnologia;";
+        String statement = "SELECT * from tecnologia order by nome_tecnologia ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -1020,7 +1020,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from tipo_container;";
+        String statement = "SELECT * from tipo_container order by nome_tipo_container ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -1047,7 +1047,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from container;";
+        String statement = "SELECT * from container order by localizacao_container ";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -1072,7 +1072,7 @@ public class Principal extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         PreparedStatement ps;
-        String statement = "SELECT * from usuario;";
+        String statement = "SELECT * from usuario order by nome_usuario";
         ArrayList list = new ArrayList();
         try {
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -6205,6 +6205,14 @@ public class Principal extends javax.swing.JFrame {
 
         TDoacao.setAutoCreateRowSorter(true);
         TDoacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        TDoacao.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         TDoacao.setRowHeight(30);
         RelatorioDoacoes.setViewportView(TDoacao);
 
@@ -12464,6 +12472,7 @@ public class Principal extends javax.swing.JFrame {
             currentPath += secao;
             URI uri;
             uri = new URI("file://" + currentPath);
+            uri = new URI("http://htmlpreview.github.io/?https://github.com/roscoche/sgacervo/blob/master/"+secao);
             Desktop.getDesktop().browse(uri);
         } catch (URISyntaxException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);

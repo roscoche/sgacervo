@@ -255,12 +255,10 @@ public class Principal extends javax.swing.JFrame {
         atualizarCamposAbaUsuario();
     }
     private void setTableColumnsWidths(JTable tabela,int[] percents){
-        tabela.setAutoResizeMode(AUTO_RESIZE_LAST_COLUMN);
         
+        tabela.setAutoResizeMode(AUTO_RESIZE_LAST_COLUMN);
         int tmax=tabela.getWidth();
         int apercent=tmax/100;
-        //System.out.println("tmax"+tmax);
-        //System.out.println("apercent"+apercent);
         for(int i=0;i<percents.length;i++) tabela.getColumnModel().getColumn(i).setPreferredWidth(percents[i]*apercent);
     }
     private void atualizarTBDoacao() {
@@ -268,7 +266,7 @@ public class Principal extends javax.swing.JFrame {
         ResultSet rs = null;
         PreparedStatement ps;
         String statement;
-
+        
         if (achandoMax) {
             statement = SelecaoDoacao + FiltroDoacao;
             try {
@@ -302,13 +300,12 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Erro de consulta para Doacao.");
 
             }
-            System.out.println(statement);
             TDoacao.setModel(DbUtils.resultSetToTableModel(rs));
             int[] percents={10,30,30,20,10};
             setTableColumnsWidths(TDoacao,percents);
             LDoacaoPagina.setText(numeroPaginaDoacao + "");
         }
-
+        
     }
 
     private void atualizarTBItemDoacao() {
@@ -316,7 +313,6 @@ public class Principal extends javax.swing.JFrame {
         ResultSet rs = null;
         PreparedStatement ps;
         String statement;
-
         if (achandoMax) {
             statement = SelecaoItemDoacao + FiltroItemDoacao;
             try {
@@ -355,7 +351,7 @@ public class Principal extends javax.swing.JFrame {
             setTableColumnsWidths(TItemDoacao,percents);
             LItemDoacaoPagina.setText(numeroPaginaItemDoacao + "");
         }
-
+        
     }
 
     private void atualizarTBEstoque() {
@@ -1141,7 +1137,9 @@ public class Principal extends javax.swing.JFrame {
                 list.add(rs.getString("nome_usuario"));
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Usuario.");
+            JOptionPane.showMessageDialog(null, "Erro de consulta para ComboBox Usuario.\nConsulte suas configurações de Internet e do Banco de Dados.","Erro Fatal",0);
+            System.exit(-1);
+            
         }
         Object[] objectList = list.toArray();
         String[] tipos = Arrays.copyOf(objectList, objectList.length, String[].class);
@@ -1711,7 +1709,7 @@ public class Principal extends javax.swing.JFrame {
         SPUsuarioCodigoMin = new javax.swing.JSpinner();
         jLabel105 = new javax.swing.JLabel();
         CBUsuarioNome = new javax.swing.JComboBox<>();
-        BContainerFiltrar1 = new javax.swing.JButton();
+        BUsuarioFiltrar = new javax.swing.JButton();
         CheckUsuarioAdministrador = new javax.swing.JCheckBox();
         Principal = new javax.swing.JTabbedPane();
         Doacoes = new javax.swing.JTabbedPane();
@@ -5942,10 +5940,10 @@ public class Principal extends javax.swing.JFrame {
 
         CBUsuarioNome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        BContainerFiltrar1.setText("Filtrar Usuário");
-        BContainerFiltrar1.addActionListener(new java.awt.event.ActionListener() {
+        BUsuarioFiltrar.setText("Filtrar Usuário");
+        BUsuarioFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BContainerFiltrar1ActionPerformed(evt);
+                BUsuarioFiltrarActionPerformed(evt);
             }
         });
 
@@ -5958,7 +5956,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(JDFiltrarUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(JDFiltrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BContainerFiltrar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BUsuarioFiltrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(JDFiltrarUsuarioLayout.createSequentialGroup()
                         .addComponent(CheckUsuarioCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
@@ -6001,7 +5999,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(CheckUsuarioPermissao)
                     .addComponent(CheckUsuarioAdministrador))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(BContainerFiltrar1)
+                .addComponent(BUsuarioFiltrar)
                 .addContainerGap())
         );
 
@@ -10446,7 +10444,6 @@ public class Principal extends javax.swing.JFrame {
         try {
             Tipo_containerDAO tipodao = new Tipo_containerDAO();
             Tipo_container tipo = tipodao.getByNome(CBTipoContainerCadastrarContainer.getSelectedItem().toString());
-            System.out.println(CBTipoContainerCadastrarContainer.getSelectedItem().toString());
             tipodao.fechar();
 
             container.setCod_tipo_container(tipo.getCod_tipo_container());
@@ -11027,9 +11024,7 @@ public class Principal extends javax.swing.JFrame {
             newQuery.setText(consultaSQL);
             jasperDesign.setQuery(newQuery);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            System.out.println(params);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, b.getConexao());
-            
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (JRException e) {
@@ -11380,7 +11375,6 @@ public class Principal extends javax.swing.JFrame {
                 FiltroDoacao += "\"Data\"::date<=\'" + (JDCDoacaoMax.getDate().getYear() + 1900) + "-" + (JDCDoacaoMax.getDate().getMonth() + 1) + "-" + JDCDoacaoMax.getDate().getDate() + "\' ";
                 DescricaoFiltroDoacao += "\nData: entre " + (JDCDoacaoMin.getDate().getYear() + 1900) + "-" + (JDCDoacaoMin.getDate().getMonth() + 1) + "-" + JDCDoacaoMin.getDate().getDate() + " e ";
                 DescricaoFiltroDoacao += (JDCDoacaoMax.getDate().getYear() + 1900) + "-" + (JDCDoacaoMax.getDate().getMonth() + 1) + "-" + JDCDoacaoMax.getDate().getDate() + ". ";
-                System.out.println(FiltroDoacao);
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroDoacao += " AND ";
@@ -11853,7 +11847,6 @@ public class Principal extends javax.swing.JFrame {
                 FiltroItemDoacao += "\"Data\"::date<=\'" + (JDCItemDoacaoMax.getDate().getYear() + 1900) + "-" + (JDCItemDoacaoMax.getDate().getMonth() + 1) + "-" + JDCItemDoacaoMax.getDate().getDate() + "\' ";
                 DescricaoFiltroItemDoacao += "\nData: entre " + JDCItemDoacaoMin.getDate().getDate()+"/"+(JDCItemDoacaoMin.getDate().getMonth() + 1) + "/" +(JDCItemDoacaoMin.getDate().getYear() + 1900);
                 DescricaoFiltroItemDoacao += " e " + JDCItemDoacaoMax.getDate().getDate()+"/"+(JDCItemDoacaoMax.getDate().getMonth() + 1) + "/" +(JDCItemDoacaoMax.getDate().getYear() + 1900)+". ";
-                System.out.println(FiltroItemDoacao);
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemDoacao += " AND ";
@@ -11863,7 +11856,7 @@ public class Principal extends javax.swing.JFrame {
             FiltroItemDoacao = "";
             DescricaoFiltroItemDoacao += "nenhum. ";
         }
-        System.out.println(FiltroItemDoacao);
+        
         achandoMax = true;
         atualizarTBItemDoacao();
         achandoMax = false;
@@ -11933,7 +11926,6 @@ public class Principal extends javax.swing.JFrame {
             FiltroEstoque = "";
             DescricaoFiltroEstoque += "nenhum. ";
         }
-        System.out.println(FiltroEstoque);
         achandoMax = true;
         atualizarTBEstoque();
         achandoMax = false;
@@ -11976,7 +11968,6 @@ public class Principal extends javax.swing.JFrame {
             FiltroDoador = "";
             DescricaoFiltroDoador += "nenhum. ";
         }
-        System.out.println(FiltroDoador);
         achandoMax = true;
         atualizarTBDoador();
         achandoMax = false;
@@ -12056,7 +12047,6 @@ public class Principal extends javax.swing.JFrame {
                 FiltroRepasse += "\"Data\"::date<=\'" + (JDCRepasseMax.getDate().getYear() + 1900) + "-" + (JDCRepasseMax.getDate().getMonth() + 1) + "-" + JDCRepasseMax.getDate().getDate() + "\' ";
                 DescricaoFiltroRepasse += "\nData: entre " + JDCRepasseMin.getDate().getDate() + "/" + (JDCRepasseMin.getDate().getMonth() + 1) + "/" + (JDCRepasseMin.getDate().getYear() + 1900);
                 DescricaoFiltroRepasse += " e " + JDCRepasseMax.getDate().getDate() + "/" + (JDCRepasseMax.getDate().getMonth() + 1) + "/" + (JDCRepasseMax.getDate().getYear() + 1900)+". ";
-                System.out.println(FiltroRepasse);
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroRepasse += " AND ";
@@ -12066,7 +12056,6 @@ public class Principal extends javax.swing.JFrame {
             FiltroRepasse = "";
             DescricaoFiltroRepasse += "nenhum. ";
         }
-        System.out.println(FiltroRepasse);
         achandoMax = true;
         atualizarTBRepasse();
         achandoMax = false;
@@ -12173,7 +12162,6 @@ public class Principal extends javax.swing.JFrame {
                 DescricaoFiltroItemRepasse += "\nData: entre " + JDCItemRepasseMin.getDate().getDate()+"/"+(JDCItemRepasseMin.getDate().getMonth() + 1)+"/"+(JDCItemRepasseMin.getDate().getYear() + 1900);
                 DescricaoFiltroItemRepasse += " e " + JDCItemRepasseMax.getDate().getDate()+"/"+(JDCItemRepasseMax.getDate().getMonth() + 1)+"/"+(JDCItemRepasseMax.getDate().getYear() + 1900)+". ";
                 
-                System.out.println(FiltroItemRepasse);
                 checkedfilters--;
                 if (checkedfilters > 0) {
                     FiltroItemRepasse += " AND ";
@@ -12183,7 +12171,6 @@ public class Principal extends javax.swing.JFrame {
             FiltroItemRepasse = "";
             DescricaoFiltroItemRepasse += "nenhum. ";
         }
-        System.out.println(FiltroItemRepasse);
         achandoMax = true;
         atualizarTBItemRepasse();
         achandoMax = false;
@@ -12239,7 +12226,6 @@ public class Principal extends javax.swing.JFrame {
             FiltroColetor = "";
             DescricaoFiltroColetor += "nenhum. ";
         }
-        System.out.println(FiltroColetor);
         achandoMax = true;
         atualizarTBColetor();
         achandoMax = false;
@@ -12418,7 +12404,7 @@ public class Principal extends javax.swing.JFrame {
             FiltroAcervo = "";
             DescricaoFiltroAcervo += "nenhum. ";
         }
-        System.out.println(FiltroAcervo);
+        
         achandoMax = true;
         atualizarTBAcervo();
         achandoMax = false;
@@ -12487,7 +12473,6 @@ public class Principal extends javax.swing.JFrame {
             FiltroImagem = "";
             DescricaoFiltroImagem += "nenhum. ";
         }
-        System.out.println(FiltroImagem);
         achandoMax = true;
         atualizarTBImagem();
         achandoMax = false;
@@ -12561,7 +12546,6 @@ public class Principal extends javax.swing.JFrame {
             FiltroContainer = "";
             DescricaoFiltroContainer += "nenhum. ";
         }
-        System.out.println(FiltroContainer);
         achandoMax = true;
         atualizarTBContainer();
         achandoMax = false;
@@ -12577,7 +12561,7 @@ public class Principal extends javax.swing.JFrame {
         JDFiltrarUsuario.setVisible(true);
     }//GEN-LAST:event_BFiltrarUsuarioActionPerformed
 
-    private void BContainerFiltrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BContainerFiltrar1ActionPerformed
+    private void BUsuarioFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUsuarioFiltrarActionPerformed
         // TODO add your handling code here:
         FiltroUsuarios = " ";
         DescricaoFiltroUsuarios = "Filtros: ";
@@ -12631,12 +12615,11 @@ public class Principal extends javax.swing.JFrame {
             FiltroUsuarios = "";
             DescricaoFiltroUsuarios += "nenhum. ";
         }
-        System.out.println(FiltroUsuarios);
         achandoMax = true;
         atualizarTBUsuario();
         achandoMax = false;
         atualizarTBUsuario();
-    }//GEN-LAST:event_BContainerFiltrar1ActionPerformed
+    }//GEN-LAST:event_BUsuarioFiltrarActionPerformed
 
     private void abrirManual(String secao) {
         try {
@@ -12971,7 +12954,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BConfirmarExcluirRepasse;
     private javax.swing.JButton BConfirmarExcluirUsuario;
     private javax.swing.JButton BContainerFiltrar;
-    private javax.swing.JButton BContainerFiltrar1;
     private javax.swing.JButton BContainerPaginaAnterior;
     private javax.swing.JButton BContainerProxPagina;
     private javax.swing.JToggleButton BDeslogar;
@@ -13062,6 +13044,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BRepasseFiltrar;
     private javax.swing.JButton BRepassePaginaAnterior;
     private javax.swing.JButton BRepasseProxPagina;
+    private javax.swing.JButton BUsuarioFiltrar;
     private javax.swing.JButton BUsuariosPaginaAnterior;
     private javax.swing.JButton BUsuariosProxPagina;
     private javax.swing.JMenuBar BarraMenu;

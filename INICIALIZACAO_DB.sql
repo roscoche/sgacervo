@@ -799,4 +799,15 @@ INSERT INTO doador(cod_doador,nome_doador) values(default,'Anônimo');
 INSERT INTO tecnologia(cod_tecnologia,nome_tecnologia) values(default,'NÃO SE APLICA');
 INSERT INTO tipo_container(cod_tipo_container,nome_tipo_container) values(default,'Sede Física');
 INSERT INTO container(cod_container,cod_tipo_container,localizacao_container) values(default,1,'Sede Física');
+INSERT INTO evento_origem(cod_evento_origem,nome_evento_origem) values (default,'Sede Física');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'Computador');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'CD');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'DVD');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'Monitor');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'Impressora');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'Disquete');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'Scanner');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'Mouse');
+INSERT INTO tipo_item(cod_tipo,nome_tipo) values(default,'Teclado');
+
 

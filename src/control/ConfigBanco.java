@@ -16,9 +16,9 @@ public class ConfigBanco {
                 login = "postgres";
                 password = "postgres";
                 break;
-            
+              
         }
-                
+          
             
     }
 
